@@ -1,0 +1,122 @@
+{
+  "checked_at": "2026-10-20T09:43:12.989227+00:00",
+  "checks": [
+    "seven_ready_three_new_bound_pvcs",
+    "fresh_store_rest_credentials_gateway_mcp_product_read_key_revoked"
+  ],
+  "provider_calls": 0,
+  "scope": "staged source chart/helpers; explicit cached immutable image inputs and private operator inputs",
+  "pods": [
+    {
+      "name": "urumi-m10-clean-backend-b5d668cf9-shsb5",
+      "uid": "8ca141dd-af19-4847-87a1-87ff76faf1ff",
+      "containers": [
+        {
+          "name": "backend",
+          "image": "docker.io/urumi/backend:m10",
+          "imageID": "docker.io/urumi/backend@sha256:b863c9ccfca8c20bce2eb2e260f63650be63f7e8f4ac731f2a57dd49bc884646",
+          "ready": true,
+          "restartCount": 0
+        }
+      ]
+    },
+    {
+      "name": "urumi-m10-clean-dashboard-78869fc57d-nxtmj",
+      "uid": "8cfd4f84-a77d-4878-a77c-f3757bbd216a",
+      "containers": [
+        {
+          "name": "dashboard",
+          "image": "docker.io/urumi/dashboard:m8",
+          "imageID": "docker.io/urumi/dashboard@sha256:c619a07d7dab970dce601fe0add72e2cbdcbe1839ca65cce3922ebc46f999a76",
+          "ready": true,
+          "restartCount": 0
+        }
+      ]
+    },
+    {
+      "name": "urumi-m10-clean-inventory-mcp-69cdff5dff-tlwnw",
+      "uid": "ef4b4349-5830-4353-98e6-6b57ee9bc6e0",
+      "containers": [
+        {
+          "name": "inventory-mcp",
+          "image": "docker.io/urumi/inventory-mcp:m4",
+          "imageID": "docker.io/urumi/inventory-mcp@sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb",
+          "ready": true,
+          "restartCount": 0
+        }
+      ]
+    },
+    {
+      "name": "urumi-m10-clean-mariadb-0",
+      "uid": "f2f51c4e-991e-485b-be1e-af9720585079",
+      "containers": [
+        {
+          "name": "mariadb",
+          "image": "sha256:ab3dff582d246358b6f6a1f6212f29ac64609fad883eb3dcfb0a89f6f7d0700e",
+          "imageID": "docker.io/library/mariadb@sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+          "ready": true,
+          "restartCount": 0
+        }
+      ]
+    },
+    {
+      "name": "urumi-m10-clean-platform-db-68576fc499-gj7dw",
+      "uid": "511a2011-8755-477c-9ea8-522de821ff6c",
+      "containers": [
+        {
+          "name": "postgres",
+          "image": "sha256:589f742565e4f6d22149176b032974f55f8201a8a37b71ed587ec5c6902e689f",
+          "imageID": "docker.io/library/postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826",
+          "ready": true,
+          "restartCount": 0
+        }
+      ]
+    },
+    {
+      "name": "urumi-m10-clean-woocommerce-mcp-6797bb6cbc-6x64l",
+      "uid": "07e260d7-d14e-4ae5-83cb-dc521b32cc83",
+      "containers": [
+        {
+          "name": "woocommerce-mcp",
+          "image": "docker.io/urumi/woocommerce-mcp:m3",
+          "imageID": "docker.io/urumi/woocommerce-mcp@sha256:41921e625b0e2256ebea6ad86511bf4879aac2ee84b798926af4fa2aadf1e546",
+          "ready": true,
+          "restartCount": 0
+        }
+      ]
+    },
+    {
+      "name": "urumi-m10-clean-wordpress-7bf4747dc6-xmkh9",
+      "uid": "f5df913d-cab3-4394-8222-1c34f4441268",
+      "containers": [
+        {
+          "name": "wordpress",
+          "image": "docker.io/library/urumi-store:m2-23494837a20c",
+          "imageID": "docker.io/library/urumi-store@sha256:23494837a20cc9d2c7093cb8203f066eb9c78054956945ad4e779ab42e204d98",
+          "ready": true,
+          "restartCount": 0
+        }
+      ]
+    }
+  ],
+  "pvcs": [
+    {
+      "name": "urumi-m10-clean-mariadb-data",
+      "uid": "08295a4d-0068-4657-9ca3-1fab9f6d034b"
+    },
+    {
+      "name": "urumi-m10-clean-wordpress-content",
+      "uid": "5207b20e-4dc9-4af6-af17-b5f85b2c395a"
+    },
+    {
+      "name": "urumi-m10-clean-platform-data",
+      "uid": "9e64e82d-8f9c-48a7-be3c-ef91a20058cb"
+    }
+  ],
+  "builtin_server_id": "dfa4a742-5e51-44aa-b985-032faf2704c2",
+  "fresh_products_count": 1,
+  "status": "FAILED_REVIEW_REQUIRED",
+  "failure_phase": "after_2_completed_checks",
+  "failure_type": "RuntimeError",
+  "failure_code": "api_503"
+}

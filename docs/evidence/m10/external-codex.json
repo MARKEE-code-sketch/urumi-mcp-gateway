@@ -1,0 +1,71 @@
+{
+  "exit_code": 0,
+  "client": "Codex CLI 0.162.1",
+  "auth": "Existing ChatGPT login; API-key environment removed",
+  "gateway_url": "https://dashboard-m10.urumi.test/mcp",
+  "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+  "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+  "events": [
+    {
+      "id": "item_1",
+      "type": "mcp_tool_call",
+      "server": "urumi",
+      "tool": "woocommerce__list_orders",
+      "status": "in_progress",
+      "arguments": {
+        "created_from": "2026-10-20T00:00:00+05:30",
+        "created_to": "2026-10-20T23:59:59.999+05:30",
+        "page": 1,
+        "per_page": 100
+      },
+      "error": null
+    },
+    {
+      "id": "item_1",
+      "type": "mcp_tool_call",
+      "server": "urumi",
+      "tool": "woocommerce__list_orders",
+      "status": "failed",
+      "arguments": {
+        "created_from": "2026-10-20T00:00:00+05:30",
+        "created_to": "2026-10-20T23:59:59.999+05:30",
+        "page": 1,
+        "per_page": 100
+      },
+      "error": null
+    },
+    {
+      "id": "item_2",
+      "type": "mcp_tool_call",
+      "server": "urumi",
+      "tool": "woocommerce__list_orders",
+      "status": "in_progress",
+      "arguments": {
+        "created_from": "2026-10-20T00:00:00+05:30",
+        "created_to": "2026-10-20T23:59:59+05:30",
+        "page": 1,
+        "per_page": 20
+      },
+      "error": null
+    },
+    {
+      "id": "item_2",
+      "type": "mcp_tool_call",
+      "server": "urumi",
+      "tool": "woocommerce__list_orders",
+      "status": "completed",
+      "arguments": {
+        "created_from": "2026-10-20T00:00:00+05:30",
+        "created_to": "2026-10-20T23:59:59+05:30",
+        "page": 1,
+        "per_page": 20
+      },
+      "error": null
+    }
+  ],
+  "answers": [
+    "I\u2019ll check today\u2019s orders in Asia/Kolkata and report their IDs, statuses, and totals.",
+    "Today, **20 October 2026 (Asia/Kolkata)**, 2 orders came in:\n\n| Order ID | Status | Total |\n|---|---|---:|\n| 16 | Completed | INR 499.00 |\n| 19 | Processing | INR 129.00 |\n\n**Combined total: INR 628.00.**"
+  ],
+  "scope": "Actual external Codex client, only one gateway URL/key, local tools disabled; no upstream credentials supplied."
+}

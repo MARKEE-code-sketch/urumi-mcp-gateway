@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "typecheck": "npm.cmd --prefix frontend run typecheck",
+  "unit": {
+    "command": "npm.cmd --prefix frontend test -- --run",
+    "files": 5,
+    "passed": 40
+  },
+  "browser": {
+    "command": "M8_EVIDENCE_DIR=../docs/evidence/ui-refresh/teal-dashboard npm.cmd --prefix frontend run test:browser (environment assigned in PowerShell)",
+    "passed": 17,
+    "duration_seconds": 26.3,
+    "scope": "Controlled API fixture, full auth/role/key/invitation/replay regressions and semantic Markdown/mobile output."
+  },
+  "source_package": {
+    "command": ".tools/m10/venv/Scripts/python.exe -m pytest tests/release/test_checker_safety.py -q --basetemp .tools/ui-refresh-pytest",
+    "passed": 3
+  },
+  "production_build": {
+    "command": "npm.cmd --prefix frontend run build",
+    "modules": 324,
+    "source_maps": false,
+    "assets": "Same-origin local font, SVG icons and favicon; original CSP retained."
+  },
+  "initial_findings": [
+    "Three old browser assertions required explicit opening of new audit details, expected suppression of HTML blocks, and correcting a Windows-piped INR test literal. Final full browser run passed.",
+    "Small SVGs initially inlined by Vite were changed to emitted local assets so img-src self remains sufficient.",
+    "Schema constraints CSS selector corrected after independent review."
+  ],
+  "limitations": [
+    "Controlled fixture results are separate from actual Kubernetes/Groq/browser evidence.",
+    "No new complete M10 acceptance or vulnerability audit is claimed."
+  ]
+}

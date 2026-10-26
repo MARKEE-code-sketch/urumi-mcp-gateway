@@ -1,0 +1,19 @@
+[
+  {
+    "check": "groq_connectivity_only",
+    "status": "PASS",
+    "http_status": 401,
+    "note": "No credential sent; 401 proves reachability, not key validity or free account status."
+  },
+  {
+    "check": "microsoft_learn_initialize_and_list",
+    "status": "PASS",
+    "protocol": "2025-06-18",
+    "tool_names": [
+      "microsoft_docs_search",
+      "microsoft_code_sample_search",
+      "microsoft_docs_fetch"
+    ],
+    "note": "Discovered, not called; gateway integration remains M10."
+  }
+]

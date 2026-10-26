@@ -1,0 +1,340 @@
+﻿UTC: 2026-10-15T15:04:30.0811402Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "services" "urumi-mariadb" "urumi-wordpress" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-mariadb",
+                "namespace": "urumi",
+                "resourceVersion": "8653",
+                "uid": "a05a7040-8d8f-49e3-abdf-b5f7735522c3"
+            },
+            "spec": {
+                "clusterIP": "None",
+                "clusterIPs": [
+                    "None"
+                ],
+                "internalTrafficPolicy": "Cluster",
+                "ipFamilies": [
+                    "IPv4"
+                ],
+                "ipFamilyPolicy": "SingleStack",
+                "ports": [
+                    {
+                        "port": 3306,
+                        "protocol": "TCP",
+                        "targetPort": 3306
+                    }
+                ],
+                "selector": {
+                    "app.kubernetes.io/component": "mariadb",
+                    "app.kubernetes.io/instance": "urumi"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-wordpress",
+                "namespace": "urumi",
+                "resourceVersion": "8657",
+                "uid": "221ad775-aef4-4a39-8b49-282ab820fa5e"
+            },
+            "spec": {
+                "clusterIP": "10.43.240.131",
+                "clusterIPs": [
+                    "10.43.240.131"
+                ],
+                "internalTrafficPolicy": "Cluster",
+                "ipFamilies": [
+                    "IPv4"
+                ],
+                "ipFamilyPolicy": "SingleStack",
+                "ports": [
+                    {
+                        "port": 80,
+                        "protocol": "TCP",
+                        "targetPort": 80
+                    }
+                ],
+                "selector": {
+                    "app.kubernetes.io/component": "wordpress",
+                    "app.kubernetes.io/instance": "urumi"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-15T15:04:30.3452924Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "ingress" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "networking.k8s.io/v1",
+            "kind": "Ingress",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-wordpress",
+                "namespace": "urumi",
+                "resourceVersion": "8685",
+                "uid": "9351cbf4-28aa-44d5-83b2-56debb9f723e"
+            },
+            "spec": {
+                "ingressClassName": "traefik",
+                "rules": [
+                    {
+                        "host": "shop.urumi.test",
+                        "http": {
+                            "paths": [
+                                {
+                                    "backend": {
+                                        "service": {
+                                            "name": "urumi-wordpress",
+                                            "port": {
+                                                "number": 80
+                                            }
+                                        }
+                                    },
+                                    "path": "/",
+                                    "pathType": "Prefix"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "loadBalancer": {
+                    "ingress": [
+                        {
+                            "ip": "172.18.0.2"
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-16T04:34:22.0433537Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "services" "urumi-mariadb" "urumi-wordpress" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-mariadb",
+                "namespace": "urumi",
+                "resourceVersion": "8653",
+                "uid": "a05a7040-8d8f-49e3-abdf-b5f7735522c3"
+            },
+            "spec": {
+                "clusterIP": "None",
+                "clusterIPs": [
+                    "None"
+                ],
+                "internalTrafficPolicy": "Cluster",
+                "ipFamilies": [
+                    "IPv4"
+                ],
+                "ipFamilyPolicy": "SingleStack",
+                "ports": [
+                    {
+                        "port": 3306,
+                        "protocol": "TCP",
+                        "targetPort": 3306
+                    }
+                ],
+                "selector": {
+                    "app.kubernetes.io/component": "mariadb",
+                    "app.kubernetes.io/instance": "urumi"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-wordpress",
+                "namespace": "urumi",
+                "resourceVersion": "8657",
+                "uid": "221ad775-aef4-4a39-8b49-282ab820fa5e"
+            },
+            "spec": {
+                "clusterIP": "10.43.240.131",
+                "clusterIPs": [
+                    "10.43.240.131"
+                ],
+                "internalTrafficPolicy": "Cluster",
+                "ipFamilies": [
+                    "IPv4"
+                ],
+                "ipFamilyPolicy": "SingleStack",
+                "ports": [
+                    {
+                        "port": 80,
+                        "protocol": "TCP",
+                        "targetPort": 80
+                    }
+                ],
+                "selector": {
+                    "app.kubernetes.io/component": "wordpress",
+                    "app.kubernetes.io/instance": "urumi"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-16T04:34:22.3793384Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "ingress" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "networking.k8s.io/v1",
+            "kind": "Ingress",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-wordpress",
+                "namespace": "urumi",
+                "resourceVersion": "8685",
+                "uid": "9351cbf4-28aa-44d5-83b2-56debb9f723e"
+            },
+            "spec": {
+                "ingressClassName": "traefik",
+                "rules": [
+                    {
+                        "host": "shop.urumi.test",
+                        "http": {
+                            "paths": [
+                                {
+                                    "backend": {
+                                        "service": {
+                                            "name": "urumi-wordpress",
+                                            "port": {
+                                                "number": 80
+                                            }
+                                        }
+                                    },
+                                    "path": "/",
+                                    "pathType": "Prefix"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "loadBalancer": {
+                    "ingress": [
+                        {
+                            "ip": "172.18.0.2"
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+

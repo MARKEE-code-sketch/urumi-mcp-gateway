@@ -1,0 +1,1184 @@
+﻿UTC: 2026-10-15T14:57:43.6772181Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "-n" "urumi-m3-check" "get" "pods" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-15T14:56:55Z",
+                "generateName": "m3-allowed-again-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "gateway",
+                    "app.kubernetes.io/instance": "urumi-m3-check",
+                    "app.kubernetes.io/name": "urumi",
+                    "batch.kubernetes.io/controller-uid": "eb34e828-b4e3-4f9d-a714-1ebb4b268a7c",
+                    "batch.kubernetes.io/job-name": "m3-allowed-again",
+                    "controller-uid": "eb34e828-b4e3-4f9d-a714-1ebb4b268a7c",
+                    "job-name": "m3-allowed-again"
+                },
+                "name": "m3-allowed-again-2qnbn",
+                "namespace": "urumi-m3-check",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "m3-allowed-again",
+                        "uid": "eb34e828-b4e3-4f9d-a714-1ebb4b268a7c"
+                    }
+                ],
+                "resourceVersion": "9158",
+                "uid": "47f26af2-0723-4398-be7c-e25d1e990adf"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "tests/woocommerce_mcp/cluster_client.py",
+                            "--url",
+                            "http://urumi-m3-check-woocommerce-mcp.urumi-m3-check.svc.cluster.local:8000/mcp",
+                            "--mode",
+                            "allowed"
+                        ],
+                        "image": "urumi/woocommerce-mcp:m3",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "client",
+                        "resources": {
+                            "limits": {
+                                "cpu": "250m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 10001,
+                    "runAsNonRoot": true,
+                    "runAsUser": 10001,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "50m",
+                    "memory": "64Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:57:08Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:56:55Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:57:07Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:57:07Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:56:55Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "50m",
+                            "memory": "64Mi"
+                        },
+                        "containerID": "containerd://55dad939f2546d46944b030fb759ffce408d39af456a20f7fecb20641c28bc29",
+                        "image": "docker.io/urumi/woocommerce-mcp:m3",
+                        "imageID": "sha256:486c72b5ce744f67ef680fc5135cc0f69dae7f54e5c951a9903cc07384b80ef3",
+                        "lastState": {},
+                        "name": "client",
+                        "ready": false,
+                        "resources": {
+                            "limits": {
+                                "cpu": "250m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://55dad939f2546d46944b030fb759ffce408d39af456a20f7fecb20641c28bc29",
+                                "exitCode": 0,
+                                "finishedAt": "2026-10-15T14:57:07Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-10-15T14:56:56Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 10001,
+                                "supplementalGroups": [
+                                    10001
+                                ],
+                                "uid": 10001
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.18.0.2",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.2"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Succeeded",
+                "podIP": "10.42.0.38",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.38"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "250m",
+                        "memory": "128Mi"
+                    },
+                    "requests": {
+                        "cpu": "28m",
+                        "memory": "64Mi"
+                    }
+                },
+                "startTime": "2026-10-15T14:56:55Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-15T14:56:26Z",
+                "generateName": "m3-allowed-first-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "gateway",
+                    "app.kubernetes.io/instance": "urumi-m3-check",
+                    "app.kubernetes.io/name": "urumi",
+                    "batch.kubernetes.io/controller-uid": "7d15cce0-e0e9-41b1-8270-ed33ddd7206f",
+                    "batch.kubernetes.io/job-name": "m3-allowed-first",
+                    "controller-uid": "7d15cce0-e0e9-41b1-8270-ed33ddd7206f",
+                    "job-name": "m3-allowed-first"
+                },
+                "name": "m3-allowed-first-wwb75",
+                "namespace": "urumi-m3-check",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "m3-allowed-first",
+                        "uid": "7d15cce0-e0e9-41b1-8270-ed33ddd7206f"
+                    }
+                ],
+                "resourceVersion": "9105",
+                "uid": "c5f0b8b5-64cd-4793-a28f-0a0b6046ddfc"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "tests/woocommerce_mcp/cluster_client.py",
+                            "--url",
+                            "http://urumi-m3-check-woocommerce-mcp.urumi-m3-check.svc.cluster.local:8000/mcp",
+                            "--mode",
+                            "allowed"
+                        ],
+                        "image": "urumi/woocommerce-mcp:m3",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "client",
+                        "resources": {
+                            "limits": {
+                                "cpu": "250m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 10001,
+                    "runAsNonRoot": true,
+                    "runAsUser": 10001,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "50m",
+                    "memory": "64Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:56:39Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:56:26Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:56:38Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:56:38Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:56:26Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "50m",
+                            "memory": "64Mi"
+                        },
+                        "containerID": "containerd://5555c43d71ab3348f378d238face9be5938938a466631373d2675cb307205918",
+                        "image": "docker.io/urumi/woocommerce-mcp:m3",
+                        "imageID": "sha256:486c72b5ce744f67ef680fc5135cc0f69dae7f54e5c951a9903cc07384b80ef3",
+                        "lastState": {},
+                        "name": "client",
+                        "ready": false,
+                        "resources": {
+                            "limits": {
+                                "cpu": "250m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://5555c43d71ab3348f378d238face9be5938938a466631373d2675cb307205918",
+                                "exitCode": 0,
+                                "finishedAt": "2026-10-15T14:56:37Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-10-15T14:56:27Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 10001,
+                                "supplementalGroups": [
+                                    10001
+                                ],
+                                "uid": 10001
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.18.0.2",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.2"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Succeeded",
+                "podIP": "10.42.0.36",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.36"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "requests": {
+                        "memory": "64Mi"
+                    }
+                },
+                "startTime": "2026-10-15T14:56:26Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-15T14:56:40Z",
+                "generateName": "m3-denied-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "unrelated",
+                    "app.kubernetes.io/instance": "urumi-m3-check",
+                    "app.kubernetes.io/name": "urumi",
+                    "batch.kubernetes.io/controller-uid": "3291ed7c-fa15-4aab-bf47-71a314cc7cb5",
+                    "batch.kubernetes.io/job-name": "m3-denied",
+                    "controller-uid": "3291ed7c-fa15-4aab-bf47-71a314cc7cb5",
+                    "job-name": "m3-denied"
+                },
+                "name": "m3-denied-h4rt9",
+                "namespace": "urumi-m3-check",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "m3-denied",
+                        "uid": "3291ed7c-fa15-4aab-bf47-71a314cc7cb5"
+                    }
+                ],
+                "resourceVersion": "9132",
+                "uid": "268572c4-ac2b-4498-92a1-10d7ee39160e"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "tests/woocommerce_mcp/cluster_client.py",
+                            "--url",
+                            "http://urumi-m3-check-woocommerce-mcp.urumi-m3-check.svc.cluster.local:8000/mcp",
+                            "--mode",
+                            "denied"
+                        ],
+                        "image": "urumi/woocommerce-mcp:m3",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "client",
+                        "resources": {
+                            "limits": {
+                                "cpu": "250m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 10001,
+                    "runAsNonRoot": true,
+                    "runAsUser": 10001,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "50m",
+                    "memory": "64Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:56:53Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:56:40Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:56:52Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:56:52Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:56:40Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "50m",
+                            "memory": "64Mi"
+                        },
+                        "containerID": "containerd://cfc1e671ccb8147a9f769f06e7c7ddeb22c8a3455284f46469679030f659b064",
+                        "image": "docker.io/urumi/woocommerce-mcp:m3",
+                        "imageID": "sha256:486c72b5ce744f67ef680fc5135cc0f69dae7f54e5c951a9903cc07384b80ef3",
+                        "lastState": {},
+                        "name": "client",
+                        "ready": false,
+                        "resources": {
+                            "limits": {
+                                "cpu": "250m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://cfc1e671ccb8147a9f769f06e7c7ddeb22c8a3455284f46469679030f659b064",
+                                "exitCode": 0,
+                                "finishedAt": "2026-10-15T14:56:51Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-10-15T14:56:41Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 10001,
+                                "supplementalGroups": [
+                                    10001
+                                ],
+                                "uid": 10001
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.18.0.2",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.2"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Succeeded",
+                "podIP": "10.42.0.37",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.37"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "requests": {
+                        "memory": "64Mi"
+                    }
+                },
+                "startTime": "2026-10-15T14:56:40Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-15T14:56:15Z",
+                "generateName": "m3-fake-shop-67fd858769-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "m3-fake-shop",
+                    "app.kubernetes.io/instance": "urumi-m3-check",
+                    "app.kubernetes.io/name": "urumi",
+                    "pod-template-hash": "67fd858769"
+                },
+                "name": "m3-fake-shop-67fd858769-t94fs",
+                "namespace": "urumi-m3-check",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "m3-fake-shop-67fd858769",
+                        "uid": "1b9e0424-a438-4df4-a507-039c43b035c4"
+                    }
+                ],
+                "resourceVersion": "9077",
+                "uid": "5e61b03a-e54a-4d5b-9235-08134c16a7d4"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "tests/woocommerce_mcp/fake_shop.py"
+                        ],
+                        "image": "urumi/woocommerce-mcp:m3",
+                        "imagePullPolicy": "IfNotPresent",
+                        "livenessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/livez",
+                                "port": "rest",
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 2
+                        },
+                        "name": "fake-shop",
+                        "ports": [
+                            {
+                                "containerPort": 8080,
+                                "name": "rest",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/readyz",
+                                "port": "rest",
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 2,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 2
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "250m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 10001,
+                    "runAsNonRoot": true,
+                    "runAsUser": 10001,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "50m",
+                    "memory": "64Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:56:16Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:56:15Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:56:23Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:56:23Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:56:15Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "50m",
+                            "memory": "64Mi"
+                        },
+                        "containerID": "containerd://659af40a3fd228d25e2b07083afff45a716feca4f640102d642981cb1bae5e73",
+                        "image": "docker.io/urumi/woocommerce-mcp:m3",
+                        "imageID": "sha256:486c72b5ce744f67ef680fc5135cc0f69dae7f54e5c951a9903cc07384b80ef3",
+                        "lastState": {},
+                        "name": "fake-shop",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "250m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "50m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-15T14:56:16Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 10001,
+                                "supplementalGroups": [
+                                    10001
+                                ],
+                                "uid": 10001
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.18.0.2",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.2"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.42.0.34",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.34"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "250m",
+                        "memory": "128Mi"
+                    },
+                    "requests": {
+                        "cpu": "28m",
+                        "memory": "64Mi"
+                    }
+                },
+                "startTime": "2026-10-15T14:56:15Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-15T14:57:10Z",
+                "generateName": "urumi-m3-check-woocommerce-mcp-65f59967b9-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "woocommerce-mcp",
+                    "app.kubernetes.io/instance": "urumi-m3-check",
+                    "app.kubernetes.io/name": "urumi",
+                    "pod-template-hash": "65f59967b9"
+                },
+                "name": "urumi-m3-check-woocommerce-mcp-65f59967b9-pws24",
+                "namespace": "urumi-m3-check",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "urumi-m3-check-woocommerce-mcp-65f59967b9",
+                        "uid": "ada22cdb-ec7c-40f0-8d6c-3e68853b62b3"
+                    }
+                ],
+                "resourceVersion": "9236",
+                "uid": "77f8cb0a-de2b-4082-bad3-7b23dda42b7d"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "env": [
+                            {
+                                "name": "WOO_CANONICAL_ORIGIN",
+                                "value": "http://fake-shop.urumi.test"
+                            },
+                            {
+                                "name": "WOO_TRANSPORT_ORIGIN",
+                                "value": "http://m3-fake-shop.urumi-m3-check.svc.cluster.local:8080"
+                            },
+                            {
+                                "name": "WOO_CURRENCY",
+                                "value": "INR"
+                            },
+                            {
+                                "name": "MCP_ALLOWED_HOSTS",
+                                "value": "urumi-m3-check-woocommerce-mcp,urumi-m3-check-woocommerce-mcp.urumi-m3-check.svc.cluster.local"
+                            },
+                            {
+                                "name": "WOO_CONSUMER_KEY",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "consumer-key",
+                                        "name": "m3-fake-woocommerce-rest"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "WOO_CONSUMER_SECRET",
+                                "valueFrom": {
+                                    "secretKeyRef": {
+                                        "key": "consumer-secret",
+                                        "name": "m3-fake-woocommerce-rest"
+                                    }
+                                }
+                            }
+                        ],
+                        "image": "urumi/woocommerce-mcp:m3",
+                        "imagePullPolicy": "IfNotPresent",
+                        "livenessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/m3-deliberate-missing-livez",
+                                "port": "mcp",
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 2
+                        },
+                        "name": "woocommerce-mcp",
+                        "ports": [
+                            {
+                                "containerPort": 8000,
+                                "name": "mcp",
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/readyz",
+                                "port": "mcp",
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 2
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "500m",
+                                "memory": "256Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "128Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true
+                        },
+                        "startupProbe": {
+                            "failureThreshold": 30,
+                            "httpGet": {
+                                "path": "/livez",
+                                "port": "mcp",
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 2,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 2
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 10001,
+                    "runAsNonRoot": true,
+                    "runAsUser": 10001,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "100m",
+                    "memory": "128Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:57:10Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:57:10Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:57:41Z",
+                        "message": "containers with unready status: [woocommerce-mcp]",
+                        "observedGeneration": 1,
+                        "reason": "ContainersNotReady",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:57:41Z",
+                        "message": "containers with unready status: [woocommerce-mcp]",
+                        "observedGeneration": 1,
+                        "reason": "ContainersNotReady",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:57:10Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "100m",
+                            "memory": "128Mi"
+                        },
+                        "containerID": "containerd://67ffdd8d983219448d093849a917e2d13dfc408d8f92fdcaf07893b4aa696d19",
+                        "image": "docker.io/urumi/woocommerce-mcp:m3",
+                        "imageID": "sha256:486c72b5ce744f67ef680fc5135cc0f69dae7f54e5c951a9903cc07384b80ef3",
+                        "lastState": {
+                            "terminated": {
+                                "containerID": "containerd://34ca44cddc7f055d1c659438ee20e79aa05f70a459100a58f112f66912ad80c6",
+                                "exitCode": 0,
+                                "finishedAt": "2026-10-15T14:57:41Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-10-15T14:57:10Z"
+                            }
+                        },
+                        "name": "woocommerce-mcp",
+                        "ready": false,
+                        "resources": {
+                            "limits": {
+                                "cpu": "500m",
+                                "memory": "256Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "128Mi"
+                            }
+                        },
+                        "restartCount": 1,
+                        "started": false,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-15T14:57:41Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 10001,
+                                "supplementalGroups": [
+                                    10001
+                                ],
+                                "uid": 10001
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.18.0.2",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.2"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.42.0.39",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.39"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "500m",
+                        "memory": "256Mi"
+                    },
+                    "requests": {
+                        "cpu": "79m",
+                        "memory": "128Mi"
+                    }
+                },
+                "startTime": "2026-10-15T14:57:10Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+

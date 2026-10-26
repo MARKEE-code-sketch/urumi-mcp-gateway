@@ -1,0 +1,37 @@
+{
+  "status": "PASS_METADATA_ONLY",
+  "imported_images": [
+    {
+      "component": "store",
+      "image": "docker.io/library/urumi-store@sha256:23494837a20cc9d2c7093cb8203f066eb9c78054956945ad4e779ab42e204d98",
+      "manifest_verified_in_node": true
+    },
+    {
+      "component": "woocommerceMcp",
+      "image": "docker.io/urumi/woocommerce-mcp@sha256:41921e625b0e2256ebea6ad86511bf4879aac2ee84b798926af4fa2aadf1e546",
+      "manifest_verified_in_node": true
+    },
+    {
+      "component": "inventoryMcp",
+      "image": "docker.io/urumi/inventory-mcp@sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb",
+      "manifest_verified_in_node": true
+    },
+    {
+      "component": "backend",
+      "image": "docker.io/urumi/backend@sha256:b863c9ccfca8c20bce2eb2e260f63650be63f7e8f4ac731f2a57dd49bc884646",
+      "manifest_verified_in_node": true
+    },
+    {
+      "component": "dashboard",
+      "image": "docker.io/urumi/dashboard@sha256:c619a07d7dab970dce601fe0add72e2cbdcbe1839ca65cce3922ebc46f999a76",
+      "manifest_verified_in_node": true
+    }
+  ],
+  "certificate_trust": "CurrentUser Root fingerprint + Windows chain verified separately",
+  "inventory_scope": "Actual private input metadata; imported manifest identities before install, actual Pod config identity still required.",
+  "namespaces": [
+    "urumi-m10",
+    "urumi-m10-secrets"
+  ],
+  "existing_shop_mutations": 0
+}

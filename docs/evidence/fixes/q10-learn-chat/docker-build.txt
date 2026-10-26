@@ -1,0 +1,57 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 901B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/python:3.13.5-slim-bookworm@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419
+#2 DONE 0.2s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 250B 0.0s done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 DONE 0.0s
+
+#5 [runtime 1/7] FROM docker.io/library/python:3.13.5-slim-bookworm@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419
+#5 resolve docker.io/library/python:3.13.5-slim-bookworm@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419 0.1s done
+#5 DONE 0.1s
+
+#4 [internal] load build context
+#4 transferring context: 25.68kB 0.0s done
+#4 DONE 0.1s
+
+#6 [runtime 3/7] COPY backend/requirements.lock.txt /app/backend/requirements.lock.txt
+#6 CACHED
+
+#7 [runtime 2/7] WORKDIR /app
+#7 CACHED
+
+#8 [runtime 4/7] RUN pip install --no-cache-dir -r /app/backend/requirements.lock.txt && pip check
+#8 CACHED
+
+#9 [runtime 5/7] COPY backend /app/backend
+#9 DONE 0.1s
+
+#10 [runtime 6/7] COPY contracts /app/contracts
+#10 DONE 0.1s
+
+#11 [runtime 7/7] RUN useradd --uid 10001 --create-home urumi
+#11 DONE 0.6s
+
+#12 [release 1/1] RUN test -f /app/backend/main.py && test -f /app/backend/orchestrator.py
+#12 DONE 0.4s
+
+#13 exporting to image
+#13 exporting layers
+#13 exporting layers 0.4s done
+#13 exporting manifest sha256:f075c26f6aff2e81bc5aa87725d112b1844999cdb5f8239fa7fe5d8989b8d08a 0.0s done
+#13 exporting config sha256:9a9dfa128ab98aa85f29c51a7496e384e27e0f9152240f1d4197d381c0feb223 0.0s done
+#13 exporting attestation manifest sha256:0c26a85c21371340b4b42c7f59a961083fd2c0886bd7ea72f3f3830f5f385a96 0.1s done
+#13 exporting manifest list sha256:89402aea206a1373776bf66fb0b494f140cca224a12380980c2f08bdd2fedb8b
+#13 exporting manifest list sha256:89402aea206a1373776bf66fb0b494f140cca224a12380980c2f08bdd2fedb8b 0.0s done
+#13 naming to docker.io/urumi/backend:m10-q10-rate-wait done
+#13 unpacking to docker.io/urumi/backend:m10-q10-rate-wait
+#13 unpacking to docker.io/urumi/backend:m10-q10-rate-wait 0.2s done
+#13 DONE 0.9s

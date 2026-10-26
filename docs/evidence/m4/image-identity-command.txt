@@ -1,0 +1,5 @@
+﻿UTC: 2026-10-16T13:09:19.0022450Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.venv\Scripts\python.exe "scripts/m4/image_identity.py" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m4\image-identity.tar" "--image" "urumi/inventory-mcp:m4" "--output" "docs/evidence/m4/image-identity-check.json"
+Exit: 0
+
+

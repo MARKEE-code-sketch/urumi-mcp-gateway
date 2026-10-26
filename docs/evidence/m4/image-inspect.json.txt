@@ -1,0 +1,150 @@
+﻿UTC: 2026-10-16T13:06:38.7735651Z
+Command: docker.exe "image" "inspect" "urumi/inventory-mcp:m4"
+Exit: 0
+[
+    {
+        "Id": "sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb",
+        "RepoTags": [
+            "urumi/inventory-mcp:m4"
+        ],
+        "RepoDigests": [
+            "urumi/inventory-mcp@sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-10-16T13:06:32.253898215Z",
+        "Config": {
+            "User": "10001:10001",
+            "ExposedPorts": {
+                "8000/tcp": {}
+            },
+            "Env": [
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+                "PYTHON_VERSION=3.13.5",
+                "PYTHON_SHA256=93e583f243454e6e9e4588ca2c2662206ad961659863277afcdb96801647d640",
+                "PYTHONDONTWRITEBYTECODE=1",
+                "PYTHONUNBUFFERED=1",
+                "PYTHONPATH=/app"
+            ],
+            "Cmd": [
+                "python",
+                "-m",
+                "services.sample_mcps.inventory"
+            ],
+            "WorkingDir": "/app",
+            "ArgsEscaped": true
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 56639063,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:7cc7fe68eff66f19872441a51938eecc4ad33746d2baa3abc081c1e6fe25988e",
+                "sha256:9621f68f1f5ddfd1fa67faa2a5c513986b9d4b015f06999152893fc9bcefb093",
+                "sha256:547f1fc1a2bb7ad4fbecb26c04a6ba82c067e668e79ab229bd932745636781c7",
+                "sha256:7d8e4ce94100ff12329e91295efd7fb69bfc45c0525dd1ff94e577a22903d44c",
+                "sha256:37c25c97ab77c85fd2924440ed65020721f3c09ed90e3259ac56c6994db98d72",
+                "sha256:95e9a9f966479c0cffd5d8a300a3b1e1eaaaf9845ad30f119214ada991e0f180",
+                "sha256:6deed69601a77cb20a07cd69a126745f5586b8364b2862455c3619324406e722",
+                "sha256:0dfc081396d0d0fe51fc5b57b9e09a566aa07f9a484188a10c091d8bf4a93575",
+                "sha256:c79a8b98d7cb7727fdc86a4278cac3515890951d254c98ae0f1ae201396b392a",
+                "sha256:65fae31a9935cf7a983de6aa890593aa6f14720b52cd6fbe3ae14525abe7fa5d",
+                "sha256:75b70a34ddafe24d5fc57164e4b4acb814b2967486a3d441824641df3faf6005"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-16T13:06:35.999667404Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "pyy3bn9plsc8unzznr6urdij4",
+                    "CreatedAt": "2026-10-16T13:06:37.540731254Z"
+                }
+            ]
+        }
+    }
+]
+
+
+UTC: 2026-10-16T13:09:15.0712595Z
+Command: docker.exe "image" "inspect" "urumi/inventory-mcp:m4"
+Exit: 0
+[
+    {
+        "Id": "sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb",
+        "RepoTags": [
+            "urumi/inventory-mcp:m4"
+        ],
+        "RepoDigests": [
+            "urumi/inventory-mcp@sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-10-16T13:06:32.253898215Z",
+        "Config": {
+            "User": "10001:10001",
+            "ExposedPorts": {
+                "8000/tcp": {}
+            },
+            "Env": [
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+                "PYTHON_VERSION=3.13.5",
+                "PYTHON_SHA256=93e583f243454e6e9e4588ca2c2662206ad961659863277afcdb96801647d640",
+                "PYTHONDONTWRITEBYTECODE=1",
+                "PYTHONUNBUFFERED=1",
+                "PYTHONPATH=/app"
+            ],
+            "Cmd": [
+                "python",
+                "-m",
+                "services.sample_mcps.inventory"
+            ],
+            "WorkingDir": "/app",
+            "ArgsEscaped": true
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 56639063,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:7cc7fe68eff66f19872441a51938eecc4ad33746d2baa3abc081c1e6fe25988e",
+                "sha256:9621f68f1f5ddfd1fa67faa2a5c513986b9d4b015f06999152893fc9bcefb093",
+                "sha256:547f1fc1a2bb7ad4fbecb26c04a6ba82c067e668e79ab229bd932745636781c7",
+                "sha256:7d8e4ce94100ff12329e91295efd7fb69bfc45c0525dd1ff94e577a22903d44c",
+                "sha256:37c25c97ab77c85fd2924440ed65020721f3c09ed90e3259ac56c6994db98d72",
+                "sha256:95e9a9f966479c0cffd5d8a300a3b1e1eaaaf9845ad30f119214ada991e0f180",
+                "sha256:6deed69601a77cb20a07cd69a126745f5586b8364b2862455c3619324406e722",
+                "sha256:0dfc081396d0d0fe51fc5b57b9e09a566aa07f9a484188a10c091d8bf4a93575",
+                "sha256:c79a8b98d7cb7727fdc86a4278cac3515890951d254c98ae0f1ae201396b392a",
+                "sha256:65fae31a9935cf7a983de6aa890593aa6f14720b52cd6fbe3ae14525abe7fa5d",
+                "sha256:75b70a34ddafe24d5fc57164e4b4acb814b2967486a3d441824641df3faf6005"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-16T13:06:35.999667404Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "pyy3bn9plsc8unzznr6urdij4",
+                    "CreatedAt": "2026-10-16T13:06:37.540731254Z"
+                }
+            ]
+        }
+    }
+]
+
+

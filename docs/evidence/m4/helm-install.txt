@@ -1,0 +1,24 @@
+﻿UTC: 2026-10-16T13:07:33.0447270Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "upgrade" "--install" "urumi-m4-check" "deploy/charts/urumi" "-n" "urumi-m4-check" "-f" "tests/sample_mcps/values-check.yaml" "--wait" "--timeout" "180s"
+Exit: 0
+Release "urumi-m4-check" does not exist. Installing it now.
+NAME: urumi-m4-check
+LAST DEPLOYED: Fri Oct 16 18:37:16 2026
+NAMESPACE: urumi-m4-check
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+
+
+UTC: 2026-10-16T13:10:07.8141080Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "upgrade" "--install" "urumi-m4-check" "deploy/charts/urumi" "-n" "urumi-m4-check" "-f" "tests/sample_mcps/values-check.yaml" "--wait" "--timeout" "180s"
+Exit: 0
+Release "urumi-m4-check" does not exist. Installing it now.
+NAME: urumi-m4-check
+LAST DEPLOYED: Fri Oct 16 18:39:51 2026
+NAMESPACE: urumi-m4-check
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+
+

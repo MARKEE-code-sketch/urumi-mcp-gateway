@@ -1,0 +1,26 @@
+# M10 independent runtime snapshot review
+
+**Verdict:** PASS for the observed workload/storage/RBAC/image metadata checks below. This is a read-only snapshot, not full C10 acceptance. Observed against `k3d-urumi`, release/application namespace `urumi-m10`, with credential namespace `urumi-m10-secrets`. Actual observation timestamp and exact command arrays are retained in [live-runtime.json](live-runtime.json).
+
+Reviewed the assignment DOCX, project instructions, approved blueprint and M10 specification using the Kubernetes acceptance QA skill. No application, chart, Secret, workload, database or browser state was changed by this reviewer. No Secret object/data or live environment values were collected. Commands read actual resources, issue permission queries and hash local-node OCI metadata.
+
+| Check | Observed result | Meaning / limit |
+|---|---|---|
+| Seven workloads | PASS: backend, dashboard, Woo MCP, Inventory MCP, WordPress, MariaDB and platform PostgreSQL all Running/Ready; all seven containers report zero restarts in this snapshot | Confirms actual deployed readiness at observation; does not prove user flow or sustained availability |
+| Health and resources | PASS: every container has readiness and liveness probes plus CPU/memory requests and limits | Exact actual probe and resource definitions retained; no restart/fault was induced |
+| Durable storage | PASS: three new claims Bound on `local-path`, 2 GiB each, for MariaDB, WordPress content and platform PostgreSQL | Confirms mounted-claim configuration/binding, not restart persistence or backup restore |
+| Actual backend image | PASS: Pod image ID OCI index `b863c9cc...` resolves on its node to linux/amd64 manifest `8f0576ac...` and config `c423ace6...`, matching the Docker-exported configuration digest in `image-identity-backend.json` | SHA256 of each actual index/manifest/config byte stream independently verified. Different index and config hashes are expected; they are different OCI objects. Other Pod image IDs recorded without claiming full source/config identity for those images |
+| App container security | PASS for configured backend/dashboard/Woo/Inventory controls: non-root, RuntimeDefault seccomp, read-only root, dropped capabilities and no privilege escalation | WordPress/MariaDB/PostgreSQL retain the existing upstream-image startup privilege exceptions; do not describe every container as explicitly hardened/non-root |
+| Service token scope | PASS: only backend enables automatic ServiceAccount token mounting; other six Pods disable it | Backend needs the token to access the scoped Kubernetes Secret API |
+| Secret RBAC | PASS: backend ServiceAccount can get/create/update/delete Secrets only in `urumi-m10-secrets`; list/watch denied there. All six tested Secret verbs denied in both app namespace `urumi-m10` and original namespace `urumi` | Actual impersonated `kubectl auth can-i` answers, including expected exit 1 for denial, recorded. Does not inspect Secret contents or imply protection against all compromised-service behavior |
+| Public/internal resources | PASS configuration: all seven Services ClusterIP; two Ingress resources route dashboard `/api/v1` and `/mcp` to backend, `/` to dashboard, and shop root to WordPress. No Woo/Inventory/database public Ingress | Dashboard Ingress declares its TLS Secret. This snapshot shows shop HTTP Ingress without TLS; it does not claim production HTTPS/OAuth transport proof or browser certificate trust proof |
+| Network policy installation | PASS configuration: seven NetworkPolicies exist for exact workload roles | Network enforcement needs the separate actual allow/deny probe; resource existence alone does not prove packets are blocked |
+| Original shop protection | PASS: all seven original `urumi` Pod/PVC/Service UIDs match `.tools/m10/retained-before.json` | New shop did not replace those original resources before this snapshot; later final snapshot remains the root acceptance owner's responsibility |
+
+## Exact command families
+
+From workspace-root PowerShell, the evidence collector issued `kubectl --kubeconfig .tools/m1/kubeconfig.yaml --context k3d-urumi -n urumi-m10 get pods,deployments,statefulsets,services,ingresses,pvc,networkpolicies,serviceaccounts -o json`, then retained only allowlisted metadata. It queried `kubectl auth can-i VERB secrets --namespace NAMESPACE --as system:serviceaccount:urumi-m10:urumi-m10-backend` for six verbs in three namespaces. It compared `-n urumi get pods,pvc,services -o json` with the saved seven-resource baseline. Image identity used read-only `docker exec k3d-urumi-server-0 ctr -n k8s.io content get DIGEST` and SHA256, with config contents neither printed nor retained. Complete exact arrays/exit codes are in the JSON evidence.
+
+## Pending outside this snapshot
+
+C10-03 has observed resource-health/image/storage support; URL/browser checks belong to the root's live browser evidence. C10-13 has actual RBAC and public/internal resource support; packet-level denial is separate. No PASS for D1-D10, provider tool loop, external natural-language client, audit attribution, revocation, failure isolation, data persistence, restore, production HTTPS or final handoff follows from this review. The root owns live scenarios, any faults/restarts and the final criterion ledger.

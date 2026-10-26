@@ -1,0 +1,28 @@
+{
+  "status": "PASS_ISOLATED_RESTORE",
+  "source": "urumi-m10",
+  "restore_namespace": "urumi-m10-recovery-9f1d2038",
+  "postgres_tables_match": 11,
+  "postgres_row_counts": {
+    "api_keys": 11,
+    "audit_records": 46,
+    "builtin_initializations": 1,
+    "canceled_secret_names": 0,
+    "installation": 1,
+    "invitations": 2,
+    "schema_version": 3,
+    "secret_operations": 0,
+    "servers": 3,
+    "sessions": 24,
+    "users": 3
+  },
+  "mariadb_data_match": true,
+  "wordpress_files_match": 9289,
+  "secret_state_match": true,
+  "credential_references_verified": 0,
+  "public_services_created": false,
+  "backend_or_provider_started": false,
+  "storage": "disposable emptyDir only",
+  "cleanup": "Both uniquely owned rehearsal namespaces removed in finally",
+  "limitation": "Data/credential/file restore, not a running restored application or VPS proof."
+}

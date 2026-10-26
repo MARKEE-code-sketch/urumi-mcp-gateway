@@ -1,0 +1,1291 @@
+{
+  "initial_attempt": "monitor-fix-runtime-initial-attempt.json",
+  "import_recovery": "monitor-fix-import-recovery.json",
+  "status": "PASS",
+  "observed_utc": "2026-10-21T02:36:36.803502+00:00",
+  "scope": "Only backend image update in existing owned main and disposable clean test releases; preserve effective deployed values/PVCs and clean built-in deletion.",
+  "commands": [
+    {
+      "command": [
+        "docker",
+        "exec",
+        "k3d-urumi-server-0",
+        "ctr",
+        "-n",
+        "k8s.io",
+        "content",
+        "get",
+        "sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "k3d-urumi-server-0",
+        "ctr",
+        "-n",
+        "k8s.io",
+        "content",
+        "get",
+        "sha256:6792cb48bc629e5a2ff9a03c2554df48183dc950a5c1c6ee791db9a3a44e4f51"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "k3d-urumi-server-0",
+        "ctr",
+        "-n",
+        "k8s.io",
+        "content",
+        "get",
+        "sha256:160ae7b13c17f4a0e94a02a855b0ffae5181081cb9f97136846c5f50e0982d43"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi",
+        "get",
+        "pods,pvc,services",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods,pvc",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-platform-db-6dbbf758c-wb9z5",
+        "--",
+        "psql",
+        "-X",
+        "-A",
+        "-t",
+        "-U",
+        "urumi",
+        "-d",
+        "urumi",
+        "-c",
+        "SELECT json_build_object('builtin',(SELECT json_agg(x ORDER BY name) FROM (SELECT name,server_id FROM builtin_initializations) x),'servers',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,slug,enabled FROM servers) x));"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        ".tools/m1/helm.exe",
+        "get",
+        "values",
+        "urumi-m10",
+        "--namespace",
+        "urumi-m10",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--kube-context",
+        "k3d-urumi",
+        "--all",
+        "-o",
+        "yaml"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        ".tools/m1/helm.exe",
+        "upgrade",
+        "urumi-m10",
+        "deploy/charts/urumi",
+        "--namespace",
+        "urumi-m10",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--kube-context",
+        "k3d-urumi",
+        "-f",
+        ".tools\\operator\\m10\\values-monitor-fix.yaml",
+        "--wait",
+        "--timeout",
+        "240s"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods,pvc",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-platform-db-6dbbf758c-wb9z5",
+        "--",
+        "psql",
+        "-X",
+        "-A",
+        "-t",
+        "-U",
+        "urumi",
+        "-d",
+        "urumi",
+        "-c",
+        "SELECT json_build_object('builtin',(SELECT json_agg(x ORDER BY name) FROM (SELECT name,server_id FROM builtin_initializations) x),'servers',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,slug,enabled FROM servers) x));"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-backend-76c9674bf8-m82hk",
+        "--",
+        "python",
+        "-c",
+        "import hashlib,json;print(json.dumps({'backend/orchestrator.py':hashlib.sha256(open('/app/backend/orchestrator.py','rb').read()).hexdigest()}))"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10-clean",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10-clean",
+        "get",
+        "pods,pvc",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10-clean",
+        "exec",
+        "urumi-m10-clean-platform-db-68576fc499-gj7dw",
+        "--",
+        "psql",
+        "-X",
+        "-A",
+        "-t",
+        "-U",
+        "urumi",
+        "-d",
+        "urumi",
+        "-c",
+        "SELECT json_build_object('builtin',(SELECT json_agg(x ORDER BY name) FROM (SELECT name,server_id FROM builtin_initializations) x),'servers',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,slug,enabled FROM servers) x));"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10-clean",
+        "get",
+        "deployment",
+        "urumi-m10-clean-backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        ".tools/m1/helm.exe",
+        "get",
+        "values",
+        "urumi-m10-clean",
+        "--namespace",
+        "urumi-m10-clean",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--kube-context",
+        "k3d-urumi",
+        "--all",
+        "-o",
+        "yaml"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        ".tools/m1/helm.exe",
+        "upgrade",
+        "urumi-m10-clean",
+        "deploy/charts/urumi",
+        "--namespace",
+        "urumi-m10-clean",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--kube-context",
+        "k3d-urumi",
+        "-f",
+        ".tools\\operator\\m10-clean\\values-monitor-fix.yaml",
+        "--wait",
+        "--timeout",
+        "240s"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10-clean",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10-clean",
+        "get",
+        "pods,pvc",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10-clean",
+        "exec",
+        "urumi-m10-clean-platform-db-68576fc499-gj7dw",
+        "--",
+        "psql",
+        "-X",
+        "-A",
+        "-t",
+        "-U",
+        "urumi",
+        "-d",
+        "urumi",
+        "-c",
+        "SELECT json_build_object('builtin',(SELECT json_agg(x ORDER BY name) FROM (SELECT name,server_id FROM builtin_initializations) x),'servers',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,slug,enabled FROM servers) x));"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10-clean",
+        "exec",
+        "urumi-m10-clean-backend-544d95b879-bljfq",
+        "--",
+        "python",
+        "-c",
+        "import hashlib,json;print(json.dumps({'backend/orchestrator.py':hashlib.sha256(open('/app/backend/orchestrator.py','rb').read()).hexdigest()}))"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi",
+        "get",
+        "pods,pvc,services",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        ".tools/m1/helm.exe",
+        "history",
+        "urumi-m10",
+        "-n",
+        "urumi-m10",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--kube-context",
+        "k3d-urumi",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=10s",
+        "-n",
+        "urumi-m10",
+        "get",
+        "ingresses",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        ".tools/m1/helm.exe",
+        "history",
+        "urumi-m10-clean",
+        "-n",
+        "urumi-m10-clean",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--kube-context",
+        "k3d-urumi",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=10s",
+        "-n",
+        "urumi-m10-clean",
+        "get",
+        "ingresses",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "releases": [
+    {
+      "namespace": "urumi-m10",
+      "before": {
+        "namespace_uid": "89c6dab6-b118-42f3-940e-e8d8f91820bf",
+        "claims": [
+          {
+            "name": "urumi-m10-mariadb-data",
+            "uid": "a0fec4df-b7ff-4ef9-b2fe-a9af4eb8959e",
+            "phase": "Bound"
+          },
+          {
+            "name": "urumi-m10-platform-data",
+            "uid": "710a5b52-744c-4525-b446-bbba455eb2cf",
+            "phase": "Bound"
+          },
+          {
+            "name": "urumi-m10-wordpress-content",
+            "uid": "b5ad912d-7d6c-4bf9-aa8e-b4803005162b",
+            "phase": "Bound"
+          }
+        ],
+        "pods": [
+          {
+            "name": "urumi-m10-backend-76c9674bf8-m82hk",
+            "uid": "7fde4154-437d-48af-8d63-b283a78311ff",
+            "component": "backend",
+            "ready": true,
+            "containers": [
+              {
+                "name": "backend",
+                "image_id": "docker.io/urumi/backend@sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe",
+                "ready": true,
+                "restart_count": 0
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-dashboard-8bb474b46-x9nj6",
+            "uid": "9b96c029-6b4c-468f-9f60-23c11caf8b07",
+            "component": "dashboard",
+            "ready": true,
+            "containers": [
+              {
+                "name": "dashboard",
+                "image_id": "docker.io/urumi/dashboard@sha256:c619a07d7dab970dce601fe0add72e2cbdcbe1839ca65cce3922ebc46f999a76",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-inventory-mcp-58bcd997b7-774wj",
+            "uid": "629b5d08-4de4-4e71-b406-963e6a761636",
+            "component": "inventory-mcp",
+            "ready": true,
+            "containers": [
+              {
+                "name": "inventory-mcp",
+                "image_id": "docker.io/urumi/inventory-mcp@sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb",
+                "ready": true,
+                "restart_count": 2
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-mariadb-0",
+            "uid": "09221dd6-99af-45a0-950b-b152446d9bed",
+            "component": "mariadb",
+            "ready": true,
+            "containers": [
+              {
+                "name": "mariadb",
+                "image_id": "docker.io/library/mariadb@sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-platform-db-6dbbf758c-wb9z5",
+            "uid": "a70af0ad-a169-48b9-b399-f0c55b46bb9d",
+            "component": "platform-db",
+            "ready": true,
+            "containers": [
+              {
+                "name": "postgres",
+                "image_id": "docker.io/library/postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-woocommerce-mcp-5458999fc5-crtvm",
+            "uid": "3de7c21b-0373-4ff2-b91d-0b7d6961d1c1",
+            "component": "woocommerce-mcp",
+            "ready": true,
+            "containers": [
+              {
+                "name": "woocommerce-mcp",
+                "image_id": "docker.io/urumi/woocommerce-mcp@sha256:41921e625b0e2256ebea6ad86511bf4879aac2ee84b798926af4fa2aadf1e546",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-wordpress-5cbd95478d-fjxsz",
+            "uid": "380374e1-0a90-434a-9bfc-dea8b2241c79",
+            "component": "wordpress",
+            "ready": true,
+            "containers": [
+              {
+                "name": "wordpress",
+                "image_id": "docker.io/library/urumi-store@sha256:23494837a20cc9d2c7093cb8203f066eb9c78054956945ad4e779ab42e204d98",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          }
+        ],
+        "registry": {
+          "builtin": [
+            {
+              "name": "woocommerce",
+              "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6"
+            }
+          ],
+          "servers": [
+            {
+              "id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+              "slug": "inventory",
+              "enabled": true
+            },
+            {
+              "id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+              "slug": "woocommerce",
+              "enabled": true
+            },
+            {
+              "id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+              "slug": "learn",
+              "enabled": true
+            }
+          ]
+        }
+      },
+      "previous_backend_image": {
+        "digest": "sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe",
+        "pullPolicy": "IfNotPresent",
+        "repository": "urumi/backend",
+        "tag": "m10-recovery"
+      },
+      "current_backend_image": {
+        "digest": "sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe",
+        "pullPolicy": "IfNotPresent",
+        "repository": "urumi/backend",
+        "tag": "m10-recovery"
+      },
+      "effective_values_preserved_except": [
+        "backend.image.tag",
+        "backend.image.digest"
+      ],
+      "private_values_file": ".tools\\operator\\m10\\values-monitor-fix.yaml",
+      "after": {
+        "namespace_uid": "89c6dab6-b118-42f3-940e-e8d8f91820bf",
+        "claims": [
+          {
+            "name": "urumi-m10-mariadb-data",
+            "uid": "a0fec4df-b7ff-4ef9-b2fe-a9af4eb8959e",
+            "phase": "Bound"
+          },
+          {
+            "name": "urumi-m10-platform-data",
+            "uid": "710a5b52-744c-4525-b446-bbba455eb2cf",
+            "phase": "Bound"
+          },
+          {
+            "name": "urumi-m10-wordpress-content",
+            "uid": "b5ad912d-7d6c-4bf9-aa8e-b4803005162b",
+            "phase": "Bound"
+          }
+        ],
+        "pods": [
+          {
+            "name": "urumi-m10-backend-76c9674bf8-m82hk",
+            "uid": "7fde4154-437d-48af-8d63-b283a78311ff",
+            "component": "backend",
+            "ready": true,
+            "containers": [
+              {
+                "name": "backend",
+                "image_id": "docker.io/urumi/backend@sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe",
+                "ready": true,
+                "restart_count": 0
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-dashboard-8bb474b46-x9nj6",
+            "uid": "9b96c029-6b4c-468f-9f60-23c11caf8b07",
+            "component": "dashboard",
+            "ready": true,
+            "containers": [
+              {
+                "name": "dashboard",
+                "image_id": "docker.io/urumi/dashboard@sha256:c619a07d7dab970dce601fe0add72e2cbdcbe1839ca65cce3922ebc46f999a76",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-inventory-mcp-58bcd997b7-774wj",
+            "uid": "629b5d08-4de4-4e71-b406-963e6a761636",
+            "component": "inventory-mcp",
+            "ready": true,
+            "containers": [
+              {
+                "name": "inventory-mcp",
+                "image_id": "docker.io/urumi/inventory-mcp@sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb",
+                "ready": true,
+                "restart_count": 2
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-mariadb-0",
+            "uid": "09221dd6-99af-45a0-950b-b152446d9bed",
+            "component": "mariadb",
+            "ready": true,
+            "containers": [
+              {
+                "name": "mariadb",
+                "image_id": "docker.io/library/mariadb@sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-platform-db-6dbbf758c-wb9z5",
+            "uid": "a70af0ad-a169-48b9-b399-f0c55b46bb9d",
+            "component": "platform-db",
+            "ready": true,
+            "containers": [
+              {
+                "name": "postgres",
+                "image_id": "docker.io/library/postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-woocommerce-mcp-5458999fc5-crtvm",
+            "uid": "3de7c21b-0373-4ff2-b91d-0b7d6961d1c1",
+            "component": "woocommerce-mcp",
+            "ready": true,
+            "containers": [
+              {
+                "name": "woocommerce-mcp",
+                "image_id": "docker.io/urumi/woocommerce-mcp@sha256:41921e625b0e2256ebea6ad86511bf4879aac2ee84b798926af4fa2aadf1e546",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-wordpress-5cbd95478d-fjxsz",
+            "uid": "380374e1-0a90-434a-9bfc-dea8b2241c79",
+            "component": "wordpress",
+            "ready": true,
+            "containers": [
+              {
+                "name": "wordpress",
+                "image_id": "docker.io/library/urumi-store@sha256:23494837a20cc9d2c7093cb8203f066eb9c78054956945ad4e779ab42e204d98",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          }
+        ],
+        "registry": {
+          "builtin": [
+            {
+              "name": "woocommerce",
+              "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6"
+            }
+          ],
+          "servers": [
+            {
+              "id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+              "slug": "inventory",
+              "enabled": true
+            },
+            {
+              "id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+              "slug": "woocommerce",
+              "enabled": true
+            },
+            {
+              "id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+              "slug": "learn",
+              "enabled": true
+            }
+          ]
+        }
+      },
+      "runtime_image_matches": true,
+      "runtime_source_hash": {
+        "backend/orchestrator.py": "9e69bb6146537dd2202fd786600b28f1fcf08f98f05865172bdfdb6f45d7ecc6"
+      },
+      "helm_latest": {
+        "revision": 4,
+        "status": "deployed",
+        "chart": "urumi-0.1.0",
+        "app_version": "0.1.0"
+      },
+      "ingress_tls": [
+        {
+          "name": "urumi-m10-dashboard",
+          "tls": [
+            {
+              "hosts": [
+                "dashboard-m10.urumi.test"
+              ],
+              "secretName": "urumi-m10-dashboard-tls"
+            }
+          ]
+        },
+        {
+          "name": "urumi-m10-wordpress",
+          "tls": [
+            {
+              "hosts": [
+                "shop-m10.urumi.test"
+              ],
+              "secretName": "urumi-m10-dashboard-tls"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "namespace": "urumi-m10-clean",
+      "before": {
+        "namespace_uid": "873773da-dd54-4f3b-aa44-3d32ac9b4a08",
+        "claims": [
+          {
+            "name": "urumi-m10-clean-mariadb-data",
+            "uid": "08295a4d-0068-4657-9ca3-1fab9f6d034b",
+            "phase": "Bound"
+          },
+          {
+            "name": "urumi-m10-clean-platform-data",
+            "uid": "9e64e82d-8f9c-48a7-be3c-ef91a20058cb",
+            "phase": "Bound"
+          },
+          {
+            "name": "urumi-m10-clean-wordpress-content",
+            "uid": "5207b20e-4dc9-4af6-af17-b5f85b2c395a",
+            "phase": "Bound"
+          }
+        ],
+        "pods": [
+          {
+            "name": "urumi-m10-clean-backend-856755b98-fhj5k",
+            "uid": "2cc381ee-7bff-4609-95f1-d115570a41ed",
+            "component": "backend",
+            "ready": true,
+            "containers": [
+              {
+                "name": "backend",
+                "image_id": "docker.io/urumi/backend@sha256:b863c9ccfca8c20bce2eb2e260f63650be63f7e8f4ac731f2a57dd49bc884646",
+                "ready": true,
+                "restart_count": 2
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-clean-dashboard-78869fc57d-nxtmj",
+            "uid": "8cfd4f84-a77d-4878-a77c-f3757bbd216a",
+            "component": "dashboard",
+            "ready": true,
+            "containers": [
+              {
+                "name": "dashboard",
+                "image_id": "docker.io/urumi/dashboard@sha256:c619a07d7dab970dce601fe0add72e2cbdcbe1839ca65cce3922ebc46f999a76",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-clean-inventory-mcp-69cdff5dff-tlwnw",
+            "uid": "ef4b4349-5830-4353-98e6-6b57ee9bc6e0",
+            "component": "inventory-mcp",
+            "ready": true,
+            "containers": [
+              {
+                "name": "inventory-mcp",
+                "image_id": "docker.io/urumi/inventory-mcp@sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb",
+                "ready": true,
+                "restart_count": 2
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-clean-mariadb-0",
+            "uid": "f2f51c4e-991e-485b-be1e-af9720585079",
+            "component": "mariadb",
+            "ready": true,
+            "containers": [
+              {
+                "name": "mariadb",
+                "image_id": "docker.io/library/mariadb@sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-clean-platform-db-68576fc499-gj7dw",
+            "uid": "511a2011-8755-477c-9ea8-522de821ff6c",
+            "component": "platform-db",
+            "ready": true,
+            "containers": [
+              {
+                "name": "postgres",
+                "image_id": "docker.io/library/postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-clean-woocommerce-mcp-6797bb6cbc-6x64l",
+            "uid": "07e260d7-d14e-4ae5-83cb-dc521b32cc83",
+            "component": "woocommerce-mcp",
+            "ready": true,
+            "containers": [
+              {
+                "name": "woocommerce-mcp",
+                "image_id": "docker.io/urumi/woocommerce-mcp@sha256:41921e625b0e2256ebea6ad86511bf4879aac2ee84b798926af4fa2aadf1e546",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-clean-wordpress-7bf4747dc6-xmkh9",
+            "uid": "f5df913d-cab3-4394-8222-1c34f4441268",
+            "component": "wordpress",
+            "ready": true,
+            "containers": [
+              {
+                "name": "wordpress",
+                "image_id": "docker.io/library/urumi-store@sha256:23494837a20cc9d2c7093cb8203f066eb9c78054956945ad4e779ab42e204d98",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          }
+        ],
+        "registry": {
+          "builtin": [
+            {
+              "name": "woocommerce",
+              "server_id": "dfa4a742-5e51-44aa-b985-032faf2704c2"
+            }
+          ],
+          "servers": null
+        }
+      },
+      "previous_backend_image": {
+        "digest": "sha256:b863c9ccfca8c20bce2eb2e260f63650be63f7e8f4ac731f2a57dd49bc884646",
+        "pullPolicy": "IfNotPresent",
+        "repository": "urumi/backend",
+        "tag": "m10"
+      },
+      "current_backend_image": {
+        "digest": "sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe",
+        "pullPolicy": "IfNotPresent",
+        "repository": "urumi/backend",
+        "tag": "m10-recovery"
+      },
+      "effective_values_preserved_except": [
+        "backend.image.tag",
+        "backend.image.digest"
+      ],
+      "private_values_file": ".tools\\operator\\m10-clean\\values-monitor-fix.yaml",
+      "after": {
+        "namespace_uid": "873773da-dd54-4f3b-aa44-3d32ac9b4a08",
+        "claims": [
+          {
+            "name": "urumi-m10-clean-mariadb-data",
+            "uid": "08295a4d-0068-4657-9ca3-1fab9f6d034b",
+            "phase": "Bound"
+          },
+          {
+            "name": "urumi-m10-clean-platform-data",
+            "uid": "9e64e82d-8f9c-48a7-be3c-ef91a20058cb",
+            "phase": "Bound"
+          },
+          {
+            "name": "urumi-m10-clean-wordpress-content",
+            "uid": "5207b20e-4dc9-4af6-af17-b5f85b2c395a",
+            "phase": "Bound"
+          }
+        ],
+        "pods": [
+          {
+            "name": "urumi-m10-clean-backend-544d95b879-bljfq",
+            "uid": "fbcf247b-5951-4bf1-8ea8-2b90506e1602",
+            "component": "backend",
+            "ready": true,
+            "containers": [
+              {
+                "name": "backend",
+                "image_id": "docker.io/urumi/backend@sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe",
+                "ready": true,
+                "restart_count": 0
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-clean-dashboard-78869fc57d-nxtmj",
+            "uid": "8cfd4f84-a77d-4878-a77c-f3757bbd216a",
+            "component": "dashboard",
+            "ready": true,
+            "containers": [
+              {
+                "name": "dashboard",
+                "image_id": "docker.io/urumi/dashboard@sha256:c619a07d7dab970dce601fe0add72e2cbdcbe1839ca65cce3922ebc46f999a76",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-clean-inventory-mcp-69cdff5dff-tlwnw",
+            "uid": "ef4b4349-5830-4353-98e6-6b57ee9bc6e0",
+            "component": "inventory-mcp",
+            "ready": true,
+            "containers": [
+              {
+                "name": "inventory-mcp",
+                "image_id": "docker.io/urumi/inventory-mcp@sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb",
+                "ready": true,
+                "restart_count": 2
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-clean-mariadb-0",
+            "uid": "f2f51c4e-991e-485b-be1e-af9720585079",
+            "component": "mariadb",
+            "ready": true,
+            "containers": [
+              {
+                "name": "mariadb",
+                "image_id": "docker.io/library/mariadb@sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-clean-platform-db-68576fc499-gj7dw",
+            "uid": "511a2011-8755-477c-9ea8-522de821ff6c",
+            "component": "platform-db",
+            "ready": true,
+            "containers": [
+              {
+                "name": "postgres",
+                "image_id": "docker.io/library/postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-clean-woocommerce-mcp-6797bb6cbc-6x64l",
+            "uid": "07e260d7-d14e-4ae5-83cb-dc521b32cc83",
+            "component": "woocommerce-mcp",
+            "ready": true,
+            "containers": [
+              {
+                "name": "woocommerce-mcp",
+                "image_id": "docker.io/urumi/woocommerce-mcp@sha256:41921e625b0e2256ebea6ad86511bf4879aac2ee84b798926af4fa2aadf1e546",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          },
+          {
+            "name": "urumi-m10-clean-wordpress-7bf4747dc6-xmkh9",
+            "uid": "f5df913d-cab3-4394-8222-1c34f4441268",
+            "component": "wordpress",
+            "ready": true,
+            "containers": [
+              {
+                "name": "wordpress",
+                "image_id": "docker.io/library/urumi-store@sha256:23494837a20cc9d2c7093cb8203f066eb9c78054956945ad4e779ab42e204d98",
+                "ready": true,
+                "restart_count": 1
+              }
+            ]
+          }
+        ],
+        "registry": {
+          "builtin": [
+            {
+              "name": "woocommerce",
+              "server_id": "dfa4a742-5e51-44aa-b985-032faf2704c2"
+            }
+          ],
+          "servers": null
+        }
+      },
+      "runtime_image_matches": true,
+      "runtime_source_hash": {
+        "backend/orchestrator.py": "9e69bb6146537dd2202fd786600b28f1fcf08f98f05865172bdfdb6f45d7ecc6"
+      },
+      "helm_latest": {
+        "revision": 2,
+        "status": "deployed",
+        "chart": "urumi-0.1.0",
+        "app_version": "0.1.0"
+      },
+      "ingress_tls": [
+        {
+          "name": "urumi-m10-clean-dashboard",
+          "tls": [
+            {
+              "hosts": [
+                "dashboard-m10-clean.urumi.test"
+              ],
+              "secretName": "urumi-m10-clean-dashboard-tls"
+            }
+          ]
+        },
+        {
+          "name": "urumi-m10-clean-wordpress",
+          "tls": []
+        }
+      ]
+    }
+  ],
+  "image": {
+    "image": "urumi/backend:m10-recovery",
+    "index_digest": "sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe",
+    "amd64_manifest_digest": "sha256:6792cb48bc629e5a2ff9a03c2554df48183dc950a5c1c6ee791db9a3a44e4f51",
+    "actual_config_digest": "sha256:160ae7b13c17f4a0e94a02a855b0ffae5181081cb9f97136846c5f50e0982d43",
+    "matches_exported_config": true,
+    "metadata_bytes_sha256_verified": true
+  },
+  "source": {
+    "frozen_input_count": 41,
+    "matches": true,
+    "source_freeze": "image-source-inputs.json",
+    "historical_freeze_retained": "image-source-inputs-before-monitor-fix.json"
+  },
+  "retained_before": [
+    {
+      "kind": "Pod",
+      "name": "urumi-mariadb-0",
+      "uid": "56861a6b-313d-42bc-ab29-df25934eccbc",
+      "unchanged": true
+    },
+    {
+      "kind": "Pod",
+      "name": "urumi-wordpress-5fdfc9c5f7-dldh4",
+      "uid": "2aea7ffc-4310-4f53-a4c9-f22052905252",
+      "unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-foundation-data",
+      "uid": "c6f386c1-ef1e-4996-ab86-ed888999226e",
+      "unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-mariadb-data",
+      "uid": "91b18137-d90e-49f0-b16e-ab2686a82df0",
+      "unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-wordpress-content",
+      "uid": "cae72902-5c12-4c82-9225-965798cb78b4",
+      "unchanged": true
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-mariadb",
+      "uid": "a05a7040-8d8f-49e3-abdf-b5f7735522c3",
+      "unchanged": true
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-wordpress",
+      "uid": "221ad775-aef4-4a39-8b49-282ab820fa5e",
+      "unchanged": true
+    }
+  ],
+  "retained_after": [
+    {
+      "kind": "Pod",
+      "name": "urumi-mariadb-0",
+      "uid": "56861a6b-313d-42bc-ab29-df25934eccbc",
+      "unchanged": true
+    },
+    {
+      "kind": "Pod",
+      "name": "urumi-wordpress-5fdfc9c5f7-dldh4",
+      "uid": "2aea7ffc-4310-4f53-a4c9-f22052905252",
+      "unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-foundation-data",
+      "uid": "c6f386c1-ef1e-4996-ab86-ed888999226e",
+      "unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-mariadb-data",
+      "uid": "91b18137-d90e-49f0-b16e-ab2686a82df0",
+      "unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-wordpress-content",
+      "uid": "cae72902-5c12-4c82-9225-965798cb78b4",
+      "unchanged": true
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-mariadb",
+      "uid": "a05a7040-8d8f-49e3-abdf-b5f7735522c3",
+      "unchanged": true
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-wordpress",
+      "uid": "221ad775-aef4-4a39-8b49-282ab820fa5e",
+      "unchanged": true
+    }
+  ],
+  "operator_input_sync": {
+    "files": [
+      ".tools\\operator\\m10\\values.yaml",
+      ".tools\\operator\\m10\\merged-values.yaml"
+    ],
+    "fields": [
+      "backend.image.tag",
+      "backend.image.digest",
+      "store.ingress.tlsSecret"
+    ],
+    "backend_image": {
+      "digest": "sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe",
+      "pullPolicy": "IfNotPresent",
+      "repository": "urumi/backend",
+      "tag": "m10-recovery"
+    },
+    "shop_tls_secret": "urumi-m10-dashboard-tls",
+    "all_other_values_preserved": true
+  }
+}

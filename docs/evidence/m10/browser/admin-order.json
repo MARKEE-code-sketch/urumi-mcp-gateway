@@ -1,0 +1,25 @@
+{
+  "action": "admin-order",
+  "checked_at": "2026-10-20T04:29:03.735Z",
+  "tls_verification": "browser_default",
+  "checks": [
+    "woocommerce_admin_order_visible"
+  ],
+  "order_id": 16,
+  "order_heading": [
+    "Store Activity",
+    "Help & Support",
+    "Found a bug?",
+    "WooCommerce Onboarding",
+    "Order actions",
+    "Order attribution",
+    "Customer history",
+    "Order notes",
+    "Order data",
+    "\n\t\t\t\t\t\t\tOrder #16\t\t\t\t\t\t",
+    "Items",
+    "Custom Fields",
+    "Downloadable product permissions"
+  ],
+  "status": "PASS"
+}

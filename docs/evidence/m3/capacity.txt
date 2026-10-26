@@ -1,0 +1,99 @@
+﻿UTC: 2026-10-15T14:55:20.4188165Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "describe" "nodes"
+Exit: 0
+Name:               k3d-urumi-server-0
+Roles:              control-plane
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/instance-type=k3s
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=k3d-urumi-server-0
+                    kubernetes.io/os=linux
+                    node-role.kubernetes.io/control-plane=true
+                    node.kubernetes.io/instance-type=k3s
+Annotations:        alpha.kubernetes.io/provided-node-ip: 172.18.0.2
+                    flannel.alpha.coreos.com/backend-data: {"VNI":1,"VtepMAC":"46:4f:4c:2c:b6:1e"}
+                    flannel.alpha.coreos.com/backend-type: vxlan
+                    flannel.alpha.coreos.com/kube-subnet-manager: true
+                    flannel.alpha.coreos.com/public-ip: 172.18.0.2
+                    k3s.io/hostname: k3d-urumi-server-0
+                    k3s.io/internal-ip: 172.18.0.2
+                    k3s.io/node-args: ["server","--tls-san","127.0.0.1","--tls-san","k3d-urumi-serverlb"]
+                    k3s.io/node-config-hash: LJAAOWTCHSGC2R5LRX4USGXEBLMPKB2AUHXFQFD22WLHIH22BYGA====
+                    k3s.io/node-env: {"K3S_KUBECONFIG_OUTPUT":"/output/kubeconfig.yaml","K3S_TOKEN":"********"}
+                    node.alpha.kubernetes.io/ttl: 0
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Wed, 14 Oct 2026 21:06:15 +0530
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  k3d-urumi-server-0
+  AcquireTime:     <unset>
+  RenewTime:       Thu, 15 Oct 2026 20:25:12 +0530
+Conditions:
+  Type             Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----             ------  -----------------                 ------------------                ------                       -------
+  MemoryPressure   False   Thu, 15 Oct 2026 20:25:08 +0530   Wed, 14 Oct 2026 21:06:15 +0530   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure     False   Thu, 15 Oct 2026 20:25:08 +0530   Wed, 14 Oct 2026 21:06:15 +0530   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure      False   Thu, 15 Oct 2026 20:25:08 +0530   Wed, 14 Oct 2026 21:06:15 +0530   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready            True    Thu, 15 Oct 2026 20:25:08 +0530   Wed, 14 Oct 2026 21:06:15 +0530   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:  172.18.0.2
+  Hostname:    k3d-urumi-server-0
+Capacity:
+  cpu:                12
+  ephemeral-storage:  1055762868Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             7819920Ki
+  pods:               110
+Allocatable:
+  cpu:                12
+  ephemeral-storage:  1027046117185
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             7819920Ki
+  pods:               110
+System Info:
+  Machine ID:                 
+  System UUID:                
+  Boot ID:                    652af33f-f2c7-4206-8fce-c153b7ada897
+  Kernel Version:             6.18.33.2-microsoft-standard-WSL2
+  OS Image:                   K3s v1.36.3+k3s1
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  containerd://2.3.2-k3s2
+  Kubelet Version:            v1.36.3+k3s1
+PodCIDR:                      10.42.0.0/24
+PodCIDRs:                     10.42.0.0/24
+ProviderID:                   k3s://k3d-urumi-server-0
+Non-terminated Pods:          (7 in total)
+  Namespace                   Name                                       CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                                       ------------  ----------  ---------------  -------------  ---
+  kube-system                 coredns-54996dc9b4-bzcfk                   100m (0%)     0 (0%)      70Mi (0%)        170Mi (2%)     23h
+  kube-system                 local-path-provisioner-58d557dc48-kc8cp    0 (0%)        0 (0%)      0 (0%)           0 (0%)         23h
+  kube-system                 metrics-server-6dc596dfb8-tczgv            100m (0%)     0 (0%)      70Mi (0%)        0 (0%)         23h
+  kube-system                 svclb-traefik-b52d9295-qnsx7               0 (0%)        0 (0%)      0 (0%)           0 (0%)         23h
+  kube-system                 traefik-59b7647586-44wvr                   0 (0%)        0 (0%)      0 (0%)           0 (0%)         23h
+  urumi                       urumi-mariadb-0                            100m (0%)     1 (8%)      256Mi (3%)       768Mi (10%)    3m39s
+  urumi                       urumi-wordpress-7b56444fdc-zs4qf           100m (0%)     1 (8%)      256Mi (3%)       768Mi (10%)    3m39s
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests    Limits
+  --------           --------    ------
+  cpu                400m (3%)   2 (16%)
+  memory             652Mi (8%)  1706Mi (22%)
+  ephemeral-storage  0 (0%)      0 (0%)
+  hugepages-1Gi      0 (0%)      0 (0%)
+  hugepages-2Mi      0 (0%)      0 (0%)
+Events:
+  Type    Reason                          Age   From              Message
+  ----    ------                          ----  ----              -------
+  Normal  CertificateExpirationOK         13m   k3s-cert-monitor  Node and Certificate Authority certificates managed by k3s are OK
+  Normal  NodePasswordValidationComplete  13m   k3s-supervisor    Deferred node password secret validation complete
+  Normal  RegisteredNode                  13m   node-controller   Node k3d-urumi-server-0 event: Registered Node k3d-urumi-server-0 in Controller
+  Normal  CertificateExpirationOK         12m   k3s-cert-monitor  Node and Certificate Authority certificates managed by k3s are OK
+  Normal  RegisteredNode                  12m   node-controller   Node k3d-urumi-server-0 event: Registered Node k3d-urumi-server-0 in Controller
+  Normal  NodePasswordValidationComplete  12m   k3s-supervisor    Deferred node password secret validation complete
+
+

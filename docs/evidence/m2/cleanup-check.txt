@@ -1,0 +1,13 @@
+﻿UTC: 2026-10-16T04:50:13.3322557Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "jobs" "-l" "urumi-m2-owned=true" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+

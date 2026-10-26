@@ -1,0 +1,6 @@
+interface:
+  display_name: "MCP Gateway Spec Review"
+  short_description: "Review MCP and Kubernetes plans before coding"
+  default_prompt: "Use $mcp-gateway-spec-review to review this Urumi assignment module or design against the source document and approved blueprint."
+policy:
+  allow_implicit_invocation: true

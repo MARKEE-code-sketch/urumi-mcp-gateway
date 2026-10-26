@@ -1,0 +1,86 @@
+﻿{
+    "M1-01":  {
+                  "observed":  "Nodes Ready; Docker allocation, selected port, kubectl, and checksum-verified portable tool versions recorded.",
+                  "status":  "PASS",
+                  "timestamp":  "2026-10-14T17:03:37.4783090Z",
+                  "evidence":  [
+                                   "cluster-status.txt",
+                                   "preflight.json",
+                                   "tool-install.json",
+                                   "k3d-version.txt"
+                               ]
+              },
+    "M1-02":  {
+                  "observed":  "Local+M1 and production-shaped values linted/rendered; production excludes temporary resources.",
+                  "status":  "PASS",
+                  "timestamp":  "2026-10-14T17:03:38.4810751Z",
+                  "evidence":  [
+                                   "helm-checks.txt",
+                                   "rendered-values-local.yaml.txt",
+                                   "rendered-values-prod.yaml.txt"
+                               ]
+              },
+    "M1-03":  {
+                  "status":  "PASS",
+                  "observed":  "User supplied screenshot after opening requested local page; visually inspected expected heading and text. Screenshot is cropped to page content (no address bar); hostname and routing are corroborated by verified hosts/DNS and HTTP Ingress logs.",
+                  "timestamp":  "2026-10-14T17:49:24.064Z",
+                  "evidence":  [
+                                   "foundation-browser.png",
+                                   "hosts-edit-result.json",
+                                   "ingress-check.txt"
+                               ]
+              },
+    "M1-04":  {
+                  "observed":  "Both baseline callers resolved Service DNS and received expected page.",
+                  "status":  "PASS",
+                  "timestamp":  "2026-10-14T17:04:04.9236934Z",
+                  "evidence":  [
+                                   "network-policy-check.txt"
+                               ]
+              },
+    "M1-05":  {
+                  "observed":  "HTTP-readable marker survived replacement with a different Pod UID.",
+                  "status":  "PASS",
+                  "timestamp":  "2026-10-14T17:05:21.3177683Z",
+                  "evidence":  [
+                                   "storage-check.txt",
+                                   "storage-result.json"
+                               ]
+              },
+    "M1-06":  {
+                  "observed":  "Baseline worked; policy allowed one caller, rejected/timed out TCP after successful DNS for other; fresh allowed call and Ingress worked.",
+                  "status":  "PASS",
+                  "timestamp":  "2026-10-14T17:04:43.0087213Z",
+                  "evidence":  [
+                                   "network-policy-check.txt",
+                                   "ingress-check.txt"
+                               ]
+              },
+    "M1-07":  {
+                  "observed":  "Probes/resources present; replica Ready after automatic replacement; infrastructure recorded separately.",
+                  "status":  "PASS",
+                  "timestamp":  "2026-10-14T17:05:21.8835648Z",
+                  "evidence":  [
+                                   "workload-settings.txt",
+                                   "infrastructure-settings.txt",
+                                   "storage-result.json"
+                               ]
+              },
+    "M1-08":  {
+                  "observed":  "Only foundation Ingress public via loopback port 80; application Services internal; infrastructure recorded separately.",
+                  "status":  "PASS",
+                  "timestamp":  "2026-10-14T17:05:22.5865928Z",
+                  "evidence":  [
+                                   "exposure-check.txt"
+                               ]
+              },
+    "M1-09":  {
+                  "observed":  "Foundation disabled, recorded checking Jobs removed, original PVC retained.",
+                  "status":  "PASS",
+                  "timestamp":  "2026-10-14T18:03:03.2497369Z",
+                  "evidence":  [
+                                   "cleanup-check.txt",
+                                   "cleanup-notes.md"
+                               ]
+              }
+}

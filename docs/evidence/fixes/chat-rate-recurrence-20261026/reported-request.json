@@ -1,0 +1,40 @@
+{
+  "request_id": "bacf7f1a-ccb6-4fb5-b444-1b3c519984ee",
+  "audits": [
+    {
+      "audit_id": "abf864ff-a781-48b6-9682-1995370e9676",
+      "request_id": "bacf7f1a-ccb6-4fb5-b444-1b3c519984ee",
+      "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+      "key_id": null,
+      "auth_source": "session",
+      "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+      "public_tool_name": "inventory__lookup_sku",
+      "upstream_tool_name": "lookup_sku",
+      "started_at": "2026-10-26T02:24:42.972919Z",
+      "finished_at": "2026-10-26T02:24:43.216070Z",
+      "duration_ms": 320,
+      "outcome": "success",
+      "error_code": null,
+      "error_summary": null
+    },
+    {
+      "audit_id": "e07c4e8d-3353-4c63-abee-0ef4a99310a8",
+      "request_id": "bacf7f1a-ccb6-4fb5-b444-1b3c519984ee",
+      "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+      "key_id": null,
+      "auth_source": "session",
+      "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+      "public_tool_name": "woocommerce__list_products",
+      "upstream_tool_name": "list_products",
+      "started_at": "2026-10-26T02:24:41.092438Z",
+      "finished_at": "2026-10-26T02:24:42.116731Z",
+      "duration_ms": 1207,
+      "outcome": "success",
+      "error_code": null,
+      "error_summary": null
+    }
+  ],
+  "backend_image": "urumi/backend@sha256:751e3450720ac7d8b95ea852d4cf0665f7c006882b1c89d3d435aaaf13efc1a2",
+  "backend_ready_replicas": 1,
+  "scope": "Read-only tool audit and deployment metadata; no provider request or replay."
+}

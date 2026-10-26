@@ -1,0 +1,3070 @@
+﻿{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-14T17:03:40Z",
+                "generateName": "m1-check-allowed-5dc153bcf8-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "batch.kubernetes.io/controller-uid": "93409eec-1134-4a25-848d-05b47ec128aa",
+                    "batch.kubernetes.io/job-name": "m1-check-allowed-5dc153bcf8",
+                    "controller-uid": "93409eec-1134-4a25-848d-05b47ec128aa",
+                    "job-name": "m1-check-allowed-5dc153bcf8",
+                    "m1-access": "allowed",
+                    "m1-check": "true"
+                },
+                "name": "m1-check-allowed-5dc153bcf8-6nzj7",
+                "namespace": "urumi",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "m1-check-allowed-5dc153bcf8",
+                        "uid": "93409eec-1134-4a25-848d-05b47ec128aa"
+                    }
+                ],
+                "resourceVersion": "3163",
+                "uid": "8865b6d6-e51e-47a5-865c-00b3c169182d"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-u",
+                            "-c",
+                            "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout, ConnectionRefusedError)):\n            print(\"TCP_REJECTED_AFTER_DNS\" if isinstance(reason, ConnectionRefusedError) else \"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                            "allowed"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "caller",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 1000,
+                    "runAsNonRoot": true,
+                    "runAsUser": 1000,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "25m",
+                    "memory": "32Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:03:49Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:03:40Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:03:48Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:03:48Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:03:40Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "25m",
+                            "memory": "32Mi"
+                        },
+                        "containerID": "containerd://015331f4b6bd456b5e9bcb7c9505f703dc0e8af6b82f02295fae97215337393c",
+                        "image": "sha256:38e57556b63539e63344b97f802e7cbd85b70e2087ee703e360fcdfe337cbbb3",
+                        "imageID": "docker.io/library/python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "lastState": {},
+                        "name": "caller",
+                        "ready": false,
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://015331f4b6bd456b5e9bcb7c9505f703dc0e8af6b82f02295fae97215337393c",
+                                "exitCode": 0,
+                                "finishedAt": "2026-10-14T17:03:48Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-10-14T17:03:42Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 1000,
+                                "supplementalGroups": [
+                                    1000
+                                ],
+                                "uid": 1000
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.18.0.3",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.3"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Succeeded",
+                "podIP": "10.42.0.15",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.15"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "100m",
+                        "memory": "64Mi"
+                    },
+                    "requests": {
+                        "memory": "32Mi"
+                    }
+                },
+                "startTime": "2026-10-14T17:03:40Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-14T17:01:10Z",
+                "generateName": "m1-check-allowed-6f8c5a8090-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "batch.kubernetes.io/controller-uid": "b56d2631-128f-431c-9473-aa17cd86d958",
+                    "batch.kubernetes.io/job-name": "m1-check-allowed-6f8c5a8090",
+                    "controller-uid": "b56d2631-128f-431c-9473-aa17cd86d958",
+                    "job-name": "m1-check-allowed-6f8c5a8090",
+                    "m1-access": "allowed",
+                    "m1-check": "true"
+                },
+                "name": "m1-check-allowed-6f8c5a8090-ndqvp",
+                "namespace": "urumi",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "m1-check-allowed-6f8c5a8090",
+                        "uid": "b56d2631-128f-431c-9473-aa17cd86d958"
+                    }
+                ],
+                "resourceVersion": "3059",
+                "uid": "d8d6ac49-fa3a-4c4c-916d-26a33d4e5f84"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-u",
+                            "-c",
+                            "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout)):\n            print(\"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                            "allowed"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "caller",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 1000,
+                    "runAsNonRoot": true,
+                    "runAsUser": 1000,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "25m",
+                    "memory": "32Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:01:21Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:01:10Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:01:19Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:01:19Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:01:10Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "25m",
+                            "memory": "32Mi"
+                        },
+                        "containerID": "containerd://5acfec27a93f6a2d6268b18475aa734d92ca0c7e97dcc99c94ca5372f4f837c9",
+                        "image": "sha256:38e57556b63539e63344b97f802e7cbd85b70e2087ee703e360fcdfe337cbbb3",
+                        "imageID": "docker.io/library/python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "lastState": {},
+                        "name": "caller",
+                        "ready": false,
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://5acfec27a93f6a2d6268b18475aa734d92ca0c7e97dcc99c94ca5372f4f837c9",
+                                "exitCode": 0,
+                                "finishedAt": "2026-10-14T17:01:19Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-10-14T17:01:13Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 1000,
+                                "supplementalGroups": [
+                                    1000
+                                ],
+                                "uid": 1000
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.18.0.3",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.3"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Succeeded",
+                "podIP": "10.42.0.13",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.13"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "100m",
+                        "memory": "64Mi"
+                    },
+                    "requests": {
+                        "memory": "32Mi"
+                    }
+                },
+                "startTime": "2026-10-14T17:01:10Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-14T17:04:32Z",
+                "generateName": "m1-check-allowed-73e545496e-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "batch.kubernetes.io/controller-uid": "64bd6c18-3569-4d03-9c60-2a96f923447a",
+                    "batch.kubernetes.io/job-name": "m1-check-allowed-73e545496e",
+                    "controller-uid": "64bd6c18-3569-4d03-9c60-2a96f923447a",
+                    "job-name": "m1-check-allowed-73e545496e",
+                    "m1-access": "allowed",
+                    "m1-check": "true"
+                },
+                "name": "m1-check-allowed-73e545496e-dpnqs",
+                "namespace": "urumi",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "m1-check-allowed-73e545496e",
+                        "uid": "64bd6c18-3569-4d03-9c60-2a96f923447a"
+                    }
+                ],
+                "resourceVersion": "3268",
+                "uid": "33b737ca-22f1-4249-bd92-307ad3f7aa6d"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-u",
+                            "-c",
+                            "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout, ConnectionRefusedError)):\n            print(\"TCP_REJECTED_AFTER_DNS\" if isinstance(reason, ConnectionRefusedError) else \"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                            "allowed"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "caller",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 1000,
+                    "runAsNonRoot": true,
+                    "runAsUser": 1000,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "25m",
+                    "memory": "32Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:04:41Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:04:32Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:04:39Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:04:39Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:04:32Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "25m",
+                            "memory": "32Mi"
+                        },
+                        "containerID": "containerd://46aef96380d725f526f433d2df505b5e73c718aba6735a39b8c97a364c3e1de7",
+                        "image": "sha256:38e57556b63539e63344b97f802e7cbd85b70e2087ee703e360fcdfe337cbbb3",
+                        "imageID": "docker.io/library/python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "lastState": {},
+                        "name": "caller",
+                        "ready": false,
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://46aef96380d725f526f433d2df505b5e73c718aba6735a39b8c97a364c3e1de7",
+                                "exitCode": 0,
+                                "finishedAt": "2026-10-14T17:04:39Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-10-14T17:04:33Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 1000,
+                                "supplementalGroups": [
+                                    1000
+                                ],
+                                "uid": 1000
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.18.0.3",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.3"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Succeeded",
+                "podIP": "10.42.0.19",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.19"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "100m",
+                        "memory": "64Mi"
+                    },
+                    "requests": {
+                        "memory": "32Mi"
+                    }
+                },
+                "startTime": "2026-10-14T17:04:32Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-14T17:00:46Z",
+                "generateName": "m1-check-allowed-bc6eb79139-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "batch.kubernetes.io/controller-uid": "e2ecbddd-a0c8-4246-9b55-34257fe4cbf0",
+                    "batch.kubernetes.io/job-name": "m1-check-allowed-bc6eb79139",
+                    "controller-uid": "e2ecbddd-a0c8-4246-9b55-34257fe4cbf0",
+                    "job-name": "m1-check-allowed-bc6eb79139",
+                    "m1-access": "allowed",
+                    "m1-check": "true"
+                },
+                "name": "m1-check-allowed-bc6eb79139-w6nrh",
+                "namespace": "urumi",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "m1-check-allowed-bc6eb79139",
+                        "uid": "e2ecbddd-a0c8-4246-9b55-34257fe4cbf0"
+                    }
+                ],
+                "resourceVersion": "3005",
+                "uid": "b89337b8-a265-4c2f-bc57-8d12749e7f9a"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-u",
+                            "-c",
+                            "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout)):\n            print(\"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                            "allowed"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "caller",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 1000,
+                    "runAsNonRoot": true,
+                    "runAsUser": 1000,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "25m",
+                    "memory": "32Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:00:56Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:00:46Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:00:54Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:00:54Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:00:46Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "25m",
+                            "memory": "32Mi"
+                        },
+                        "containerID": "containerd://4f4b09c4328e59209745c9f4e8961b77b08be1c11503756309fc90774f4708b5",
+                        "image": "sha256:38e57556b63539e63344b97f802e7cbd85b70e2087ee703e360fcdfe337cbbb3",
+                        "imageID": "docker.io/library/python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "lastState": {},
+                        "name": "caller",
+                        "ready": false,
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://4f4b09c4328e59209745c9f4e8961b77b08be1c11503756309fc90774f4708b5",
+                                "exitCode": 0,
+                                "finishedAt": "2026-10-14T17:00:53Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-10-14T17:00:48Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 1000,
+                                "supplementalGroups": [
+                                    1000
+                                ],
+                                "uid": 1000
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.18.0.3",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.3"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Succeeded",
+                "podIP": "10.42.0.11",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.11"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "requests": {
+                        "memory": "32Mi"
+                    }
+                },
+                "startTime": "2026-10-14T17:00:46Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-14T17:04:06Z",
+                "generateName": "m1-check-allowed-cba0db6318-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "batch.kubernetes.io/controller-uid": "a6c2684e-e3f5-4357-b921-3bbb2a0c7233",
+                    "batch.kubernetes.io/job-name": "m1-check-allowed-cba0db6318",
+                    "controller-uid": "a6c2684e-e3f5-4357-b921-3bbb2a0c7233",
+                    "job-name": "m1-check-allowed-cba0db6318",
+                    "m1-access": "allowed",
+                    "m1-check": "true"
+                },
+                "name": "m1-check-allowed-cba0db6318-8djm7",
+                "namespace": "urumi",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "m1-check-allowed-cba0db6318",
+                        "uid": "a6c2684e-e3f5-4357-b921-3bbb2a0c7233"
+                    }
+                ],
+                "resourceVersion": "3218",
+                "uid": "efecf4b2-502b-46d0-8fbc-df55f345ddde"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-u",
+                            "-c",
+                            "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout, ConnectionRefusedError)):\n            print(\"TCP_REJECTED_AFTER_DNS\" if isinstance(reason, ConnectionRefusedError) else \"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                            "allowed"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "caller",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 1000,
+                    "runAsNonRoot": true,
+                    "runAsUser": 1000,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "25m",
+                    "memory": "32Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:04:16Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:04:06Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:04:15Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:04:15Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:04:06Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "25m",
+                            "memory": "32Mi"
+                        },
+                        "containerID": "containerd://9dfb7cd837e3912ea4e70101bfc1019aa9597c2bf8b23108f1a1a737a0ec02c9",
+                        "image": "sha256:38e57556b63539e63344b97f802e7cbd85b70e2087ee703e360fcdfe337cbbb3",
+                        "imageID": "docker.io/library/python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "lastState": {},
+                        "name": "caller",
+                        "ready": false,
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://9dfb7cd837e3912ea4e70101bfc1019aa9597c2bf8b23108f1a1a737a0ec02c9",
+                                "exitCode": 0,
+                                "finishedAt": "2026-10-14T17:04:15Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-10-14T17:04:08Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 1000,
+                                "supplementalGroups": [
+                                    1000
+                                ],
+                                "uid": 1000
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.18.0.3",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.3"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Succeeded",
+                "podIP": "10.42.0.17",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.17"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "100m",
+                        "memory": "64Mi"
+                    },
+                    "requests": {
+                        "memory": "32Mi"
+                    }
+                },
+                "startTime": "2026-10-14T17:04:06Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-14T17:04:20Z",
+                "generateName": "m1-check-denied-46c1717932-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "batch.kubernetes.io/controller-uid": "c5c0b250-1362-4b4d-a0c6-9b8a6c6a698e",
+                    "batch.kubernetes.io/job-name": "m1-check-denied-46c1717932",
+                    "controller-uid": "c5c0b250-1362-4b4d-a0c6-9b8a6c6a698e",
+                    "job-name": "m1-check-denied-46c1717932",
+                    "m1-access": "denied",
+                    "m1-check": "true"
+                },
+                "name": "m1-check-denied-46c1717932-9xsph",
+                "namespace": "urumi",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "m1-check-denied-46c1717932",
+                        "uid": "c5c0b250-1362-4b4d-a0c6-9b8a6c6a698e"
+                    }
+                ],
+                "resourceVersion": "3244",
+                "uid": "3d79f09b-5791-4e6d-b5cc-13e64dcd9121"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-u",
+                            "-c",
+                            "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout, ConnectionRefusedError)):\n            print(\"TCP_REJECTED_AFTER_DNS\" if isinstance(reason, ConnectionRefusedError) else \"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                            "denied"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "caller",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 1000,
+                    "runAsNonRoot": true,
+                    "runAsUser": 1000,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "25m",
+                    "memory": "32Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:04:29Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:04:20Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:04:28Z",
+                        "observedGeneration": 1,
+                        "reason": "PodFailed",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:04:28Z",
+                        "observedGeneration": 1,
+                        "reason": "PodFailed",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:04:20Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "25m",
+                            "memory": "32Mi"
+                        },
+                        "containerID": "containerd://9e79ff7c7b7c154107eeacba40e8fdb271795ffd1e2f48b7a5fddc260ecbd775",
+                        "image": "sha256:38e57556b63539e63344b97f802e7cbd85b70e2087ee703e360fcdfe337cbbb3",
+                        "imageID": "docker.io/library/python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "lastState": {},
+                        "name": "caller",
+                        "ready": false,
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://9e79ff7c7b7c154107eeacba40e8fdb271795ffd1e2f48b7a5fddc260ecbd775",
+                                "exitCode": 42,
+                                "finishedAt": "2026-10-14T17:04:27Z",
+                                "reason": "Error",
+                                "startedAt": "2026-10-14T17:04:22Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 1000,
+                                "supplementalGroups": [
+                                    1000
+                                ],
+                                "uid": 1000
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.18.0.3",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.3"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Failed",
+                "podIP": "10.42.0.18",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.18"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "requests": {
+                        "memory": "32Mi"
+                    }
+                },
+                "startTime": "2026-10-14T17:04:20Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-14T17:01:23Z",
+                "generateName": "m1-check-denied-629d6a2c21-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "batch.kubernetes.io/controller-uid": "c0196d67-9a82-4360-a38f-db68e4b8f646",
+                    "batch.kubernetes.io/job-name": "m1-check-denied-629d6a2c21",
+                    "controller-uid": "c0196d67-9a82-4360-a38f-db68e4b8f646",
+                    "job-name": "m1-check-denied-629d6a2c21",
+                    "m1-access": "denied",
+                    "m1-check": "true"
+                },
+                "name": "m1-check-denied-629d6a2c21-cb789",
+                "namespace": "urumi",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "m1-check-denied-629d6a2c21",
+                        "uid": "c0196d67-9a82-4360-a38f-db68e4b8f646"
+                    }
+                ],
+                "resourceVersion": "3087",
+                "uid": "f06a15d6-eaed-4986-91f1-6b2ec42ff519"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-u",
+                            "-c",
+                            "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout)):\n            print(\"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                            "denied"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "caller",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 1000,
+                    "runAsNonRoot": true,
+                    "runAsUser": 1000,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "25m",
+                    "memory": "32Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:01:34Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:01:23Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:01:33Z",
+                        "observedGeneration": 1,
+                        "reason": "PodFailed",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:01:33Z",
+                        "observedGeneration": 1,
+                        "reason": "PodFailed",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:01:23Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "25m",
+                            "memory": "32Mi"
+                        },
+                        "containerID": "containerd://f3339595f93c6237e03167468b7793f4a4498cad2e1adce89147da98bb5aa403",
+                        "image": "sha256:38e57556b63539e63344b97f802e7cbd85b70e2087ee703e360fcdfe337cbbb3",
+                        "imageID": "docker.io/library/python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "lastState": {},
+                        "name": "caller",
+                        "ready": false,
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://f3339595f93c6237e03167468b7793f4a4498cad2e1adce89147da98bb5aa403",
+                                "exitCode": 1,
+                                "finishedAt": "2026-10-14T17:01:32Z",
+                                "reason": "Error",
+                                "startedAt": "2026-10-14T17:01:25Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 1000,
+                                "supplementalGroups": [
+                                    1000
+                                ],
+                                "uid": 1000
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.18.0.3",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.3"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Failed",
+                "podIP": "10.42.0.14",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.14"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "requests": {
+                        "memory": "32Mi"
+                    }
+                },
+                "startTime": "2026-10-14T17:01:23Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-14T17:03:52Z",
+                "generateName": "m1-check-denied-d22968e6b1-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "batch.kubernetes.io/controller-uid": "a38ba6f3-c708-4c2d-a01f-b49ec5b3ae09",
+                    "batch.kubernetes.io/job-name": "m1-check-denied-d22968e6b1",
+                    "controller-uid": "a38ba6f3-c708-4c2d-a01f-b49ec5b3ae09",
+                    "job-name": "m1-check-denied-d22968e6b1",
+                    "m1-access": "denied",
+                    "m1-check": "true"
+                },
+                "name": "m1-check-denied-d22968e6b1-5djcq",
+                "namespace": "urumi",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "m1-check-denied-d22968e6b1",
+                        "uid": "a38ba6f3-c708-4c2d-a01f-b49ec5b3ae09"
+                    }
+                ],
+                "resourceVersion": "3187",
+                "uid": "6dbb4748-3534-495a-8754-70347e7e2995"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-u",
+                            "-c",
+                            "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout, ConnectionRefusedError)):\n            print(\"TCP_REJECTED_AFTER_DNS\" if isinstance(reason, ConnectionRefusedError) else \"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                            "allowed"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "caller",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 1000,
+                    "runAsNonRoot": true,
+                    "runAsUser": 1000,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "25m",
+                    "memory": "32Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:04:01Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:03:52Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:04:00Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:04:00Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:03:52Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "25m",
+                            "memory": "32Mi"
+                        },
+                        "containerID": "containerd://d14edc7b079fae0517d5975bc93b003c344b9a65be2aa5b75d89a74cf8557c91",
+                        "image": "sha256:38e57556b63539e63344b97f802e7cbd85b70e2087ee703e360fcdfe337cbbb3",
+                        "imageID": "docker.io/library/python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "lastState": {},
+                        "name": "caller",
+                        "ready": false,
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://d14edc7b079fae0517d5975bc93b003c344b9a65be2aa5b75d89a74cf8557c91",
+                                "exitCode": 0,
+                                "finishedAt": "2026-10-14T17:03:59Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-10-14T17:03:54Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 1000,
+                                "supplementalGroups": [
+                                    1000
+                                ],
+                                "uid": 1000
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.18.0.3",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.3"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Succeeded",
+                "podIP": "10.42.0.16",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.16"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "100m",
+                        "memory": "64Mi"
+                    },
+                    "requests": {
+                        "memory": "32Mi"
+                    }
+                },
+                "startTime": "2026-10-14T17:03:52Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-14T17:00:58Z",
+                "generateName": "m1-check-denied-db4aaa81d2-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "batch.kubernetes.io/controller-uid": "505e14cd-dbf2-4ce8-9170-ffaf7612ac14",
+                    "batch.kubernetes.io/job-name": "m1-check-denied-db4aaa81d2",
+                    "controller-uid": "505e14cd-dbf2-4ce8-9170-ffaf7612ac14",
+                    "job-name": "m1-check-denied-db4aaa81d2",
+                    "m1-access": "denied",
+                    "m1-check": "true"
+                },
+                "name": "m1-check-denied-db4aaa81d2-f97fq",
+                "namespace": "urumi",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "m1-check-denied-db4aaa81d2",
+                        "uid": "505e14cd-dbf2-4ce8-9170-ffaf7612ac14"
+                    }
+                ],
+                "resourceVersion": "3029",
+                "uid": "3be56fa3-3283-45be-ae2b-d75576fb5f49"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-u",
+                            "-c",
+                            "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout)):\n            print(\"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                            "allowed"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "caller",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 1000,
+                    "runAsNonRoot": true,
+                    "runAsUser": 1000,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "25m",
+                    "memory": "32Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:01:07Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:00:58Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:01:05Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:01:05Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-14T17:00:58Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "25m",
+                            "memory": "32Mi"
+                        },
+                        "containerID": "containerd://4ead5c7e38df67043282005e363b2252fa5abe778c1a34c77b1cc41c735f51ef",
+                        "image": "sha256:38e57556b63539e63344b97f802e7cbd85b70e2087ee703e360fcdfe337cbbb3",
+                        "imageID": "docker.io/library/python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "lastState": {},
+                        "name": "caller",
+                        "ready": false,
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://4ead5c7e38df67043282005e363b2252fa5abe778c1a34c77b1cc41c735f51ef",
+                                "exitCode": 0,
+                                "finishedAt": "2026-10-14T17:01:05Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-10-14T17:01:00Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 1000,
+                                "supplementalGroups": [
+                                    1000
+                                ],
+                                "uid": 1000
+                            }
+                        }
+                    }
+                ],
+                "hostIP": "172.18.0.3",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.3"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Succeeded",
+                "podIP": "10.42.0.12",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.12"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "100m",
+                        "memory": "64Mi"
+                    },
+                    "requests": {
+                        "memory": "32Mi"
+                    }
+                },
+                "startTime": "2026-10-14T17:00:58Z"
+            }
+        },
+        {
+            "apiVersion": "batch/v1",
+            "kind": "Job",
+            "metadata": {
+                "creationTimestamp": "2026-10-14T17:03:40Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "m1-access": "allowed",
+                    "m1-check": "true"
+                },
+                "name": "m1-check-allowed-5dc153bcf8",
+                "namespace": "urumi",
+                "resourceVersion": "3164",
+                "uid": "93409eec-1134-4a25-848d-05b47ec128aa"
+            },
+            "spec": {
+                "activeDeadlineSeconds": 30,
+                "backoffLimit": 0,
+                "completionMode": "NonIndexed",
+                "completions": 1,
+                "manualSelector": false,
+                "parallelism": 1,
+                "podReplacementPolicy": "TerminatingOrFailed",
+                "selector": {
+                    "matchLabels": {
+                        "batch.kubernetes.io/controller-uid": "93409eec-1134-4a25-848d-05b47ec128aa"
+                    }
+                },
+                "suspend": false,
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/instance": "urumi",
+                            "batch.kubernetes.io/controller-uid": "93409eec-1134-4a25-848d-05b47ec128aa",
+                            "batch.kubernetes.io/job-name": "m1-check-allowed-5dc153bcf8",
+                            "controller-uid": "93409eec-1134-4a25-848d-05b47ec128aa",
+                            "job-name": "m1-check-allowed-5dc153bcf8",
+                            "m1-access": "allowed",
+                            "m1-check": "true"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "command": [
+                                    "python",
+                                    "-u",
+                                    "-c",
+                                    "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout, ConnectionRefusedError)):\n            print(\"TCP_REJECTED_AFTER_DNS\" if isinstance(reason, ConnectionRefusedError) else \"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                                    "allowed"
+                                ],
+                                "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                                "imagePullPolicy": "IfNotPresent",
+                                "name": "caller",
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "100m",
+                                        "memory": "64Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "25m",
+                                        "memory": "32Mi"
+                                    }
+                                },
+                                "securityContext": {
+                                    "allowPrivilegeEscalation": false,
+                                    "capabilities": {
+                                        "drop": [
+                                            "ALL"
+                                        ]
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File"
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Never",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "runAsGroup": 1000,
+                            "runAsNonRoot": true,
+                            "runAsUser": 1000,
+                            "seccompProfile": {
+                                "type": "RuntimeDefault"
+                            }
+                        },
+                        "terminationGracePeriodSeconds": 30
+                    }
+                }
+            },
+            "status": {
+                "completionTime": "2026-10-14T17:03:50Z",
+                "conditions": [
+                    {
+                        "lastProbeTime": "2026-10-14T17:03:50Z",
+                        "lastTransitionTime": "2026-10-14T17:03:50Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "SuccessCriteriaMet"
+                    },
+                    {
+                        "lastProbeTime": "2026-10-14T17:03:50Z",
+                        "lastTransitionTime": "2026-10-14T17:03:50Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "Complete"
+                    }
+                ],
+                "ready": 0,
+                "startTime": "2026-10-14T17:03:40Z",
+                "succeeded": 1,
+                "terminating": 0,
+                "uncountedTerminatedPods": {}
+            }
+        },
+        {
+            "apiVersion": "batch/v1",
+            "kind": "Job",
+            "metadata": {
+                "creationTimestamp": "2026-10-14T17:01:10Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "m1-access": "allowed",
+                    "m1-check": "true"
+                },
+                "name": "m1-check-allowed-6f8c5a8090",
+                "namespace": "urumi",
+                "resourceVersion": "3060",
+                "uid": "b56d2631-128f-431c-9473-aa17cd86d958"
+            },
+            "spec": {
+                "activeDeadlineSeconds": 30,
+                "backoffLimit": 0,
+                "completionMode": "NonIndexed",
+                "completions": 1,
+                "manualSelector": false,
+                "parallelism": 1,
+                "podReplacementPolicy": "TerminatingOrFailed",
+                "selector": {
+                    "matchLabels": {
+                        "batch.kubernetes.io/controller-uid": "b56d2631-128f-431c-9473-aa17cd86d958"
+                    }
+                },
+                "suspend": false,
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/instance": "urumi",
+                            "batch.kubernetes.io/controller-uid": "b56d2631-128f-431c-9473-aa17cd86d958",
+                            "batch.kubernetes.io/job-name": "m1-check-allowed-6f8c5a8090",
+                            "controller-uid": "b56d2631-128f-431c-9473-aa17cd86d958",
+                            "job-name": "m1-check-allowed-6f8c5a8090",
+                            "m1-access": "allowed",
+                            "m1-check": "true"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "command": [
+                                    "python",
+                                    "-u",
+                                    "-c",
+                                    "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout)):\n            print(\"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                                    "allowed"
+                                ],
+                                "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                                "imagePullPolicy": "IfNotPresent",
+                                "name": "caller",
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "100m",
+                                        "memory": "64Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "25m",
+                                        "memory": "32Mi"
+                                    }
+                                },
+                                "securityContext": {
+                                    "allowPrivilegeEscalation": false,
+                                    "capabilities": {
+                                        "drop": [
+                                            "ALL"
+                                        ]
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File"
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Never",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "runAsGroup": 1000,
+                            "runAsNonRoot": true,
+                            "runAsUser": 1000,
+                            "seccompProfile": {
+                                "type": "RuntimeDefault"
+                            }
+                        },
+                        "terminationGracePeriodSeconds": 30
+                    }
+                }
+            },
+            "status": {
+                "completionTime": "2026-10-14T17:01:21Z",
+                "conditions": [
+                    {
+                        "lastProbeTime": "2026-10-14T17:01:21Z",
+                        "lastTransitionTime": "2026-10-14T17:01:21Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "SuccessCriteriaMet"
+                    },
+                    {
+                        "lastProbeTime": "2026-10-14T17:01:22Z",
+                        "lastTransitionTime": "2026-10-14T17:01:22Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "Complete"
+                    }
+                ],
+                "ready": 0,
+                "startTime": "2026-10-14T17:01:10Z",
+                "succeeded": 1,
+                "terminating": 0,
+                "uncountedTerminatedPods": {}
+            }
+        },
+        {
+            "apiVersion": "batch/v1",
+            "kind": "Job",
+            "metadata": {
+                "creationTimestamp": "2026-10-14T17:04:32Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "m1-access": "allowed",
+                    "m1-check": "true"
+                },
+                "name": "m1-check-allowed-73e545496e",
+                "namespace": "urumi",
+                "resourceVersion": "3269",
+                "uid": "64bd6c18-3569-4d03-9c60-2a96f923447a"
+            },
+            "spec": {
+                "activeDeadlineSeconds": 30,
+                "backoffLimit": 0,
+                "completionMode": "NonIndexed",
+                "completions": 1,
+                "manualSelector": false,
+                "parallelism": 1,
+                "podReplacementPolicy": "TerminatingOrFailed",
+                "selector": {
+                    "matchLabels": {
+                        "batch.kubernetes.io/controller-uid": "64bd6c18-3569-4d03-9c60-2a96f923447a"
+                    }
+                },
+                "suspend": false,
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/instance": "urumi",
+                            "batch.kubernetes.io/controller-uid": "64bd6c18-3569-4d03-9c60-2a96f923447a",
+                            "batch.kubernetes.io/job-name": "m1-check-allowed-73e545496e",
+                            "controller-uid": "64bd6c18-3569-4d03-9c60-2a96f923447a",
+                            "job-name": "m1-check-allowed-73e545496e",
+                            "m1-access": "allowed",
+                            "m1-check": "true"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "command": [
+                                    "python",
+                                    "-u",
+                                    "-c",
+                                    "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout, ConnectionRefusedError)):\n            print(\"TCP_REJECTED_AFTER_DNS\" if isinstance(reason, ConnectionRefusedError) else \"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                                    "allowed"
+                                ],
+                                "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                                "imagePullPolicy": "IfNotPresent",
+                                "name": "caller",
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "100m",
+                                        "memory": "64Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "25m",
+                                        "memory": "32Mi"
+                                    }
+                                },
+                                "securityContext": {
+                                    "allowPrivilegeEscalation": false,
+                                    "capabilities": {
+                                        "drop": [
+                                            "ALL"
+                                        ]
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File"
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Never",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "runAsGroup": 1000,
+                            "runAsNonRoot": true,
+                            "runAsUser": 1000,
+                            "seccompProfile": {
+                                "type": "RuntimeDefault"
+                            }
+                        },
+                        "terminationGracePeriodSeconds": 30
+                    }
+                }
+            },
+            "status": {
+                "completionTime": "2026-10-14T17:04:41Z",
+                "conditions": [
+                    {
+                        "lastProbeTime": "2026-10-14T17:04:41Z",
+                        "lastTransitionTime": "2026-10-14T17:04:41Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "SuccessCriteriaMet"
+                    },
+                    {
+                        "lastProbeTime": "2026-10-14T17:04:41Z",
+                        "lastTransitionTime": "2026-10-14T17:04:41Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "Complete"
+                    }
+                ],
+                "ready": 0,
+                "startTime": "2026-10-14T17:04:32Z",
+                "succeeded": 1,
+                "terminating": 0,
+                "uncountedTerminatedPods": {}
+            }
+        },
+        {
+            "apiVersion": "batch/v1",
+            "kind": "Job",
+            "metadata": {
+                "creationTimestamp": "2026-10-14T17:00:46Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "m1-access": "allowed",
+                    "m1-check": "true"
+                },
+                "name": "m1-check-allowed-bc6eb79139",
+                "namespace": "urumi",
+                "resourceVersion": "3006",
+                "uid": "e2ecbddd-a0c8-4246-9b55-34257fe4cbf0"
+            },
+            "spec": {
+                "activeDeadlineSeconds": 30,
+                "backoffLimit": 0,
+                "completionMode": "NonIndexed",
+                "completions": 1,
+                "manualSelector": false,
+                "parallelism": 1,
+                "podReplacementPolicy": "TerminatingOrFailed",
+                "selector": {
+                    "matchLabels": {
+                        "batch.kubernetes.io/controller-uid": "e2ecbddd-a0c8-4246-9b55-34257fe4cbf0"
+                    }
+                },
+                "suspend": false,
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/instance": "urumi",
+                            "batch.kubernetes.io/controller-uid": "e2ecbddd-a0c8-4246-9b55-34257fe4cbf0",
+                            "batch.kubernetes.io/job-name": "m1-check-allowed-bc6eb79139",
+                            "controller-uid": "e2ecbddd-a0c8-4246-9b55-34257fe4cbf0",
+                            "job-name": "m1-check-allowed-bc6eb79139",
+                            "m1-access": "allowed",
+                            "m1-check": "true"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "command": [
+                                    "python",
+                                    "-u",
+                                    "-c",
+                                    "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout)):\n            print(\"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                                    "allowed"
+                                ],
+                                "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                                "imagePullPolicy": "IfNotPresent",
+                                "name": "caller",
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "100m",
+                                        "memory": "64Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "25m",
+                                        "memory": "32Mi"
+                                    }
+                                },
+                                "securityContext": {
+                                    "allowPrivilegeEscalation": false,
+                                    "capabilities": {
+                                        "drop": [
+                                            "ALL"
+                                        ]
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File"
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Never",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "runAsGroup": 1000,
+                            "runAsNonRoot": true,
+                            "runAsUser": 1000,
+                            "seccompProfile": {
+                                "type": "RuntimeDefault"
+                            }
+                        },
+                        "terminationGracePeriodSeconds": 30
+                    }
+                }
+            },
+            "status": {
+                "completionTime": "2026-10-14T17:00:56Z",
+                "conditions": [
+                    {
+                        "lastProbeTime": "2026-10-14T17:00:56Z",
+                        "lastTransitionTime": "2026-10-14T17:00:56Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "SuccessCriteriaMet"
+                    },
+                    {
+                        "lastProbeTime": "2026-10-14T17:00:56Z",
+                        "lastTransitionTime": "2026-10-14T17:00:56Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "Complete"
+                    }
+                ],
+                "ready": 0,
+                "startTime": "2026-10-14T17:00:46Z",
+                "succeeded": 1,
+                "terminating": 0,
+                "uncountedTerminatedPods": {}
+            }
+        },
+        {
+            "apiVersion": "batch/v1",
+            "kind": "Job",
+            "metadata": {
+                "creationTimestamp": "2026-10-14T17:04:06Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "m1-access": "allowed",
+                    "m1-check": "true"
+                },
+                "name": "m1-check-allowed-cba0db6318",
+                "namespace": "urumi",
+                "resourceVersion": "3219",
+                "uid": "a6c2684e-e3f5-4357-b921-3bbb2a0c7233"
+            },
+            "spec": {
+                "activeDeadlineSeconds": 30,
+                "backoffLimit": 0,
+                "completionMode": "NonIndexed",
+                "completions": 1,
+                "manualSelector": false,
+                "parallelism": 1,
+                "podReplacementPolicy": "TerminatingOrFailed",
+                "selector": {
+                    "matchLabels": {
+                        "batch.kubernetes.io/controller-uid": "a6c2684e-e3f5-4357-b921-3bbb2a0c7233"
+                    }
+                },
+                "suspend": false,
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/instance": "urumi",
+                            "batch.kubernetes.io/controller-uid": "a6c2684e-e3f5-4357-b921-3bbb2a0c7233",
+                            "batch.kubernetes.io/job-name": "m1-check-allowed-cba0db6318",
+                            "controller-uid": "a6c2684e-e3f5-4357-b921-3bbb2a0c7233",
+                            "job-name": "m1-check-allowed-cba0db6318",
+                            "m1-access": "allowed",
+                            "m1-check": "true"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "command": [
+                                    "python",
+                                    "-u",
+                                    "-c",
+                                    "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout, ConnectionRefusedError)):\n            print(\"TCP_REJECTED_AFTER_DNS\" if isinstance(reason, ConnectionRefusedError) else \"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                                    "allowed"
+                                ],
+                                "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                                "imagePullPolicy": "IfNotPresent",
+                                "name": "caller",
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "100m",
+                                        "memory": "64Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "25m",
+                                        "memory": "32Mi"
+                                    }
+                                },
+                                "securityContext": {
+                                    "allowPrivilegeEscalation": false,
+                                    "capabilities": {
+                                        "drop": [
+                                            "ALL"
+                                        ]
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File"
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Never",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "runAsGroup": 1000,
+                            "runAsNonRoot": true,
+                            "runAsUser": 1000,
+                            "seccompProfile": {
+                                "type": "RuntimeDefault"
+                            }
+                        },
+                        "terminationGracePeriodSeconds": 30
+                    }
+                }
+            },
+            "status": {
+                "completionTime": "2026-10-14T17:04:17Z",
+                "conditions": [
+                    {
+                        "lastProbeTime": "2026-10-14T17:04:17Z",
+                        "lastTransitionTime": "2026-10-14T17:04:17Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "SuccessCriteriaMet"
+                    },
+                    {
+                        "lastProbeTime": "2026-10-14T17:04:17Z",
+                        "lastTransitionTime": "2026-10-14T17:04:17Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "Complete"
+                    }
+                ],
+                "ready": 0,
+                "startTime": "2026-10-14T17:04:06Z",
+                "succeeded": 1,
+                "terminating": 0,
+                "uncountedTerminatedPods": {}
+            }
+        },
+        {
+            "apiVersion": "batch/v1",
+            "kind": "Job",
+            "metadata": {
+                "creationTimestamp": "2026-10-14T17:04:19Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "m1-access": "denied",
+                    "m1-check": "true"
+                },
+                "name": "m1-check-denied-46c1717932",
+                "namespace": "urumi",
+                "resourceVersion": "3245",
+                "uid": "c5c0b250-1362-4b4d-a0c6-9b8a6c6a698e"
+            },
+            "spec": {
+                "activeDeadlineSeconds": 30,
+                "backoffLimit": 0,
+                "completionMode": "NonIndexed",
+                "completions": 1,
+                "manualSelector": false,
+                "parallelism": 1,
+                "podReplacementPolicy": "TerminatingOrFailed",
+                "selector": {
+                    "matchLabels": {
+                        "batch.kubernetes.io/controller-uid": "c5c0b250-1362-4b4d-a0c6-9b8a6c6a698e"
+                    }
+                },
+                "suspend": false,
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/instance": "urumi",
+                            "batch.kubernetes.io/controller-uid": "c5c0b250-1362-4b4d-a0c6-9b8a6c6a698e",
+                            "batch.kubernetes.io/job-name": "m1-check-denied-46c1717932",
+                            "controller-uid": "c5c0b250-1362-4b4d-a0c6-9b8a6c6a698e",
+                            "job-name": "m1-check-denied-46c1717932",
+                            "m1-access": "denied",
+                            "m1-check": "true"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "command": [
+                                    "python",
+                                    "-u",
+                                    "-c",
+                                    "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout, ConnectionRefusedError)):\n            print(\"TCP_REJECTED_AFTER_DNS\" if isinstance(reason, ConnectionRefusedError) else \"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                                    "denied"
+                                ],
+                                "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                                "imagePullPolicy": "IfNotPresent",
+                                "name": "caller",
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "100m",
+                                        "memory": "64Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "25m",
+                                        "memory": "32Mi"
+                                    }
+                                },
+                                "securityContext": {
+                                    "allowPrivilegeEscalation": false,
+                                    "capabilities": {
+                                        "drop": [
+                                            "ALL"
+                                        ]
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File"
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Never",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "runAsGroup": 1000,
+                            "runAsNonRoot": true,
+                            "runAsUser": 1000,
+                            "seccompProfile": {
+                                "type": "RuntimeDefault"
+                            }
+                        },
+                        "terminationGracePeriodSeconds": 30
+                    }
+                }
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": "2026-10-14T17:04:30Z",
+                        "lastTransitionTime": "2026-10-14T17:04:30Z",
+                        "message": "Job has reached the specified backoff limit",
+                        "reason": "BackoffLimitExceeded",
+                        "status": "True",
+                        "type": "FailureTarget"
+                    },
+                    {
+                        "lastProbeTime": "2026-10-14T17:04:30Z",
+                        "lastTransitionTime": "2026-10-14T17:04:30Z",
+                        "message": "Job has reached the specified backoff limit",
+                        "reason": "BackoffLimitExceeded",
+                        "status": "True",
+                        "type": "Failed"
+                    }
+                ],
+                "failed": 1,
+                "ready": 0,
+                "startTime": "2026-10-14T17:04:19Z",
+                "terminating": 0,
+                "uncountedTerminatedPods": {}
+            }
+        },
+        {
+            "apiVersion": "batch/v1",
+            "kind": "Job",
+            "metadata": {
+                "creationTimestamp": "2026-10-14T17:01:23Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "m1-access": "denied",
+                    "m1-check": "true"
+                },
+                "name": "m1-check-denied-629d6a2c21",
+                "namespace": "urumi",
+                "resourceVersion": "3088",
+                "uid": "c0196d67-9a82-4360-a38f-db68e4b8f646"
+            },
+            "spec": {
+                "activeDeadlineSeconds": 30,
+                "backoffLimit": 0,
+                "completionMode": "NonIndexed",
+                "completions": 1,
+                "manualSelector": false,
+                "parallelism": 1,
+                "podReplacementPolicy": "TerminatingOrFailed",
+                "selector": {
+                    "matchLabels": {
+                        "batch.kubernetes.io/controller-uid": "c0196d67-9a82-4360-a38f-db68e4b8f646"
+                    }
+                },
+                "suspend": false,
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/instance": "urumi",
+                            "batch.kubernetes.io/controller-uid": "c0196d67-9a82-4360-a38f-db68e4b8f646",
+                            "batch.kubernetes.io/job-name": "m1-check-denied-629d6a2c21",
+                            "controller-uid": "c0196d67-9a82-4360-a38f-db68e4b8f646",
+                            "job-name": "m1-check-denied-629d6a2c21",
+                            "m1-access": "denied",
+                            "m1-check": "true"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "command": [
+                                    "python",
+                                    "-u",
+                                    "-c",
+                                    "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout)):\n            print(\"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                                    "denied"
+                                ],
+                                "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                                "imagePullPolicy": "IfNotPresent",
+                                "name": "caller",
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "100m",
+                                        "memory": "64Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "25m",
+                                        "memory": "32Mi"
+                                    }
+                                },
+                                "securityContext": {
+                                    "allowPrivilegeEscalation": false,
+                                    "capabilities": {
+                                        "drop": [
+                                            "ALL"
+                                        ]
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File"
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Never",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "runAsGroup": 1000,
+                            "runAsNonRoot": true,
+                            "runAsUser": 1000,
+                            "seccompProfile": {
+                                "type": "RuntimeDefault"
+                            }
+                        },
+                        "terminationGracePeriodSeconds": 30
+                    }
+                }
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": "2026-10-14T17:01:35Z",
+                        "lastTransitionTime": "2026-10-14T17:01:35Z",
+                        "message": "Job has reached the specified backoff limit",
+                        "reason": "BackoffLimitExceeded",
+                        "status": "True",
+                        "type": "FailureTarget"
+                    },
+                    {
+                        "lastProbeTime": "2026-10-14T17:01:35Z",
+                        "lastTransitionTime": "2026-10-14T17:01:35Z",
+                        "message": "Job has reached the specified backoff limit",
+                        "reason": "BackoffLimitExceeded",
+                        "status": "True",
+                        "type": "Failed"
+                    }
+                ],
+                "failed": 1,
+                "ready": 0,
+                "startTime": "2026-10-14T17:01:23Z",
+                "terminating": 0,
+                "uncountedTerminatedPods": {}
+            }
+        },
+        {
+            "apiVersion": "batch/v1",
+            "kind": "Job",
+            "metadata": {
+                "creationTimestamp": "2026-10-14T17:03:52Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "m1-access": "denied",
+                    "m1-check": "true"
+                },
+                "name": "m1-check-denied-d22968e6b1",
+                "namespace": "urumi",
+                "resourceVersion": "3188",
+                "uid": "a38ba6f3-c708-4c2d-a01f-b49ec5b3ae09"
+            },
+            "spec": {
+                "activeDeadlineSeconds": 30,
+                "backoffLimit": 0,
+                "completionMode": "NonIndexed",
+                "completions": 1,
+                "manualSelector": false,
+                "parallelism": 1,
+                "podReplacementPolicy": "TerminatingOrFailed",
+                "selector": {
+                    "matchLabels": {
+                        "batch.kubernetes.io/controller-uid": "a38ba6f3-c708-4c2d-a01f-b49ec5b3ae09"
+                    }
+                },
+                "suspend": false,
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/instance": "urumi",
+                            "batch.kubernetes.io/controller-uid": "a38ba6f3-c708-4c2d-a01f-b49ec5b3ae09",
+                            "batch.kubernetes.io/job-name": "m1-check-denied-d22968e6b1",
+                            "controller-uid": "a38ba6f3-c708-4c2d-a01f-b49ec5b3ae09",
+                            "job-name": "m1-check-denied-d22968e6b1",
+                            "m1-access": "denied",
+                            "m1-check": "true"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "command": [
+                                    "python",
+                                    "-u",
+                                    "-c",
+                                    "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout, ConnectionRefusedError)):\n            print(\"TCP_REJECTED_AFTER_DNS\" if isinstance(reason, ConnectionRefusedError) else \"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                                    "allowed"
+                                ],
+                                "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                                "imagePullPolicy": "IfNotPresent",
+                                "name": "caller",
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "100m",
+                                        "memory": "64Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "25m",
+                                        "memory": "32Mi"
+                                    }
+                                },
+                                "securityContext": {
+                                    "allowPrivilegeEscalation": false,
+                                    "capabilities": {
+                                        "drop": [
+                                            "ALL"
+                                        ]
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File"
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Never",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "runAsGroup": 1000,
+                            "runAsNonRoot": true,
+                            "runAsUser": 1000,
+                            "seccompProfile": {
+                                "type": "RuntimeDefault"
+                            }
+                        },
+                        "terminationGracePeriodSeconds": 30
+                    }
+                }
+            },
+            "status": {
+                "completionTime": "2026-10-14T17:04:02Z",
+                "conditions": [
+                    {
+                        "lastProbeTime": "2026-10-14T17:04:02Z",
+                        "lastTransitionTime": "2026-10-14T17:04:02Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "SuccessCriteriaMet"
+                    },
+                    {
+                        "lastProbeTime": "2026-10-14T17:04:02Z",
+                        "lastTransitionTime": "2026-10-14T17:04:02Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "Complete"
+                    }
+                ],
+                "ready": 0,
+                "startTime": "2026-10-14T17:03:52Z",
+                "succeeded": 1,
+                "terminating": 0,
+                "uncountedTerminatedPods": {}
+            }
+        },
+        {
+            "apiVersion": "batch/v1",
+            "kind": "Job",
+            "metadata": {
+                "creationTimestamp": "2026-10-14T17:00:58Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "m1-access": "denied",
+                    "m1-check": "true"
+                },
+                "name": "m1-check-denied-db4aaa81d2",
+                "namespace": "urumi",
+                "resourceVersion": "3030",
+                "uid": "505e14cd-dbf2-4ce8-9170-ffaf7612ac14"
+            },
+            "spec": {
+                "activeDeadlineSeconds": 30,
+                "backoffLimit": 0,
+                "completionMode": "NonIndexed",
+                "completions": 1,
+                "manualSelector": false,
+                "parallelism": 1,
+                "podReplacementPolicy": "TerminatingOrFailed",
+                "selector": {
+                    "matchLabels": {
+                        "batch.kubernetes.io/controller-uid": "505e14cd-dbf2-4ce8-9170-ffaf7612ac14"
+                    }
+                },
+                "suspend": false,
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/instance": "urumi",
+                            "batch.kubernetes.io/controller-uid": "505e14cd-dbf2-4ce8-9170-ffaf7612ac14",
+                            "batch.kubernetes.io/job-name": "m1-check-denied-db4aaa81d2",
+                            "controller-uid": "505e14cd-dbf2-4ce8-9170-ffaf7612ac14",
+                            "job-name": "m1-check-denied-db4aaa81d2",
+                            "m1-access": "denied",
+                            "m1-check": "true"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "command": [
+                                    "python",
+                                    "-u",
+                                    "-c",
+                                    "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout)):\n            print(\"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                                    "allowed"
+                                ],
+                                "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                                "imagePullPolicy": "IfNotPresent",
+                                "name": "caller",
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "100m",
+                                        "memory": "64Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "25m",
+                                        "memory": "32Mi"
+                                    }
+                                },
+                                "securityContext": {
+                                    "allowPrivilegeEscalation": false,
+                                    "capabilities": {
+                                        "drop": [
+                                            "ALL"
+                                        ]
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File"
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Never",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "runAsGroup": 1000,
+                            "runAsNonRoot": true,
+                            "runAsUser": 1000,
+                            "seccompProfile": {
+                                "type": "RuntimeDefault"
+                            }
+                        },
+                        "terminationGracePeriodSeconds": 30
+                    }
+                }
+            },
+            "status": {
+                "completionTime": "2026-10-14T17:01:07Z",
+                "conditions": [
+                    {
+                        "lastProbeTime": "2026-10-14T17:01:07Z",
+                        "lastTransitionTime": "2026-10-14T17:01:07Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "SuccessCriteriaMet"
+                    },
+                    {
+                        "lastProbeTime": "2026-10-14T17:01:07Z",
+                        "lastTransitionTime": "2026-10-14T17:01:07Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "Complete"
+                    }
+                ],
+                "ready": 0,
+                "startTime": "2026-10-14T17:00:58Z",
+                "succeeded": 1,
+                "terminating": 0,
+                "uncountedTerminatedPods": {}
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "metadata": {
+                "annotations": {
+                    "helm.sh/resource-policy": "keep",
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi",
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "rancher.io/local-path",
+                    "volume.kubernetes.io/selected-node": "k3d-urumi-server-0",
+                    "volume.kubernetes.io/storage-provisioner": "rancher.io/local-path"
+                },
+                "creationTimestamp": "2026-10-14T17:00:00Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app.kubernetes.io/component": "foundation",
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/managed-by": "Helm",
+                    "app.kubernetes.io/name": "urumi",
+                    "helm.sh/chart": "urumi-0.1.0"
+                },
+                "name": "urumi-foundation-data",
+                "namespace": "urumi",
+                "resourceVersion": "2945",
+                "uid": "c6f386c1-ef1e-4996-ab86-ed888999226e"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "local-path",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-c6f386c1-ef1e-4996-ab86-ed888999226e"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

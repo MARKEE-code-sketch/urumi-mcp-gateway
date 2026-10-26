@@ -1,0 +1,7 @@
+{
+  "image": "urumi/dashboard:m8",
+  "config_digest": "sha256:3594864039effe302c5a0d5b381cd2c90836eef30bffdc872e9e57e3c9905a3d",
+  "architecture": "amd64",
+  "os": "linux",
+  "verification": "SHA256 of actual Docker-exported configuration bytes"
+}

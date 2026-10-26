@@ -1,0 +1,54 @@
+{
+  "request_id": "348ed464-5f35-445f-9aa5-4180c0adf8a6",
+  "matched_audits": [
+    {
+      "audit_id": "f3d5851b-3830-445f-a4ba-dc7b7fe3dfd8",
+      "request_id": "348ed464-5f35-445f-9aa5-4180c0adf8a6",
+      "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+      "key_id": null,
+      "auth_source": "session",
+      "server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+      "public_tool_name": "learn__microsoft_docs_search",
+      "upstream_tool_name": "microsoft_docs_search",
+      "started_at": "2026-10-25T15:19:41.087217Z",
+      "finished_at": "2026-10-25T15:19:43.875292Z",
+      "duration_ms": 2890,
+      "outcome": "success",
+      "error_code": null,
+      "error_summary": null
+    },
+    {
+      "audit_id": "6c31b46b-5585-4c53-99b0-7ac7c4aafcad",
+      "request_id": "348ed464-5f35-445f-9aa5-4180c0adf8a6",
+      "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+      "key_id": null,
+      "auth_source": "session",
+      "server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+      "public_tool_name": "learn__microsoft_docs_fetch",
+      "upstream_tool_name": "microsoft_docs_fetch",
+      "started_at": "2026-10-25T15:19:23.464617Z",
+      "finished_at": "2026-10-25T15:19:25.725460Z",
+      "duration_ms": 2322,
+      "outcome": "success",
+      "error_code": null,
+      "error_summary": null
+    },
+    {
+      "audit_id": "2a84c6cf-8f23-4047-a767-b5f94230c005",
+      "request_id": "348ed464-5f35-445f-9aa5-4180c0adf8a6",
+      "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+      "key_id": null,
+      "auth_source": "session",
+      "server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+      "public_tool_name": "learn__microsoft_docs_search",
+      "upstream_tool_name": "microsoft_docs_search",
+      "started_at": "2026-10-25T15:19:19.331410Z",
+      "finished_at": "2026-10-25T15:19:22.561901Z",
+      "duration_ms": 3303,
+      "outcome": "success",
+      "error_code": null,
+      "error_summary": null
+    }
+  ],
+  "scope": "Tool audits only; chat answers/provider HTTP response bodies are not persisted."
+}

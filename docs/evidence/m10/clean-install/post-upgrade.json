@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "seven_ready": true,
+  "strict_https_login": true,
+  "builtin_absent": true,
+  "retained_marker_id": "dfa4a742-5e51-44aa-b985-032faf2704c2",
+  "runtime_source_file_count": 41,
+  "all_current_frozen_sources_match_running_backend": true,
+  "backend": {
+    "name": "urumi-m10-clean-backend-544d95b879-bljfq",
+    "uid": "fbcf247b-5951-4bf1-8ea8-2b90506e1602",
+    "declared_images": [
+      "urumi/backend@sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe"
+    ],
+    "containers": [
+      {
+        "image": "docker.io/urumi/backend:m10-recovery",
+        "imageID": "docker.io/urumi/backend@sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe",
+        "ready": true,
+        "restartCount": 0
+      }
+    ]
+  },
+  "provider_calls": 0
+}

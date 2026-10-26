@@ -1,0 +1,94 @@
+{{- if .Values.dashboard.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-dashboard-nginx
+data:
+  nginx.conf: |
+{{ .Files.Get "files/dashboard-nginx.conf" | indent 4 }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-dashboard
+spec:
+  selector: {app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: dashboard}
+  ports: [{name: http, port: 80, targetPort: 8080}]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: dashboard}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: dashboard}
+    spec:
+      automountServiceAccountToken: false
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets: {{ toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext: {runAsNonRoot: true, runAsUser: 101, runAsGroup: 101, fsGroup: 101, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: dashboard
+          image: {{ if .Values.dashboard.image.digest }}{{ printf "%s@%s" .Values.dashboard.image.repository .Values.dashboard.image.digest | quote }}{{ else }}{{ printf "%s:%s" .Values.dashboard.image.repository .Values.dashboard.image.tag | quote }}{{ end }}
+          imagePullPolicy: {{ .Values.dashboard.image.pullPolicy }}
+          ports: [{name: http, containerPort: 8080}]
+          securityContext: {allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: {drop: [ALL]}}
+          startupProbe: {httpGet: {path: /livez, port: http}, periodSeconds: 2, timeoutSeconds: 2, failureThreshold: 30}
+          readinessProbe: {httpGet: {path: /readyz, port: http}, initialDelaySeconds: 2, periodSeconds: 5, timeoutSeconds: 2, failureThreshold: 3}
+          livenessProbe: {httpGet: {path: /livez, port: http}, initialDelaySeconds: 5, periodSeconds: 10, timeoutSeconds: 2, failureThreshold: 3}
+          resources: {{ toYaml .Values.dashboard.resources | nindent 12 }}
+          volumeMounts:
+            - {name: tmp, mountPath: /tmp}
+            - {name: nginx, mountPath: /etc/nginx/nginx.conf, subPath: nginx.conf, readOnly: true}
+      volumes:
+        - name: tmp
+          emptyDir: {medium: Memory, sizeLimit: 16Mi}
+        - name: nginx
+          configMap: {name: {{ .Release.Name }}-dashboard-nginx}
+{{- end }}
+{{- $check := .Values.dashboardCheck | default dict }}
+{{- if ($check.enabled | default false) }}
+{{- if or (ne .Release.Namespace "urumi-m8-check") (ne .Release.Name "urumi-m8-check") }}
+{{- fail "M8 fixture requires owned urumi-m8-check namespace and release" }}
+{{- end }}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: {{ .Release.Name }}-dashboard-fixture}
+spec:
+  selector: {app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: dashboard-fixture}
+  ports: [{name: http, port: 8000, targetPort: 8000}]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: {{ .Release.Name }}-dashboard-fixture}
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: dashboard-fixture}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: dashboard-fixture}
+    spec:
+      automountServiceAccountToken: false
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, runAsGroup: 10001, fsGroup: 10001, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: fixture
+          image: {{ printf "%s:%s" $check.image.repository $check.image.tag | quote }}
+          imagePullPolicy: Never
+          ports: [{name: http, containerPort: 8000}]
+          env:
+            - {name: M8_STATIC_ORIGIN, value: "http://{{ .Release.Name }}-dashboard"}
+            - {name: M8_ORIGIN, value: "http://127.0.0.1:18080"}
+          securityContext: {allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: {drop: [ALL]}}
+          readinessProbe: {httpGet: {path: /readyz, port: http}, initialDelaySeconds: 2, periodSeconds: 10, timeoutSeconds: 2, failureThreshold: 3}
+          livenessProbe: {httpGet: {path: /livez, port: http}, initialDelaySeconds: 5, periodSeconds: 10, timeoutSeconds: 2, failureThreshold: 3}
+          resources: {requests: {cpu: 25m, memory: 32Mi}, limits: {cpu: 250m, memory: 128Mi}}
+          volumeMounts: [{name: tmp, mountPath: /tmp}]
+      volumes: [{name: tmp, emptyDir: {medium: Memory, sizeLimit: 16Mi}}]
+{{- end }}

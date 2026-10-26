@@ -1,0 +1,12 @@
+{
+  "image": "urumi/backend:m10-recovery",
+  "docker_id": "sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe",
+  "descriptor": {
+    "mediaType": "application/vnd.oci.image.index.v1+json",
+    "digest": "sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe",
+    "size": 856
+  },
+  "repo_digests": [
+    "urumi/backend@sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe"
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "module": "M10",
+  "status": "USER_ACCEPTED",
+  "user_acceptance": "USER_REPORTED_PASS_2026_10_26",
+  "user_acceptance_evidence": "../manual-acceptance-20261026.json",
+  "historical_review_scope": "The criterion results below retain their original recorded evidence; the latest manual sign-off is user-reported, not a new automated end-to-end run.",
+  "source_review": "NO_UNRESOLVED_MANDATORY_IMPLEMENTATION_OR_TEST_DEFECT",
+  "checks": [
+    {
+      "id": "C10-01",
+      "status": "PASS",
+      "reason": "Actual composed startup/restarts and final image health; controlled ownership/fencing/drain negatives plus reproduced monitor-adapter recovery regression corrected and independently reviewed.",
+      "evidence": [
+        "controlled-final/controlled-tests.xml",
+        "monitor-recovery-tests.xml",
+        "monitor-fix-runtime.json",
+        "post-upgrade-checks.json"
+      ]
+    },
+    {
+      "id": "C10-02",
+      "status": "PASS",
+      "reason": "Builtin identity preserved in main restarts; actual disposable clean deployment preserved edits/disable and deliberate deletion/marker across restarts and final image upgrade.",
+      "evidence": [
+        "persistence.json",
+        "clean-install/runtime.json",
+        "clean-install/post-upgrade.json"
+      ]
+    },
+    {
+      "id": "C10-03",
+      "status": "PASS",
+      "reason": "Fresh local Helm release; actual running image identities, three Bound PVCs, probes/resources and trusted HTTPS browser.",
+      "evidence": [
+        "live-runtime.json",
+        "runtime-review.md",
+        "browser/report.md"
+      ]
+    },
+    {
+      "id": "C10-04",
+      "status": "PASS",
+      "reason": "Real browser COD orders16/19 visible in actual Woo admin.",
+      "evidence": [
+        "browser/report.md"
+      ]
+    },
+    {
+      "id": "C10-05",
+      "status": "PASS",
+      "reason": "Real Groq chat created product18 INR129; browser purchased it as order19; subsequent today-order answer includes it with A audit correlation.",
+      "evidence": [
+        "browser/chat-create.json",
+        "browser/chat-orders.json",
+        "audit-correlation.json"
+      ]
+    },
+    {
+      "id": "C10-06",
+      "status": "PASS",
+      "reason": "Member B actual Codex gateway-only setup/tool-backed order answer and Inspector tool listing/call.",
+      "evidence": [
+        "external-codex-orders.json",
+        "inspector.json",
+        "audit-correlation.json"
+      ]
+    },
+    {
+      "id": "C10-07",
+      "status": "PASS",
+      "reason": "Actual Codex Woo+sampleInventory answer; actual hosted Learn call through gateway.",
+      "evidence": [
+        "external-codex-cross.json",
+        "live-api-mcp.json",
+        "audit-correlation.json"
+      ]
+    },
+    {
+      "id": "C10-08",
+      "status": "PASS",
+      "reason": "Existing MCP connection next call denied; independent HTTP401 KEY_REVOKED; second key successful; denial audits.",
+      "evidence": [
+        "control-checks.json"
+      ]
+    },
+    {
+      "id": "C10-09",
+      "status": "PASS",
+      "reason": "Disabled Inventory absent from MCP listing and member session preview; old name rejected; Woo/Learn work and state restored.",
+      "evidence": [
+        "control-checks.json"
+      ]
+    },
+    {
+      "id": "C10-10",
+      "status": "PASS",
+      "reason": "Owned Pod deletion caused observed Unreachable/failed call; Woo/Learn healthy; replacement Connected and one replica Ready.",
+      "evidence": [
+        "control-checks.json"
+      ]
+    },
+    {
+      "id": "C10-11",
+      "status": "PASS",
+      "reason": "Actual saved A chat request/audit correlation and B external-key attribution; member isolation and completed audit fields checked.",
+      "evidence": [
+        "audit-correlation.json",
+        "control-checks.json",
+        "browser/ui-acceptance.json"
+      ]
+    },
+    {
+      "id": "C10-12",
+      "status": "PASS",
+      "reason": "Four actual sequential Pod replacements preserved products/orders/content/platform metadata, three PVC identities and original shop resources.",
+      "evidence": [
+        "persistence.json",
+        "persistence-review.md"
+      ]
+    },
+    {
+      "id": "C10-13",
+      "status": "PASS",
+      "reason": "Actual nongateway network denial with gateway positive control,18 scoped RBAC checks and internal-only upstream Services.",
+      "evidence": [
+        "network-denial.json",
+        "runtime-review.md"
+      ]
+    },
+    {
+      "id": "C10-14",
+      "status": "PASS",
+      "reason": "All five actual Woo tools through gateway; order16 processing-to-completed update.",
+      "evidence": [
+        "browser/chat-create.json",
+        "browser/chat-orders.json",
+        "owned-order-tools.json",
+        "live-api-mcp.json"
+      ]
+    },
+    {
+      "id": "C10-15",
+      "status": "PASS",
+      "reason": "Real browser invitation/redeem/login/keyissuance/revoke/registryedit/audit; direct role/ownership/CSRF negatives.",
+      "evidence": [
+        "browser/ui-acceptance.json",
+        "audit-correlation.json"
+      ]
+    },
+    {
+      "id": "C10-16",
+      "status": "PASS",
+      "reason": "User confirmed current Groq freeplan; actual provider probe and integrated real dashboard tool loop.",
+      "evidence": [
+        "provider-probe.json",
+        "browser/report.md"
+      ]
+    },
+    {
+      "id": "C10-17",
+      "status": "PASS",
+      "reason": "Source-only fresh install/real MCP read, current-image upgrade/source parity and guarded cleanup passed; isolated encrypted restore and real verified Woo HTTPS/OAuth read/write passed; same-chart local/production static checks passed. No VPS claim.",
+      "evidence": [
+        "clean-install/report.md",
+        "clean-install/cleanup.json",
+        "recovery-restore.json",
+        "recovery-cleanup-check.json",
+        "woo-https.json",
+        "package-final/check-results.json"
+      ]
+    },
+    {
+      "id": "C10-18",
+      "status": "PASS",
+      "reason": "Required source/chart/docs/evidence/demo outline present; final known-secret/document checks passed and independent acceptance review passed18/18. User acceptance, recording and submission remain separate.",
+      "evidence": [
+        "final-artifact-scan.json",
+        "final-doc-check.json",
+        "final-live-review.md",
+        "../../demo-checklist.md"
+      ]
+    }
+  ],
+  "scope": "Complete-system acceptance only. Controlled, package, real PostgreSQL and image results remain supporting evidence; none replaces the complete live criteria.",
+  "report": "live-report.md",
+  "independent_acceptance": "PASS_18_OF_18"
+}

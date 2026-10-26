@@ -1,0 +1,27 @@
+{{- if .Values.foundation.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "urumi.foundationName" . }}-config
+  labels:
+    {{- include "urumi.foundationLabels" . | nindent 4 }}
+data:
+  index.html: |
+    <!doctype html>
+    <html lang="en">
+      <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Urumi M1</title></head>
+      <body><h1>Urumi M1 — Kubernetes is serving this page.</h1><p>This temporary page checks routing, saved storage, and connection rules.</p></body>
+    </html>
+  server.py: |
+    from functools import partial
+    from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+    from pathlib import Path
+    import shutil
+
+    data = Path("/data")
+    index = data / "index.html"
+    if not index.exists():
+        shutil.copyfile("/config/index.html", index)
+    handler = partial(SimpleHTTPRequestHandler, directory=str(data))
+    ThreadingHTTPServer(("0.0.0.0", 8080), handler).serve_forever()
+{{- end }}

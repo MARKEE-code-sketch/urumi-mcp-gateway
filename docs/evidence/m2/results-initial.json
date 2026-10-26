@@ -1,0 +1,49 @@
+﻿{
+    "M2-01":  {
+                  "observed":  "Local and production-shaped chart lint/render passed; manifests contain Secret references only.",
+                  "status":  "PASS",
+                  "timestamp":  "2026-10-15T15:04:28.6588942Z"
+              },
+    "M2-02":  {
+                  "observed":  "Both workloads Ready with liveness/readiness and CPU/memory requests/limits; versions.json records resolved image inputs.",
+                  "status":  "PASS",
+                  "timestamp":  "2026-10-15T15:04:29.5494090Z"
+              },
+    "M2-03":  {
+                  "observed":  "HTTP Ingress, database exposure and policy controls passed; actual storefront browser screenshot still required.",
+                  "status":  "BLOCKED",
+                  "timestamp":  "2026-10-15T15:05:03.5234864Z"
+              },
+    "M2-04":  {
+                  "observed":  "Setup rerun retained seed/key/attachment/order IDs; INR, Asia/Kolkata and COD verified.",
+                  "status":  "PASS",
+                  "timestamp":  "2026-10-15T15:05:23.6196207Z"
+              },
+    "M2-05":  {
+                  "observed":  "Provided order ID exists; actual cart/checkout/confirmation/admin screenshots and manual review still required.",
+                  "status":  "BLOCKED",
+                  "timestamp":  "2026-10-15T15:05:23.6296191Z"
+              },
+    "M2-06":  {
+                  "observed":  "Saved attachment URL/hash and PVC UIDs recorded; actual displayed image and browser order evidence still required.",
+                  "status":  "BLOCKED",
+                  "timestamp":  "2026-10-15T15:05:23.6550052Z"
+              },
+    "M2-07":  {
+                  "observed":  "Pod UID changed; original PVCs, product, key, attachment bytes and existing order IDs retained. Empty order list requires checkout then repeat.",
+                  "status":  "PASS",
+                  "timestamp":  "2026-10-15T15:05:34.9185803Z"
+              },
+    "M2-08":  {
+                  "observed":  "Not reached",
+                  "status":  "BLOCKED"
+              },
+    "M2-09":  {
+                  "observed":  "Not reached",
+                  "status":  "BLOCKED"
+              },
+    "M2-10":  {
+                  "observed":  "Not reached",
+                  "status":  "BLOCKED"
+              }
+}

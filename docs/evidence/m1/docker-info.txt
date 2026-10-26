@@ -1,0 +1,6 @@
+﻿{
+    "serverVersion":  "29.6.1",
+    "cpus":  12,
+    "memoryBytes":  8007598080,
+    "os":  "linux"
+}

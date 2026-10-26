@@ -1,0 +1,7 @@
+{
+  "expected_config_digest": "sha256:074b749942232c24870d63ea86140eab7f961ebfceac0c53194305ce1be755c6",
+  "observed_image_ids": [
+    "sha256:074b749942232c24870d63ea86140eab7f961ebfceac0c53194305ce1be755c6"
+  ],
+  "pass": true
+}

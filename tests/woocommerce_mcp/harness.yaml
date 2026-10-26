@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Secret
+metadata: {name: m3-fake-woocommerce-rest, namespace: urumi-m3-check}
+type: Opaque
+stringData:
+  consumer-key: ck_m3_public_fixture
+  consumer-secret: cs_m3_public_fixture
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: m3-fake-shop, namespace: urumi-m3-check}
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi-m3-check, app.kubernetes.io/component: m3-fake-shop}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi-m3-check, app.kubernetes.io/component: m3-fake-shop}
+    spec:
+      automountServiceAccountToken: false
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, runAsGroup: 10001, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: fake-shop
+          image: urumi/woocommerce-mcp:m3
+          imagePullPolicy: IfNotPresent
+          command: [python, tests/woocommerce_mcp/fake_shop.py]
+          securityContext: {readOnlyRootFilesystem: true, allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          ports: [{name: rest, containerPort: 8080}]
+          readinessProbe: {httpGet: {path: /readyz, port: rest}, periodSeconds: 2, timeoutSeconds: 2}
+          livenessProbe: {httpGet: {path: /livez, port: rest}, periodSeconds: 10, timeoutSeconds: 2}
+          resources:
+            requests: {cpu: 50m, memory: 64Mi}
+            limits: {cpu: 250m, memory: 128Mi}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: m3-fake-shop, namespace: urumi-m3-check}
+spec:
+  type: ClusterIP
+  selector: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi-m3-check, app.kubernetes.io/component: m3-fake-shop}
+  ports: [{name: rest, port: 8080, targetPort: rest}]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: m3-fake-shop, namespace: urumi-m3-check}
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi-m3-check, app.kubernetes.io/component: m3-fake-shop}
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi-m3-check, app.kubernetes.io/component: woocommerce-mcp}
+      ports: [{protocol: TCP, port: 8080}]

@@ -1,0 +1,17 @@
+{
+  "assets": {
+    "index.html": {
+      "sha256": "d6e1f818e6ae6bca8cadfef68018ce09ac805099bade93bb8da0d4632f4e853c",
+      "bytes": 403
+    },
+    "assets/index-B0Czj-z1.js": {
+      "sha256": "6973ea3909629d2c2a076fe55024a5c373d7d2cdef3708290b83c0a637477b69",
+      "bytes": 223057
+    },
+    "assets/index-DOfDRKtL.css": {
+      "sha256": "2f28743ca305a0c205b030f6d3a0754e7a3e8374cd0b9c6974b7fae68231cb41",
+      "bytes": 2727
+    }
+  },
+  "headers_health_and_missing_routes_verified": true
+}

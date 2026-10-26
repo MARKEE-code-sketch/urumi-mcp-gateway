@@ -1,0 +1,36 @@
+﻿UTC: 2026-10-15T14:51:41.4750380Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "upgrade" "--install" "urumi" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "--create-namespace" "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "--namespace" "urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m2/values-runtime.json" "--set" "foundation.enabled=false"
+Exit: 0
+Release "urumi" has been upgraded. Happy Helming!
+NAME: urumi
+LAST DEPLOYED: Thu Oct 15 20:21:39 2026
+NAMESPACE: urumi
+STATUS: deployed
+REVISION: 8
+TEST SUITE: None
+
+
+UTC: 2026-10-15T14:55:21.5878487Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "upgrade" "--install" "urumi" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "--create-namespace" "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "--namespace" "urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m2/values-runtime.json" "--set" "foundation.enabled=false"
+Exit: 0
+Release "urumi" has been upgraded. Happy Helming!
+NAME: urumi
+LAST DEPLOYED: Thu Oct 15 20:25:20 2026
+NAMESPACE: urumi
+STATUS: deployed
+REVISION: 9
+TEST SUITE: None
+
+
+UTC: 2026-10-15T15:11:09.2075091Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "upgrade" "--install" "urumi" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "--create-namespace" "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "--namespace" "urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m2/values-runtime.json" "--set" "foundation.enabled=false"
+Exit: 0
+Release "urumi" has been upgraded. Happy Helming!
+NAME: urumi
+LAST DEPLOYED: Thu Oct 15 20:41:07 2026
+NAMESPACE: urumi
+STATUS: deployed
+REVISION: 12
+TEST SUITE: None
+
+

@@ -1,0 +1,50 @@
+{
+  "module": "M4",
+  "status": "PASS",
+  "review_basis": "Independent source and saved runtime evidence review; reviewer did not rerun commands",
+  "user_acceptance": "PENDING",
+  "checks": [
+    {
+      "id": "M4-01",
+      "status": "PASS",
+      "summary": "Fixture, strict input validation, exact results and invalid startup cases"
+    },
+    {
+      "id": "M4-02",
+      "status": "PASS",
+      "summary": "Real TCP SDK discovery, exact schemas/annotations, calls and protocol errors"
+    },
+    {
+      "id": "M4-03",
+      "status": "PASS",
+      "summary": "Linux package/tests, same local/production chart, Ready internal workload and matching image"
+    },
+    {
+      "id": "M4-04",
+      "status": "PASS",
+      "summary": "Allowed-denied-allowed and same-Pod actual kubelet liveness restart, restored recovery"
+    },
+    {
+      "id": "M4-05",
+      "status": "PASS",
+      "summary": "Fresh real local and cluster hosted discovery/call; meaningful source review required before acceptance"
+    },
+    {
+      "id": "M4-06",
+      "status": "PASS",
+      "summary": "Controlled real TCP bearer/header authentication and duplicate names; artificial values absent from outputs"
+    },
+    {
+      "id": "M4-07",
+      "status": "PASS",
+      "summary": "Bounded controlled timeout/transport/protocol/size/cursor failures followed by healthy Inventory"
+    },
+    {
+      "id": "M4-08",
+      "status": "PASS",
+      "summary": "Owned temporary namespace removed; original store resources and PVC identities unchanged"
+    }
+  ],
+  "real_hosted_content_review": "PASS",
+  "gateway_integration": "NOT_RUN_M10"
+}

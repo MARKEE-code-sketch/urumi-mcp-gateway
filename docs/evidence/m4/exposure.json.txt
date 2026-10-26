@@ -1,0 +1,122 @@
+﻿UTC: 2026-10-16T13:07:33.9980964Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "-n" "urumi-m4-check" "get" "services,ingresses" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi-m4-check",
+                    "meta.helm.sh/release-namespace": "urumi-m4-check"
+                },
+                "creationTimestamp": "2026-10-16T13:07:16Z",
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-m4-check-inventory-mcp",
+                "namespace": "urumi-m4-check",
+                "resourceVersion": "21639",
+                "uid": "035bd436-5e0f-4b16-bd4e-56af7a864779"
+            },
+            "spec": {
+                "clusterIP": "10.43.77.193",
+                "clusterIPs": [
+                    "10.43.77.193"
+                ],
+                "internalTrafficPolicy": "Cluster",
+                "ipFamilies": [
+                    "IPv4"
+                ],
+                "ipFamilyPolicy": "SingleStack",
+                "ports": [
+                    {
+                        "name": "mcp",
+                        "port": 8000,
+                        "protocol": "TCP",
+                        "targetPort": "mcp"
+                    }
+                ],
+                "selector": {
+                    "app.kubernetes.io/component": "inventory-mcp",
+                    "app.kubernetes.io/instance": "urumi-m4-check",
+                    "app.kubernetes.io/name": "urumi"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-16T13:10:09.0235170Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "-n" "urumi-m4-check" "get" "services,ingresses" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi-m4-check",
+                    "meta.helm.sh/release-namespace": "urumi-m4-check"
+                },
+                "creationTimestamp": "2026-10-16T13:09:51Z",
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-m4-check-inventory-mcp",
+                "namespace": "urumi-m4-check",
+                "resourceVersion": "21778",
+                "uid": "b554a844-dd34-440e-a1f0-674a9595a1c9"
+            },
+            "spec": {
+                "clusterIP": "10.43.223.179",
+                "clusterIPs": [
+                    "10.43.223.179"
+                ],
+                "internalTrafficPolicy": "Cluster",
+                "ipFamilies": [
+                    "IPv4"
+                ],
+                "ipFamilyPolicy": "SingleStack",
+                "ports": [
+                    {
+                        "name": "mcp",
+                        "port": 8000,
+                        "protocol": "TCP",
+                        "targetPort": "mcp"
+                    }
+                ],
+                "selector": {
+                    "app.kubernetes.io/component": "inventory-mcp",
+                    "app.kubernetes.io/instance": "urumi-m4-check",
+                    "app.kubernetes.io/name": "urumi"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+

@@ -1,0 +1,32 @@
+{
+  "local": {
+    "render_errors": [],
+    "deploy_errors": [
+      "DEPLOY_PLACEHOLDERS_UNRESOLVED",
+      "RELEASE_PROVENANCE_REQUIRED",
+      "IMAGE_DIGEST_REQUIRED:store",
+      "IMAGE_DIGEST_REQUIRED:woocommerceMcp",
+      "IMAGE_DIGEST_REQUIRED:inventoryMcp",
+      "IMAGE_DIGEST_REQUIRED:backend",
+      "IMAGE_DIGEST_REQUIRED:dashboard",
+      "DATABASE_IMAGE_DIGEST_REQUIRED",
+      "API_ENDPOINT_CIDRS_REQUIRED",
+      "NAMES_ONLY_INVENTORY_REQUIRED"
+    ]
+  },
+  "prod": {
+    "render_errors": [],
+    "deploy_errors": [
+      "DEPLOY_PLACEHOLDERS_UNRESOLVED",
+      "RELEASE_PROVENANCE_REQUIRED",
+      "IMAGE_DIGEST_REQUIRED:store",
+      "IMAGE_DIGEST_REQUIRED:woocommerceMcp",
+      "IMAGE_DIGEST_REQUIRED:inventoryMcp",
+      "IMAGE_DIGEST_REQUIRED:backend",
+      "IMAGE_DIGEST_REQUIRED:dashboard",
+      "DATABASE_IMAGE_DIGEST_REQUIRED",
+      "API_ENDPOINT_CIDRS_REQUIRED",
+      "NAMES_ONLY_INVENTORY_REQUIRED"
+    ]
+  }
+}

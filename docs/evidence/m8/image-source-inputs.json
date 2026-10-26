@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "fixture_base_local_index": "sha256:705f68d673bd729f374645d5080042a510caadc669d808a3ec9fbb2d84a7fc10",
+  "sha256": {
+    "frontend/src/api.ts": "3341d08a346b465667c005f7a8d9f1399c6ca073536360a11427f0ac053b7d6f",
+    "frontend/src/App.tsx": "e48bd3b3d3084322933b46c529012b366b42f81eb2e520d50be7b5c50db6f2c3",
+    "frontend/src/invitation.ts": "c93f5e05e473b838efdd6fc05e04fe260a8f86e6b8a43355b3bb0b8ffa59691e",
+    "frontend/src/main.tsx": "27c5d7878f13ca33815dc2051276b0bf4088efa8ecf41bfd3e14a3d0c8bfb143",
+    "frontend/src/styles.css": "da78206a857bab1976a6fc1f85a3cb67c3da44d9c886714b3c70f4e28ad3c009",
+    "frontend/src/types.ts": "5c21342ab4fad7546b2d8a6b604d074713f4949557cbfcaf1213bf17be8cd630",
+    "frontend/src/components/Confirm.tsx": "89ea9fc3bdafcb5043e70f12dd43af01c7fbcc2518c06b7605465479bf1783c2",
+    "frontend/src/components/Feedback.tsx": "ea0be400c20bbeaacff6ac946a10f3c9889634f8c9463293627462ff14251f59",
+    "frontend/src/components/OneTimeValue.tsx": "bcc298d51785a7a71a5685c7265be312d2c3ddd1cf36e8aca2d2d5a86a22d43f",
+    "frontend/src/components/Pagination.tsx": "78745a794f27a3c782dbb7ae06e3c4223db1c3616541bd41dce3c9866d6f33c4",
+    "frontend/src/pages/Audit.tsx": "a18d7badcbf814348749d8cd5ec2fc4fc892abe210122ca721b38ccfc3a76740",
+    "frontend/src/pages/Chat.tsx": "bb3f4670aef2960023cc96ccc8c181c838691d9a70aef9f0a3c8d3e11eaacf40",
+    "frontend/src/pages/Invite.tsx": "cfea1859938982cb7eaeb6ec1c21b4d41fbc88eb4ea5986c86aaa8396145304d",
+    "frontend/src/pages/Keys.tsx": "1176200071333bc07993eca30f46245955abc0e45284086074f157ffc05f74f9",
+    "frontend/src/pages/Login.tsx": "3896e64a834c33935108c4f6d22a0f079663f7e09f4610a26fabded5d8988e33",
+    "frontend/src/pages/Members.tsx": "d657ccd6c1dcc8fa829bd75e3a6df0ec8057e4895e1b4e8b76a2d1ce31a8b1ea",
+    "frontend/src/pages/Servers.tsx": "968ec797150e56b8e208ed9a4963345fe749c5edc54e2b7fa9bcf201ed60169c",
+    "frontend/Dockerfile": "16321faae0be1f071250d66a834e0ae1823cab8d79063012904c89c3ac43c83c",
+    "frontend/.dockerignore": "fedc97dbcebf4af375c1192b3611e7847781c6e346fae8338332140b62deced8",
+    "frontend/package.json": "54d01b76d1a81e01e211c1e7e3be376ec1f93af621b9149f1cd08960c0826d83",
+    "frontend/package-lock.json": "9dd2c7824972cadfc5c68d7cc23ff9fb8aa82ff8fb8eb9e254ed0097af612eb7",
+    "frontend/index.html": "cb42d8660c03b0a3fce9a17af3a32c9526fbaa3cbd669c70c9795a5952039215",
+    "frontend/tsconfig.json": "836c7c0f01a4a89c22a5e75b00228e92ffe6ed6fb1f1d71a424ab163eec0d204",
+    "frontend/vite.config.ts": "f64b51b643d1777a018106422aaa75df2f072f61193e52225f58209aab56c89d",
+    "frontend/nginx.conf": "4e5eee7b9e57d2762fa260b314ba7d0a7bfb0df568edf3af3cfc109b22dbcfd5",
+    ".dockerignore": "ae94aec82fa43174094ad588c3d5892f4a3d480239586ee14849f64f9bca8f77",
+    "scripts/m8/Dockerfile.fixture": "737a53c6bc73394483c780e63ba6d1d9500969e493b4ec445e97fdaaa34a51b5",
+    "scripts/m8/fixture_server.py": "8cf89b1956f734b8018c859838fb18ae1574ef32ec44c16fec4ca775fcf285d5"
+  },
+  "build_commands": [
+    {
+      "argv": [
+        "docker",
+        "build",
+        "--pull=false",
+        "--file",
+        "frontend/Dockerfile",
+        "--tag",
+        "urumi/dashboard:m8",
+        "frontend"
+      ],
+      "exit_code": 0
+    },
+    {
+      "argv": [
+        "docker",
+        "build",
+        "--pull=false",
+        "--file",
+        "scripts/m8/Dockerfile.fixture",
+        "--tag",
+        "urumi/dashboard-fixture:m8",
+        "."
+      ],
+      "exit_code": 0
+    }
+  ]
+}

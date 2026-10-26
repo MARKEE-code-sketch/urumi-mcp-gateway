@@ -1,0 +1,66 @@
+{
+  "checked_at": "2026-10-22T13:34:24.432Z",
+  "tls_bypass": false,
+  "results": [
+    {
+      "role": "admin",
+      "servers": [
+        {
+          "name": "Microsoft Learn\nlearn",
+          "tools": [
+            "learn__microsoft_code_sample_search",
+            "learn__microsoft_docs_fetch",
+            "learn__microsoft_docs_search"
+          ]
+        },
+        {
+          "name": "Inventory\ninventory",
+          "tools": [
+            "inventory__lookup_sku"
+          ]
+        },
+        {
+          "name": "WooCommerce\nwoocommerce",
+          "tools": [
+            "woocommerce__create_product",
+            "woocommerce__get_order",
+            "woocommerce__list_orders",
+            "woocommerce__list_products",
+            "woocommerce__update_order_status"
+          ]
+        }
+      ],
+      "passed": true
+    },
+    {
+      "role": "member",
+      "servers": [
+        {
+          "name": "Microsoft Learn\nlearn",
+          "tools": [
+            "learn__microsoft_code_sample_search",
+            "learn__microsoft_docs_fetch",
+            "learn__microsoft_docs_search"
+          ]
+        },
+        {
+          "name": "Inventory\ninventory",
+          "tools": [
+            "inventory__lookup_sku"
+          ]
+        },
+        {
+          "name": "WooCommerce\nwoocommerce",
+          "tools": [
+            "woocommerce__create_product",
+            "woocommerce__get_order",
+            "woocommerce__list_orders",
+            "woocommerce__list_products",
+            "woocommerce__update_order_status"
+          ]
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,1109 @@
+{
+  "status": "PASS",
+  "observed_utc": "2026-10-22T15:21:07.476049+00:00",
+  "namespace": "urumi-m10",
+  "scope": "Approved teal dashboard image-only rollout in existing urumi-m10; no data, backend or other namespace change.",
+  "commands": [
+    {
+      "command": [
+        "docker",
+        "exec",
+        "k3d-urumi-server-0",
+        "ctr",
+        "-n",
+        "k8s.io",
+        "content",
+        "get",
+        "sha256:d1ef2a73eca5116926879979fdc1dc03e66801ea20e8340b0a6fd65e0e3f5a14"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "k3d-urumi-server-0",
+        "ctr",
+        "-n",
+        "k8s.io",
+        "content",
+        "get",
+        "sha256:ae891202fb140a02c4dd06aca175e06b0c894002c3c71c10e25eaa1012a7fdea"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "k3d-urumi-server-0",
+        "ctr",
+        "-n",
+        "k8s.io",
+        "content",
+        "get",
+        "sha256:3d1de55cc546b65db161fa8eea096e12ba5e310789a4ffe8979a679cf608f420"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "k3d-urumi-server-0",
+        "ctr",
+        "-n",
+        "k8s.io",
+        "images",
+        "tag",
+        "docker.io/urumi/dashboard:m8-teal",
+        "docker.io/urumi/dashboard@sha256:d1ef2a73eca5116926879979fdc1dc03e66801ea20e8340b0a6fd65e0e3f5a14"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "k3d-urumi-server-0",
+        "crictl",
+        "inspecti",
+        "docker.io/urumi/dashboard@sha256:d1ef2a73eca5116926879979fdc1dc03e66801ea20e8340b0a6fd65e0e3f5a14"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods,pvc",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        ".tools/m1/helm.exe",
+        "get",
+        "values",
+        "urumi-m10",
+        "--namespace",
+        "urumi-m10",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--kube-context",
+        "k3d-urumi",
+        "--all",
+        "-o",
+        "yaml"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        ".tools/m1/helm.exe",
+        "upgrade",
+        "urumi-m10",
+        "deploy/charts/urumi",
+        "--namespace",
+        "urumi-m10",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--kube-context",
+        "k3d-urumi",
+        "-f",
+        ".tools\\operator\\m10\\values-teal-dashboard.yaml",
+        "--wait",
+        "--timeout",
+        "180s"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods,pvc",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/index.html"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/arrow-square-out-mAzLYAl4.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/arrow-up-DLWa3vLV.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/arrow-up-right-DNc69qXy.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/book-open-CZDyQqUR.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/caret-down-Cn6qDmS5.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/caret-right-B9H0s0Th.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/chat-circle-dots-DVEfiD-8.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/check-circle-BeI0d98t.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/copy-ChcUWZci.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/Figtree-nnuniQY3.ttf"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/index-BnMZ-dH3.css"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/index-D_2rlc5N.js"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/key-CXzOGSjf.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/list-checks-QwH9QZVh.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/list-CIXwnp_k.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/magnifying-glass-hfmbFh4V.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/package-DVgVRBu4.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/plug-PSee9Gmx.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/plus-Bd69O6hL.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/receipt-CgRKSrtK.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/shield-check-BTPrQJqp.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/sign-out-CBWDsJD2.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/stack-Dr1C3G1f.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/urumi-mark-C-wxyej_.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/users-three-Qeg-VIR3.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "--request-timeout=15s",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "--",
+        "sha256sum",
+        "/usr/share/nginx/html/assets/x-BQERMe2h.svg"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        ".tools/m1/helm.exe",
+        "history",
+        "urumi-m10",
+        "--namespace",
+        "urumi-m10",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--kube-context",
+        "k3d-urumi",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        ".tools/m1/helm.exe",
+        "get",
+        "values",
+        "urumi-m10",
+        "--namespace",
+        "urumi-m10",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--kube-context",
+        "k3d-urumi",
+        "--all",
+        "-o",
+        "yaml"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "image": {
+    "index_digest": "sha256:d1ef2a73eca5116926879979fdc1dc03e66801ea20e8340b0a6fd65e0e3f5a14",
+    "amd64_manifest_digest": "sha256:ae891202fb140a02c4dd06aca175e06b0c894002c3c71c10e25eaa1012a7fdea",
+    "config_digest": "sha256:3d1de55cc546b65db161fa8eea096e12ba5e310789a4ffe8979a679cf608f420",
+    "all_metadata_bytes_sha256_verified": true,
+    "matches_exported_config": true,
+    "cri_immutable_alias_verified_before_helm": true
+  },
+  "source_inputs_unchanged": 57,
+  "before": {
+    "namespace_uid": "89c6dab6-b118-42f3-940e-e8d8f91820bf",
+    "pods": [
+      {
+        "name": "urumi-m10-backend-76c9674bf8-m82hk",
+        "uid": "7fde4154-437d-48af-8d63-b283a78311ff",
+        "component": "backend",
+        "ready": true,
+        "containers": [
+          {
+            "name": "backend",
+            "ready": true,
+            "image_id": "docker.io/urumi/backend@sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe",
+            "restarts": 2
+          }
+        ]
+      },
+      {
+        "name": "urumi-m10-dashboard-85d8b99b69-tm4vw",
+        "uid": "62a07f99-3a0b-4d2e-8898-020c8a052195",
+        "component": "dashboard",
+        "ready": true,
+        "containers": [
+          {
+            "name": "dashboard",
+            "ready": true,
+            "image_id": "docker.io/urumi/dashboard@sha256:5af4f7eee31d98ac09a817d484458c7065c2d9e4dfe784dee87639d44083e03b",
+            "restarts": 0
+          }
+        ]
+      },
+      {
+        "name": "urumi-m10-inventory-mcp-58bcd997b7-774wj",
+        "uid": "629b5d08-4de4-4e71-b406-963e6a761636",
+        "component": "inventory-mcp",
+        "ready": true,
+        "containers": [
+          {
+            "name": "inventory-mcp",
+            "ready": true,
+            "image_id": "docker.io/urumi/inventory-mcp@sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb",
+            "restarts": 2
+          }
+        ]
+      },
+      {
+        "name": "urumi-m10-mariadb-0",
+        "uid": "09221dd6-99af-45a0-950b-b152446d9bed",
+        "component": "mariadb",
+        "ready": true,
+        "containers": [
+          {
+            "name": "mariadb",
+            "ready": true,
+            "image_id": "docker.io/library/mariadb@sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+            "restarts": 1
+          }
+        ]
+      },
+      {
+        "name": "urumi-m10-platform-db-6dbbf758c-wb9z5",
+        "uid": "a70af0ad-a169-48b9-b399-f0c55b46bb9d",
+        "component": "platform-db",
+        "ready": true,
+        "containers": [
+          {
+            "name": "postgres",
+            "ready": true,
+            "image_id": "docker.io/library/postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826",
+            "restarts": 1
+          }
+        ]
+      },
+      {
+        "name": "urumi-m10-woocommerce-mcp-5458999fc5-crtvm",
+        "uid": "3de7c21b-0373-4ff2-b91d-0b7d6961d1c1",
+        "component": "woocommerce-mcp",
+        "ready": true,
+        "containers": [
+          {
+            "name": "woocommerce-mcp",
+            "ready": true,
+            "image_id": "docker.io/urumi/woocommerce-mcp@sha256:41921e625b0e2256ebea6ad86511bf4879aac2ee84b798926af4fa2aadf1e546",
+            "restarts": 1
+          }
+        ]
+      },
+      {
+        "name": "urumi-m10-wordpress-5cbd95478d-fjxsz",
+        "uid": "380374e1-0a90-434a-9bfc-dea8b2241c79",
+        "component": "wordpress",
+        "ready": true,
+        "containers": [
+          {
+            "name": "wordpress",
+            "ready": true,
+            "image_id": "docker.io/library/urumi-store@sha256:23494837a20cc9d2c7093cb8203f066eb9c78054956945ad4e779ab42e204d98",
+            "restarts": 1
+          }
+        ]
+      }
+    ],
+    "claims": [
+      {
+        "name": "urumi-m10-mariadb-data",
+        "uid": "a0fec4df-b7ff-4ef9-b2fe-a9af4eb8959e",
+        "phase": "Bound"
+      },
+      {
+        "name": "urumi-m10-platform-data",
+        "uid": "710a5b52-744c-4525-b446-bbba455eb2cf",
+        "phase": "Bound"
+      },
+      {
+        "name": "urumi-m10-wordpress-content",
+        "uid": "b5ad912d-7d6c-4bf9-aa8e-b4803005162b",
+        "phase": "Bound"
+      }
+    ]
+  },
+  "after": {
+    "namespace_uid": "89c6dab6-b118-42f3-940e-e8d8f91820bf",
+    "pods": [
+      {
+        "name": "urumi-m10-backend-76c9674bf8-m82hk",
+        "uid": "7fde4154-437d-48af-8d63-b283a78311ff",
+        "component": "backend",
+        "ready": true,
+        "containers": [
+          {
+            "name": "backend",
+            "ready": true,
+            "image_id": "docker.io/urumi/backend@sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe",
+            "restarts": 2
+          }
+        ]
+      },
+      {
+        "name": "urumi-m10-dashboard-649dfd9bd8-pvrfv",
+        "uid": "f1bcac5d-6d6d-4b72-b57c-bd29a8b5f23b",
+        "component": "dashboard",
+        "ready": true,
+        "containers": [
+          {
+            "name": "dashboard",
+            "ready": true,
+            "image_id": "docker.io/urumi/dashboard@sha256:d1ef2a73eca5116926879979fdc1dc03e66801ea20e8340b0a6fd65e0e3f5a14",
+            "restarts": 0
+          }
+        ]
+      },
+      {
+        "name": "urumi-m10-inventory-mcp-58bcd997b7-774wj",
+        "uid": "629b5d08-4de4-4e71-b406-963e6a761636",
+        "component": "inventory-mcp",
+        "ready": true,
+        "containers": [
+          {
+            "name": "inventory-mcp",
+            "ready": true,
+            "image_id": "docker.io/urumi/inventory-mcp@sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb",
+            "restarts": 2
+          }
+        ]
+      },
+      {
+        "name": "urumi-m10-mariadb-0",
+        "uid": "09221dd6-99af-45a0-950b-b152446d9bed",
+        "component": "mariadb",
+        "ready": true,
+        "containers": [
+          {
+            "name": "mariadb",
+            "ready": true,
+            "image_id": "docker.io/library/mariadb@sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+            "restarts": 1
+          }
+        ]
+      },
+      {
+        "name": "urumi-m10-platform-db-6dbbf758c-wb9z5",
+        "uid": "a70af0ad-a169-48b9-b399-f0c55b46bb9d",
+        "component": "platform-db",
+        "ready": true,
+        "containers": [
+          {
+            "name": "postgres",
+            "ready": true,
+            "image_id": "docker.io/library/postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826",
+            "restarts": 1
+          }
+        ]
+      },
+      {
+        "name": "urumi-m10-woocommerce-mcp-5458999fc5-crtvm",
+        "uid": "3de7c21b-0373-4ff2-b91d-0b7d6961d1c1",
+        "component": "woocommerce-mcp",
+        "ready": true,
+        "containers": [
+          {
+            "name": "woocommerce-mcp",
+            "ready": true,
+            "image_id": "docker.io/urumi/woocommerce-mcp@sha256:41921e625b0e2256ebea6ad86511bf4879aac2ee84b798926af4fa2aadf1e546",
+            "restarts": 1
+          }
+        ]
+      },
+      {
+        "name": "urumi-m10-wordpress-5cbd95478d-fjxsz",
+        "uid": "380374e1-0a90-434a-9bfc-dea8b2241c79",
+        "component": "wordpress",
+        "ready": true,
+        "containers": [
+          {
+            "name": "wordpress",
+            "ready": true,
+            "image_id": "docker.io/library/urumi-store@sha256:23494837a20cc9d2c7093cb8203f066eb9c78054956945ad4e779ab42e204d98",
+            "restarts": 1
+          }
+        ]
+      }
+    ],
+    "claims": [
+      {
+        "name": "urumi-m10-mariadb-data",
+        "uid": "a0fec4df-b7ff-4ef9-b2fe-a9af4eb8959e",
+        "phase": "Bound"
+      },
+      {
+        "name": "urumi-m10-platform-data",
+        "uid": "710a5b52-744c-4525-b446-bbba455eb2cf",
+        "phase": "Bound"
+      },
+      {
+        "name": "urumi-m10-wordpress-content",
+        "uid": "b5ad912d-7d6c-4bf9-aa8e-b4803005162b",
+        "phase": "Bound"
+      }
+    ]
+  },
+  "other_six_pod_uids_unchanged": true,
+  "actual_dashboard_image_matches": true,
+  "served_assets": [
+    {
+      "path": "index.html",
+      "sha256": "9b9428ee89204c5219509c6e27e7b25f7356d4b3f0668a23a0ccce2a6ba34496",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/arrow-square-out-mAzLYAl4.svg",
+      "sha256": "8610e8f5c7d4952ae1ada34ef56fa7cbab1780bc85f25a5c9482b74144790fc8",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/arrow-up-DLWa3vLV.svg",
+      "sha256": "361aa9f9c52a759bf598faf6ed38ccd426f949f541d662c65b5b5d868fa76980",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/arrow-up-right-DNc69qXy.svg",
+      "sha256": "44db5257b360ec04863eb6daaa41f220c8b714d23fb81403517d0a30acfda9f4",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/book-open-CZDyQqUR.svg",
+      "sha256": "b38cdb3a15dcf00cfa4811e318b021e25c6a87b47acbb11888e16d107a5642da",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/caret-down-Cn6qDmS5.svg",
+      "sha256": "53f0cf2d0b144ac3cb07e353e0cd0853ffb3ed432d741460ce288edfcb0924b1",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/caret-right-B9H0s0Th.svg",
+      "sha256": "e6dec01e074807965b7f3146b976a9b5e82c31d9c2c88aeb52e77cc2ab16c1d7",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/chat-circle-dots-DVEfiD-8.svg",
+      "sha256": "2af44e36757c90c999e070065ae61c495c66c8e88f43c5f07964dc3367cad60d",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/check-circle-BeI0d98t.svg",
+      "sha256": "e02a080c3d1a758de5c5fd41abd913dec4cffbc70fe1e9637dbf7ce35f377055",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/copy-ChcUWZci.svg",
+      "sha256": "5a892fc6a72866e60c67db2088a87653cf44b57b1a5d183b36e950cdc5dd66b3",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/Figtree-nnuniQY3.ttf",
+      "sha256": "26ad3db9b31ff7dde67a91ff515d022d2f495cd506590699cf264f0bfe6fb714",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/index-BnMZ-dH3.css",
+      "sha256": "557cd2712ad401e1a414af39502093f2d8210bb3ddc44fbcccf8267e6343ec28",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/index-D_2rlc5N.js",
+      "sha256": "e529052d47305ab5666f722e62672fa9a72d3ad8f46547ef35e1c6484f49c23c",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/key-CXzOGSjf.svg",
+      "sha256": "61694102f24a2eb4ce68f337fb6bf81090aef219328cb10dc2bd3f3c9e2ea266",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/list-checks-QwH9QZVh.svg",
+      "sha256": "b2d11fc95de627d6abe9feeced5f7e0cdce3ccdf8d9f9d2334d596b8b5cc5cc4",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/list-CIXwnp_k.svg",
+      "sha256": "fb1851842c74b40a3f42ce3d6ae0e67ede556b624218e79c0f4ead7d9ceec51f",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/magnifying-glass-hfmbFh4V.svg",
+      "sha256": "f9fa2561978a9a3291e8ae0ebfcb651104f5069fade8f84871627bca68889cde",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/package-DVgVRBu4.svg",
+      "sha256": "b190e7e8f5c6e68be08e9fca1310d0f2c341aa7f1384aa99457206fab755e1f6",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/plug-PSee9Gmx.svg",
+      "sha256": "513534dd9665042bfed73c669130a904a0ab17df06cc8c0e4a717721474839d9",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/plus-Bd69O6hL.svg",
+      "sha256": "d688feb9dd2e41c1721d6906a05a2a42e18cd774762fe706d72b2bdfd91cddc4",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/receipt-CgRKSrtK.svg",
+      "sha256": "7e3473e35fc2b7b9b66032aef0b19fc22e947d10472b67da0b38fb29d84af7ea",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/shield-check-BTPrQJqp.svg",
+      "sha256": "bb04d552c0baaaabd90f7eb60760cb0c7ddb7e9f47e4b76e9599ddd7dfd8eaa7",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/sign-out-CBWDsJD2.svg",
+      "sha256": "511fe7958ef31f8904185631fd7045c11f35c8034a2a64ccb3bdcc4dfa81df77",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/stack-Dr1C3G1f.svg",
+      "sha256": "ee9eaaeb345e8a28c9662cf8a59147cb86080bd922e41f143444189e0116ea7e",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/urumi-mark-C-wxyej_.svg",
+      "sha256": "a7c22174aa3098c3ffe57a13ed66d0fea9385ed818ba8e25002c4c49e5ddffa8",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/users-three-Qeg-VIR3.svg",
+      "sha256": "0e326e4ef7d1ae16f9988791f68fde7bae513bdc8c06db437cfd55bf13670bcf",
+      "matches_host_build": true
+    },
+    {
+      "path": "assets/x-BQERMe2h.svg",
+      "sha256": "7397b15e1fa66eaf6ff9b59fe91d483cb5c3bcf75b2fe052097ab6f0593b513a",
+      "matches_host_build": true
+    }
+  ],
+  "helm_latest": {
+    "revision": 6,
+    "status": "deployed",
+    "chart": "urumi-0.1.0"
+  },
+  "preserved_values": {
+    "backend_image": {
+      "digest": "sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe",
+      "pullPolicy": "IfNotPresent",
+      "repository": "urumi/backend",
+      "tag": "m10-recovery"
+    },
+    "shop_tls_secret": "urumi-m10-dashboard-tls",
+    "only_allowed_value_changes": [
+      "dashboard.image.tag",
+      "dashboard.image.digest"
+    ],
+    "private_upgrade_file": ".tools\\operator\\m10\\values-teal-dashboard.yaml"
+  },
+  "post_upgrade_values_match_exactly": true,
+  "source_inputs_unchanged_after_deployment": 57
+}

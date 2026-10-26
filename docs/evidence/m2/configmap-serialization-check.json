@@ -1,0 +1,18 @@
+﻿{
+    "rawProperties":  [
+                          "PSPath",
+                          "PSParentPath",
+                          "PSChildName",
+                          "PSDrive",
+                          "PSProvider",
+                          "ReadCount",
+                          "Length"
+                      ],
+    "serializedBytes":  5536,
+    "powershell":  "5.1.26100.9711",
+    "plainProperties":  [
+                            "Length"
+                        ],
+    "contentRoundtrip":  true,
+    "status":  "PASS"
+}

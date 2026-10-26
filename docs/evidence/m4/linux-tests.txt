@@ -1,0 +1,150 @@
+﻿UTC: 2026-10-16T13:06:52.5222921Z
+Command: docker.exe "run" "--rm" "urumi/inventory-mcp:m4" "python" "-m" "unittest" "discover" "-s" "tests/sample_mcps" "-p" "test_*.py" "-v"
+Exit: 0
+M4 controlled failures and healthy recovery: [{"mode": "unavailable", "elapsed_seconds": 0.107, "error_categories": ["ExceptionGroup", "HTTPStatusError"]}, {"mode": "invalid", "elapsed_seconds": 0.759, "error_categories": ["TimeoutError"]}, {"mode": "slow", "elapsed_seconds": 0.757, "error_categories": ["TimeoutError"]}]
+M4 controlled authentication/collision: [{"mode": "bearer", "missing": 401, "wrong": 401, "valid": "PASS", "tool": "service_info"}, {"mode": "header", "missing": 401, "wrong": 401, "valid": "PASS", "tool": "service_info"}]
+M4 real TCP negotiated protocol: 2025-11-25
+
+test_bounded_failures_then_healthy_inventory (test_compatibility.CompatibilityTests.test_bounded_failures_then_healthy_inventory) ... Executing <Task pending name='Task-2' coro=<CompatibilityTests.test_bounded_failures_then_healthy_inventory() running at /app/tests/sample_mcps/test_compatibility.py:49> cb=[_run_until_complete_cb() at /usr/local/lib/python3.13/asyncio/base_events.py:181] created at /usr/local/lib/python3.13/asyncio/runners.py:100> took 0.127 seconds
+Executing <Task pending name='Task-2' coro=<CompatibilityTests.test_bounded_failures_then_healthy_inventory() running at /app/tests/sample_mcps/test_compatibility.py:49> cb=[_run_until_complete_cb() at /usr/local/lib/python3.13/asyncio/base_events.py:181] created at /usr/local/lib/python3.13/asyncio/runners.py:100> took 0.268 seconds
+Error parsing JSON response
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/site-packages/mcp/client/streamable_http.py", line 385, in _handle_json_response
+    message = JSONRPCMessage.model_validate_json(content)
+  File "/usr/local/lib/python3.13/site-packages/pydantic/main.py", line 766, in model_validate_json
+    return cls.__pydantic_validator__.validate_json(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        json_data, strict=strict, extra=extra, context=context, by_alias=by_alias, by_name=by_name
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+pydantic_core._pydantic_core.ValidationError: 11 validation errors for JSONRPCMessage
+JSONRPCRequest.method
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCRequest.jsonrpc
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCRequest.id
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCNotification.method
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCNotification.jsonrpc
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCResponse.jsonrpc
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCResponse.id
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCResponse.result
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCError.jsonrpc
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCError.id
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCError.error
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+Executing <Task pending name='Task-2' coro=<CompatibilityTests.test_bounded_failures_then_healthy_inventory() running at /app/tests/sample_mcps/test_compatibility.py:49> cb=[_run_until_complete_cb() at /usr/local/lib/python3.13/asyncio/base_events.py:181] created at /usr/local/lib/python3.13/asyncio/runners.py:100> took 0.200 seconds
+Executing <Task pending name='Task-2' coro=<CompatibilityTests.test_bounded_failures_then_healthy_inventory() running at /app/tests/sample_mcps/test_compatibility.py:58> cb=[_run_until_complete_cb() at /usr/local/lib/python3.13/asyncio/base_events.py:181] created at /usr/local/lib/python3.13/asyncio/runners.py:100> took 1.234 seconds
+WARNING:asyncio:Executing <Task finished name='Task-2' coro=<CompatibilityTests.test_bounded_failures_then_healthy_inventory() done, defined at /app/tests/sample_mcps/test_compatibility.py:43> result=None created at /usr/local/lib/python3.13/asyncio/runners.py:100> took 0.155 seconds
+ok
+test_discovery_repeated_cursor_and_limits (test_compatibility.CompatibilityTests.test_discovery_repeated_cursor_and_limits) ... ok
+test_real_auth_and_collision_fixtures (test_compatibility.CompatibilityTests.test_real_auth_and_collision_fixtures) ... WARNING:asyncio:Executing <Task pending name='Task-40' coro=<CompatibilityTests.test_real_auth_and_collision_fixtures() running at /app/tests/sample_mcps/test_compatibility.py:26> cb=[_run_until_complete_cb() at /usr/local/lib/python3.13/asyncio/base_events.py:181] created at /usr/local/lib/python3.13/asyncio/runners.py:100> took 0.204 seconds
+WARNING:asyncio:Executing <Task finished name='Task-40' coro=<CompatibilityTests.test_real_auth_and_collision_fixtures() done, defined at /app/tests/sample_mcps/test_compatibility.py:19> result=None created at /usr/local/lib/python3.13/asyncio/runners.py:100> took 0.135 seconds
+ok
+test_response_and_aggregate_limits (test_compatibility.CompatibilityTests.test_response_and_aggregate_limits) ... ok
+test_bad_fixtures (test_inventory.InventoryTests.test_bad_fixtures) ... ok
+test_invalid_arguments (test_inventory.InventoryTests.test_invalid_arguments) ... ok
+test_known_unknown_zero_trim_case_and_copy (test_inventory.InventoryTests.test_known_unknown_zero_trim_case_and_copy) ... ok
+test_bad_fixture_prevents_startup (test_protocol.ProtocolTests.test_bad_fixture_prevents_startup) ... ok
+test_http_boundary_and_health (test_protocol.ProtocolTests.test_http_boundary_and_health) ... ok
+test_real_discovery_calls_and_unknown_error (test_protocol.ProtocolTests.test_real_discovery_calls_and_unknown_error) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 5.749s
+
+OK
+
+UTC: 2026-10-16T13:09:32.0249633Z
+Command: docker.exe "run" "--rm" "urumi/inventory-mcp:m4" "python" "-m" "unittest" "discover" "-s" "tests/sample_mcps" "-p" "test_*.py" "-v"
+Exit: 0
+M4 controlled failures and healthy recovery: [{"mode": "unavailable", "elapsed_seconds": 0.174, "error_categories": ["ExceptionGroup", "HTTPStatusError"]}, {"mode": "invalid", "elapsed_seconds": 0.779, "error_categories": ["TimeoutError"]}, {"mode": "slow", "elapsed_seconds": 0.761, "error_categories": ["TimeoutError"]}]
+M4 controlled authentication/collision: [{"mode": "bearer", "missing": 401, "wrong": 401, "valid": "PASS", "tool": "service_info"}, {"mode": "header", "missing": 401, "wrong": 401, "valid": "PASS", "tool": "service_info"}]
+M4 real TCP negotiated protocol: 2025-11-25
+
+test_bounded_failures_then_healthy_inventory (test_compatibility.CompatibilityTests.test_bounded_failures_then_healthy_inventory) ... Executing <Task pending name='Task-2' coro=<CompatibilityTests.test_bounded_failures_then_healthy_inventory() running at /app/tests/sample_mcps/test_compatibility.py:49> cb=[_run_until_complete_cb() at /usr/local/lib/python3.13/asyncio/base_events.py:181] created at /usr/local/lib/python3.13/asyncio/runners.py:100> took 0.184 seconds
+Executing <Task pending name='Task-2' coro=<CompatibilityTests.test_bounded_failures_then_healthy_inventory() running at /app/tests/sample_mcps/test_compatibility.py:49> cb=[_run_until_complete_cb() at /usr/local/lib/python3.13/asyncio/base_events.py:181] created at /usr/local/lib/python3.13/asyncio/runners.py:100> took 0.216 seconds
+Error parsing JSON response
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/site-packages/mcp/client/streamable_http.py", line 385, in _handle_json_response
+    message = JSONRPCMessage.model_validate_json(content)
+  File "/usr/local/lib/python3.13/site-packages/pydantic/main.py", line 766, in model_validate_json
+    return cls.__pydantic_validator__.validate_json(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        json_data, strict=strict, extra=extra, context=context, by_alias=by_alias, by_name=by_name
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+pydantic_core._pydantic_core.ValidationError: 11 validation errors for JSONRPCMessage
+JSONRPCRequest.method
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCRequest.jsonrpc
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCRequest.id
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCNotification.method
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCNotification.jsonrpc
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCResponse.jsonrpc
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCResponse.id
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCResponse.result
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCError.jsonrpc
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCError.id
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCError.error
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+Executing <Task pending name='Task-2' coro=<CompatibilityTests.test_bounded_failures_then_healthy_inventory() running at /app/tests/sample_mcps/test_compatibility.py:49> cb=[_run_until_complete_cb() at /usr/local/lib/python3.13/asyncio/base_events.py:181] created at /usr/local/lib/python3.13/asyncio/runners.py:100> took 0.188 seconds
+Executing <Task pending name='Task-2' coro=<CompatibilityTests.test_bounded_failures_then_healthy_inventory() running at /app/tests/sample_mcps/test_compatibility.py:58> cb=[_run_until_complete_cb() at /usr/local/lib/python3.13/asyncio/base_events.py:181] created at /usr/local/lib/python3.13/asyncio/runners.py:100> took 1.203 seconds
+WARNING:asyncio:Executing <Task finished name='Task-2' coro=<CompatibilityTests.test_bounded_failures_then_healthy_inventory() done, defined at /app/tests/sample_mcps/test_compatibility.py:43> result=None created at /usr/local/lib/python3.13/asyncio/runners.py:100> took 0.184 seconds
+ok
+test_discovery_repeated_cursor_and_limits (test_compatibility.CompatibilityTests.test_discovery_repeated_cursor_and_limits) ... ok
+test_real_auth_and_collision_fixtures (test_compatibility.CompatibilityTests.test_real_auth_and_collision_fixtures) ... WARNING:asyncio:Executing <Task pending name='Task-40' coro=<CompatibilityTests.test_real_auth_and_collision_fixtures() running at /app/tests/sample_mcps/test_compatibility.py:26> cb=[_run_until_complete_cb() at /usr/local/lib/python3.13/asyncio/base_events.py:181] created at /usr/local/lib/python3.13/asyncio/runners.py:100> took 0.238 seconds
+WARNING:asyncio:Executing <Task finished name='Task-40' coro=<CompatibilityTests.test_real_auth_and_collision_fixtures() done, defined at /app/tests/sample_mcps/test_compatibility.py:19> result=None created at /usr/local/lib/python3.13/asyncio/runners.py:100> took 0.132 seconds
+ok
+test_response_and_aggregate_limits (test_compatibility.CompatibilityTests.test_response_and_aggregate_limits) ... ok
+test_bad_fixtures (test_inventory.InventoryTests.test_bad_fixtures) ... ok
+test_invalid_arguments (test_inventory.InventoryTests.test_invalid_arguments) ... ok
+test_known_unknown_zero_trim_case_and_copy (test_inventory.InventoryTests.test_known_unknown_zero_trim_case_and_copy) ... ok
+test_bad_fixture_prevents_startup (test_protocol.ProtocolTests.test_bad_fixture_prevents_startup) ... ok
+test_http_boundary_and_health (test_protocol.ProtocolTests.test_http_boundary_and_health) ... ok
+test_real_discovery_calls_and_unknown_error (test_protocol.ProtocolTests.test_real_discovery_calls_and_unknown_error) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 5.745s
+
+OK
+

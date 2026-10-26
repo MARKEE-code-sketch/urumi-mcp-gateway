@@ -1,0 +1,54 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 901B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.13.5-slim-bookworm@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 250B done
+#3 DONE 0.0s
+
+#4 [runtime 1/7] FROM docker.io/library/python:3.13.5-slim-bookworm@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419
+#4 resolve docker.io/library/python:3.13.5-slim-bookworm@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 21.65kB 0.0s done
+#5 DONE 0.0s
+
+#6 [runtime 2/7] WORKDIR /app
+#6 CACHED
+
+#7 [runtime 3/7] COPY backend/requirements.lock.txt /app/backend/requirements.lock.txt
+#7 CACHED
+
+#8 [runtime 4/7] RUN pip install --no-cache-dir -r /app/backend/requirements.lock.txt && pip check
+#8 CACHED
+
+#9 [runtime 5/7] COPY backend /app/backend
+#9 DONE 0.1s
+
+#10 [runtime 6/7] COPY contracts /app/contracts
+#10 DONE 0.1s
+
+#11 [runtime 7/7] RUN useradd --uid 10001 --create-home urumi
+#11 DONE 0.8s
+
+#12 [release 1/1] RUN test -f /app/backend/main.py && test -f /app/backend/orchestrator.py
+#12 DONE 0.5s
+
+#13 exporting to image
+#13 exporting layers
+#13 exporting layers 0.4s done
+#13 exporting manifest sha256:121cf41503300c03e692c73916d6c464f81bc8a4921dd66c481bfbc9ea5a9c46 0.0s done
+#13 exporting config sha256:4d7266e287fd8bb0c065ba6b4bc251fed4373e61bf77ae1295d004dd3d1c63a7 0.0s done
+#13 exporting attestation manifest sha256:d91325461a1ea8a8fd96f38f7ba494b21879e3467a34d7e965fbafad81c2bdc6 0.1s done
+#13 exporting manifest list sha256:35bd897fc2d78044a88a90b6992217678342872ef7150f68cda877c121fd667a
+#13 exporting manifest list sha256:35bd897fc2d78044a88a90b6992217678342872ef7150f68cda877c121fd667a 0.0s done
+#13 naming to docker.io/urumi/backend:m10-q10-excerpts done
+#13 unpacking to docker.io/urumi/backend:m10-q10-excerpts
+#13 unpacking to docker.io/urumi/backend:m10-q10-excerpts 0.2s done
+#13 DONE 0.8s

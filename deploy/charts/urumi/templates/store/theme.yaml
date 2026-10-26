@@ -1,0 +1,13 @@
+{{- if .Values.store.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-store-theme
+data:
+{{ (.Files.Glob "files/store-theme/*.php").AsConfig | indent 2 }}
+{{ (.Files.Glob "files/store-theme/*.css").AsConfig | indent 2 }}
+{{ (.Files.Glob "files/store-theme/*.svg").AsConfig | indent 2 }}
+{{ (.Files.Glob "files/store-theme/*.txt").AsConfig | indent 2 }}
+binaryData:
+  Figtree.ttf: {{ .Files.Get "files/store-theme/Figtree.ttf" | b64enc | quote }}
+{{- end }}

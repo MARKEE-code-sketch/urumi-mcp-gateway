@@ -1,0 +1,7 @@
+{
+  "image": "urumi/backend:m10-discovery-timeout",
+  "config_digest": "sha256:3456e042845da0602bd292a3a51cc4d7209e28c7b966c6d70fc04fbada468c52",
+  "architecture": "amd64",
+  "os": "linux",
+  "verification": "SHA256 of actual Docker-exported configuration bytes"
+}

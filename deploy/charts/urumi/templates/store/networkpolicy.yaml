@@ -1,0 +1,58 @@
+{{- if and .Values.store.enabled .Values.store.networkPolicy.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ .Release.Name }}-store-database
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/component: mariadb
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/instance: {{ .Release.Name }}
+              app.kubernetes.io/component: wordpress
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/instance: {{ .Release.Name }}
+              urumi-m2-access: setup
+      ports:
+        - {protocol: TCP, port: 3306}
+{{- end }}
+
+{{- if and .Values.release.enabled .Values.store.enabled .Values.store.networkPolicy.enabled }}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ .Release.Name }}-wordpress
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: wordpress}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: {{ .Values.networking.ingressNamespace }}}
+          podSelector:
+            matchLabels: {{ toJson .Values.networking.ingressPodLabels }}
+        {{- if eq .Values.woocommerceMcp.networkPolicy.transportMode "direct-http" }}
+        - podSelector:
+            matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: woocommerce-mcp}
+        {{- end }}
+      ports: [{protocol: TCP, port: 80}]
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+          podSelector:
+            matchLabels: {k8s-app: kube-dns}
+      ports: [{protocol: UDP, port: 53}, {protocol: TCP, port: 53}]
+    - to:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: mariadb}
+      ports: [{protocol: TCP, port: 3306}]
+{{- end }}

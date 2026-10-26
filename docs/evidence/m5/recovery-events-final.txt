@@ -1,0 +1,35 @@
+﻿LAST SEEN   TYPE      REASON              OBJECT                                             MESSAGE
+106s        Warning   Unhealthy           pod/urumi-m5-check-platform-db-56c7b86d75-m8cx5    Readiness probe failed: command timed out: "pg_isready -U urumi -d urumi" timed out after 1s
+118s        Warning   Unhealthy           pod/urumi-m5-check-platform-db-56c7b86d75-m8cx5    Liveness probe failed: command timed out: "pg_isready -U urumi -d urumi" timed out after 1s
+4m13s       Warning   Unhealthy           pod/urumi-m5-check-m5-harness-694cdc5569-44ngc     Readiness probe failed: Get "http://10.42.0.82:8000/health/ready": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+4m20s       Warning   Unhealthy           pod/urumi-m5-check-m5-harness-694cdc5569-44ngc     Liveness probe failed: Get "http://10.42.0.82:8000/health/live": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+4m20s       Normal    Killing             pod/urumi-m5-check-m5-harness-694cdc5569-44ngc     Container backend failed liveness probe, will be restarted
+4m11s       Warning   Unhealthy           pod/urumi-m5-check-m5-harness-694cdc5569-44ngc     Readiness probe failed: Get "http://10.42.0.82:8000/health/ready": read tcp 10.42.0.1:47554->10.42.0.82:8000: read: connection reset by peer
+3m42s       Warning   Unhealthy           pod/urumi-m5-check-m5-harness-694cdc5569-44ngc     Readiness probe failed: Get "http://10.42.0.82:8000/health/ready": dial tcp 10.42.0.82:8000: connect: connection refused
+3m45s       Normal    Pulled              pod/urumi-m5-check-m5-harness-694cdc5569-44ngc     Container image "urumi/m5-harness:m5" already present on machine and can be accessed by the pod
+3m45s       Normal    Created             pod/urumi-m5-check-m5-harness-694cdc5569-44ngc     Container created
+3m43s       Normal    Started             pod/urumi-m5-check-m5-harness-694cdc5569-44ngc     Container started
+3m30s       Warning   Unhealthy           pod/urumi-m5-check-m5-harness-694cdc5569-44ngc     Startup probe failed: Get "http://10.42.0.82:8000/health/live": dial tcp 10.42.0.82:8000: connect: connection refused
+2s          Normal    ScalingReplicaSet   deployment/urumi-m5-check-m5-harness               Scaled down replica set urumi-m5-check-m5-harness-694cdc5569 from 1 to 0
+2m21s       Normal    SuccessfulDelete    replicaset/urumi-m5-check-m5-harness-694cdc5569    Deleted pod: urumi-m5-check-m5-harness-694cdc5569-44ngc
+2m21s       Normal    Killing             pod/urumi-m5-check-m5-harness-694cdc5569-44ngc     Stopping container backend
+98s         Normal    ScalingReplicaSet   deployment/urumi-m5-check-m5-harness               Scaled up replica set urumi-m5-check-m5-harness-694cdc5569 from 0 to 1
+96s         Normal    Scheduled           pod/urumi-m5-check-m5-harness-694cdc5569-jd5vt     Successfully assigned urumi-m5-check/urumi-m5-check-m5-harness-694cdc5569-jd5vt to k3d-urumi-server-0
+96s         Normal    SuccessfulCreate    replicaset/urumi-m5-check-m5-harness-694cdc5569    Created pod: urumi-m5-check-m5-harness-694cdc5569-jd5vt
+12s         Normal    Pulled              pod/urumi-m5-check-m5-harness-694cdc5569-jd5vt     Container image "urumi/m5-harness:m5" already present on machine and can be accessed by the pod
+12s         Normal    Created             pod/urumi-m5-check-m5-harness-694cdc5569-jd5vt     Container created
+12s         Normal    Started             pod/urumi-m5-check-m5-harness-694cdc5569-jd5vt     Container started
+11s         Warning   Unhealthy           pod/urumi-m5-check-m5-harness-694cdc5569-jd5vt     Startup probe failed: Get "http://10.42.0.83:8000/health/live": dial tcp 10.42.0.83:8000: connect: connection refused
+38s         Normal    ScalingReplicaSet   deployment/urumi-m5-check-platform-db              Scaled down replica set urumi-m5-check-platform-db-56c7b86d75 from 1 to 0
+38s         Normal    Killing             pod/urumi-m5-check-platform-db-56c7b86d75-m8cx5    Stopping container postgres
+38s         Normal    SuccessfulDelete    replicaset/urumi-m5-check-platform-db-56c7b86d75   Deleted pod: urumi-m5-check-platform-db-56c7b86d75-m8cx5
+17s         Warning   Unhealthy           pod/urumi-m5-check-m5-harness-694cdc5569-jd5vt     Readiness probe failed: HTTP probe failed with statuscode: 503
+19s         Normal    ScalingReplicaSet   deployment/urumi-m5-check-platform-db              Scaled up replica set urumi-m5-check-platform-db-56c7b86d75 from 0 to 1
+18s         Normal    Scheduled           pod/urumi-m5-check-platform-db-56c7b86d75-dhd9p    Successfully assigned urumi-m5-check/urumi-m5-check-platform-db-56c7b86d75-dhd9p to k3d-urumi-server-0
+19s         Normal    SuccessfulCreate    replicaset/urumi-m5-check-platform-db-56c7b86d75   Created pod: urumi-m5-check-platform-db-56c7b86d75-dhd9p
+18s         Normal    Pulled              pod/urumi-m5-check-platform-db-56c7b86d75-dhd9p    Container image "postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826" already present on machine and can be accessed by the pod
+17s         Normal    Created             pod/urumi-m5-check-platform-db-56c7b86d75-dhd9p    Container created
+17s         Normal    Started             pod/urumi-m5-check-platform-db-56c7b86d75-dhd9p    Container started
+16s         Warning   Unhealthy           pod/urumi-m5-check-platform-db-56c7b86d75-dhd9p    Startup probe failed: /var/run/postgresql:5432 - no response
+2s          Normal    SuccessfulDelete    replicaset/urumi-m5-check-m5-harness-694cdc5569    Deleted pod: urumi-m5-check-m5-harness-694cdc5569-jd5vt
+2s          Normal    Killing             pod/urumi-m5-check-m5-harness-694cdc5569-jd5vt     Stopping container backend

@@ -1,0 +1,12 @@
+﻿UTC: 2026-10-15T14:56:24.7055171Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "upgrade" "--install" "urumi-m3-check" "deploy/charts/urumi" "-n" "urumi-m3-check" "-f" "tests/woocommerce_mcp/values-check.yaml" "--wait" "--timeout" "180s"
+Exit: 0
+Release "urumi-m3-check" does not exist. Installing it now.
+NAME: urumi-m3-check
+LAST DEPLOYED: Thu Oct 15 20:26:16 2026
+NAMESPACE: urumi-m3-check
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+
+

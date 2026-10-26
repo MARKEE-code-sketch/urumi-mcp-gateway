@@ -1,0 +1,71 @@
+M4 controlled failures and healthy recovery: [{"mode": "unreachable", "elapsed_seconds": 3.105, "error_categories": ["ExceptionGroup", "ConnectError"]}, {"mode": "unavailable", "elapsed_seconds": 0.93, "error_categories": ["ExceptionGroup", "HTTPStatusError"]}, {"mode": "invalid", "elapsed_seconds": 1.527, "error_categories": ["TimeoutError"]}, {"mode": "slow", "elapsed_seconds": 1.47, "error_categories": ["TimeoutError"]}]
+M4 controlled authentication/collision: [{"mode": "bearer", "missing": 401, "wrong": 401, "valid": "PASS", "tool": "service_info"}, {"mode": "header", "missing": 401, "wrong": 401, "valid": "PASS", "tool": "service_info"}]
+test_bounded_failures_then_healthy_inventory (test_compatibility.CompatibilityTests.test_bounded_failures_then_healthy_inventory) ... Executing <Task pending name='Task-2' coro=<CompatibilityTests.test_bounded_failures_then_healthy_inventory() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\sample_mcps\test_compatibility.py:49> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 1.010 seconds
+Executing <Task pending name='Task-2' coro=<CompatibilityTests.test_bounded_failures_then_healthy_inventory() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\sample_mcps\test_compatibility.py:57> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.973 seconds
+Executing <Task pending name='Task-2' coro=<CompatibilityTests.test_bounded_failures_then_healthy_inventory() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\sample_mcps\test_compatibility.py:57> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.972 seconds
+Error parsing JSON response
+Traceback (most recent call last):
+  File "C:\Users\mrina\Downloads\URUMI_Assignment\.venv\Lib\site-packages\mcp\client\streamable_http.py", line 385, in _handle_json_response
+    message = JSONRPCMessage.model_validate_json(content)
+  File "C:\Users\mrina\Downloads\URUMI_Assignment\.venv\Lib\site-packages\pydantic\main.py", line 766, in model_validate_json
+    return cls.__pydantic_validator__.validate_json(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        json_data, strict=strict, extra=extra, context=context, by_alias=by_alias, by_name=by_name
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+pydantic_core._pydantic_core.ValidationError: 11 validation errors for JSONRPCMessage
+JSONRPCRequest.method
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCRequest.jsonrpc
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCRequest.id
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCNotification.method
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCNotification.jsonrpc
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCResponse.jsonrpc
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCResponse.id
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCResponse.result
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCError.jsonrpc
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCError.id
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+JSONRPCError.error
+  Field required [type=missing, input_value={'not_mcp': True}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+Executing <Task pending name='Task-2' coro=<CompatibilityTests.test_bounded_failures_then_healthy_inventory() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\sample_mcps\test_compatibility.py:57> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.964 seconds
+Executing <Task pending name='Task-2' coro=<CompatibilityTests.test_bounded_failures_then_healthy_inventory() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\sample_mcps\test_compatibility.py:66> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 1.913 seconds
+WARNING:asyncio:Executing <Task finished name='Task-2' coro=<CompatibilityTests.test_bounded_failures_then_healthy_inventory() done, defined at C:\Users\mrina\Downloads\URUMI_Assignment\tests\sample_mcps\test_compatibility.py:44> result=None created at C:\Python313\Lib\asyncio\runners.py:100> took 0.212 seconds
+ok
+test_discovery_repeated_cursor_and_limits (test_compatibility.CompatibilityTests.test_discovery_repeated_cursor_and_limits) ... ok
+test_real_auth_and_collision_fixtures (test_compatibility.CompatibilityTests.test_real_auth_and_collision_fixtures) ... WARNING:asyncio:Executing <Task pending name='Task-44' coro=<CompatibilityTests.test_real_auth_and_collision_fixtures() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\sample_mcps\test_compatibility.py:27> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.829 seconds
+WARNING:asyncio:Executing <Task pending name='Task-44' coro=<CompatibilityTests.test_real_auth_and_collision_fixtures() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\sample_mcps\test_compatibility.py:29> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.832 seconds
+WARNING:asyncio:Executing <Task pending name='Task-44' coro=<CompatibilityTests.test_real_auth_and_collision_fixtures() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\sample_mcps\test_compatibility.py:29> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.906 seconds
+WARNING:asyncio:Executing <Task pending name='Task-44' coro=<CompatibilityTests.test_real_auth_and_collision_fixtures() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\sample_mcps\test_compatibility.py:31> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.845 seconds
+WARNING:asyncio:Executing <Task pending name='Task-44' coro=<CompatibilityTests.test_real_auth_and_collision_fixtures() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\sample_mcps\test_compatibility.py:27> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 1.065 seconds
+WARNING:asyncio:Executing <Task pending name='Task-44' coro=<CompatibilityTests.test_real_auth_and_collision_fixtures() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\sample_mcps\test_compatibility.py:29> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.766 seconds
+WARNING:asyncio:Executing <Task pending name='Task-44' coro=<CompatibilityTests.test_real_auth_and_collision_fixtures() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\sample_mcps\test_compatibility.py:29> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.822 seconds
+WARNING:asyncio:Executing <Task pending name='Task-44' coro=<CompatibilityTests.test_real_auth_and_collision_fixtures() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\sample_mcps\test_compatibility.py:31> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.730 seconds
+WARNING:asyncio:Executing <Task finished name='Task-44' coro=<CompatibilityTests.test_real_auth_and_collision_fixtures() done, defined at C:\Users\mrina\Downloads\URUMI_Assignment\tests\sample_mcps\test_compatibility.py:20> result=None created at C:\Python313\Lib\asyncio\runners.py:100> took 0.205 seconds
+ok
+test_response_and_aggregate_limits (test_compatibility.CompatibilityTests.test_response_and_aggregate_limits) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 18.372s
+
+OK

@@ -1,0 +1,39 @@
+{
+  "status": "FAIL",
+  "prompt": "Use Microsoft Learn to find official documentation explaining Kubernetes Pods. Summarise the result and provide the source links.",
+  "tls_bypass": false,
+  "http_status": 200,
+  "reply": {
+    "request_id": "99058af6-dda9-41b1-b7a4-84c7fc3f3ee6",
+    "state": "failed",
+    "answer": "The language model rate limit was reached; earlier tool results remain visible.\nChat used shortened excerpts from 6 of 10 returned search results; open the links for full text.",
+    "tool_calls": [
+      {
+        "call_id": "639551e8-b5b4-47ee-b771-6e1f7a4ce716",
+        "tool_name": "learn__microsoft_docs_search",
+        "server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+        "outcome": "success",
+        "duration_ms": 2867,
+        "audit_id": "aab57f47-c69e-4a98-989a-2ff00e8e5b17"
+      },
+      {
+        "call_id": "33ffe1c7-30fc-4b44-b630-dff933b30f21",
+        "tool_name": "learn__microsoft_docs_search",
+        "server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+        "outcome": "success",
+        "duration_ms": 3351,
+        "audit_id": "7580d411-08c0-4350-98d6-d207346c8ff6"
+      },
+      {
+        "call_id": "a32eb4b0-6bee-4a76-bc5a-29541140b273",
+        "tool_name": "learn__microsoft_docs_fetch",
+        "server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+        "outcome": "success",
+        "duration_ms": 3121,
+        "audit_id": "80c42a7d-9479-411e-b2b2-caee6cb6b3c6"
+      }
+    ]
+  },
+  "rendered_links": [],
+  "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'failed'\n- 'completed'\n"
+}

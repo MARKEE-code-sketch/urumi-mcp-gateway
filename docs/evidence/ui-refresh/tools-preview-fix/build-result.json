@@ -1,0 +1,13 @@
+{
+  "command": [
+    "docker",
+    "build",
+    "-t",
+    "urumi/dashboard:m8-tools-fix",
+    "-f",
+    "frontend/Dockerfile",
+    "frontend"
+  ],
+  "exit_code": 0,
+  "log": "docker-build.txt"
+}

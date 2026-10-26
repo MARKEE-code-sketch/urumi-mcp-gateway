@@ -1,0 +1,9 @@
+﻿UTC: 2026-10-15T14:56:13.5607037Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "lint" "deploy/charts/urumi"
+Exit: 0
+==> Linting deploy/charts/urumi
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+
+

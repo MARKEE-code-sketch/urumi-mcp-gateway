@@ -1,0 +1,5 @@
+﻿UTC: 2026-10-16T13:09:18.6651277Z
+Command: docker.exe "image" "save" "-o" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m4\image-identity.tar" "urumi/inventory-mcp:m4"
+Exit: 0
+
+

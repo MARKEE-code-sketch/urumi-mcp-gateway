@@ -1,0 +1,10 @@
+﻿{
+    "k3d":  {
+                "version":  "v5.9.0",
+                "sha256":  "49d0b9c796f5b8ba6f58a1dd5469e8b7b34bf9b6ce9078633eedb2789680a034"
+            },
+    "helm":  {
+                 "version":  "v3.21.3",
+                 "sha256":  "ff490897e07e976c65a9bd7690cfc139b35ba5e8f25d00eaf1e53a30f1ad3f62"
+             }
+}

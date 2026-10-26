@@ -1,0 +1,11 @@
+{
+  "image": "urumi/dashboard:m8-server-errors",
+  "descriptor": {
+    "mediaType": "application/vnd.oci.image.index.v1+json",
+    "digest": "sha256:912801aaff89b6811567b8e4c0a50d10012182c1796f2288a22df6ab70e661c9",
+    "size": 856
+  },
+  "repo_digests": [
+    "urumi/dashboard@sha256:912801aaff89b6811567b8e4c0a50d10012182c1796f2288a22df6ab70e661c9"
+  ]
+}

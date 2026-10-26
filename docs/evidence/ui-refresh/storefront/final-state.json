@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "helm_revision": 9,
+  "workloads": [
+    {
+      "name": "urumi-m10-backend",
+      "ready": 1,
+      "desired": 1
+    },
+    {
+      "name": "urumi-m10-dashboard",
+      "ready": 1,
+      "desired": 1
+    },
+    {
+      "name": "urumi-m10-inventory-mcp",
+      "ready": 1,
+      "desired": 1
+    },
+    {
+      "name": "urumi-m10-platform-db",
+      "ready": 1,
+      "desired": 1
+    },
+    {
+      "name": "urumi-m10-woocommerce-mcp",
+      "ready": 1,
+      "desired": 1
+    },
+    {
+      "name": "urumi-m10-wordpress",
+      "ready": 1,
+      "desired": 1
+    },
+    {
+      "name": "urumi-m10-mariadb",
+      "ready": 1,
+      "desired": 1
+    }
+  ],
+  "all_three_pvcs_bound": true,
+  "order_ids": [
+    16,
+    19,
+    21
+  ],
+  "only_one_test_order_created": true,
+  "order_id": 21,
+  "test_tag_matches": true,
+  "cash_on_delivery": true,
+  "total": "499.00",
+  "theme": "urumi-shop",
+  "secret_scan_files": 41,
+  "secret_matches": 0
+}

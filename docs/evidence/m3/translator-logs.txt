@@ -1,0 +1,38 @@
+﻿INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+mcp.server.streamable_http_manager INFO StreamableHTTP session manager started
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+mcp.server.streamable_http INFO Terminating session: None
+mcp.server.streamable_http INFO Terminating session: None
+mcp.server.lowlevel.server INFO Processing request of type CallToolRequest
+woocommerce_mcp INFO tool=get_order code=OK duration=0.017 request=0dc61ae72993d23b
+mcp.server.streamable_http INFO Terminating session: None
+mcp.server.lowlevel.server INFO Processing request of type ListToolsRequest
+mcp.server.streamable_http INFO Terminating session: None
+mcp.server.lowlevel.server INFO Processing request of type ListToolsRequest
+mcp.server.streamable_http INFO Terminating session: None
+mcp.server.lowlevel.server INFO Processing request of type CallToolRequest
+woocommerce_mcp INFO tool=list_products code=OK duration=0.009 request=27aef5f996470bc6
+mcp.server.streamable_http INFO Terminating session: None
+mcp.server.lowlevel.server INFO Processing request of type CallToolRequest
+woocommerce_mcp INFO tool=create_product code=OK duration=0.006 request=95d8a3b6026eeb16
+mcp.server.streamable_http INFO Terminating session: None
+mcp.server.lowlevel.server INFO Processing request of type CallToolRequest
+woocommerce_mcp INFO tool=list_orders code=OK duration=0.007 request=57332b2d06a010dd
+mcp.server.streamable_http INFO Terminating session: None
+mcp.server.lowlevel.server INFO Processing request of type CallToolRequest
+woocommerce_mcp INFO tool=get_order code=OK duration=0.005 request=b361ba15e1c9c730
+mcp.server.streamable_http INFO Terminating session: None
+mcp.server.lowlevel.server INFO Processing request of type CallToolRequest
+woocommerce_mcp INFO tool=update_order_status code=OK duration=0.006 request=3bd3fd86e89fef21
+mcp.server.streamable_http INFO Terminating session: None
+mcp.server.lowlevel.server INFO Processing request of type CallToolRequest
+woocommerce_mcp INFO tool=get_order code=INVALID_ARGUMENT duration=0.000 request=9eb4a76818e835f5
+mcp.server.streamable_http INFO Terminating session: None
+mcp.server.lowlevel.server INFO Processing request of type CallToolRequest
+woocommerce_mcp INFO tool=get_order code=ORDER_NOT_FOUND duration=0.005 request=e0728f86a20c99f8
+mcp.server.streamable_http INFO Terminating session: None
+mcp.server.lowlevel.server INFO Processing request of type CallToolRequest
+mcp.server.streamable_http INFO Terminating session: None
+

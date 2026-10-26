@@ -1,0 +1,104 @@
+﻿UTC: 2026-10-15T14:57:10.1763070Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "-n" "urumi-m3-check" "get" "services,ingresses" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Service\",\"metadata\":{\"annotations\":{},\"name\":\"m3-fake-shop\",\"namespace\":\"urumi-m3-check\"},\"spec\":{\"ports\":[{\"name\":\"rest\",\"port\":8080,\"targetPort\":\"rest\"}],\"selector\":{\"app.kubernetes.io/component\":\"m3-fake-shop\",\"app.kubernetes.io/instance\":\"urumi-m3-check\",\"app.kubernetes.io/name\":\"urumi\"},\"type\":\"ClusterIP\"}}\n"
+                },
+                "creationTimestamp": "2026-10-15T14:56:15Z",
+                "name": "m3-fake-shop",
+                "namespace": "urumi-m3-check",
+                "resourceVersion": "9012",
+                "uid": "d500fbb0-7388-46cc-8f95-142dcb866bba"
+            },
+            "spec": {
+                "clusterIP": "10.43.70.141",
+                "clusterIPs": [
+                    "10.43.70.141"
+                ],
+                "internalTrafficPolicy": "Cluster",
+                "ipFamilies": [
+                    "IPv4"
+                ],
+                "ipFamilyPolicy": "SingleStack",
+                "ports": [
+                    {
+                        "name": "rest",
+                        "port": 8080,
+                        "protocol": "TCP",
+                        "targetPort": "rest"
+                    }
+                ],
+                "selector": {
+                    "app.kubernetes.io/component": "m3-fake-shop",
+                    "app.kubernetes.io/instance": "urumi-m3-check",
+                    "app.kubernetes.io/name": "urumi"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi-m3-check",
+                    "meta.helm.sh/release-namespace": "urumi-m3-check"
+                },
+                "creationTimestamp": "2026-10-15T14:56:16Z",
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-m3-check-woocommerce-mcp",
+                "namespace": "urumi-m3-check",
+                "resourceVersion": "9031",
+                "uid": "b153179e-a876-40ee-b347-adf6634f096e"
+            },
+            "spec": {
+                "clusterIP": "10.43.239.69",
+                "clusterIPs": [
+                    "10.43.239.69"
+                ],
+                "internalTrafficPolicy": "Cluster",
+                "ipFamilies": [
+                    "IPv4"
+                ],
+                "ipFamilyPolicy": "SingleStack",
+                "ports": [
+                    {
+                        "name": "mcp",
+                        "port": 8000,
+                        "protocol": "TCP",
+                        "targetPort": "mcp"
+                    }
+                ],
+                "selector": {
+                    "app.kubernetes.io/component": "woocommerce-mcp",
+                    "app.kubernetes.io/instance": "urumi-m3-check",
+                    "app.kubernetes.io/name": "urumi"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+

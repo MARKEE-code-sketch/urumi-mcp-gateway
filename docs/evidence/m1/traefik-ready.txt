@@ -1,0 +1,18 @@
+﻿UTC: 2026-10-14T15:37:06.5673226Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "-n" "kube-system" "rollout" "status" "deployment/traefik" "--timeout=120s"
+Exit: 1
+
+Error from server (NotFound): deployments.apps "traefik" not found
+
+UTC: 2026-10-14T16:59:34.9192958Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "-n" "kube-system" "get" "deployment" "traefik" "--ignore-not-found=true" "-o" "name"
+Exit: 0
+deployment.apps/traefik
+
+
+UTC: 2026-10-14T16:59:35.1730862Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "-n" "kube-system" "rollout" "status" "deployment/traefik" "--timeout=120s"
+Exit: 0
+deployment "traefik" successfully rolled out
+
+

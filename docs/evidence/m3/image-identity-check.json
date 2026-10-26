@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "expected_build_config_digest": "sha256:486c72b5ce744f67ef680fc5135cc0f69dae7f54e5c951a9903cc07384b80ef3",
+  "observed_pod_image_ids": [
+    "sha256:486c72b5ce744f67ef680fc5135cc0f69dae7f54e5c951a9903cc07384b80ef3",
+    "sha256:486c72b5ce744f67ef680fc5135cc0f69dae7f54e5c951a9903cc07384b80ef3",
+    "sha256:486c72b5ce744f67ef680fc5135cc0f69dae7f54e5c951a9903cc07384b80ef3",
+    "sha256:486c72b5ce744f67ef680fc5135cc0f69dae7f54e5c951a9903cc07384b80ef3",
+    "sha256:486c72b5ce744f67ef680fc5135cc0f69dae7f54e5c951a9903cc07384b80ef3"
+  ],
+  "note": "Docker inspect Id is OCI index digest; kubelet imageID is platform config digest. Compared config exported in build log."
+}

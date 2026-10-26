@@ -1,0 +1,7 @@
+{
+  "image": "urumi/backend:m10-recovery",
+  "config_digest": "sha256:160ae7b13c17f4a0e94a02a855b0ffae5181081cb9f97136846c5f50e0982d43",
+  "architecture": "amd64",
+  "os": "linux",
+  "verification": "SHA256 of actual Docker-exported configuration bytes"
+}

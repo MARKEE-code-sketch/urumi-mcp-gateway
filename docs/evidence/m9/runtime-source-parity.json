@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "files_checked": 35,
+  "different_files": [],
+  "prior_evidence": "docs/evidence/m6/image-source-check.json",
+  "scope": "backend/M6/M7 runtime/dependencies/contracts; Dockerfile release packaging intentionally changed, no final runtime build claimed"
+}

@@ -1,0 +1,60 @@
+{
+  "status": "PASS",
+  "ready": {
+    "ready_components": [
+      "wordpress",
+      "mariadb",
+      "backend",
+      "platform-db",
+      "dashboard",
+      "woocommerce-mcp",
+      "inventory-mcp"
+    ],
+    "seconds": 6.45
+  },
+  "retained_original_resources": [
+    {
+      "kind": "Pod",
+      "name": "urumi-mariadb-0",
+      "uid": "56861a6b-313d-42bc-ab29-df25934eccbc",
+      "unchanged": true
+    },
+    {
+      "kind": "Pod",
+      "name": "urumi-wordpress-5fdfc9c5f7-dldh4",
+      "uid": "2aea7ffc-4310-4f53-a4c9-f22052905252",
+      "unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-foundation-data",
+      "uid": "c6f386c1-ef1e-4996-ab86-ed888999226e",
+      "unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-mariadb-data",
+      "uid": "91b18137-d90e-49f0-b16e-ab2686a82df0",
+      "unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-wordpress-content",
+      "uid": "cae72902-5c12-4c82-9225-965798cb78b4",
+      "unchanged": true
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-mariadb",
+      "uid": "a05a7040-8d8f-49e3-abdf-b5f7735522c3",
+      "unchanged": true
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-wordpress",
+      "uid": "221ad775-aef4-4a39-8b49-282ab820fa5e",
+      "unchanged": true
+    }
+  ],
+  "scope": "Final read-only working-release health/original resource identities after recovery image upgrade and disposable clean-target cleanup."
+}

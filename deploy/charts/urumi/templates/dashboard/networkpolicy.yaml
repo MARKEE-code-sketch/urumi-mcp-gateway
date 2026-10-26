@@ -1,0 +1,18 @@
+{{- if and .Values.release.enabled .Values.dashboard.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ .Release.Name }}-dashboard
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: dashboard}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: {{ .Values.networking.ingressNamespace }}}
+          podSelector:
+            matchLabels: {{ toJson .Values.networking.ingressPodLabels }}
+      ports: [{protocol: TCP, port: 8080}]
+  egress: []
+{{- end }}

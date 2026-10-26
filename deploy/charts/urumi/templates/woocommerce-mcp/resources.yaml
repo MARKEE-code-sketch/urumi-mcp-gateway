@@ -1,0 +1,92 @@
+{{- if .Values.woocommerceMcp.enabled }}
+{{- $name := printf "%s-woocommerce-mcp" .Release.Name }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: woocommerce-mcp}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: woocommerce-mcp}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets: {{ toJson . }}
+      {{- end }}
+      {{- with .Values.woocommerceMcp.hostAliases }}
+      hostAliases: {{ toJson . }}
+      {{- end }}
+      automountServiceAccountToken: false
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, runAsGroup: 10001, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: woocommerce-mcp
+          image: {{ if .Values.woocommerceMcp.image.digest }}{{ printf "%s@%s" .Values.woocommerceMcp.image.repository .Values.woocommerceMcp.image.digest | quote }}{{ else }}{{ printf "%s:%s" .Values.woocommerceMcp.image.repository .Values.woocommerceMcp.image.tag | quote }}{{ end }}
+          imagePullPolicy: {{ .Values.woocommerceMcp.image.pullPolicy }}
+          securityContext: {readOnlyRootFilesystem: true, allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          ports: [{name: mcp, containerPort: 8000}]
+          env:
+            - {name: WOO_CANONICAL_ORIGIN, value: {{ .Values.woocommerceMcp.canonicalOrigin | quote }}}
+            - {name: WOO_TRANSPORT_ORIGIN, value: {{ (ternary (printf "http://%s-wordpress.%s.svc.cluster.local" .Release.Name .Release.Namespace) .Values.woocommerceMcp.transportOrigin (and .Values.release.enabled (eq .Values.woocommerceMcp.networkPolicy.transportMode "direct-http"))) | quote }}}
+            - {name: WOO_CURRENCY, value: {{ .Values.woocommerceMcp.currency | quote }}}
+            - {name: MCP_ALLOWED_HOSTS, value: {{ join "," (concat (list $name (printf "%s.%s.svc" $name .Release.Namespace) (printf "%s.%s.svc.cluster.local" $name .Release.Namespace)) .Values.woocommerceMcp.allowedHosts) | quote }}}
+            - name: WOO_CONSUMER_KEY
+              valueFrom:
+                secretKeyRef: {name: {{ .Values.woocommerceMcp.existingSecret }}, key: consumer-key}
+            - name: WOO_CONSUMER_SECRET
+              valueFrom:
+                secretKeyRef: {name: {{ .Values.woocommerceMcp.existingSecret }}, key: consumer-secret}
+          startupProbe: {httpGet: {path: /livez, port: mcp}, periodSeconds: 2, timeoutSeconds: 2, failureThreshold: 30}
+          livenessProbe: {httpGet: {path: /livez, port: mcp}, periodSeconds: 10, timeoutSeconds: 2, failureThreshold: 3}
+          readinessProbe: {httpGet: {path: /readyz, port: mcp}, periodSeconds: 10, timeoutSeconds: 2, failureThreshold: 3}
+          resources:
+            {{- toYaml .Values.woocommerceMcp.resources | nindent 12 }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $name }}
+spec:
+  type: ClusterIP
+  selector: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: woocommerce-mcp}
+  ports: [{name: mcp, port: 8000, targetPort: mcp}]
+{{- if .Values.woocommerceMcp.networkPolicy.enabled }}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ $name }}
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: woocommerce-mcp}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: {{ if .Values.release.enabled }}backend, urumi.dev/gateway: "true"{{ else }}gateway{{ end }}}
+      ports: [{protocol: TCP, port: 8000}]
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+          podSelector:
+            matchLabels: {k8s-app: kube-dns}
+      ports: [{protocol: UDP, port: 53}, {protocol: TCP, port: 53}]
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: {{ if eq .Values.woocommerceMcp.networkPolicy.transportMode "ingress-https" }}{{ .Values.networking.ingressNamespace }}{{ else if .Values.release.enabled }}{{ .Release.Namespace }}{{ else }}{{ .Values.woocommerceMcp.networkPolicy.shopNamespace }}{{ end }}}
+          podSelector:
+            matchLabels:
+              {{- if eq .Values.woocommerceMcp.networkPolicy.transportMode "ingress-https" }}
+              {{- toYaml .Values.networking.ingressPodLabels | nindent 14 }}
+              {{- else if .Values.release.enabled }}
+              app.kubernetes.io/name: urumi
+              app.kubernetes.io/instance: {{ .Release.Name }}
+              app.kubernetes.io/component: wordpress
+              {{- else }}
+              {{- toYaml .Values.woocommerceMcp.networkPolicy.shopLabels | nindent 14 }}
+              {{- end }}
+      ports: [{protocol: TCP, port: {{ if eq .Values.woocommerceMcp.networkPolicy.transportMode "ingress-https" }}{{ .Values.networking.ingressTlsTargetPort }}{{ else }}{{ .Values.woocommerceMcp.networkPolicy.shopPort }}{{ end }}}]
+{{- end }}
+{{- end }}

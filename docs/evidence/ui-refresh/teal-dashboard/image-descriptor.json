@@ -1,0 +1,11 @@
+{
+  "image": "urumi/dashboard:m8-teal",
+  "descriptor": {
+    "mediaType": "application/vnd.oci.image.index.v1+json",
+    "digest": "sha256:d1ef2a73eca5116926879979fdc1dc03e66801ea20e8340b0a6fd65e0e3f5a14",
+    "size": 856
+  },
+  "repo_digests": [
+    "urumi/dashboard@sha256:d1ef2a73eca5116926879979fdc1dc03e66801ea20e8340b0a6fd65e0e3f5a14"
+  ]
+}

@@ -1,0 +1,16 @@
+{{- if .Values.foundation.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "urumi.foundationName" . }}
+  labels:
+    {{- include "urumi.foundationLabels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  selector:
+    {{- include "urumi.foundationSelectorLabels" . | nindent 4 }}
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+{{- end }}

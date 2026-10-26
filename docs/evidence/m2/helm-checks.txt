@@ -1,0 +1,90 @@
+﻿UTC: 2026-10-15T14:51:32.2371093Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "lint" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "--set" "store.enabled=true"
+Exit: 0
+==> Linting C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+
+
+UTC: 2026-10-15T14:51:32.9620142Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "lint" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-prod.yaml" "--set" "store.enabled=true"
+Exit: 0
+==> Linting C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+
+
+UTC: 2026-10-15T14:55:00.8568721Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "lint" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "--set" "store.enabled=true"
+Exit: 0
+==> Linting C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+
+
+UTC: 2026-10-15T14:55:01.3767185Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "lint" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-prod.yaml" "--set" "store.enabled=true"
+Exit: 0
+==> Linting C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+
+
+UTC: 2026-10-15T15:04:27.9789978Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "lint" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "--set" "store.enabled=true"
+Exit: 0
+==> Linting C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+
+
+UTC: 2026-10-15T15:04:28.4317775Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "lint" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-prod.yaml" "--set" "store.enabled=true"
+Exit: 0
+==> Linting C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+
+
+UTC: 2026-10-15T15:10:43.3726737Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "lint" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "--set" "store.enabled=true"
+Exit: 0
+==> Linting C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+
+
+UTC: 2026-10-15T15:10:43.9294017Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "lint" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-prod.yaml" "--set" "store.enabled=true"
+Exit: 0
+==> Linting C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+
+
+UTC: 2026-10-16T04:34:13.3126588Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "lint" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "--set" "store.enabled=true"
+Exit: 0
+==> Linting C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+
+
+UTC: 2026-10-16T04:34:13.9712315Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "lint" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-prod.yaml" "--set" "store.enabled=true"
+Exit: 0
+==> Linting C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+
+

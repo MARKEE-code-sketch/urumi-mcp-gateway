@@ -1,0 +1,25 @@
+{
+  "module": "M9",
+  "reviewed_at": "2026-10-19",
+  "status": "PASS",
+  "scope": "Approved static release package, structural validation and operating documentation; no final runtime integration",
+  "review_method": "Independent read-only source and saved-evidence inspection; no reviewer test rerun or live mutation",
+  "user_acceptance": "PENDING",
+  "checks": [
+    {"id": "M9-01", "status": "PASS", "evidence": ["component-inventory.json", "../../system-design.md"]},
+    {"id": "M9-02", "status": "PASS", "evidence": ["render-local.yaml", "render-prod.yaml", "lint-local.txt", "lint-prod.txt", "commands.json"]},
+    {"id": "M9-03", "status": "PASS", "evidence": ["tests.txt", "tests.xml", "preflight-examples.json"]},
+    {"id": "M9-04", "status": "PASS", "evidence": ["resource-inventory.json", "render-local.yaml", "render-prod.yaml"]},
+    {"id": "M9-05", "status": "PASS", "evidence": ["resource-inventory.json", "../../operations.md"]},
+    {"id": "M9-06", "status": "PASS", "evidence": ["resource-inventory.json", "tests.txt"]},
+    {"id": "M9-07", "status": "PASS", "evidence": ["source-scan.json", "secret-inventory.json"]},
+    {"id": "M9-08", "status": "PASS", "evidence": ["backend-build-rejection.txt", "build-inventory.json", "runtime-source-parity.json", "checker-pip-check.txt"]},
+    {"id": "M9-09", "status": "PASS", "evidence": ["values-differences.json", "preflight-examples.json", "../../system-design.md"]},
+    {"id": "M9-10", "status": "PASS", "evidence": ["documentation-check.json", "powershell-syntax.json", "../../operations.md", "../../../README.md"]},
+    {"id": "M9-11", "status": "PASS", "evidence": ["staging-check.json", "versions.json"]},
+    {"id": "M9-12", "status": "PASS", "evidence": ["acceptance-review.md", "check-results.json", "commands.json"]}
+  ],
+  "observed": {"release_tests_passed": 60, "store_compatibility_tests_passed": 7, "runtime_source_files_matched": 35, "known_sentinels_checked": 6, "sentinel_matches": 0, "m9_cluster_calls": 0, "m9_provider_calls": 0},
+  "open_defects_in_scope": [],
+  "separate_gates": ["M7 real provider check", "M8 independent image/browser/runtime acceptance", "M10 real backend wiring and combined image", "M10 live deployment, HTTPS, production OAuth, policy enforcement and two-user acceptance", "Live VPS and backup/restore proof not performed"]
+}

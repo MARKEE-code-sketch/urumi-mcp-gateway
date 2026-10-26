@@ -1,0 +1,810 @@
+---
+# Source: urumi/templates/access/secret-access.yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: urumi-upstream-secrets
+  labels: {urumi-module: m5, urumi-owner: urumi}
+  annotations: {helm.sh/resource-policy: keep}
+---
+# Source: urumi/templates/backend/networkpolicy.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: urumi-backend
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: backend}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+          podSelector:
+            matchLabels: {"app.kubernetes.io/instance":"traefik-kube-system","app.kubernetes.io/name":"traefik"}
+      ports: [{protocol: TCP, port: 8000}]
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+          podSelector:
+            matchLabels: {k8s-app: kube-dns}
+      ports: [{protocol: UDP, port: 53}, {protocol: TCP, port: 53}]
+    - to:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/instance: urumi, app.kubernetes.io/component: platform-db}
+      ports: [{protocol: TCP, port: 5432}]
+    - to:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: woocommerce-mcp}
+        - podSelector:
+            matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: inventory-mcp}
+      ports: [{protocol: TCP, port: 8000}]
+    - to:
+        - ipBlock:
+            cidr: 0.0.0.0/0
+            except: [0.0.0.0/8, 10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12, 192.0.0.0/24, 192.0.2.0/24, 192.168.0.0/16, 198.18.0.0/15, 198.51.100.0/24, 203.0.113.0/24, 224.0.0.0/4, 240.0.0.0/4]
+        - ipBlock:
+            cidr: 2000::/3
+            except: [2001:db8::/32]
+      ports: [{protocol: TCP, port: 443}]
+---
+# Source: urumi/templates/dashboard/networkpolicy.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: urumi-dashboard
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: dashboard}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+          podSelector:
+            matchLabels: {"app.kubernetes.io/instance":"traefik-kube-system","app.kubernetes.io/name":"traefik"}
+      ports: [{protocol: TCP, port: 8080}]
+  egress: []
+---
+# Source: urumi/templates/platform-db/database.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: urumi-platform-db
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/instance: urumi, app.kubernetes.io/component: platform-db}
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/instance: urumi, app.kubernetes.io/component: backend}
+      ports: [{protocol: TCP, port: 5432}]
+---
+# Source: urumi/templates/sample-mcps/resources.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: urumi-inventory-mcp
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: inventory-mcp}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: backend, urumi.dev/gateway: "true"}
+      ports: [{protocol: TCP, port: 8000}]
+  egress: []
+---
+# Source: urumi/templates/store/networkpolicy.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: urumi-store-database
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/instance: urumi
+      app.kubernetes.io/component: mariadb
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/instance: urumi
+              app.kubernetes.io/component: wordpress
+        - podSelector:
+            matchLabels:
+              app.kubernetes.io/instance: urumi
+              urumi-m2-access: setup
+      ports:
+        - {protocol: TCP, port: 3306}
+---
+# Source: urumi/templates/store/networkpolicy.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: urumi-wordpress
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/instance: urumi, app.kubernetes.io/component: wordpress}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+          podSelector:
+            matchLabels: {"app.kubernetes.io/instance":"traefik-kube-system","app.kubernetes.io/name":"traefik"}
+      ports: [{protocol: TCP, port: 80}]
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+          podSelector:
+            matchLabels: {k8s-app: kube-dns}
+      ports: [{protocol: UDP, port: 53}, {protocol: TCP, port: 53}]
+    - to:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/instance: urumi, app.kubernetes.io/component: mariadb}
+      ports: [{protocol: TCP, port: 3306}]
+---
+# Source: urumi/templates/woocommerce-mcp/resources.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: urumi-woocommerce-mcp
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: woocommerce-mcp}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: backend, urumi.dev/gateway: "true"}
+      ports: [{protocol: TCP, port: 8000}]
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+          podSelector:
+            matchLabels: {k8s-app: kube-dns}
+      ports: [{protocol: UDP, port: 53}, {protocol: TCP, port: 53}]
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/instance: traefik-kube-system
+              app.kubernetes.io/name: traefik
+      ports: [{protocol: TCP, port: 8443}]
+---
+# Source: urumi/templates/access/secret-access.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: urumi-backend
+---
+# Source: urumi/templates/backend/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: urumi-backend
+data:
+  PGHOST: "urumi-platform-db"
+  PGPORT: "5432"
+  PGUSER: urumi
+  PGDATABASE: urumi
+  URUMI_ORIGIN: "https://dashboard.example.com"
+  URUMI_ALLOWED_HOSTS: "[\"dashboard.example.com\",\"urumi-backend\",\"urumi-backend.urumi.svc\",\"urumi-backend.urumi.svc.cluster.local\"]"
+  URUMI_INTERNAL_URLS: "[\"http://urumi-woocommerce-mcp.urumi.svc.cluster.local:8000/mcp\",\"http://urumi-inventory-mcp.urumi.svc.cluster.local:8000/mcp\"]"
+  URUMI_WOO_URL: "http://urumi-woocommerce-mcp.urumi.svc.cluster.local:8000/mcp"
+  URUMI_SECRET_NAMESPACE: "urumi-upstream-secrets"
+  URUMI_LISTEN_HOST: "0.0.0.0"
+  URUMI_WORKERS: "1"
+  GROQ_MODEL: "openai/gpt-oss-20b"
+---
+# Source: urumi/templates/dashboard/resources.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: urumi-dashboard-nginx
+data:
+  nginx.conf: |
+    pid /tmp/nginx.pid;
+    error_log /dev/stderr warn;
+    worker_processes auto;
+    events { worker_connections 256; }
+    http {
+     include /etc/nginx/mime.types;
+     default_type application/octet-stream;
+     access_log off;
+     client_body_temp_path /tmp/client;
+     proxy_temp_path /tmp/proxy;
+     fastcgi_temp_path /tmp/fastcgi;
+     uwsgi_temp_path /tmp/uwsgi;
+     scgi_temp_path /tmp/scgi;
+     server {
+      listen 8080;
+      root /usr/share/nginx/html;
+      add_header X-Content-Type-Options nosniff always;
+      add_header Referrer-Policy no-referrer always;
+      add_header Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'" always;
+      add_header Cache-Control no-store always;
+      location = /livez { default_type text/plain; return 200 'live\n'; }
+      location = /readyz { default_type text/plain; return 200 'ready\n'; }
+      location ~ ^/(api|mcp)(/|$) { return 404; }
+      location /assets/ { try_files $uri =404; add_header Cache-Control "public,max-age=31536000,immutable"; add_header X-Content-Type-Options nosniff always; add_header Referrer-Policy no-referrer always; add_header Content-Security-Policy "default-src 'none'; frame-ancestors 'none'" always; }
+      location ~ ^/(login|invite|servers|members|keys|audit|chat)?$ { try_files $uri /index.html; }
+      location / { try_files $uri =404; }
+     }
+    }
+---
+# Source: urumi/templates/store/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: urumi-store
+data:
+  WORDPRESS_DB_HOST: "urumi-mariadb:3306"
+  WORDPRESS_DB_NAME: woocommerce
+  WORDPRESS_DB_USER: woocommerce
+  STORE_CANONICAL_URL: "https://shop.example.com"
+  WORDPRESS_CONFIG_EXTRA: |
+    define('AUTOMATIC_UPDATER_DISABLED', true);
+    define('WP_AUTO_UPDATE_CORE', false);
+    define('DISALLOW_FILE_EDIT', true);
+---
+# Source: urumi/templates/platform-db/database.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: urumi-platform-data
+  annotations: {helm.sh/resource-policy: keep}
+spec:
+  accessModes: [ReadWriteOnce]
+  storageClassName: "local-path"
+  resources:
+    requests: {storage: "2Gi"}
+---
+# Source: urumi/templates/store/pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: urumi-mariadb-data
+  labels:
+    app.kubernetes.io/instance: urumi
+    app.kubernetes.io/part-of: urumi-store
+  annotations:
+    helm.sh/resource-policy: keep
+spec:
+  accessModes: [ReadWriteOnce]
+  storageClassName: "local-path"
+  resources:
+    requests:
+      storage: 2Gi
+---
+# Source: urumi/templates/store/pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: urumi-wordpress-content
+  labels:
+    app.kubernetes.io/instance: urumi
+    app.kubernetes.io/part-of: urumi-store
+  annotations:
+    helm.sh/resource-policy: keep
+spec:
+  accessModes: [ReadWriteOnce]
+  storageClassName: "local-path"
+  resources:
+    requests:
+      storage: 2Gi
+---
+# Source: urumi/templates/access/secret-access.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: urumi-upstream-secrets
+  namespace: urumi-upstream-secrets
+rules:
+  - apiGroups: [""]
+    resources: [secrets]
+    verbs: [get, create, update, delete]
+---
+# Source: urumi/templates/access/secret-access.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: urumi-upstream-secrets
+  namespace: urumi-upstream-secrets
+subjects:
+  - kind: ServiceAccount
+    name: urumi-backend
+    namespace: urumi
+roleRef:
+  kind: Role
+  name: urumi-upstream-secrets
+  apiGroup: rbac.authorization.k8s.io
+---
+# Source: urumi/templates/backend/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: urumi-backend
+spec:
+  type: ClusterIP
+  selector: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: backend}
+  ports: [{name: http, port: 8000, targetPort: http}]
+---
+# Source: urumi/templates/dashboard/resources.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: urumi-dashboard
+spec:
+  selector: {app.kubernetes.io/instance: urumi, app.kubernetes.io/component: dashboard}
+  ports: [{name: http, port: 80, targetPort: 8080}]
+---
+# Source: urumi/templates/platform-db/database.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: urumi-platform-db
+spec:
+  type: ClusterIP
+  selector: {app.kubernetes.io/instance: urumi, app.kubernetes.io/component: platform-db}
+  ports: [{name: postgres, port: 5432, targetPort: postgres}]
+---
+# Source: urumi/templates/sample-mcps/resources.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: urumi-inventory-mcp
+spec:
+  type: ClusterIP
+  selector: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: inventory-mcp}
+  ports: [{name: mcp, port: 8000, targetPort: mcp}]
+---
+# Source: urumi/templates/store/mariadb.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: urumi-mariadb
+spec:
+  clusterIP: None
+  selector:
+    app.kubernetes.io/instance: urumi
+    app.kubernetes.io/component: mariadb
+  ports:
+    - port: 3306
+      targetPort: 3306
+---
+# Source: urumi/templates/store/wordpress.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: urumi-wordpress
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/instance: urumi
+    app.kubernetes.io/component: wordpress
+  ports:
+    - port: 80
+      targetPort: 80
+---
+# Source: urumi/templates/woocommerce-mcp/resources.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: urumi-woocommerce-mcp
+spec:
+  type: ClusterIP
+  selector: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: woocommerce-mcp}
+  ports: [{name: mcp, port: 8000, targetPort: mcp}]
+---
+# Source: urumi/templates/backend/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: urumi-backend
+spec:
+  replicas: 1
+  strategy: {type: Recreate}
+  selector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: backend}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: backend, urumi.dev/gateway: "true"}
+    spec:
+      serviceAccountName: urumi-backend
+      automountServiceAccountToken: true
+      imagePullSecrets: [{"name":"urumi-registry"}]
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, runAsGroup: 10001, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: backend
+          image: "private-registry.example.com/backend:replace-with-immutable-reference"
+          imagePullPolicy: IfNotPresent
+          command: [python, -m, backend.main]
+          securityContext: {readOnlyRootFilesystem: true, allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          ports: [{name: http, containerPort: 8000}]
+          envFrom: [{configMapRef: {name: urumi-backend}}]
+          env:
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef: {name: urumi-platform-db, key: password}
+            - name: GROQ_API_KEY
+              valueFrom:
+                secretKeyRef: {name: urumi-groq, key: api-key}
+          startupProbe: {httpGet: {path: /health/live, port: http}, periodSeconds: 2, timeoutSeconds: 2, failureThreshold: 60}
+          readinessProbe: {httpGet: {path: /health/ready, port: http}, periodSeconds: 5, timeoutSeconds: 5, failureThreshold: 3}
+          livenessProbe: {httpGet: {path: /health/live, port: http}, periodSeconds: 10, timeoutSeconds: 2, failureThreshold: 3}
+          resources: {"limits":{"cpu":"1000m","memory":"512Mi"},"requests":{"cpu":"100m","memory":"256Mi"}}
+---
+# Source: urumi/templates/dashboard/resources.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: urumi-dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app.kubernetes.io/instance: urumi, app.kubernetes.io/component: dashboard}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: dashboard}
+    spec:
+      automountServiceAccountToken: false
+      imagePullSecrets: 
+        - name: urumi-registry
+      securityContext: {runAsNonRoot: true, runAsUser: 101, runAsGroup: 101, fsGroup: 101, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: dashboard
+          image: "private-registry.example.com/dashboard:replace-with-immutable-reference"
+          imagePullPolicy: IfNotPresent
+          ports: [{name: http, containerPort: 8080}]
+          securityContext: {allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: {drop: [ALL]}}
+          startupProbe: {httpGet: {path: /livez, port: http}, periodSeconds: 2, timeoutSeconds: 2, failureThreshold: 30}
+          readinessProbe: {httpGet: {path: /readyz, port: http}, initialDelaySeconds: 2, periodSeconds: 5, timeoutSeconds: 2, failureThreshold: 3}
+          livenessProbe: {httpGet: {path: /livez, port: http}, initialDelaySeconds: 5, periodSeconds: 10, timeoutSeconds: 2, failureThreshold: 3}
+          resources: 
+            limits:
+              cpu: 250m
+              memory: 128Mi
+            requests:
+              cpu: 25m
+              memory: 32Mi
+          volumeMounts:
+            - {name: tmp, mountPath: /tmp}
+            - {name: nginx, mountPath: /etc/nginx/nginx.conf, subPath: nginx.conf, readOnly: true}
+      volumes:
+        - name: tmp
+          emptyDir: {medium: Memory, sizeLimit: 16Mi}
+        - name: nginx
+          configMap: {name: urumi-dashboard-nginx}
+---
+# Source: urumi/templates/platform-db/database.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: urumi-platform-db
+spec:
+  replicas: 1
+  strategy: {type: Recreate}
+  selector:
+    matchLabels: {app.kubernetes.io/instance: urumi, app.kubernetes.io/component: platform-db}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/instance: urumi, app.kubernetes.io/component: platform-db}
+    spec:
+      imagePullSecrets: [{"name":"urumi-registry"}]
+      automountServiceAccountToken: false
+      containers:
+        - name: postgres
+          image: "postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826"
+          env:
+            - {name: POSTGRES_USER, value: urumi}
+            - {name: POSTGRES_DB, value: urumi}
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef: {name: urumi-platform-db, key: password}
+            - {name: PGDATA, value: /var/lib/postgresql/data/pgdata}
+          ports: [{name: postgres, containerPort: 5432}]
+          startupProbe:
+            exec: {command: [pg_isready, -U, urumi, -d, urumi]}
+            periodSeconds: 2
+            failureThreshold: 60
+          readinessProbe:
+            exec: {command: [pg_isready, -U, urumi, -d, urumi]}
+            periodSeconds: 3
+          livenessProbe:
+            exec: {command: [pg_isready, -U, urumi, -d, urumi]}
+            periodSeconds: 10
+          resources: {"limits":{"cpu":"500m","memory":"512Mi"},"requests":{"cpu":"100m","memory":"128Mi"}}
+          volumeMounts: [{name: data, mountPath: /var/lib/postgresql/data}]
+      volumes:
+        - name: data
+          persistentVolumeClaim: {claimName: urumi-platform-data}
+---
+# Source: urumi/templates/sample-mcps/resources.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: urumi-inventory-mcp
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: inventory-mcp}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: inventory-mcp}
+    spec:
+      imagePullSecrets: [{"name":"urumi-registry"}]
+      automountServiceAccountToken: false
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, runAsGroup: 10001, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: inventory-mcp
+          image: "private-registry.example.com/inventory-mcp:replace-with-immutable-reference"
+          imagePullPolicy: IfNotPresent
+          securityContext: {readOnlyRootFilesystem: true, allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          ports: [{name: mcp, containerPort: 8000}]
+          env:
+            - name: MCP_ALLOWED_HOSTS
+              value: "urumi-inventory-mcp,urumi-inventory-mcp.urumi.svc,urumi-inventory-mcp.urumi.svc.cluster.local"
+          startupProbe: {httpGet: {path: /livez, port: mcp}, periodSeconds: 2, timeoutSeconds: 2, failureThreshold: 30}
+          livenessProbe: {httpGet: {path: /livez, port: mcp}, periodSeconds: 10, timeoutSeconds: 2, failureThreshold: 3}
+          readinessProbe: {httpGet: {path: /readyz, port: mcp}, periodSeconds: 10, timeoutSeconds: 2, failureThreshold: 3}
+          resources:
+            limits:
+              cpu: 250m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+---
+# Source: urumi/templates/store/wordpress.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: urumi-wordpress
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: urumi
+      app.kubernetes.io/component: wordpress
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: urumi
+        app.kubernetes.io/instance: urumi
+        app.kubernetes.io/component: wordpress
+    spec:
+      imagePullSecrets: [{"name":"urumi-registry"}]
+      automountServiceAccountToken: false
+      securityContext:
+        fsGroup: 33
+      containers:
+        - name: wordpress
+          image: "private-registry.example.com/urumi-store:replace-with-immutable-reference"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: urumi-store
+          env:
+            - {name: WORDPRESS_DB_PASSWORD_FILE, value: /run/urumi/database/database-password}
+            - name: WORDPRESS_AUTH_KEY_FILE
+              value: /run/urumi/salts/AUTH_KEY
+            - name: WORDPRESS_SECURE_AUTH_KEY_FILE
+              value: /run/urumi/salts/SECURE_AUTH_KEY
+            - name: WORDPRESS_LOGGED_IN_KEY_FILE
+              value: /run/urumi/salts/LOGGED_IN_KEY
+            - name: WORDPRESS_NONCE_KEY_FILE
+              value: /run/urumi/salts/NONCE_KEY
+            - name: WORDPRESS_AUTH_SALT_FILE
+              value: /run/urumi/salts/AUTH_SALT
+            - name: WORDPRESS_SECURE_AUTH_SALT_FILE
+              value: /run/urumi/salts/SECURE_AUTH_SALT
+            - name: WORDPRESS_LOGGED_IN_SALT_FILE
+              value: /run/urumi/salts/LOGGED_IN_SALT
+            - name: WORDPRESS_NONCE_SALT_FILE
+              value: /run/urumi/salts/NONCE_SALT
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 768Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+          startupProbe:
+            httpGet: {path: /urumi-live.php, port: 80}
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 36
+          livenessProbe:
+            httpGet: {path: /urumi-live.php, port: 80}
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 6
+          readinessProbe:
+            httpGet: {path: /urumi-ready.php, port: 80}
+            periodSeconds: 10
+            timeoutSeconds: 3
+          volumeMounts:
+            - {name: content, mountPath: /var/www/html}
+            - {name: database, mountPath: /run/urumi/database, readOnly: true}
+            - {name: salts, mountPath: /run/urumi/salts, readOnly: true}
+      volumes:
+        - name: content
+          persistentVolumeClaim:
+            claimName: urumi-wordpress-content
+        - name: database
+          secret:
+            secretName: urumi-store-db
+            items:
+              - {key: database-password, path: database-password}
+        - name: salts
+          secret:
+            secretName: urumi-store-salts
+---
+# Source: urumi/templates/woocommerce-mcp/resources.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: urumi-woocommerce-mcp
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: woocommerce-mcp}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: woocommerce-mcp}
+    spec:
+      imagePullSecrets: [{"name":"urumi-registry"}]
+      hostAliases: [{"hostnames":["shop.example.com"],"ip":"192.0.2.10"}]
+      automountServiceAccountToken: false
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, runAsGroup: 10001, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: woocommerce-mcp
+          image: "private-registry.example.com/woocommerce-mcp:replace-with-immutable-reference"
+          imagePullPolicy: IfNotPresent
+          securityContext: {readOnlyRootFilesystem: true, allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          ports: [{name: mcp, containerPort: 8000}]
+          env:
+            - {name: WOO_CANONICAL_ORIGIN, value: "https://shop.example.com"}
+            - {name: WOO_TRANSPORT_ORIGIN, value: "https://shop.example.com"}
+            - {name: WOO_CURRENCY, value: "INR"}
+            - {name: MCP_ALLOWED_HOSTS, value: "urumi-woocommerce-mcp,urumi-woocommerce-mcp.urumi.svc,urumi-woocommerce-mcp.urumi.svc.cluster.local"}
+            - name: WOO_CONSUMER_KEY
+              valueFrom:
+                secretKeyRef: {name: urumi-woocommerce-rest, key: consumer-key}
+            - name: WOO_CONSUMER_SECRET
+              valueFrom:
+                secretKeyRef: {name: urumi-woocommerce-rest, key: consumer-secret}
+          startupProbe: {httpGet: {path: /livez, port: mcp}, periodSeconds: 2, timeoutSeconds: 2, failureThreshold: 30}
+          livenessProbe: {httpGet: {path: /livez, port: mcp}, periodSeconds: 10, timeoutSeconds: 2, failureThreshold: 3}
+          readinessProbe: {httpGet: {path: /readyz, port: mcp}, periodSeconds: 10, timeoutSeconds: 2, failureThreshold: 3}
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+---
+# Source: urumi/templates/store/mariadb.yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: urumi-mariadb
+spec:
+  serviceName: urumi-mariadb
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: urumi
+      app.kubernetes.io/component: mariadb
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: urumi
+        app.kubernetes.io/component: mariadb
+    spec:
+      imagePullSecrets: [{"name":"urumi-registry"}]
+      automountServiceAccountToken: false
+      containers:
+        - name: mariadb
+          image: "mariadb:11.4.13-noble"
+          ports:
+            - containerPort: 3306
+          env:
+            - {name: MARIADB_DATABASE, value: woocommerce}
+            - {name: MARIADB_USER, value: woocommerce}
+            - {name: MARIADB_PASSWORD_FILE, value: /run/urumi/database/database-password}
+            - {name: MARIADB_ROOT_PASSWORD_FILE, value: /run/urumi/database/root-password}
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 768Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+          startupProbe:
+            exec:
+              command: [healthcheck.sh, --connect, --innodb_initialized]
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 36
+          readinessProbe:
+            exec:
+              command: [healthcheck.sh, --connect, --innodb_initialized]
+            periodSeconds: 5
+            timeoutSeconds: 3
+          livenessProbe:
+            exec:
+              command: [healthcheck.sh, --connect]
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 6
+          volumeMounts:
+            - {name: data, mountPath: /var/lib/mysql}
+            - {name: database, mountPath: /run/urumi/database, readOnly: true}
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: urumi-mariadb-data
+        - name: database
+          secret:
+            secretName: urumi-store-db
+---
+# Source: urumi/templates/dashboard/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: urumi-dashboard
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts: ["dashboard.example.com"]
+      secretName: urumi-dashboard-tls
+  rules:
+    - host: dashboard.example.com
+      http:
+        paths:
+          - path: /api/v1
+            pathType: Prefix
+            backend: {service: {name: urumi-backend, port: {number: 8000}}}
+          - path: /mcp
+            pathType: Prefix
+            backend: {service: {name: urumi-backend, port: {number: 8000}}}
+          - path: /
+            pathType: Prefix
+            backend: {service: {name: urumi-dashboard, port: {number: 80}}}
+---
+# Source: urumi/templates/store/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: urumi-wordpress
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts: ["shop.example.com"]
+      secretName: urumi-shop-tls
+  rules:
+    - host: shop.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: urumi-wordpress
+                port:
+                  number: 80

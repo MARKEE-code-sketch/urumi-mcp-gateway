@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "scanned_files": 36,
+  "generated_credential_matches": 0,
+  "scope": "six actual generated Kubernetes fixture credentials; both module evidence folders",
+  "encodings": "UTF-8 and BOM-marked Windows UTF-16"
+}

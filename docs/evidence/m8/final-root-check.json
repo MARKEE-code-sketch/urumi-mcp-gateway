@@ -1,0 +1,14 @@
+{
+  "retained_resource_identities_unchanged": true,
+  "retained_resource_count": 7,
+  "original_shop_pods_ready": true,
+  "original_shop_restart_counts": {
+    "urumi-mariadb-0": 0,
+    "urumi-wordpress-5fdfc9c5f7-dldh4": 0
+  },
+  "original_claims_bound": true,
+  "original_claim_count": 3,
+  "owned_m8_namespace_absent": true,
+  "frozen_image_source_unchanged": true,
+  "frozen_input_count": 28
+}

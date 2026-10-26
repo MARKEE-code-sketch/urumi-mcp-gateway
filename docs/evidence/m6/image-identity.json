@@ -1,0 +1,7 @@
+{
+  "image": "urumi/gateway-check:m6",
+  "config_digest": "sha256:48a2f637063bb048b6bc16f25b2ee91b9302756c5a926659af8c548386970573",
+  "architecture": "amd64",
+  "os": "linux",
+  "verification": "SHA256 of actual Docker-exported configuration bytes"
+}

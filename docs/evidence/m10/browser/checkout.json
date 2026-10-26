@@ -1,0 +1,10 @@
+{
+  "action": "checkout",
+  "checked_at": "2026-10-20T04:26:19.008Z",
+  "tls_verification": "browser_default",
+  "checks": [
+    "storefront_checkout_order_received"
+  ],
+  "order_id": 16,
+  "status": "PASS"
+}

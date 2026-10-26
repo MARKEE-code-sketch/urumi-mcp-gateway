@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "documents_checked": 13,
+  "utf8_fences_local_file_links": "checked",
+  "independent_acceptance": {
+    "M8": "12/12 PASS",
+    "M9": "12/12 PASS"
+  },
+  "errors": []
+}

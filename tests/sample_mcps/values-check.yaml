@@ -1,0 +1,6 @@
+foundation: {enabled: false}
+store: {enabled: false}
+woocommerceMcp: {enabled: false}
+inventoryMcp:
+  enabled: true
+  image: {repository: urumi/inventory-mcp, tag: m4, digest: "", pullPolicy: IfNotPresent}

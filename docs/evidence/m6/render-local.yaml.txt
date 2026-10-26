@@ -1,0 +1,292 @@
+﻿---
+# Source: urumi/templates/gateway-check/resources.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: urumi-m6-check-gateway
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: gateway}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: gateway}
+        - podSelector:
+            matchLabels: {urumi-module: m6-check-client}
+      ports: [{protocol: TCP, port: 8000}]
+  egress:
+    - to:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/instance: urumi-m6-check}
+      ports: [{protocol: TCP, port: 8000}]
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+          podSelector:
+            matchLabels: {k8s-app: kube-dns}
+      ports: [{protocol: UDP, port: 53}, {protocol: TCP, port: 53}]
+---
+# Source: urumi/templates/gateway-check/resources.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: urumi-m6-check-none
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: none}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: gateway}
+        - podSelector:
+            matchLabels: {urumi-module: m6-check-client}
+      ports: [{protocol: TCP, port: 8000}]
+  egress: []
+---
+# Source: urumi/templates/gateway-check/resources.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: urumi-m6-check-bearer
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: bearer}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: gateway}
+        - podSelector:
+            matchLabels: {urumi-module: m6-check-client}
+      ports: [{protocol: TCP, port: 8000}]
+  egress: []
+---
+# Source: urumi/templates/gateway-check/resources.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: urumi-m6-check-header
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: header}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: gateway}
+        - podSelector:
+            matchLabels: {urumi-module: m6-check-client}
+      ports: [{protocol: TCP, port: 8000}]
+  egress: []
+---
+# Source: urumi/templates/gateway-check/resources.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: urumi-m6-check-gateway
+spec:
+  type: ClusterIP
+  selector: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: gateway}
+  ports: [{name: http, port: 8000, targetPort: http}]
+---
+# Source: urumi/templates/gateway-check/resources.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: urumi-m6-check-none
+spec:
+  type: ClusterIP
+  selector: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: none}
+  ports: [{name: http, port: 8000, targetPort: http}]
+---
+# Source: urumi/templates/gateway-check/resources.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: urumi-m6-check-bearer
+spec:
+  type: ClusterIP
+  selector: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: bearer}
+  ports: [{name: http, port: 8000, targetPort: http}]
+---
+# Source: urumi/templates/gateway-check/resources.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: urumi-m6-check-header
+spec:
+  type: ClusterIP
+  selector: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: header}
+  ports: [{name: http, port: 8000, targetPort: http}]
+---
+# Source: urumi/templates/gateway-check/resources.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: urumi-m6-check-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: gateway}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: gateway}
+    spec:
+      automountServiceAccountToken: false
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, runAsGroup: 10001, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: gateway
+          image: "urumi/gateway-check:m6"
+          imagePullPolicy: IfNotPresent
+          command: [python, -m, scripts.m6.harness]
+          securityContext: {readOnlyRootFilesystem: true, allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          ports: [{name: http, containerPort: 8000}]
+          env:
+            - name: NONE_URL
+              value: "http://urumi-m6-check-none.urumi-m6-check.svc.cluster.local:8000/mcp"
+            - name: BEARER_URL
+              value: "http://urumi-m6-check-bearer.urumi-m6-check.svc.cluster.local:8000/mcp"
+            - name: HEADER_URL
+              value: "http://urumi-m6-check-header.urumi-m6-check.svc.cluster.local:8000/mcp"
+            - name: BEARER_TOKEN
+              valueFrom:
+                secretKeyRef: {name: urumi-m6-check-access, key: bearer-token}
+            - name: GATEWAY_KEY_A
+              valueFrom:
+                secretKeyRef: {name: urumi-m6-check-access, key: key-a}
+            - name: GATEWAY_KEY_B
+              valueFrom:
+                secretKeyRef: {name: urumi-m6-check-access, key: key-b}
+            - name: HEADER_TOKEN
+              valueFrom:
+                secretKeyRef: {name: urumi-m6-check-access, key: header-token}
+            - name: SESSION_A
+              valueFrom:
+                secretKeyRef: {name: urumi-m6-check-access, key: session-a}
+            - name: SESSION_B
+              valueFrom:
+                secretKeyRef: {name: urumi-m6-check-access, key: session-b}
+          startupProbe: {httpGet: {path: /livez, port: http}, periodSeconds: 2, timeoutSeconds: 2, failureThreshold: 30}
+          readinessProbe: {httpGet: {path: /readyz, port: http}, initialDelaySeconds: 3, periodSeconds: 5, timeoutSeconds: 2, failureThreshold: 3}
+          livenessProbe: {httpGet: {path: /livez, port: http}, initialDelaySeconds: 3, periodSeconds: 5, timeoutSeconds: 2, failureThreshold: 3}
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+---
+# Source: urumi/templates/gateway-check/resources.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: urumi-m6-check-none
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: none}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: none}
+    spec:
+      automountServiceAccountToken: false
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, runAsGroup: 10001, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: none
+          image: "urumi/gateway-check:m6"
+          imagePullPolicy: IfNotPresent
+          command: [python, -m, scripts.m6.fixtures]
+          securityContext: {readOnlyRootFilesystem: true, allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          ports: [{name: http, containerPort: 8000}]
+          env:
+            - {name: MODE, value: "none"}
+          startupProbe: {httpGet: {path: /livez, port: http}, periodSeconds: 2, timeoutSeconds: 2, failureThreshold: 30}
+          readinessProbe: {httpGet: {path: /readyz, port: http}, initialDelaySeconds: 3, periodSeconds: 5, timeoutSeconds: 2, failureThreshold: 3}
+          livenessProbe: {httpGet: {path: /livez, port: http}, initialDelaySeconds: 3, periodSeconds: 5, timeoutSeconds: 2, failureThreshold: 3}
+          resources:
+            limits:
+              cpu: 250m
+              memory: 128Mi
+            requests:
+              cpu: 25m
+              memory: 32Mi
+---
+# Source: urumi/templates/gateway-check/resources.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: urumi-m6-check-bearer
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: bearer}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: bearer}
+    spec:
+      automountServiceAccountToken: false
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, runAsGroup: 10001, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: bearer
+          image: "urumi/gateway-check:m6"
+          imagePullPolicy: IfNotPresent
+          command: [python, -m, scripts.m6.fixtures]
+          securityContext: {readOnlyRootFilesystem: true, allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          ports: [{name: http, containerPort: 8000}]
+          env:
+            - {name: MODE, value: "bearer"}
+            - name: UPSTREAM_TOKEN
+              valueFrom:
+                secretKeyRef: {name: urumi-m6-check-access, key: bearer-token}
+          startupProbe: {httpGet: {path: /livez, port: http}, periodSeconds: 2, timeoutSeconds: 2, failureThreshold: 30}
+          readinessProbe: {httpGet: {path: /readyz, port: http}, initialDelaySeconds: 3, periodSeconds: 5, timeoutSeconds: 2, failureThreshold: 3}
+          livenessProbe: {httpGet: {path: /livez, port: http}, initialDelaySeconds: 3, periodSeconds: 5, timeoutSeconds: 2, failureThreshold: 3}
+          resources:
+            limits:
+              cpu: 250m
+              memory: 128Mi
+            requests:
+              cpu: 25m
+              memory: 32Mi
+---
+# Source: urumi/templates/gateway-check/resources.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: urumi-m6-check-header
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: header}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/instance: urumi-m6-check, app.kubernetes.io/component: header}
+    spec:
+      automountServiceAccountToken: false
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, runAsGroup: 10001, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: header
+          image: "urumi/gateway-check:m6"
+          imagePullPolicy: IfNotPresent
+          command: [python, -m, scripts.m6.fixtures]
+          securityContext: {readOnlyRootFilesystem: true, allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          ports: [{name: http, containerPort: 8000}]
+          env:
+            - {name: MODE, value: "header"}
+            - {name: STATEFUL, value: "true"}
+            - name: UPSTREAM_TOKEN
+              valueFrom:
+                secretKeyRef: {name: urumi-m6-check-access, key: header-token}
+          startupProbe: {httpGet: {path: /livez, port: http}, periodSeconds: 2, timeoutSeconds: 2, failureThreshold: 30}
+          readinessProbe: {httpGet: {path: /readyz, port: http}, initialDelaySeconds: 3, periodSeconds: 5, timeoutSeconds: 2, failureThreshold: 3}
+          livenessProbe: {httpGet: {path: /livez, port: http}, initialDelaySeconds: 3, periodSeconds: 5, timeoutSeconds: 2, failureThreshold: 3}
+          resources:
+            limits:
+              cpu: 250m
+              memory: 128Mi
+            requests:
+              cpu: 25m
+              memory: 32Mi

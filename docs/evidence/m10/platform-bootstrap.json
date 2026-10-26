@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "namespace": "urumi-m10",
+  "admin_user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+  "owner_stopped_before_bootstrap": true,
+  "original_bootstrap_secret_removed": true,
+  "scope": "Existing private operator bootstrap against the new platform database only; no password reset."
+}

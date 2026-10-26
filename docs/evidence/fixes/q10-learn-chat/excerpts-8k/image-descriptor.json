@@ -1,0 +1,11 @@
+{
+  "image": "urumi/backend:m10-q10-excerpts",
+  "descriptor": {
+    "mediaType": "application/vnd.oci.image.index.v1+json",
+    "digest": "sha256:35bd897fc2d78044a88a90b6992217678342872ef7150f68cda877c121fd667a",
+    "size": 856
+  },
+  "repo_digests": [
+    "urumi/backend@sha256:35bd897fc2d78044a88a90b6992217678342872ef7150f68cda877c121fd667a"
+  ]
+}

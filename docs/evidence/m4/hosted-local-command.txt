@@ -1,0 +1,10 @@
+﻿UTC: 2026-10-16T13:07:15.6757302Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.venv\Scripts\python.exe "scripts/m4/probe.py" "--output" "docs/evidence/m4/hosted-local.json"
+Exit: 0
+
+
+UTC: 2026-10-16T13:09:49.6918871Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.venv\Scripts\python.exe "scripts/m4/probe.py" "--output" "docs/evidence/m4/hosted-local.json"
+Exit: 0
+
+

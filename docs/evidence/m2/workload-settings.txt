@@ -1,0 +1,3028 @@
+﻿UTC: 2026-10-15T14:52:36.0724577Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "statefulset/urumi-mariadb" "--timeout=180s"
+Exit: 0
+Waiting for 1 pods to be ready...
+partitioned roll out complete: 1 new pods have been updated...
+
+
+UTC: 2026-10-15T14:52:36.7881220Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "wait" "pod" "-l" "app.kubernetes.io/component=wordpress,app.kubernetes.io/instance=urumi" "--for=jsonpath={.status.phase}=Running" "--timeout=180s"
+Exit: 0
+pod/urumi-wordpress-7b56444fdc-zs4qf condition met
+
+
+UTC: 2026-10-15T14:53:02.0976542Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "deployments,statefulsets,services,ingresses,pvc" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "apps/v1",
+            "kind": "Deployment",
+            "metadata": {
+                "annotations": {
+                    "deployment.kubernetes.io/revision": "1",
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-wordpress",
+                "namespace": "urumi",
+                "resourceVersion": "8815",
+                "uid": "8ecc650c-0b35-4f59-b785-8d61e2b195d0"
+            },
+            "spec": {
+                "progressDeadlineSeconds": 600,
+                "replicas": 1,
+                "revisionHistoryLimit": 10,
+                "selector": {
+                    "matchLabels": {
+                        "app.kubernetes.io/component": "wordpress",
+                        "app.kubernetes.io/instance": "urumi"
+                    }
+                },
+                "strategy": {
+                    "type": "Recreate"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/component": "wordpress",
+                            "app.kubernetes.io/instance": "urumi",
+                            "app.kubernetes.io/name": "urumi"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "WORDPRESS_DB_PASSWORD_FILE",
+                                        "value": "/run/urumi/database/database-password"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_AUTH_KEY_FILE",
+                                        "value": "/run/urumi/salts/AUTH_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_SECURE_AUTH_KEY_FILE",
+                                        "value": "/run/urumi/salts/SECURE_AUTH_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_LOGGED_IN_KEY_FILE",
+                                        "value": "/run/urumi/salts/LOGGED_IN_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_NONCE_KEY_FILE",
+                                        "value": "/run/urumi/salts/NONCE_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_AUTH_SALT_FILE",
+                                        "value": "/run/urumi/salts/AUTH_SALT"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_SECURE_AUTH_SALT_FILE",
+                                        "value": "/run/urumi/salts/SECURE_AUTH_SALT"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_LOGGED_IN_SALT_FILE",
+                                        "value": "/run/urumi/salts/LOGGED_IN_SALT"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_NONCE_SALT_FILE",
+                                        "value": "/run/urumi/salts/NONCE_SALT"
+                                    }
+                                ],
+                                "envFrom": [
+                                    {
+                                        "configMapRef": {
+                                            "name": "urumi-store"
+                                        }
+                                    }
+                                ],
+                                "image": "urumi-store:m2-fe04b431b535",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "failureThreshold": 6,
+                                    "httpGet": {
+                                        "path": "/urumi-live.php",
+                                        "port": 80,
+                                        "scheme": "HTTP"
+                                    },
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "name": "wordpress",
+                                "ports": [
+                                    {
+                                        "containerPort": 80,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "failureThreshold": 3,
+                                    "httpGet": {
+                                        "path": "/urumi-ready.php",
+                                        "port": 80,
+                                        "scheme": "HTTP"
+                                    },
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "1",
+                                        "memory": "768Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "100m",
+                                        "memory": "256Mi"
+                                    }
+                                },
+                                "startupProbe": {
+                                    "failureThreshold": 36,
+                                    "httpGet": {
+                                        "path": "/urumi-live.php",
+                                        "port": 80,
+                                        "scheme": "HTTP"
+                                    },
+                                    "periodSeconds": 5,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/var/www/html",
+                                        "name": "content"
+                                    },
+                                    {
+                                        "mountPath": "/run/urumi/database",
+                                        "name": "database",
+                                        "readOnly": true
+                                    },
+                                    {
+                                        "mountPath": "/run/urumi/salts",
+                                        "name": "salts",
+                                        "readOnly": true
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "fsGroup": 33
+                        },
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "name": "content",
+                                "persistentVolumeClaim": {
+                                    "claimName": "urumi-wordpress-content"
+                                }
+                            },
+                            {
+                                "name": "database",
+                                "secret": {
+                                    "defaultMode": 420,
+                                    "items": [
+                                        {
+                                            "key": "database-password",
+                                            "path": "database-password"
+                                        }
+                                    ],
+                                    "secretName": "urumi-store-db"
+                                }
+                            },
+                            {
+                                "name": "salts",
+                                "secret": {
+                                    "defaultMode": 420,
+                                    "secretName": "urumi-store-salts"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "availableReplicas": 1,
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-10-15T14:52:58Z",
+                        "lastUpdateTime": "2026-10-15T14:52:58Z",
+                        "message": "Deployment has minimum availability.",
+                        "reason": "MinimumReplicasAvailable",
+                        "status": "True",
+                        "type": "Available"
+                    },
+                    {
+                        "lastTransitionTime": "2026-10-15T14:51:41Z",
+                        "lastUpdateTime": "2026-10-15T14:52:58Z",
+                        "message": "ReplicaSet \"urumi-wordpress-7b56444fdc\" has successfully progressed.",
+                        "reason": "NewReplicaSetAvailable",
+                        "status": "True",
+                        "type": "Progressing"
+                    }
+                ],
+                "observedGeneration": 1,
+                "readyReplicas": 1,
+                "replicas": 1,
+                "terminatingReplicas": 0,
+                "updatedReplicas": 1
+            }
+        },
+        {
+            "apiVersion": "apps/v1",
+            "kind": "StatefulSet",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-mariadb",
+                "namespace": "urumi",
+                "resourceVersion": "8784",
+                "uid": "7738045c-43f5-49de-9b57-6096a5dc0e03"
+            },
+            "spec": {
+                "persistentVolumeClaimRetentionPolicy": {
+                    "whenDeleted": "Retain",
+                    "whenScaled": "Retain"
+                },
+                "podManagementPolicy": "OrderedReady",
+                "replicas": 1,
+                "revisionHistoryLimit": 10,
+                "selector": {
+                    "matchLabels": {
+                        "app.kubernetes.io/component": "mariadb",
+                        "app.kubernetes.io/instance": "urumi"
+                    }
+                },
+                "serviceName": "urumi-mariadb",
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/component": "mariadb",
+                            "app.kubernetes.io/instance": "urumi"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "MARIADB_DATABASE",
+                                        "value": "woocommerce"
+                                    },
+                                    {
+                                        "name": "MARIADB_USER",
+                                        "value": "woocommerce"
+                                    },
+                                    {
+                                        "name": "MARIADB_PASSWORD_FILE",
+                                        "value": "/run/urumi/database/database-password"
+                                    },
+                                    {
+                                        "name": "MARIADB_ROOT_PASSWORD_FILE",
+                                        "value": "/run/urumi/database/root-password"
+                                    }
+                                ],
+                                "image": "mariadb@sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "healthcheck.sh",
+                                            "--connect"
+                                        ]
+                                    },
+                                    "failureThreshold": 6,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "name": "mariadb",
+                                "ports": [
+                                    {
+                                        "containerPort": 3306,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "healthcheck.sh",
+                                            "--connect",
+                                            "--innodb_initialized"
+                                        ]
+                                    },
+                                    "failureThreshold": 3,
+                                    "periodSeconds": 5,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "1",
+                                        "memory": "768Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "100m",
+                                        "memory": "256Mi"
+                                    }
+                                },
+                                "startupProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "healthcheck.sh",
+                                            "--connect",
+                                            "--innodb_initialized"
+                                        ]
+                                    },
+                                    "failureThreshold": 36,
+                                    "periodSeconds": 5,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/var/lib/mysql",
+                                        "name": "data"
+                                    },
+                                    {
+                                        "mountPath": "/run/urumi/database",
+                                        "name": "database",
+                                        "readOnly": true
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "name": "data",
+                                "persistentVolumeClaim": {
+                                    "claimName": "urumi-mariadb-data"
+                                }
+                            },
+                            {
+                                "name": "database",
+                                "secret": {
+                                    "defaultMode": 420,
+                                    "secretName": "urumi-store-db"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "updateStrategy": {
+                    "rollingUpdate": {
+                        "partition": 0
+                    },
+                    "type": "RollingUpdate"
+                }
+            },
+            "status": {
+                "availableReplicas": 1,
+                "collisionCount": 0,
+                "currentReplicas": 1,
+                "currentRevision": "urumi-mariadb-f9f589977",
+                "observedGeneration": 1,
+                "readyReplicas": 1,
+                "replicas": 1,
+                "updateRevision": "urumi-mariadb-f9f589977",
+                "updatedReplicas": 1
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-mariadb",
+                "namespace": "urumi",
+                "resourceVersion": "8653",
+                "uid": "a05a7040-8d8f-49e3-abdf-b5f7735522c3"
+            },
+            "spec": {
+                "clusterIP": "None",
+                "clusterIPs": [
+                    "None"
+                ],
+                "internalTrafficPolicy": "Cluster",
+                "ipFamilies": [
+                    "IPv4"
+                ],
+                "ipFamilyPolicy": "SingleStack",
+                "ports": [
+                    {
+                        "port": 3306,
+                        "protocol": "TCP",
+                        "targetPort": 3306
+                    }
+                ],
+                "selector": {
+                    "app.kubernetes.io/component": "mariadb",
+                    "app.kubernetes.io/instance": "urumi"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-wordpress",
+                "namespace": "urumi",
+                "resourceVersion": "8657",
+                "uid": "221ad775-aef4-4a39-8b49-282ab820fa5e"
+            },
+            "spec": {
+                "clusterIP": "10.43.240.131",
+                "clusterIPs": [
+                    "10.43.240.131"
+                ],
+                "internalTrafficPolicy": "Cluster",
+                "ipFamilies": [
+                    "IPv4"
+                ],
+                "ipFamilyPolicy": "SingleStack",
+                "ports": [
+                    {
+                        "port": 80,
+                        "protocol": "TCP",
+                        "targetPort": 80
+                    }
+                ],
+                "selector": {
+                    "app.kubernetes.io/component": "wordpress",
+                    "app.kubernetes.io/instance": "urumi"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
+            "apiVersion": "networking.k8s.io/v1",
+            "kind": "Ingress",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-wordpress",
+                "namespace": "urumi",
+                "resourceVersion": "8685",
+                "uid": "9351cbf4-28aa-44d5-83b2-56debb9f723e"
+            },
+            "spec": {
+                "ingressClassName": "traefik",
+                "rules": [
+                    {
+                        "host": "shop.urumi.test",
+                        "http": {
+                            "paths": [
+                                {
+                                    "backend": {
+                                        "service": {
+                                            "name": "urumi-wordpress",
+                                            "port": {
+                                                "number": 80
+                                            }
+                                        }
+                                    },
+                                    "path": "/",
+                                    "pathType": "Prefix"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "loadBalancer": {
+                    "ingress": [
+                        {
+                            "ip": "172.18.0.2"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "metadata": {
+                "annotations": {
+                    "helm.sh/resource-policy": "keep",
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi",
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "rancher.io/local-path",
+                    "volume.kubernetes.io/selected-node": "k3d-urumi-server-0",
+                    "volume.kubernetes.io/storage-provisioner": "rancher.io/local-path"
+                },
+                "creationTimestamp": "2026-10-14T17:00:00Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app.kubernetes.io/component": "foundation",
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/managed-by": "Helm",
+                    "app.kubernetes.io/name": "urumi",
+                    "helm.sh/chart": "urumi-0.1.0"
+                },
+                "name": "urumi-foundation-data",
+                "namespace": "urumi",
+                "resourceVersion": "2945",
+                "uid": "c6f386c1-ef1e-4996-ab86-ed888999226e"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "local-path",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-c6f386c1-ef1e-4996-ab86-ed888999226e"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "metadata": {
+                "annotations": {
+                    "helm.sh/resource-policy": "keep",
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi",
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "rancher.io/local-path",
+                    "volume.kubernetes.io/selected-node": "k3d-urumi-server-0",
+                    "volume.kubernetes.io/storage-provisioner": "rancher.io/local-path"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/managed-by": "Helm",
+                    "app.kubernetes.io/part-of": "urumi-store"
+                },
+                "name": "urumi-mariadb-data",
+                "namespace": "urumi",
+                "resourceVersion": "8720",
+                "uid": "91b18137-d90e-49f0-b16e-ab2686a82df0"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "2Gi"
+                    }
+                },
+                "storageClassName": "local-path",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-91b18137-d90e-49f0-b16e-ab2686a82df0"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "2Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "metadata": {
+                "annotations": {
+                    "helm.sh/resource-policy": "keep",
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi",
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "rancher.io/local-path",
+                    "volume.kubernetes.io/selected-node": "k3d-urumi-server-0",
+                    "volume.kubernetes.io/storage-provisioner": "rancher.io/local-path"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/managed-by": "Helm",
+                    "app.kubernetes.io/part-of": "urumi-store"
+                },
+                "name": "urumi-wordpress-content",
+                "namespace": "urumi",
+                "resourceVersion": "8723",
+                "uid": "cae72902-5c12-4c82-9225-965798cb78b4"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "2Gi"
+                    }
+                },
+                "storageClassName": "local-path",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-cae72902-5c12-4c82-9225-965798cb78b4"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "2Gi"
+                },
+                "phase": "Bound"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-15T14:55:21.9165578Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "statefulset/urumi-mariadb" "--timeout=180s"
+Exit: 0
+partitioned roll out complete: 1 new pods have been updated...
+
+
+UTC: 2026-10-15T14:55:22.7689586Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "wait" "pod" "-l" "app.kubernetes.io/component=wordpress,app.kubernetes.io/instance=urumi" "--for=jsonpath={.status.phase}=Running" "--timeout=180s"
+Exit: 0
+pod/urumi-wordpress-7b56444fdc-zs4qf condition met
+
+
+UTC: 2026-10-15T14:55:39.0525044Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "deployments,statefulsets,services,ingresses,pvc" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "apps/v1",
+            "kind": "Deployment",
+            "metadata": {
+                "annotations": {
+                    "deployment.kubernetes.io/revision": "2",
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "generation": 2,
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-wordpress",
+                "namespace": "urumi",
+                "resourceVersion": "8969",
+                "uid": "8ecc650c-0b35-4f59-b785-8d61e2b195d0"
+            },
+            "spec": {
+                "progressDeadlineSeconds": 600,
+                "replicas": 1,
+                "revisionHistoryLimit": 10,
+                "selector": {
+                    "matchLabels": {
+                        "app.kubernetes.io/component": "wordpress",
+                        "app.kubernetes.io/instance": "urumi"
+                    }
+                },
+                "strategy": {
+                    "type": "Recreate"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/component": "wordpress",
+                            "app.kubernetes.io/instance": "urumi",
+                            "app.kubernetes.io/name": "urumi"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "WORDPRESS_DB_PASSWORD_FILE",
+                                        "value": "/run/urumi/database/database-password"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_AUTH_KEY_FILE",
+                                        "value": "/run/urumi/salts/AUTH_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_SECURE_AUTH_KEY_FILE",
+                                        "value": "/run/urumi/salts/SECURE_AUTH_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_LOGGED_IN_KEY_FILE",
+                                        "value": "/run/urumi/salts/LOGGED_IN_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_NONCE_KEY_FILE",
+                                        "value": "/run/urumi/salts/NONCE_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_AUTH_SALT_FILE",
+                                        "value": "/run/urumi/salts/AUTH_SALT"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_SECURE_AUTH_SALT_FILE",
+                                        "value": "/run/urumi/salts/SECURE_AUTH_SALT"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_LOGGED_IN_SALT_FILE",
+                                        "value": "/run/urumi/salts/LOGGED_IN_SALT"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_NONCE_SALT_FILE",
+                                        "value": "/run/urumi/salts/NONCE_SALT"
+                                    }
+                                ],
+                                "envFrom": [
+                                    {
+                                        "configMapRef": {
+                                            "name": "urumi-store"
+                                        }
+                                    }
+                                ],
+                                "image": "urumi-store:m2-4b1bc9edacb0",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "failureThreshold": 6,
+                                    "httpGet": {
+                                        "path": "/urumi-live.php",
+                                        "port": 80,
+                                        "scheme": "HTTP"
+                                    },
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "name": "wordpress",
+                                "ports": [
+                                    {
+                                        "containerPort": 80,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "failureThreshold": 3,
+                                    "httpGet": {
+                                        "path": "/urumi-ready.php",
+                                        "port": 80,
+                                        "scheme": "HTTP"
+                                    },
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "1",
+                                        "memory": "768Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "100m",
+                                        "memory": "256Mi"
+                                    }
+                                },
+                                "startupProbe": {
+                                    "failureThreshold": 36,
+                                    "httpGet": {
+                                        "path": "/urumi-live.php",
+                                        "port": 80,
+                                        "scheme": "HTTP"
+                                    },
+                                    "periodSeconds": 5,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/var/www/html",
+                                        "name": "content"
+                                    },
+                                    {
+                                        "mountPath": "/run/urumi/database",
+                                        "name": "database",
+                                        "readOnly": true
+                                    },
+                                    {
+                                        "mountPath": "/run/urumi/salts",
+                                        "name": "salts",
+                                        "readOnly": true
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "fsGroup": 33
+                        },
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "name": "content",
+                                "persistentVolumeClaim": {
+                                    "claimName": "urumi-wordpress-content"
+                                }
+                            },
+                            {
+                                "name": "database",
+                                "secret": {
+                                    "defaultMode": 420,
+                                    "items": [
+                                        {
+                                            "key": "database-password",
+                                            "path": "database-password"
+                                        }
+                                    ],
+                                    "secretName": "urumi-store-db"
+                                }
+                            },
+                            {
+                                "name": "salts",
+                                "secret": {
+                                    "defaultMode": 420,
+                                    "secretName": "urumi-store-salts"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "availableReplicas": 1,
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-10-15T14:55:31Z",
+                        "lastUpdateTime": "2026-10-15T14:55:31Z",
+                        "message": "Deployment has minimum availability.",
+                        "reason": "MinimumReplicasAvailable",
+                        "status": "True",
+                        "type": "Available"
+                    },
+                    {
+                        "lastTransitionTime": "2026-10-15T14:51:41Z",
+                        "lastUpdateTime": "2026-10-15T14:55:31Z",
+                        "message": "ReplicaSet \"urumi-wordpress-68f88d5479\" has successfully progressed.",
+                        "reason": "NewReplicaSetAvailable",
+                        "status": "True",
+                        "type": "Progressing"
+                    }
+                ],
+                "observedGeneration": 2,
+                "readyReplicas": 1,
+                "replicas": 1,
+                "terminatingReplicas": 0,
+                "updatedReplicas": 1
+            }
+        },
+        {
+            "apiVersion": "apps/v1",
+            "kind": "StatefulSet",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-mariadb",
+                "namespace": "urumi",
+                "resourceVersion": "8784",
+                "uid": "7738045c-43f5-49de-9b57-6096a5dc0e03"
+            },
+            "spec": {
+                "persistentVolumeClaimRetentionPolicy": {
+                    "whenDeleted": "Retain",
+                    "whenScaled": "Retain"
+                },
+                "podManagementPolicy": "OrderedReady",
+                "replicas": 1,
+                "revisionHistoryLimit": 10,
+                "selector": {
+                    "matchLabels": {
+                        "app.kubernetes.io/component": "mariadb",
+                        "app.kubernetes.io/instance": "urumi"
+                    }
+                },
+                "serviceName": "urumi-mariadb",
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/component": "mariadb",
+                            "app.kubernetes.io/instance": "urumi"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "MARIADB_DATABASE",
+                                        "value": "woocommerce"
+                                    },
+                                    {
+                                        "name": "MARIADB_USER",
+                                        "value": "woocommerce"
+                                    },
+                                    {
+                                        "name": "MARIADB_PASSWORD_FILE",
+                                        "value": "/run/urumi/database/database-password"
+                                    },
+                                    {
+                                        "name": "MARIADB_ROOT_PASSWORD_FILE",
+                                        "value": "/run/urumi/database/root-password"
+                                    }
+                                ],
+                                "image": "mariadb@sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "healthcheck.sh",
+                                            "--connect"
+                                        ]
+                                    },
+                                    "failureThreshold": 6,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "name": "mariadb",
+                                "ports": [
+                                    {
+                                        "containerPort": 3306,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "healthcheck.sh",
+                                            "--connect",
+                                            "--innodb_initialized"
+                                        ]
+                                    },
+                                    "failureThreshold": 3,
+                                    "periodSeconds": 5,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "1",
+                                        "memory": "768Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "100m",
+                                        "memory": "256Mi"
+                                    }
+                                },
+                                "startupProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "healthcheck.sh",
+                                            "--connect",
+                                            "--innodb_initialized"
+                                        ]
+                                    },
+                                    "failureThreshold": 36,
+                                    "periodSeconds": 5,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/var/lib/mysql",
+                                        "name": "data"
+                                    },
+                                    {
+                                        "mountPath": "/run/urumi/database",
+                                        "name": "database",
+                                        "readOnly": true
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "name": "data",
+                                "persistentVolumeClaim": {
+                                    "claimName": "urumi-mariadb-data"
+                                }
+                            },
+                            {
+                                "name": "database",
+                                "secret": {
+                                    "defaultMode": 420,
+                                    "secretName": "urumi-store-db"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "updateStrategy": {
+                    "rollingUpdate": {
+                        "partition": 0
+                    },
+                    "type": "RollingUpdate"
+                }
+            },
+            "status": {
+                "availableReplicas": 1,
+                "collisionCount": 0,
+                "currentReplicas": 1,
+                "currentRevision": "urumi-mariadb-f9f589977",
+                "observedGeneration": 1,
+                "readyReplicas": 1,
+                "replicas": 1,
+                "updateRevision": "urumi-mariadb-f9f589977",
+                "updatedReplicas": 1
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-mariadb",
+                "namespace": "urumi",
+                "resourceVersion": "8653",
+                "uid": "a05a7040-8d8f-49e3-abdf-b5f7735522c3"
+            },
+            "spec": {
+                "clusterIP": "None",
+                "clusterIPs": [
+                    "None"
+                ],
+                "internalTrafficPolicy": "Cluster",
+                "ipFamilies": [
+                    "IPv4"
+                ],
+                "ipFamilyPolicy": "SingleStack",
+                "ports": [
+                    {
+                        "port": 3306,
+                        "protocol": "TCP",
+                        "targetPort": 3306
+                    }
+                ],
+                "selector": {
+                    "app.kubernetes.io/component": "mariadb",
+                    "app.kubernetes.io/instance": "urumi"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-wordpress",
+                "namespace": "urumi",
+                "resourceVersion": "8657",
+                "uid": "221ad775-aef4-4a39-8b49-282ab820fa5e"
+            },
+            "spec": {
+                "clusterIP": "10.43.240.131",
+                "clusterIPs": [
+                    "10.43.240.131"
+                ],
+                "internalTrafficPolicy": "Cluster",
+                "ipFamilies": [
+                    "IPv4"
+                ],
+                "ipFamilyPolicy": "SingleStack",
+                "ports": [
+                    {
+                        "port": 80,
+                        "protocol": "TCP",
+                        "targetPort": 80
+                    }
+                ],
+                "selector": {
+                    "app.kubernetes.io/component": "wordpress",
+                    "app.kubernetes.io/instance": "urumi"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
+            "apiVersion": "networking.k8s.io/v1",
+            "kind": "Ingress",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-wordpress",
+                "namespace": "urumi",
+                "resourceVersion": "8685",
+                "uid": "9351cbf4-28aa-44d5-83b2-56debb9f723e"
+            },
+            "spec": {
+                "ingressClassName": "traefik",
+                "rules": [
+                    {
+                        "host": "shop.urumi.test",
+                        "http": {
+                            "paths": [
+                                {
+                                    "backend": {
+                                        "service": {
+                                            "name": "urumi-wordpress",
+                                            "port": {
+                                                "number": 80
+                                            }
+                                        }
+                                    },
+                                    "path": "/",
+                                    "pathType": "Prefix"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "loadBalancer": {
+                    "ingress": [
+                        {
+                            "ip": "172.18.0.2"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "metadata": {
+                "annotations": {
+                    "helm.sh/resource-policy": "keep",
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi",
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "rancher.io/local-path",
+                    "volume.kubernetes.io/selected-node": "k3d-urumi-server-0",
+                    "volume.kubernetes.io/storage-provisioner": "rancher.io/local-path"
+                },
+                "creationTimestamp": "2026-10-14T17:00:00Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app.kubernetes.io/component": "foundation",
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/managed-by": "Helm",
+                    "app.kubernetes.io/name": "urumi",
+                    "helm.sh/chart": "urumi-0.1.0"
+                },
+                "name": "urumi-foundation-data",
+                "namespace": "urumi",
+                "resourceVersion": "2945",
+                "uid": "c6f386c1-ef1e-4996-ab86-ed888999226e"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "local-path",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-c6f386c1-ef1e-4996-ab86-ed888999226e"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "metadata": {
+                "annotations": {
+                    "helm.sh/resource-policy": "keep",
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi",
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "rancher.io/local-path",
+                    "volume.kubernetes.io/selected-node": "k3d-urumi-server-0",
+                    "volume.kubernetes.io/storage-provisioner": "rancher.io/local-path"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/managed-by": "Helm",
+                    "app.kubernetes.io/part-of": "urumi-store"
+                },
+                "name": "urumi-mariadb-data",
+                "namespace": "urumi",
+                "resourceVersion": "8720",
+                "uid": "91b18137-d90e-49f0-b16e-ab2686a82df0"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "2Gi"
+                    }
+                },
+                "storageClassName": "local-path",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-91b18137-d90e-49f0-b16e-ab2686a82df0"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "2Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "metadata": {
+                "annotations": {
+                    "helm.sh/resource-policy": "keep",
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi",
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "rancher.io/local-path",
+                    "volume.kubernetes.io/selected-node": "k3d-urumi-server-0",
+                    "volume.kubernetes.io/storage-provisioner": "rancher.io/local-path"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/managed-by": "Helm",
+                    "app.kubernetes.io/part-of": "urumi-store"
+                },
+                "name": "urumi-wordpress-content",
+                "namespace": "urumi",
+                "resourceVersion": "8723",
+                "uid": "cae72902-5c12-4c82-9225-965798cb78b4"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "2Gi"
+                    }
+                },
+                "storageClassName": "local-path",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-cae72902-5c12-4c82-9225-965798cb78b4"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "2Gi"
+                },
+                "phase": "Bound"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-15T15:04:29.0374923Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "deployment/urumi-wordpress" "--timeout=180s"
+Exit: 0
+deployment "urumi-wordpress" successfully rolled out
+
+
+UTC: 2026-10-15T15:04:29.2831327Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "statefulset/urumi-mariadb" "--timeout=180s"
+Exit: 0
+partitioned roll out complete: 1 new pods have been updated...
+
+
+UTC: 2026-10-15T15:04:29.5107585Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "deployment/urumi-wordpress" "statefulset/urumi-mariadb" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "apps/v1",
+            "kind": "Deployment",
+            "metadata": {
+                "annotations": {
+                    "deployment.kubernetes.io/revision": "2",
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "generation": 2,
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-wordpress",
+                "namespace": "urumi",
+                "resourceVersion": "8969",
+                "uid": "8ecc650c-0b35-4f59-b785-8d61e2b195d0"
+            },
+            "spec": {
+                "progressDeadlineSeconds": 600,
+                "replicas": 1,
+                "revisionHistoryLimit": 10,
+                "selector": {
+                    "matchLabels": {
+                        "app.kubernetes.io/component": "wordpress",
+                        "app.kubernetes.io/instance": "urumi"
+                    }
+                },
+                "strategy": {
+                    "type": "Recreate"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/component": "wordpress",
+                            "app.kubernetes.io/instance": "urumi",
+                            "app.kubernetes.io/name": "urumi"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "WORDPRESS_DB_PASSWORD_FILE",
+                                        "value": "/run/urumi/database/database-password"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_AUTH_KEY_FILE",
+                                        "value": "/run/urumi/salts/AUTH_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_SECURE_AUTH_KEY_FILE",
+                                        "value": "/run/urumi/salts/SECURE_AUTH_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_LOGGED_IN_KEY_FILE",
+                                        "value": "/run/urumi/salts/LOGGED_IN_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_NONCE_KEY_FILE",
+                                        "value": "/run/urumi/salts/NONCE_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_AUTH_SALT_FILE",
+                                        "value": "/run/urumi/salts/AUTH_SALT"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_SECURE_AUTH_SALT_FILE",
+                                        "value": "/run/urumi/salts/SECURE_AUTH_SALT"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_LOGGED_IN_SALT_FILE",
+                                        "value": "/run/urumi/salts/LOGGED_IN_SALT"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_NONCE_SALT_FILE",
+                                        "value": "/run/urumi/salts/NONCE_SALT"
+                                    }
+                                ],
+                                "envFrom": [
+                                    {
+                                        "configMapRef": {
+                                            "name": "urumi-store"
+                                        }
+                                    }
+                                ],
+                                "image": "urumi-store:m2-4b1bc9edacb0",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "failureThreshold": 6,
+                                    "httpGet": {
+                                        "path": "/urumi-live.php",
+                                        "port": 80,
+                                        "scheme": "HTTP"
+                                    },
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "name": "wordpress",
+                                "ports": [
+                                    {
+                                        "containerPort": 80,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "failureThreshold": 3,
+                                    "httpGet": {
+                                        "path": "/urumi-ready.php",
+                                        "port": 80,
+                                        "scheme": "HTTP"
+                                    },
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "1",
+                                        "memory": "768Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "100m",
+                                        "memory": "256Mi"
+                                    }
+                                },
+                                "startupProbe": {
+                                    "failureThreshold": 36,
+                                    "httpGet": {
+                                        "path": "/urumi-live.php",
+                                        "port": 80,
+                                        "scheme": "HTTP"
+                                    },
+                                    "periodSeconds": 5,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/var/www/html",
+                                        "name": "content"
+                                    },
+                                    {
+                                        "mountPath": "/run/urumi/database",
+                                        "name": "database",
+                                        "readOnly": true
+                                    },
+                                    {
+                                        "mountPath": "/run/urumi/salts",
+                                        "name": "salts",
+                                        "readOnly": true
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "fsGroup": 33
+                        },
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "name": "content",
+                                "persistentVolumeClaim": {
+                                    "claimName": "urumi-wordpress-content"
+                                }
+                            },
+                            {
+                                "name": "database",
+                                "secret": {
+                                    "defaultMode": 420,
+                                    "items": [
+                                        {
+                                            "key": "database-password",
+                                            "path": "database-password"
+                                        }
+                                    ],
+                                    "secretName": "urumi-store-db"
+                                }
+                            },
+                            {
+                                "name": "salts",
+                                "secret": {
+                                    "defaultMode": 420,
+                                    "secretName": "urumi-store-salts"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "availableReplicas": 1,
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-10-15T14:55:31Z",
+                        "lastUpdateTime": "2026-10-15T14:55:31Z",
+                        "message": "Deployment has minimum availability.",
+                        "reason": "MinimumReplicasAvailable",
+                        "status": "True",
+                        "type": "Available"
+                    },
+                    {
+                        "lastTransitionTime": "2026-10-15T14:51:41Z",
+                        "lastUpdateTime": "2026-10-15T14:55:31Z",
+                        "message": "ReplicaSet \"urumi-wordpress-68f88d5479\" has successfully progressed.",
+                        "reason": "NewReplicaSetAvailable",
+                        "status": "True",
+                        "type": "Progressing"
+                    }
+                ],
+                "observedGeneration": 2,
+                "readyReplicas": 1,
+                "replicas": 1,
+                "terminatingReplicas": 0,
+                "updatedReplicas": 1
+            }
+        },
+        {
+            "apiVersion": "apps/v1",
+            "kind": "StatefulSet",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-mariadb",
+                "namespace": "urumi",
+                "resourceVersion": "8784",
+                "uid": "7738045c-43f5-49de-9b57-6096a5dc0e03"
+            },
+            "spec": {
+                "persistentVolumeClaimRetentionPolicy": {
+                    "whenDeleted": "Retain",
+                    "whenScaled": "Retain"
+                },
+                "podManagementPolicy": "OrderedReady",
+                "replicas": 1,
+                "revisionHistoryLimit": 10,
+                "selector": {
+                    "matchLabels": {
+                        "app.kubernetes.io/component": "mariadb",
+                        "app.kubernetes.io/instance": "urumi"
+                    }
+                },
+                "serviceName": "urumi-mariadb",
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/component": "mariadb",
+                            "app.kubernetes.io/instance": "urumi"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "MARIADB_DATABASE",
+                                        "value": "woocommerce"
+                                    },
+                                    {
+                                        "name": "MARIADB_USER",
+                                        "value": "woocommerce"
+                                    },
+                                    {
+                                        "name": "MARIADB_PASSWORD_FILE",
+                                        "value": "/run/urumi/database/database-password"
+                                    },
+                                    {
+                                        "name": "MARIADB_ROOT_PASSWORD_FILE",
+                                        "value": "/run/urumi/database/root-password"
+                                    }
+                                ],
+                                "image": "mariadb@sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "healthcheck.sh",
+                                            "--connect"
+                                        ]
+                                    },
+                                    "failureThreshold": 6,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "name": "mariadb",
+                                "ports": [
+                                    {
+                                        "containerPort": 3306,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "healthcheck.sh",
+                                            "--connect",
+                                            "--innodb_initialized"
+                                        ]
+                                    },
+                                    "failureThreshold": 3,
+                                    "periodSeconds": 5,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "1",
+                                        "memory": "768Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "100m",
+                                        "memory": "256Mi"
+                                    }
+                                },
+                                "startupProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "healthcheck.sh",
+                                            "--connect",
+                                            "--innodb_initialized"
+                                        ]
+                                    },
+                                    "failureThreshold": 36,
+                                    "periodSeconds": 5,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/var/lib/mysql",
+                                        "name": "data"
+                                    },
+                                    {
+                                        "mountPath": "/run/urumi/database",
+                                        "name": "database",
+                                        "readOnly": true
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "name": "data",
+                                "persistentVolumeClaim": {
+                                    "claimName": "urumi-mariadb-data"
+                                }
+                            },
+                            {
+                                "name": "database",
+                                "secret": {
+                                    "defaultMode": 420,
+                                    "secretName": "urumi-store-db"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "updateStrategy": {
+                    "rollingUpdate": {
+                        "partition": 0
+                    },
+                    "type": "RollingUpdate"
+                }
+            },
+            "status": {
+                "availableReplicas": 1,
+                "collisionCount": 0,
+                "currentReplicas": 1,
+                "currentRevision": "urumi-mariadb-f9f589977",
+                "observedGeneration": 1,
+                "readyReplicas": 1,
+                "replicas": 1,
+                "updateRevision": "urumi-mariadb-f9f589977",
+                "updatedReplicas": 1
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-15T15:11:09.6015454Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "statefulset/urumi-mariadb" "--timeout=180s"
+Exit: 0
+partitioned roll out complete: 1 new pods have been updated...
+
+
+UTC: 2026-10-15T15:11:10.0595802Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "wait" "pod" "-l" "app.kubernetes.io/component=wordpress,app.kubernetes.io/instance=urumi" "--for=jsonpath={.status.phase}=Running" "--timeout=180s"
+Exit: 0
+pod/urumi-wordpress-68f88d5479-8lxww condition met
+
+
+UTC: 2026-10-15T15:11:26.1693490Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "deployments,statefulsets,services,ingresses,pvc" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "apps/v1",
+            "kind": "Deployment",
+            "metadata": {
+                "annotations": {
+                    "deployment.kubernetes.io/revision": "3",
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "generation": 3,
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-wordpress",
+                "namespace": "urumi",
+                "resourceVersion": "10064",
+                "uid": "8ecc650c-0b35-4f59-b785-8d61e2b195d0"
+            },
+            "spec": {
+                "progressDeadlineSeconds": 600,
+                "replicas": 1,
+                "revisionHistoryLimit": 10,
+                "selector": {
+                    "matchLabels": {
+                        "app.kubernetes.io/component": "wordpress",
+                        "app.kubernetes.io/instance": "urumi"
+                    }
+                },
+                "strategy": {
+                    "type": "Recreate"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/component": "wordpress",
+                            "app.kubernetes.io/instance": "urumi",
+                            "app.kubernetes.io/name": "urumi"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "WORDPRESS_DB_PASSWORD_FILE",
+                                        "value": "/run/urumi/database/database-password"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_AUTH_KEY_FILE",
+                                        "value": "/run/urumi/salts/AUTH_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_SECURE_AUTH_KEY_FILE",
+                                        "value": "/run/urumi/salts/SECURE_AUTH_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_LOGGED_IN_KEY_FILE",
+                                        "value": "/run/urumi/salts/LOGGED_IN_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_NONCE_KEY_FILE",
+                                        "value": "/run/urumi/salts/NONCE_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_AUTH_SALT_FILE",
+                                        "value": "/run/urumi/salts/AUTH_SALT"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_SECURE_AUTH_SALT_FILE",
+                                        "value": "/run/urumi/salts/SECURE_AUTH_SALT"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_LOGGED_IN_SALT_FILE",
+                                        "value": "/run/urumi/salts/LOGGED_IN_SALT"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_NONCE_SALT_FILE",
+                                        "value": "/run/urumi/salts/NONCE_SALT"
+                                    }
+                                ],
+                                "envFrom": [
+                                    {
+                                        "configMapRef": {
+                                            "name": "urumi-store"
+                                        }
+                                    }
+                                ],
+                                "image": "urumi-store:m2-23494837a20c",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "failureThreshold": 6,
+                                    "httpGet": {
+                                        "path": "/urumi-live.php",
+                                        "port": 80,
+                                        "scheme": "HTTP"
+                                    },
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "name": "wordpress",
+                                "ports": [
+                                    {
+                                        "containerPort": 80,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "failureThreshold": 3,
+                                    "httpGet": {
+                                        "path": "/urumi-ready.php",
+                                        "port": 80,
+                                        "scheme": "HTTP"
+                                    },
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "1",
+                                        "memory": "768Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "100m",
+                                        "memory": "256Mi"
+                                    }
+                                },
+                                "startupProbe": {
+                                    "failureThreshold": 36,
+                                    "httpGet": {
+                                        "path": "/urumi-live.php",
+                                        "port": 80,
+                                        "scheme": "HTTP"
+                                    },
+                                    "periodSeconds": 5,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/var/www/html",
+                                        "name": "content"
+                                    },
+                                    {
+                                        "mountPath": "/run/urumi/database",
+                                        "name": "database",
+                                        "readOnly": true
+                                    },
+                                    {
+                                        "mountPath": "/run/urumi/salts",
+                                        "name": "salts",
+                                        "readOnly": true
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "fsGroup": 33
+                        },
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "name": "content",
+                                "persistentVolumeClaim": {
+                                    "claimName": "urumi-wordpress-content"
+                                }
+                            },
+                            {
+                                "name": "database",
+                                "secret": {
+                                    "defaultMode": 420,
+                                    "items": [
+                                        {
+                                            "key": "database-password",
+                                            "path": "database-password"
+                                        }
+                                    ],
+                                    "secretName": "urumi-store-db"
+                                }
+                            },
+                            {
+                                "name": "salts",
+                                "secret": {
+                                    "defaultMode": 420,
+                                    "secretName": "urumi-store-salts"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "availableReplicas": 1,
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-10-15T15:11:19Z",
+                        "lastUpdateTime": "2026-10-15T15:11:19Z",
+                        "message": "Deployment has minimum availability.",
+                        "reason": "MinimumReplicasAvailable",
+                        "status": "True",
+                        "type": "Available"
+                    },
+                    {
+                        "lastTransitionTime": "2026-10-15T14:51:41Z",
+                        "lastUpdateTime": "2026-10-15T15:11:19Z",
+                        "message": "ReplicaSet \"urumi-wordpress-5fdfc9c5f7\" has successfully progressed.",
+                        "reason": "NewReplicaSetAvailable",
+                        "status": "True",
+                        "type": "Progressing"
+                    }
+                ],
+                "observedGeneration": 3,
+                "readyReplicas": 1,
+                "replicas": 1,
+                "terminatingReplicas": 0,
+                "updatedReplicas": 1
+            }
+        },
+        {
+            "apiVersion": "apps/v1",
+            "kind": "StatefulSet",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-mariadb",
+                "namespace": "urumi",
+                "resourceVersion": "9841",
+                "uid": "7738045c-43f5-49de-9b57-6096a5dc0e03"
+            },
+            "spec": {
+                "persistentVolumeClaimRetentionPolicy": {
+                    "whenDeleted": "Retain",
+                    "whenScaled": "Retain"
+                },
+                "podManagementPolicy": "OrderedReady",
+                "replicas": 1,
+                "revisionHistoryLimit": 10,
+                "selector": {
+                    "matchLabels": {
+                        "app.kubernetes.io/component": "mariadb",
+                        "app.kubernetes.io/instance": "urumi"
+                    }
+                },
+                "serviceName": "urumi-mariadb",
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/component": "mariadb",
+                            "app.kubernetes.io/instance": "urumi"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "MARIADB_DATABASE",
+                                        "value": "woocommerce"
+                                    },
+                                    {
+                                        "name": "MARIADB_USER",
+                                        "value": "woocommerce"
+                                    },
+                                    {
+                                        "name": "MARIADB_PASSWORD_FILE",
+                                        "value": "/run/urumi/database/database-password"
+                                    },
+                                    {
+                                        "name": "MARIADB_ROOT_PASSWORD_FILE",
+                                        "value": "/run/urumi/database/root-password"
+                                    }
+                                ],
+                                "image": "mariadb@sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "healthcheck.sh",
+                                            "--connect"
+                                        ]
+                                    },
+                                    "failureThreshold": 6,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "name": "mariadb",
+                                "ports": [
+                                    {
+                                        "containerPort": 3306,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "healthcheck.sh",
+                                            "--connect",
+                                            "--innodb_initialized"
+                                        ]
+                                    },
+                                    "failureThreshold": 3,
+                                    "periodSeconds": 5,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "1",
+                                        "memory": "768Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "100m",
+                                        "memory": "256Mi"
+                                    }
+                                },
+                                "startupProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "healthcheck.sh",
+                                            "--connect",
+                                            "--innodb_initialized"
+                                        ]
+                                    },
+                                    "failureThreshold": 36,
+                                    "periodSeconds": 5,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/var/lib/mysql",
+                                        "name": "data"
+                                    },
+                                    {
+                                        "mountPath": "/run/urumi/database",
+                                        "name": "database",
+                                        "readOnly": true
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "name": "data",
+                                "persistentVolumeClaim": {
+                                    "claimName": "urumi-mariadb-data"
+                                }
+                            },
+                            {
+                                "name": "database",
+                                "secret": {
+                                    "defaultMode": 420,
+                                    "secretName": "urumi-store-db"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "updateStrategy": {
+                    "rollingUpdate": {
+                        "partition": 0
+                    },
+                    "type": "RollingUpdate"
+                }
+            },
+            "status": {
+                "availableReplicas": 1,
+                "collisionCount": 0,
+                "currentReplicas": 1,
+                "currentRevision": "urumi-mariadb-f9f589977",
+                "observedGeneration": 1,
+                "readyReplicas": 1,
+                "replicas": 1,
+                "updateRevision": "urumi-mariadb-f9f589977",
+                "updatedReplicas": 1
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-mariadb",
+                "namespace": "urumi",
+                "resourceVersion": "8653",
+                "uid": "a05a7040-8d8f-49e3-abdf-b5f7735522c3"
+            },
+            "spec": {
+                "clusterIP": "None",
+                "clusterIPs": [
+                    "None"
+                ],
+                "internalTrafficPolicy": "Cluster",
+                "ipFamilies": [
+                    "IPv4"
+                ],
+                "ipFamilyPolicy": "SingleStack",
+                "ports": [
+                    {
+                        "port": 3306,
+                        "protocol": "TCP",
+                        "targetPort": 3306
+                    }
+                ],
+                "selector": {
+                    "app.kubernetes.io/component": "mariadb",
+                    "app.kubernetes.io/instance": "urumi"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-wordpress",
+                "namespace": "urumi",
+                "resourceVersion": "8657",
+                "uid": "221ad775-aef4-4a39-8b49-282ab820fa5e"
+            },
+            "spec": {
+                "clusterIP": "10.43.240.131",
+                "clusterIPs": [
+                    "10.43.240.131"
+                ],
+                "internalTrafficPolicy": "Cluster",
+                "ipFamilies": [
+                    "IPv4"
+                ],
+                "ipFamilyPolicy": "SingleStack",
+                "ports": [
+                    {
+                        "port": 80,
+                        "protocol": "TCP",
+                        "targetPort": 80
+                    }
+                ],
+                "selector": {
+                    "app.kubernetes.io/component": "wordpress",
+                    "app.kubernetes.io/instance": "urumi"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
+            "apiVersion": "networking.k8s.io/v1",
+            "kind": "Ingress",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-wordpress",
+                "namespace": "urumi",
+                "resourceVersion": "8685",
+                "uid": "9351cbf4-28aa-44d5-83b2-56debb9f723e"
+            },
+            "spec": {
+                "ingressClassName": "traefik",
+                "rules": [
+                    {
+                        "host": "shop.urumi.test",
+                        "http": {
+                            "paths": [
+                                {
+                                    "backend": {
+                                        "service": {
+                                            "name": "urumi-wordpress",
+                                            "port": {
+                                                "number": 80
+                                            }
+                                        }
+                                    },
+                                    "path": "/",
+                                    "pathType": "Prefix"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "loadBalancer": {
+                    "ingress": [
+                        {
+                            "ip": "172.18.0.2"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "metadata": {
+                "annotations": {
+                    "helm.sh/resource-policy": "keep",
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi",
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "rancher.io/local-path",
+                    "volume.kubernetes.io/selected-node": "k3d-urumi-server-0",
+                    "volume.kubernetes.io/storage-provisioner": "rancher.io/local-path"
+                },
+                "creationTimestamp": "2026-10-14T17:00:00Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app.kubernetes.io/component": "foundation",
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/managed-by": "Helm",
+                    "app.kubernetes.io/name": "urumi",
+                    "helm.sh/chart": "urumi-0.1.0"
+                },
+                "name": "urumi-foundation-data",
+                "namespace": "urumi",
+                "resourceVersion": "2945",
+                "uid": "c6f386c1-ef1e-4996-ab86-ed888999226e"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "1Gi"
+                    }
+                },
+                "storageClassName": "local-path",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-c6f386c1-ef1e-4996-ab86-ed888999226e"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "1Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "metadata": {
+                "annotations": {
+                    "helm.sh/resource-policy": "keep",
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi",
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "rancher.io/local-path",
+                    "volume.kubernetes.io/selected-node": "k3d-urumi-server-0",
+                    "volume.kubernetes.io/storage-provisioner": "rancher.io/local-path"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/managed-by": "Helm",
+                    "app.kubernetes.io/part-of": "urumi-store"
+                },
+                "name": "urumi-mariadb-data",
+                "namespace": "urumi",
+                "resourceVersion": "8720",
+                "uid": "91b18137-d90e-49f0-b16e-ab2686a82df0"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "2Gi"
+                    }
+                },
+                "storageClassName": "local-path",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-91b18137-d90e-49f0-b16e-ab2686a82df0"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "2Gi"
+                },
+                "phase": "Bound"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "metadata": {
+                "annotations": {
+                    "helm.sh/resource-policy": "keep",
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi",
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "rancher.io/local-path",
+                    "volume.kubernetes.io/selected-node": "k3d-urumi-server-0",
+                    "volume.kubernetes.io/storage-provisioner": "rancher.io/local-path"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/managed-by": "Helm",
+                    "app.kubernetes.io/part-of": "urumi-store"
+                },
+                "name": "urumi-wordpress-content",
+                "namespace": "urumi",
+                "resourceVersion": "8723",
+                "uid": "cae72902-5c12-4c82-9225-965798cb78b4"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "2Gi"
+                    }
+                },
+                "storageClassName": "local-path",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-cae72902-5c12-4c82-9225-965798cb78b4"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "2Gi"
+                },
+                "phase": "Bound"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-16T04:34:21.0231052Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "deployment/urumi-wordpress" "--timeout=180s"
+Exit: 0
+Waiting for deployment "urumi-wordpress" rollout to finish: 0 of 1 updated replicas are available...
+deployment "urumi-wordpress" successfully rolled out
+
+
+UTC: 2026-10-16T04:34:21.4939801Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "statefulset/urumi-mariadb" "--timeout=180s"
+Exit: 0
+partitioned roll out complete: 1 new pods have been updated...
+
+
+UTC: 2026-10-16T04:34:21.7376315Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "deployment/urumi-wordpress" "statefulset/urumi-mariadb" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "apps/v1",
+            "kind": "Deployment",
+            "metadata": {
+                "annotations": {
+                    "deployment.kubernetes.io/revision": "3",
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "generation": 3,
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-wordpress",
+                "namespace": "urumi",
+                "resourceVersion": "17642",
+                "uid": "8ecc650c-0b35-4f59-b785-8d61e2b195d0"
+            },
+            "spec": {
+                "progressDeadlineSeconds": 600,
+                "replicas": 1,
+                "revisionHistoryLimit": 10,
+                "selector": {
+                    "matchLabels": {
+                        "app.kubernetes.io/component": "wordpress",
+                        "app.kubernetes.io/instance": "urumi"
+                    }
+                },
+                "strategy": {
+                    "type": "Recreate"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/component": "wordpress",
+                            "app.kubernetes.io/instance": "urumi",
+                            "app.kubernetes.io/name": "urumi"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "WORDPRESS_DB_PASSWORD_FILE",
+                                        "value": "/run/urumi/database/database-password"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_AUTH_KEY_FILE",
+                                        "value": "/run/urumi/salts/AUTH_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_SECURE_AUTH_KEY_FILE",
+                                        "value": "/run/urumi/salts/SECURE_AUTH_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_LOGGED_IN_KEY_FILE",
+                                        "value": "/run/urumi/salts/LOGGED_IN_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_NONCE_KEY_FILE",
+                                        "value": "/run/urumi/salts/NONCE_KEY"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_AUTH_SALT_FILE",
+                                        "value": "/run/urumi/salts/AUTH_SALT"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_SECURE_AUTH_SALT_FILE",
+                                        "value": "/run/urumi/salts/SECURE_AUTH_SALT"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_LOGGED_IN_SALT_FILE",
+                                        "value": "/run/urumi/salts/LOGGED_IN_SALT"
+                                    },
+                                    {
+                                        "name": "WORDPRESS_NONCE_SALT_FILE",
+                                        "value": "/run/urumi/salts/NONCE_SALT"
+                                    }
+                                ],
+                                "envFrom": [
+                                    {
+                                        "configMapRef": {
+                                            "name": "urumi-store"
+                                        }
+                                    }
+                                ],
+                                "image": "urumi-store:m2-23494837a20c",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "failureThreshold": 6,
+                                    "httpGet": {
+                                        "path": "/urumi-live.php",
+                                        "port": 80,
+                                        "scheme": "HTTP"
+                                    },
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "name": "wordpress",
+                                "ports": [
+                                    {
+                                        "containerPort": 80,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "failureThreshold": 3,
+                                    "httpGet": {
+                                        "path": "/urumi-ready.php",
+                                        "port": 80,
+                                        "scheme": "HTTP"
+                                    },
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "1",
+                                        "memory": "768Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "100m",
+                                        "memory": "256Mi"
+                                    }
+                                },
+                                "startupProbe": {
+                                    "failureThreshold": 36,
+                                    "httpGet": {
+                                        "path": "/urumi-live.php",
+                                        "port": 80,
+                                        "scheme": "HTTP"
+                                    },
+                                    "periodSeconds": 5,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/var/www/html",
+                                        "name": "content"
+                                    },
+                                    {
+                                        "mountPath": "/run/urumi/database",
+                                        "name": "database",
+                                        "readOnly": true
+                                    },
+                                    {
+                                        "mountPath": "/run/urumi/salts",
+                                        "name": "salts",
+                                        "readOnly": true
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "fsGroup": 33
+                        },
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "name": "content",
+                                "persistentVolumeClaim": {
+                                    "claimName": "urumi-wordpress-content"
+                                }
+                            },
+                            {
+                                "name": "database",
+                                "secret": {
+                                    "defaultMode": 420,
+                                    "items": [
+                                        {
+                                            "key": "database-password",
+                                            "path": "database-password"
+                                        }
+                                    ],
+                                    "secretName": "urumi-store-db"
+                                }
+                            },
+                            {
+                                "name": "salts",
+                                "secret": {
+                                    "defaultMode": 420,
+                                    "secretName": "urumi-store-salts"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "availableReplicas": 1,
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-10-15T14:51:41Z",
+                        "lastUpdateTime": "2026-10-15T15:11:19Z",
+                        "message": "ReplicaSet \"urumi-wordpress-5fdfc9c5f7\" has successfully progressed.",
+                        "reason": "NewReplicaSetAvailable",
+                        "status": "True",
+                        "type": "Progressing"
+                    },
+                    {
+                        "lastTransitionTime": "2026-10-16T04:34:20Z",
+                        "lastUpdateTime": "2026-10-16T04:34:20Z",
+                        "message": "Deployment has minimum availability.",
+                        "reason": "MinimumReplicasAvailable",
+                        "status": "True",
+                        "type": "Available"
+                    }
+                ],
+                "observedGeneration": 3,
+                "readyReplicas": 1,
+                "replicas": 1,
+                "terminatingReplicas": 0,
+                "updatedReplicas": 1
+            }
+        },
+        {
+            "apiVersion": "apps/v1",
+            "kind": "StatefulSet",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-mariadb",
+                "namespace": "urumi",
+                "resourceVersion": "17621",
+                "uid": "7738045c-43f5-49de-9b57-6096a5dc0e03"
+            },
+            "spec": {
+                "persistentVolumeClaimRetentionPolicy": {
+                    "whenDeleted": "Retain",
+                    "whenScaled": "Retain"
+                },
+                "podManagementPolicy": "OrderedReady",
+                "replicas": 1,
+                "revisionHistoryLimit": 10,
+                "selector": {
+                    "matchLabels": {
+                        "app.kubernetes.io/component": "mariadb",
+                        "app.kubernetes.io/instance": "urumi"
+                    }
+                },
+                "serviceName": "urumi-mariadb",
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/component": "mariadb",
+                            "app.kubernetes.io/instance": "urumi"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "MARIADB_DATABASE",
+                                        "value": "woocommerce"
+                                    },
+                                    {
+                                        "name": "MARIADB_USER",
+                                        "value": "woocommerce"
+                                    },
+                                    {
+                                        "name": "MARIADB_PASSWORD_FILE",
+                                        "value": "/run/urumi/database/database-password"
+                                    },
+                                    {
+                                        "name": "MARIADB_ROOT_PASSWORD_FILE",
+                                        "value": "/run/urumi/database/root-password"
+                                    }
+                                ],
+                                "image": "mariadb@sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "healthcheck.sh",
+                                            "--connect"
+                                        ]
+                                    },
+                                    "failureThreshold": 6,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "name": "mariadb",
+                                "ports": [
+                                    {
+                                        "containerPort": 3306,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "healthcheck.sh",
+                                            "--connect",
+                                            "--innodb_initialized"
+                                        ]
+                                    },
+                                    "failureThreshold": 3,
+                                    "periodSeconds": 5,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "1",
+                                        "memory": "768Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "100m",
+                                        "memory": "256Mi"
+                                    }
+                                },
+                                "startupProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "healthcheck.sh",
+                                            "--connect",
+                                            "--innodb_initialized"
+                                        ]
+                                    },
+                                    "failureThreshold": 36,
+                                    "periodSeconds": 5,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 3
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/var/lib/mysql",
+                                        "name": "data"
+                                    },
+                                    {
+                                        "mountPath": "/run/urumi/database",
+                                        "name": "database",
+                                        "readOnly": true
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "name": "data",
+                                "persistentVolumeClaim": {
+                                    "claimName": "urumi-mariadb-data"
+                                }
+                            },
+                            {
+                                "name": "database",
+                                "secret": {
+                                    "defaultMode": 420,
+                                    "secretName": "urumi-store-db"
+                                }
+                            }
+                        ]
+                    }
+                },
+                "updateStrategy": {
+                    "rollingUpdate": {
+                        "partition": 0
+                    },
+                    "type": "RollingUpdate"
+                }
+            },
+            "status": {
+                "availableReplicas": 1,
+                "collisionCount": 0,
+                "currentReplicas": 1,
+                "currentRevision": "urumi-mariadb-f9f589977",
+                "observedGeneration": 1,
+                "readyReplicas": 1,
+                "replicas": 1,
+                "updateRevision": "urumi-mariadb-f9f589977",
+                "updatedReplicas": 1
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+

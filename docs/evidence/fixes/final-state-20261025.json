@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "workloads_ready": 7,
+  "claims": [
+    {
+      "name": "urumi-m10-mariadb-data",
+      "uid": "a0fec4df-b7ff-4ef9-b2fe-a9af4eb8959e",
+      "phase": "Bound"
+    },
+    {
+      "name": "urumi-m10-platform-data",
+      "uid": "710a5b52-744c-4525-b446-bbba455eb2cf",
+      "phase": "Bound"
+    },
+    {
+      "name": "urumi-m10-wordpress-content",
+      "uid": "b5ad912d-7d6c-4bf9-aa8e-b4803005162b",
+      "phase": "Bound"
+    }
+  ],
+  "registry": [
+    {
+      "id": "1dde0ef3-f7fe-4c7d-84db-feb777e0e5f1",
+      "name": "Context7",
+      "slug": "context7",
+      "enabled": true,
+      "status": "Unreachable"
+    },
+    {
+      "id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+      "name": "Microsoft Learn",
+      "slug": "learn",
+      "enabled": true,
+      "status": "Connected"
+    },
+    {
+      "id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+      "name": "Inventory",
+      "slug": "inventory",
+      "enabled": true,
+      "status": "Connected"
+    },
+    {
+      "id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+      "name": "WooCommerce",
+      "slug": "woocommerce",
+      "enabled": true,
+      "status": "Connected"
+    }
+  ],
+  "pending_operations": 0,
+  "test_aliases": 0,
+  "live_q10": "completed",
+  "learn_successful_audit_count": 2
+}

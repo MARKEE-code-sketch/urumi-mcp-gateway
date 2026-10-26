@@ -1,0 +1,18 @@
+{
+  "workloads": [
+    "urumi-m10-backend",
+    "urumi-m10-dashboard",
+    "urumi-m10-platform-db",
+    "urumi-m10-inventory-mcp",
+    "urumi-m10-wordpress",
+    "urumi-m10-woocommerce-mcp",
+    "urumi-m10-mariadb"
+  ],
+  "persistent_claims": [
+    "urumi-m10-platform-data",
+    "urumi-m10-mariadb-data",
+    "urumi-m10-wordpress-content"
+  ],
+  "status": "PASS",
+  "scope": "Pre-apply new release resource names; private render contains no Secret values."
+}

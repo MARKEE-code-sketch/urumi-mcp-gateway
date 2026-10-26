@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "retained_resource_checks": [
+    {
+      "kind": "Pod",
+      "name": "urumi-mariadb-0",
+      "uid_unchanged": true
+    },
+    {
+      "kind": "Pod",
+      "name": "urumi-wordpress-5fdfc9c5f7-dldh4",
+      "uid_unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-foundation-data",
+      "uid_unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-mariadb-data",
+      "uid_unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-wordpress-content",
+      "uid_unchanged": true
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-mariadb",
+      "uid_unchanged": true
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-wordpress",
+      "uid_unchanged": true
+    }
+  ],
+  "frozen_source_files": 41,
+  "changed_source_files": [],
+  "retained_pod_status": [
+    {
+      "name": "urumi-mariadb-0",
+      "containers": [
+        {
+          "ready": true,
+          "restarts": 0
+        }
+      ]
+    },
+    {
+      "name": "urumi-wordpress-5fdfc9c5f7-dldh4",
+      "containers": [
+        {
+          "ready": true,
+          "restarts": 0
+        }
+      ]
+    }
+  ],
+  "scope": "Read-only original resource identity check; no full system deployment or persistence claim."
+}

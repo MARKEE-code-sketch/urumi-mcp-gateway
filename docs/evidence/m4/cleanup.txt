@@ -1,0 +1,12 @@
+﻿UTC: 2026-10-16T13:07:55.6578688Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "delete" "namespace" "urumi-m4-check" "--wait=true" "--timeout=120s"
+Exit: 0
+namespace "urumi-m4-check" deleted
+
+
+UTC: 2026-10-16T13:13:04.9415291Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "delete" "namespace" "urumi-m4-check" "--wait=true" "--timeout=120s"
+Exit: 0
+namespace "urumi-m4-check" deleted
+
+

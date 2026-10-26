@@ -1,0 +1,1106 @@
+{
+  "type": "object",
+  "properties": {
+    "foundation": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "repository": {
+              "type": "string"
+            },
+            "tag": {
+              "type": "string"
+            },
+            "digest": {
+              "type": "string"
+            },
+            "pullPolicy": {
+              "type": "string"
+            }
+          }
+        },
+        "ingress": {
+          "type": "object",
+          "properties": {
+            "className": {
+              "type": "string"
+            },
+            "host": {
+              "type": "string"
+            }
+          }
+        },
+        "storage": {
+          "type": "object",
+          "properties": {
+            "size": {
+              "type": "string"
+            },
+            "className": {
+              "type": "string"
+            }
+          }
+        },
+        "resources": {
+          "type": "object",
+          "properties": {
+            "requests": {
+              "type": "object",
+              "properties": {
+                "cpu": {
+                  "type": "string"
+                },
+                "memory": {
+                  "type": "string"
+                }
+              }
+            },
+            "limits": {
+              "type": "object",
+              "properties": {
+                "cpu": {
+                  "type": "string"
+                },
+                "memory": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "networkPolicy": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "traefikNamespace": {
+              "type": "string"
+            },
+            "traefikPodLabels": {
+              "type": "object",
+              "properties": {
+                "app.kubernetes.io/name": {
+                  "type": "string"
+                },
+                "app.kubernetes.io/instance": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "store": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "repository": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[a-z0-9]+([._-][a-z0-9]+)*(:[0-9]+)?(/[a-z0-9]+([._-][a-z0-9]+)*)*$"
+            },
+            "digest": {
+              "type": "string",
+              "pattern": "^$|^sha256:[a-f0-9]{64}$"
+            },
+            "tag": {
+              "type": "string",
+              "minLength": 1
+            },
+            "pullPolicy": {
+              "type": "string",
+              "enum": [
+                "Always",
+                "IfNotPresent",
+                "Never"
+              ]
+            }
+          },
+          "required": [
+            "repository",
+            "tag",
+            "digest",
+            "pullPolicy"
+          ]
+        },
+        "databaseImage": {
+          "type": "string"
+        },
+        "canonicalUrl": {
+          "type": "string"
+        },
+        "ingress": {
+          "type": "object",
+          "properties": {
+            "host": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$"
+            },
+            "className": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tlsSecret": {
+              "type": "string"
+            }
+          }
+        },
+        "storage": {
+          "type": "object",
+          "properties": {
+            "className": {
+              "type": "string"
+            },
+            "databaseSize": {
+              "type": "string"
+            },
+            "contentSize": {
+              "type": "string"
+            }
+          }
+        },
+        "secrets": {
+          "type": "object",
+          "properties": {
+            "database": {
+              "type": "string",
+              "minLength": 1
+            },
+            "admin": {
+              "type": "string",
+              "minLength": 1
+            },
+            "salts": {
+              "type": "string",
+              "minLength": 1
+            },
+            "rest": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "resources": {
+          "type": "object",
+          "required": [
+            "wordpress",
+            "database"
+          ],
+          "properties": {
+            "wordpress": {
+              "type": "object",
+              "required": [
+                "requests",
+                "limits"
+              ],
+              "properties": {
+                "requests": {
+                  "type": "object",
+                  "required": [
+                    "cpu",
+                    "memory"
+                  ],
+                  "properties": {
+                    "cpu": {
+                      "type": "string",
+                      "minLength": 1,
+                      "pattern": "^[0-9]+(m|[.][0-9]+)?$"
+                    },
+                    "memory": {
+                      "type": "string",
+                      "minLength": 1,
+                      "pattern": "^[0-9]+([.][0-9]+)?([EPTGMK]i?|m)?$"
+                    }
+                  }
+                },
+                "limits": {
+                  "type": "object",
+                  "required": [
+                    "cpu",
+                    "memory"
+                  ],
+                  "properties": {
+                    "cpu": {
+                      "type": "string",
+                      "minLength": 1,
+                      "pattern": "^[0-9]+(m|[.][0-9]+)?$"
+                    },
+                    "memory": {
+                      "type": "string",
+                      "minLength": 1,
+                      "pattern": "^[0-9]+([.][0-9]+)?([EPTGMK]i?|m)?$"
+                    }
+                  }
+                }
+              }
+            },
+            "database": {
+              "type": "object",
+              "required": [
+                "requests",
+                "limits"
+              ],
+              "properties": {
+                "requests": {
+                  "type": "object",
+                  "required": [
+                    "cpu",
+                    "memory"
+                  ],
+                  "properties": {
+                    "cpu": {
+                      "type": "string",
+                      "minLength": 1,
+                      "pattern": "^[0-9]+(m|[.][0-9]+)?$"
+                    },
+                    "memory": {
+                      "type": "string",
+                      "minLength": 1,
+                      "pattern": "^[0-9]+([.][0-9]+)?([EPTGMK]i?|m)?$"
+                    }
+                  }
+                },
+                "limits": {
+                  "type": "object",
+                  "required": [
+                    "cpu",
+                    "memory"
+                  ],
+                  "properties": {
+                    "cpu": {
+                      "type": "string",
+                      "minLength": 1,
+                      "pattern": "^[0-9]+(m|[.][0-9]+)?$"
+                    },
+                    "memory": {
+                      "type": "string",
+                      "minLength": 1,
+                      "pattern": "^[0-9]+([.][0-9]+)?([EPTGMK]i?|m)?$"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "networkPolicy": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "woocommerceMcp": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "repository": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[a-z0-9]+([._-][a-z0-9]+)*(:[0-9]+)?(/[a-z0-9]+([._-][a-z0-9]+)*)*$"
+            },
+            "tag": {
+              "type": "string",
+              "minLength": 1
+            },
+            "digest": {
+              "type": "string",
+              "pattern": "^$|^sha256:[a-f0-9]{64}$"
+            },
+            "pullPolicy": {
+              "type": "string",
+              "enum": [
+                "Always",
+                "IfNotPresent",
+                "Never"
+              ]
+            }
+          },
+          "required": [
+            "repository",
+            "tag",
+            "digest",
+            "pullPolicy"
+          ]
+        },
+        "canonicalOrigin": {
+          "type": "string"
+        },
+        "transportOrigin": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "existingSecret": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9.-]*[a-z0-9]$"
+        },
+        "allowedHosts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "hostAliases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "ip",
+              "hostnames"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "ip": {
+                "type": "string",
+                "minLength": 1
+              },
+              "hostnames": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        },
+        "resources": {
+          "type": "object",
+          "required": [
+            "requests",
+            "limits"
+          ],
+          "properties": {
+            "requests": {
+              "type": "object",
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "properties": {
+                "cpu": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+(m|[.][0-9]+)?$"
+                },
+                "memory": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+([.][0-9]+)?([EPTGMK]i?|m)?$"
+                }
+              }
+            },
+            "limits": {
+              "type": "object",
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "properties": {
+                "cpu": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+(m|[.][0-9]+)?$"
+                },
+                "memory": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+([.][0-9]+)?([EPTGMK]i?|m)?$"
+                }
+              }
+            }
+          }
+        },
+        "networkPolicy": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "transportMode": {
+              "type": "string",
+              "enum": [
+                "direct-http",
+                "ingress-https"
+              ]
+            },
+            "shopNamespace": {
+              "type": "string"
+            },
+            "shopLabels": {
+              "type": "object",
+              "properties": {
+                "app.kubernetes.io/name": {
+                  "type": "string"
+                },
+                "app.kubernetes.io/instance": {
+                  "type": "string"
+                },
+                "app.kubernetes.io/component": {
+                  "type": "string"
+                }
+              }
+            },
+            "shopPort": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      }
+    },
+    "inventoryMcp": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "repository": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[a-z0-9]+([._-][a-z0-9]+)*(:[0-9]+)?(/[a-z0-9]+([._-][a-z0-9]+)*)*$"
+            },
+            "tag": {
+              "type": "string",
+              "minLength": 1
+            },
+            "digest": {
+              "type": "string",
+              "pattern": "^$|^sha256:[a-f0-9]{64}$"
+            },
+            "pullPolicy": {
+              "type": "string",
+              "enum": [
+                "Always",
+                "IfNotPresent",
+                "Never"
+              ]
+            }
+          },
+          "required": [
+            "repository",
+            "tag",
+            "digest",
+            "pullPolicy"
+          ]
+        },
+        "allowedHosts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "resources": {
+          "type": "object",
+          "required": [
+            "requests",
+            "limits"
+          ],
+          "properties": {
+            "requests": {
+              "type": "object",
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "properties": {
+                "cpu": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+(m|[.][0-9]+)?$"
+                },
+                "memory": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+([.][0-9]+)?([EPTGMK]i?|m)?$"
+                }
+              }
+            },
+            "limits": {
+              "type": "object",
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "properties": {
+                "cpu": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+(m|[.][0-9]+)?$"
+                },
+                "memory": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+([.][0-9]+)?([EPTGMK]i?|m)?$"
+                }
+              }
+            }
+          }
+        },
+        "networkPolicy": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "platformDb": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "image": {
+          "type": "string"
+        },
+        "existingSecret": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9.-]*[a-z0-9]$"
+        },
+        "storage": {
+          "type": "object",
+          "properties": {
+            "size": {
+              "type": "string"
+            },
+            "className": {
+              "type": "string"
+            }
+          }
+        },
+        "resources": {
+          "type": "object",
+          "required": [
+            "requests",
+            "limits"
+          ],
+          "properties": {
+            "requests": {
+              "type": "object",
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "properties": {
+                "cpu": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+(m|[.][0-9]+)?$"
+                },
+                "memory": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+([.][0-9]+)?([EPTGMK]i?|m)?$"
+                }
+              }
+            },
+            "limits": {
+              "type": "object",
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "properties": {
+                "cpu": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+(m|[.][0-9]+)?$"
+                },
+                "memory": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+([.][0-9]+)?([EPTGMK]i?|m)?$"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "platformAccess": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "secretNamespace": {
+          "type": "string",
+          "minLength": 1
+        },
+        "serviceAccount": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "m5Harness": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "repository": {
+              "type": "string"
+            },
+            "tag": {
+              "type": "string"
+            },
+            "pullPolicy": {
+              "type": "string"
+            }
+          }
+        },
+        "origin": {
+          "type": "string"
+        },
+        "localHttp": {
+          "type": "boolean"
+        },
+        "internalUrls": {
+          "type": "array"
+        },
+        "resources": {
+          "type": "object",
+          "properties": {
+            "requests": {
+              "type": "object",
+              "properties": {
+                "cpu": {
+                  "type": "string"
+                },
+                "memory": {
+                  "type": "string"
+                }
+              }
+            },
+            "limits": {
+              "type": "object",
+              "properties": {
+                "cpu": {
+                  "type": "string"
+                },
+                "memory": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "gatewayCheck": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "repository": {
+              "type": "string"
+            },
+            "tag": {
+              "type": "string"
+            },
+            "pullPolicy": {
+              "type": "string"
+            }
+          }
+        },
+        "existingSecret": {
+          "type": "string"
+        },
+        "resources": {
+          "type": "object",
+          "properties": {
+            "gateway": {
+              "type": "object",
+              "properties": {
+                "requests": {
+                  "type": "object",
+                  "properties": {
+                    "cpu": {
+                      "type": "string"
+                    },
+                    "memory": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "limits": {
+                  "type": "object",
+                  "properties": {
+                    "cpu": {
+                      "type": "string"
+                    },
+                    "memory": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "fixture": {
+              "type": "object",
+              "properties": {
+                "requests": {
+                  "type": "object",
+                  "properties": {
+                    "cpu": {
+                      "type": "string"
+                    },
+                    "memory": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "limits": {
+                  "type": "object",
+                  "properties": {
+                    "cpu": {
+                      "type": "string"
+                    },
+                    "memory": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "release": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "environment": {
+          "type": "string",
+          "enum": [
+            "local",
+            "production"
+          ]
+        },
+        "provenance": {
+          "type": "string"
+        }
+      }
+    },
+    "imagePullSecrets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "networking": {
+      "type": "object",
+      "properties": {
+        "ingressNamespace": {
+          "type": "string"
+        },
+        "ingressPodLabels": {
+          "type": "object",
+          "properties": {
+            "app.kubernetes.io/name": {
+              "type": "string"
+            },
+            "app.kubernetes.io/instance": {
+              "type": "string"
+            }
+          }
+        },
+        "ingressTlsTargetPort": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535
+        }
+      }
+    },
+    "backend": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "replicas": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "workers": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "repository": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[a-z0-9]+([._-][a-z0-9]+)*(:[0-9]+)?(/[a-z0-9]+([._-][a-z0-9]+)*)*$"
+            },
+            "tag": {
+              "type": "string",
+              "minLength": 1
+            },
+            "digest": {
+              "type": "string",
+              "pattern": "^$|^sha256:[a-f0-9]{64}$"
+            },
+            "pullPolicy": {
+              "type": "string",
+              "enum": [
+                "Always",
+                "IfNotPresent",
+                "Never"
+              ]
+            }
+          },
+          "required": [
+            "repository",
+            "tag",
+            "digest",
+            "pullPolicy"
+          ]
+        },
+        "origin": {
+          "type": "string"
+        },
+        "allowedHosts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "existingProviderSecret": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9.-]*[a-z0-9]$"
+        },
+        "model": {
+          "type": "string"
+        },
+        "resources": {
+          "type": "object",
+          "required": [
+            "requests",
+            "limits"
+          ],
+          "properties": {
+            "requests": {
+              "type": "object",
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "properties": {
+                "cpu": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+(m|[.][0-9]+)?$"
+                },
+                "memory": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+([.][0-9]+)?([EPTGMK]i?|m)?$"
+                }
+              }
+            },
+            "limits": {
+              "type": "object",
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "properties": {
+                "cpu": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+(m|[.][0-9]+)?$"
+                },
+                "memory": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+([.][0-9]+)?([EPTGMK]i?|m)?$"
+                }
+              }
+            }
+          }
+        },
+        "networkPolicy": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "apiServerCidrs": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "apiServerPort": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            }
+          }
+        }
+      }
+    },
+    "dashboard": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "repository": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[a-z0-9]+([._-][a-z0-9]+)*(:[0-9]+)?(/[a-z0-9]+([._-][a-z0-9]+)*)*$"
+            },
+            "tag": {
+              "type": "string",
+              "minLength": 1
+            },
+            "digest": {
+              "type": "string",
+              "pattern": "^$|^sha256:[a-f0-9]{64}$"
+            },
+            "pullPolicy": {
+              "type": "string",
+              "enum": [
+                "Always",
+                "IfNotPresent",
+                "Never"
+              ]
+            }
+          },
+          "required": [
+            "repository",
+            "tag",
+            "digest",
+            "pullPolicy"
+          ]
+        },
+        "ingress": {
+          "type": "object",
+          "properties": {
+            "host": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "^[a-z0-9]([a-z0-9.-]*[a-z0-9])?$"
+            },
+            "className": {
+              "type": "string",
+              "minLength": 1
+            },
+            "tlsSecret": {
+              "type": "string"
+            }
+          }
+        },
+        "resources": {
+          "type": "object",
+          "required": [
+            "requests",
+            "limits"
+          ],
+          "properties": {
+            "requests": {
+              "type": "object",
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "properties": {
+                "cpu": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+(m|[.][0-9]+)?$"
+                },
+                "memory": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+([.][0-9]+)?([EPTGMK]i?|m)?$"
+                }
+              }
+            },
+            "limits": {
+              "type": "object",
+              "required": [
+                "cpu",
+                "memory"
+              ],
+              "properties": {
+                "cpu": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+(m|[.][0-9]+)?$"
+                },
+                "memory": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "^[0-9]+([.][0-9]+)?([EPTGMK]i?|m)?$"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

@@ -1,0 +1,71 @@
+﻿UTC: 2026-10-16T04:34:59.6245002Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "exec" "urumi-wordpress-5fdfc9c5f7-pgmpw" "--" "php" "-r" "$context=stream_context_create(['http'=>['timeout'=>3,'follow_location'=>0,'ignore_errors'=>true]]);
+@file_get_contents('http://127.0.0.1/urumi-ready.php',false,$context);
+$status=$http_response_header[0]??'';
+echo $status.\"\n\";
+exit(preg_match('~^HTTP/\S+ 200(?: |$)~',$status)?0:1);"
+Exit: 0
+HTTP/1.1 200 OK
+
+
+UTC: 2026-10-16T04:35:20.2585108Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "exec" "urumi-wordpress-5fdfc9c5f7-pgmpw" "--" "php" "-r" "$context=stream_context_create(['http'=>['timeout'=>3,'follow_location'=>0,'ignore_errors'=>true]]);
+@file_get_contents('http://127.0.0.1/urumi-ready.php',false,$context);
+$status=$http_response_header[0]??'';
+echo $status.\"\n\";
+exit(preg_match('~^HTTP/\S+ 200(?: |$)~',$status)?0:1);"
+Exit: 0
+HTTP/1.1 200 OK
+
+
+UTC: 2026-10-16T04:35:32.2158994Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "exec" "urumi-wordpress-5fdfc9c5f7-dldh4" "--" "php" "-r" "$context=stream_context_create(['http'=>['timeout'=>3,'follow_location'=>0,'ignore_errors'=>true]]);
+@file_get_contents('http://127.0.0.1/urumi-ready.php',false,$context);
+$status=$http_response_header[0]??'';
+echo $status.\"\n\";
+exit(preg_match('~^HTTP/\S+ 200(?: |$)~',$status)?0:1);"
+Exit: 0
+HTTP/1.1 200 OK
+
+
+UTC: 2026-10-16T04:35:46.4960296Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "exec" "urumi-wordpress-5fdfc9c5f7-dldh4" "--" "php" "-r" "$context=stream_context_create(['http'=>['timeout'=>3,'follow_location'=>0,'ignore_errors'=>true]]);
+@file_get_contents('http://127.0.0.1/urumi-ready.php',false,$context);
+$status=$http_response_header[0]??'';
+echo $status.\"\n\";
+exit(preg_match('~^HTTP/\S+ 200(?: |$)~',$status)?0:1);"
+Exit: 1
+
+
+command terminated with exit code 1
+
+UTC: 2026-10-16T04:35:50.5299813Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "exec" "urumi-wordpress-5fdfc9c5f7-dldh4" "--" "php" "-r" "$context=stream_context_create(['http'=>['timeout'=>3,'follow_location'=>0,'ignore_errors'=>true]]);
+@file_get_contents('http://127.0.0.1/urumi-ready.php',false,$context);
+$status=$http_response_header[0]??'';
+echo $status.\"\n\";
+exit(preg_match('~^HTTP/\S+ 200(?: |$)~',$status)?0:1);"
+Exit: 0
+HTTP/1.1 200 OK
+
+
+UTC: 2026-10-16T04:47:51.9494360Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "exec" "urumi-wordpress-5fdfc9c5f7-dldh4" "--" "php" "-r" "$context=stream_context_create(['http'=>['timeout'=>3,'follow_location'=>0,'ignore_errors'=>true]]);
+@file_get_contents('http://127.0.0.1/urumi-ready.php',false,$context);
+$status=$http_response_header[0]??'';
+echo $status.\"\n\";
+exit(preg_match('~^HTTP/\S+ 200(?: |$)~',$status)?0:1);"
+Exit: 0
+HTTP/1.1 200 OK
+
+
+UTC: 2026-10-16T04:49:56.3078747Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "exec" "urumi-wordpress-5fdfc9c5f7-dldh4" "--" "php" "-r" "$context=stream_context_create(['http'=>['timeout'=>3,'follow_location'=>0,'ignore_errors'=>true]]);
+@file_get_contents('http://127.0.0.1/urumi-ready.php',false,$context);
+$status=$http_response_header[0]??'';
+echo $status.\"\n\";
+exit(preg_match('~^HTTP/\S+ 200(?: |$)~',$status)?0:1);"
+Exit: 0
+HTTP/1.1 200 OK
+
+

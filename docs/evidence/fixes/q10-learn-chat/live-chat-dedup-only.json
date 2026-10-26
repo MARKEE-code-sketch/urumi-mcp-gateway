@@ -1,0 +1,23 @@
+{
+  "status": "FAIL",
+  "prompt": "Use Microsoft Learn to find official documentation explaining Kubernetes Pods. Summarise the result and provide the source links.",
+  "tls_bypass": false,
+  "http_status": 200,
+  "reply": {
+    "request_id": "addb2cc8-2349-491b-bd4c-f4b6cdf8f3bd",
+    "state": "failed",
+    "answer": "The language model is unavailable; earlier tool results remain visible.",
+    "tool_calls": [
+      {
+        "call_id": "f1a89002-b261-42f0-ae85-b9bb50f7dc4c",
+        "tool_name": "learn__microsoft_docs_search",
+        "server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+        "outcome": "success",
+        "duration_ms": 3122,
+        "audit_id": "d3cf4661-624a-4964-9843-d268f91ff66d"
+      }
+    ]
+  },
+  "rendered_links": [],
+  "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'failed'\n- 'completed'\n"
+}

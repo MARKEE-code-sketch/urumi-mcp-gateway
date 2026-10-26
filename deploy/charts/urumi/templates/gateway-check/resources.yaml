@@ -1,0 +1,102 @@
+{{- if .Values.gatewayCheck.enabled }}
+{{- if ne .Release.Namespace "urumi-m6-check" }}
+{{- fail "gatewayCheck is restricted to its isolated urumi-m6-check namespace" }}
+{{- end }}
+{{- $root := . }}
+{{- range $component := list "gateway" "none" "bearer" "header" }}
+{{- $name := printf "%s-%s" $root.Release.Name $component }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app.kubernetes.io/instance: {{ $root.Release.Name }}, app.kubernetes.io/component: {{ $component }}}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/instance: {{ $root.Release.Name }}, app.kubernetes.io/component: {{ $component }}}
+    spec:
+      automountServiceAccountToken: false
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, runAsGroup: 10001, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: {{ $component }}
+          image: {{ printf "%s:%s" $root.Values.gatewayCheck.image.repository $root.Values.gatewayCheck.image.tag | quote }}
+          imagePullPolicy: {{ $root.Values.gatewayCheck.image.pullPolicy }}
+          command: [python, -m, {{ if eq $component "gateway" }}scripts.m6.harness{{ else }}scripts.m6.fixtures{{ end }}]
+          securityContext: {readOnlyRootFilesystem: true, allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          ports: [{name: http, containerPort: 8000}]
+          env:
+{{- if eq $component "gateway" }}
+{{- range $mode := list "none" "bearer" "header" }}
+            - name: {{ upper $mode }}_URL
+              value: {{ printf "http://%s-%s.%s.svc.cluster.local:8000/mcp" $root.Release.Name $mode $root.Release.Namespace | quote }}
+{{- end }}
+{{- range $env, $key := dict "BEARER_TOKEN" "bearer-token" "HEADER_TOKEN" "header-token" "GATEWAY_KEY_A" "key-a" "GATEWAY_KEY_B" "key-b" "SESSION_A" "session-a" "SESSION_B" "session-b" }}
+            - name: {{ $env }}
+              valueFrom:
+                secretKeyRef: {name: {{ $root.Values.gatewayCheck.existingSecret }}, key: {{ $key }}}
+{{- end }}
+{{- else }}
+            - {name: MODE, value: {{ $component | quote }}}
+{{- if eq $component "header" }}
+            - {name: STATEFUL, value: "true"}
+{{- end }}
+{{- if ne $component "none" }}
+            - name: UPSTREAM_TOKEN
+              valueFrom:
+                secretKeyRef: {name: {{ $root.Values.gatewayCheck.existingSecret }}, key: {{ printf "%s-token" $component }}}
+{{- end }}
+{{- end }}
+          startupProbe: {httpGet: {path: /livez, port: http}, periodSeconds: 2, timeoutSeconds: 2, failureThreshold: 30}
+          readinessProbe: {httpGet: {path: /readyz, port: http}, initialDelaySeconds: 3, periodSeconds: 5, timeoutSeconds: 2, failureThreshold: 3}
+          livenessProbe: {httpGet: {path: /livez, port: http}, initialDelaySeconds: 3, periodSeconds: 5, timeoutSeconds: 2, failureThreshold: 3}
+          resources:
+{{- if eq $component "gateway" }}
+            {{- toYaml $root.Values.gatewayCheck.resources.gateway | nindent 12 }}
+{{- else }}
+            {{- toYaml $root.Values.gatewayCheck.resources.fixture | nindent 12 }}
+{{- end }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $name }}
+spec:
+  type: ClusterIP
+  selector: {app.kubernetes.io/instance: {{ $root.Release.Name }}, app.kubernetes.io/component: {{ $component }}}
+  ports: [{name: http, port: 8000, targetPort: http}]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ $name }}
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/instance: {{ $root.Release.Name }}, app.kubernetes.io/component: {{ $component }}}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/instance: {{ $root.Release.Name }}, app.kubernetes.io/component: gateway}
+        - podSelector:
+            matchLabels: {urumi-module: m6-check-client}
+      ports: [{protocol: TCP, port: 8000}]
+{{- if eq $component "gateway" }}
+  egress:
+    - to:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/instance: {{ $root.Release.Name }}}
+      ports: [{protocol: TCP, port: 8000}]
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+          podSelector:
+            matchLabels: {k8s-app: kube-dns}
+      ports: [{protocol: UDP, port: 53}, {protocol: TCP, port: 53}]
+{{- else }}
+  egress: []
+{{- end }}
+{{- end }}
+{{- end }}

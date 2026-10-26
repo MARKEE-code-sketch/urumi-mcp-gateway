@@ -1,0 +1,49 @@
+﻿{
+    "store":  {
+                  "product_id":  12,
+                  "product":  {
+                                  "sku":  "DEMO-001",
+                                  "name":  "Urumi Demo Product",
+                                  "price":  "499.00",
+                                  "status":  "publish"
+                              },
+                  "order_ids":  [
+                                    15
+                                ],
+                  "orders":  [
+                                 {
+                                     "id":  15,
+                                     "status":  "processing",
+                                     "currency":  "INR",
+                                     "total":  "499.00",
+                                     "items":  [
+                                                   {
+                                                       "product_id":  12,
+                                                       "quantity":  1,
+                                                       "total":  "499"
+                                                   }
+                                               ]
+                                 }
+                             ],
+                  "attachment_id":  13,
+                  "image_url":  "http://shop.urumi.test/wp-content/uploads/2026/10/urumi-demo.png",
+                  "image_sha256":  "f1d689bba3617d9af0d58e93b1a909b1f3ff16b2962ed6a27e9a728dc0e8aeb3",
+                  "image_http_sha256":  "f1d689bba3617d9af0d58e93b1a909b1f3ff16b2962ed6a27e9a728dc0e8aeb3",
+                  "key_id":  1,
+                  "currency":  "INR",
+                  "timezone":  "Asia/Kolkata",
+                  "cod":  "yes"
+              },
+    "claims":  [
+                   {
+                       "phase":  "Bound",
+                       "name":  "urumi-mariadb-data",
+                       "uid":  "91b18137-d90e-49f0-b16e-ab2686a82df0"
+                   },
+                   {
+                       "phase":  "Bound",
+                       "name":  "urumi-wordpress-content",
+                       "uid":  "cae72902-5c12-4c82-9225-965798cb78b4"
+                   }
+               ]
+}

@@ -1,0 +1,23 @@
+{
+  "image_build": "Both frozen builds PASS; see docker-build-dashboard.txt and docker-build-fixture.txt",
+  "runtime_config_verification": "Actual SHA256 of Docker-exported config bytes, then compared with running Kubernetes Pod image IDs",
+  "imports": [
+    {
+      "command": ".tools/m1/k3d.exe image import .tools/m89/m8-images.tar -c urumi",
+      "exit_code": 0,
+      "observed": "FAILED: Windows archive directory handling, despite zero exit code; not treated as success"
+    },
+    {
+      "command": "../m1/k3d.exe image import m8-images.tar -c urumi",
+      "working_directory": ".tools/m89",
+      "exit_code": 0,
+      "observed": "FAILED: node could not find archive, despite zero exit code; not treated as success"
+    },
+    {
+      "command": ".tools/m1/k3d.exe image import urumi/dashboard:m8 urumi/dashboard-fixture:m8 -c urumi",
+      "exit_code": 0,
+      "observed": "Both tags imported in 16 seconds; deployed config identities subsequently matched exported bytes"
+    }
+  ],
+  "fixture_lint_note": "Helm lint uses an implicit release name and emits the deliberate fixture-name guard; this is not counted as fixture render proof. M9 local/prod lint and renders passed, and actual M8 Helm deployment used the required explicit owned name/namespace."
+}

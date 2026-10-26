@@ -1,0 +1,11 @@
+{
+  "status": "ENCRYPTED_SNAPSHOT_CAPTURED",
+  "source": "urumi-m10",
+  "ciphertext_sha256": "3dfd07b2ca4aea7a4ea656abffa4eecc4c49fe4c1f5838b1719122960a39c98d",
+  "postgres_tables": 11,
+  "content_files": 9289,
+  "static_secret_count": 7,
+  "dynamic_secret_count": 0,
+  "off_machine_backup": false,
+  "key_scope": "Windows DPAPI current user and machine"
+}

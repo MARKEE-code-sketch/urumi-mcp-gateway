@@ -1,0 +1,22 @@
+[
+    {
+        "file":  "scripts/build-images.ps1",
+        "errors":  0
+    },
+    {
+        "file":  "scripts/m1/check-foundation.ps1",
+        "errors":  0
+    },
+    {
+        "file":  "scripts/m1/setup-cluster.ps1",
+        "errors":  0
+    },
+    {
+        "file":  "scripts/m2/check-store.ps1",
+        "errors":  0
+    },
+    {
+        "file":  "scripts/m2/deploy-store.ps1",
+        "errors":  0
+    }
+]

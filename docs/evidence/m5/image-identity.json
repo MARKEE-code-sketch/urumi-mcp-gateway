@@ -1,0 +1,7 @@
+{
+  "image": "urumi/m5-harness:m5",
+  "config_digest": "sha256:074b749942232c24870d63ea86140eab7f961ebfceac0c53194305ce1be755c6",
+  "architecture": "amd64",
+  "os": "linux",
+  "verification": "SHA256 of actual Docker-exported configuration bytes"
+}

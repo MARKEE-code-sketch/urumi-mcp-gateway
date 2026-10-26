@@ -1,0 +1,11 @@
+{
+  "comparison": "Historical M8 frozen hashes versus current 25 dashboard build/runtime inputs",
+  "common_inputs": 25,
+  "changed_inputs": [
+    "frontend/src/api.ts",
+    "frontend/src/pages/Servers.tsx",
+    "frontend/src/types.ts"
+  ],
+  "added_input_paths": [],
+  "css_dependencies_and_nginx_unchanged": true
+}

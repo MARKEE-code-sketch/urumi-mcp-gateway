@@ -1,0 +1,138 @@
+[
+  {
+    "argv": [
+      ".tools/m1\\helm.exe",
+      "version",
+      "--short"
+    ],
+    "cwd": ".",
+    "exit_code": 0
+  },
+  {
+    "argv": [
+      ".tools/m1\\helm.exe",
+      "lint",
+      "C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\deploy\\charts\\urumi",
+      "--namespace",
+      "urumi",
+      "-f",
+      "C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\deploy\\charts\\urumi\\values-local.yaml"
+    ],
+    "cwd": ".",
+    "exit_code": 0
+  },
+  {
+    "argv": [
+      ".tools/m1\\helm.exe",
+      "template",
+      "urumi",
+      "C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\deploy\\charts\\urumi",
+      "--namespace",
+      "urumi",
+      "-f",
+      "C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\deploy\\charts\\urumi\\values-local.yaml"
+    ],
+    "cwd": ".",
+    "exit_code": 0
+  },
+  {
+    "argv": [
+      ".tools/m1\\helm.exe",
+      "lint",
+      "C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\deploy\\charts\\urumi",
+      "--namespace",
+      "urumi",
+      "-f",
+      "C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\deploy\\charts\\urumi\\values-prod.yaml"
+    ],
+    "cwd": ".",
+    "exit_code": 0
+  },
+  {
+    "argv": [
+      ".tools/m1\\helm.exe",
+      "template",
+      "urumi",
+      "C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\deploy\\charts\\urumi",
+      "--namespace",
+      "urumi",
+      "-f",
+      "C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\deploy\\charts\\urumi\\values-prod.yaml"
+    ],
+    "cwd": ".",
+    "exit_code": 0
+  },
+  {
+    "argv": [
+      "C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\.tools\\m10\\venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "tests/release",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "--basetemp",
+      "C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\.tools\\m9\\pytest-evidence",
+      "--junitxml",
+      "C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\docs\\evidence\\m10\\package-final\\tests.xml"
+    ],
+    "cwd": ".",
+    "exit_code": 0
+  },
+  {
+    "argv": [
+      "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.EXE",
+      "-NoProfile",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-File",
+      "C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\.tools\\m9\\missing-entrypoint-4bc9321131b8478a84b6e7f65c175391\\scripts\\build-images.ps1",
+      "-Module",
+      "Backend",
+      "-ImagePrefix",
+      "urumi",
+      "-Tag",
+      "review"
+    ],
+    "cwd": ".tools\\m9\\missing-entrypoint-4bc9321131b8478a84b6e7f65c175391",
+    "exit_code": 1
+  },
+  {
+    "argv": [
+      "C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\.tools\\m10\\venv\\Scripts\\python.exe",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "cwd": ".",
+    "exit_code": 0
+  },
+  {
+    "argv": [
+      ".tools/m1\\helm.exe",
+      "template",
+      "urumi",
+      "deploy/charts/urumi",
+      "--namespace",
+      "urumi",
+      "-f",
+      "deploy/charts/urumi/values-local.yaml"
+    ],
+    "cwd": ".tools\\m9\\source-only-stage-62328fb6257d4d38a9101d4b8b435959",
+    "exit_code": 0
+  },
+  {
+    "argv": [
+      ".tools/m1\\helm.exe",
+      "template",
+      "urumi",
+      "deploy/charts/urumi",
+      "--namespace",
+      "urumi",
+      "-f",
+      "deploy/charts/urumi/values-prod.yaml"
+    ],
+    "cwd": ".tools\\m9\\source-only-stage-62328fb6257d4d38a9101d4b8b435959",
+    "exit_code": 0
+  }
+]

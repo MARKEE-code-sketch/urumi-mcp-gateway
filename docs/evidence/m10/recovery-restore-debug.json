@@ -1,0 +1,41 @@
+{
+  "status": "FAIL_RECOVERY_OPERATION",
+  "mode": "restore",
+  "stage": "RESTORE_CONTENT",
+  "exception_type": "RecoveryFailure",
+  "error_code": "KUBERNETES_COMMAND_FAILED",
+  "exit_code": 2,
+  "safe_pod_status": [
+    {
+      "pod": "content",
+      "phase": "Running",
+      "containers": [
+        {
+          "ready": true,
+          "restarts": 0
+        }
+      ]
+    },
+    {
+      "pod": "mariadb",
+      "phase": "Running",
+      "containers": [
+        {
+          "ready": true,
+          "restarts": 0
+        }
+      ]
+    },
+    {
+      "pod": "postgres",
+      "phase": "Running",
+      "containers": [
+        {
+          "ready": true,
+          "restarts": 0
+        }
+      ]
+    }
+  ],
+  "private_diagnostics_exported": false
+}

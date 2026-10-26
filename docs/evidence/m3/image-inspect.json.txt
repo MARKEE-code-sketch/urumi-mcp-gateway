@@ -1,0 +1,74 @@
+﻿UTC: 2026-10-15T14:55:58.8033182Z
+Command: docker.exe "image" "inspect" "urumi/woocommerce-mcp:m3"
+Exit: 0
+[
+    {
+        "Id": "sha256:41921e625b0e2256ebea6ad86511bf4879aac2ee84b798926af4fa2aadf1e546",
+        "RepoTags": [
+            "urumi/woocommerce-mcp:m3"
+        ],
+        "RepoDigests": [
+            "urumi/woocommerce-mcp@sha256:41921e625b0e2256ebea6ad86511bf4879aac2ee84b798926af4fa2aadf1e546"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-10-15T14:55:53.157629139Z",
+        "Config": {
+            "User": "10001:10001",
+            "ExposedPorts": {
+                "8000/tcp": {}
+            },
+            "Env": [
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+                "PYTHON_VERSION=3.13.5",
+                "PYTHON_SHA256=93e583f243454e6e9e4588ca2c2662206ad961659863277afcdb96801647d640",
+                "PYTHONDONTWRITEBYTECODE=1",
+                "PYTHONUNBUFFERED=1",
+                "PYTHONPATH=/app"
+            ],
+            "Cmd": [
+                "python",
+                "-m",
+                "services.woocommerce_mcp.server"
+            ],
+            "WorkingDir": "/app",
+            "ArgsEscaped": true
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 56928634,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:7cc7fe68eff66f19872441a51938eecc4ad33746d2baa3abc081c1e6fe25988e",
+                "sha256:9621f68f1f5ddfd1fa67faa2a5c513986b9d4b015f06999152893fc9bcefb093",
+                "sha256:547f1fc1a2bb7ad4fbecb26c04a6ba82c067e668e79ab229bd932745636781c7",
+                "sha256:7d8e4ce94100ff12329e91295efd7fb69bfc45c0525dd1ff94e577a22903d44c",
+                "sha256:37c25c97ab77c85fd2924440ed65020721f3c09ed90e3259ac56c6994db98d72",
+                "sha256:f20015b97e7214c83ec9a6f73be3481a5eacac54f00e4246f46b72843b91879c",
+                "sha256:d7f5d15e20e544518bd67d841e105e7f3a7cc23fba1713e3ad9f8fb3e82f80d6",
+                "sha256:964f2f016a713bfaf6ca1a9e34943a19b4d979bd1cd98fd6f5448c59b84588e3",
+                "sha256:0aa5364dc65c9459039f29b75082384065eaae3a52495b09be940b0df822ec50",
+                "sha256:df299ba8fcb95999044812fbd7f4e6878b65fb32f05a058b52729851e51959bb"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-15T14:55:56.668288087Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:41921e625b0e2256ebea6ad86511bf4879aac2ee84b798926af4fa2aadf1e546",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "6h3hrml755gfsxi6uloqjayj2",
+                    "CreatedAt": "2026-10-15T14:55:58.125939888Z"
+                }
+            ]
+        }
+    }
+]
+
+

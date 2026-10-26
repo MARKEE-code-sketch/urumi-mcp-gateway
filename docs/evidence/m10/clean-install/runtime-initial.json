@@ -1,0 +1,25 @@
+{
+  "checked_at": "2026-10-20T09:37:29.960917+00:00",
+  "checks": [
+    "staged_chart_lint_render_deploy_preflight"
+  ],
+  "provider_calls": 0,
+  "scope": "staged source chart/helpers; explicit cached immutable image inputs and private operator inputs",
+  "namespace_uid": "873773da-dd54-4f3b-aa44-3d32ac9b4a08",
+  "namespace": "urumi-m10-clean",
+  "store_bootstrap": {
+    "namespace": "urumi-m10-clean",
+    "release": "urumi-m10-clean",
+    "setup_job": "urumi-m10-clean-setup-3e48d09f",
+    "status": "STORE_BOOTSTRAP_COMPLETE",
+    "completed_job_removed": true,
+    "product_id": 12,
+    "attachment_id": 13,
+    "key_id": 1,
+    "currency": "INR",
+    "timezone": "Asia/Kolkata"
+  },
+  "admin_user_id": "f6b38ae3-8acf-48e7-a23f-a92cf7f0c689",
+  "status": "FAILED_REVIEW_REQUIRED",
+  "failure_phase": "after_1_completed_checks"
+}

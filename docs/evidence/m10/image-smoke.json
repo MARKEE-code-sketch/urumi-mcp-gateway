@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "command": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "none",
+    "--read-only",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "urumi/backend:m10",
+    "python",
+    "-c",
+    "from pathlib import Path; assert not Path('/app/scripts').exists(); import backend.main; print('PASS: release imports, non-harness source only')"
+  ],
+  "exit_code": 0,
+  "stdout": "PASS: release imports, non-harness source only\n",
+  "stderr": "",
+  "scope": "Actual Linux release image import and harness-exclusion smoke; networking disabled. Not application startup, cluster or provider proof."
+}

@@ -1,0 +1,7 @@
+{
+  "image": "urumi/inventory-mcp:m4",
+  "config_digest": "sha256:32f6307e850d6ccd3cb1e857ff949dfafbf63631594ed7196cc9684b20a57817",
+  "architecture": "amd64",
+  "os": "linux",
+  "verification": "SHA256 of actual Docker-exported configuration bytes"
+}

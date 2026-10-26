@@ -1,0 +1,28 @@
+
+> urumi-dashboard@0.1.0 test:browser
+> playwright test
+
+
+Running 15 tests using 1 worker
+
+  âœ“   1 tests\browser\dashboard.spec.ts:74:1 â€º admin status, hostile preview and server credential keep/replace/clear (2.1s)
+  âœ“   2 tests\browser\dashboard.spec.ts:102:1 â€º member direct access denied, redacted API and expiry clears private screen (2.0s)
+  âœ“   3 tests\browser\dashboard.spec.ts:129:1 â€º invitation fragment removed and account creation does not auto-login (2.1s)
+  âœ“   4 tests\browser\dashboard.spec.ts:143:1 â€º members invitation once-only and explicit target key lifecycle (1.5s)
+  âœ“   5 tests\browser\dashboard.spec.ts:171:1 â€º audit six outcomes, filters, null values and member-owned responses (1.4s)
+  âœ“   6 tests\browser\dashboard.spec.ts:201:1 â€º chat plain answer, all actual attempts, partial and unknown effects (1.9s)
+  âœ“   7 tests\browser\dashboard.spec.ts:246:1 â€º safe failures, no automatic replay and narrow keyboard/sanitized screenshots (1.7s)
+  âœ“   8 tests\browser\dashboard.spec.ts:300:1 â€º server create replace disable remove sends exact permitted bodies (2.1s)
+  âœ“   9 tests\browser\dashboard.spec.ts:360:1 â€º invitation malformed expired and consumed states are explicit (1.0s)
+  âœ“  10 tests\browser\dashboard.spec.ts:383:1 â€º chat overload provider failure and lost response never replay (1.7s)
+  âœ“  11 tests\browser\dashboard.spec.ts:412:1 â€º lost key issuance stays uncertain and does not silently reissue (1.6s)
+  âœ“  12 tests\browser\dashboard.spec.ts:436:1 â€º logout is serialized before another login and clears account state (2.2s)
+  âœ“  13 tests\browser\dashboard.spec.ts:466:1 â€º late previous tool preview cannot replace a newer selected server (1.9s)
+  âœ“  14 tests\browser\dashboard.spec.ts:495:1 â€º API caller protection rejects missing CSRF and never sends third-party requests (1.1s)
+  âœ“  15 tests\browser\dashboard.spec.ts:520:1 â€º member own key defaults to verified owner and audit is server-filtered (1.3s)
+
+  15 passed (30.0s)
+(node:41420) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:41420) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)

@@ -1,0 +1,7 @@
+{
+  "image": "urumi/dashboard:m8-server-errors",
+  "config_digest": "sha256:821b32789289c7982e7d497d83902033d0b064ab21de6f300418a2c6939bcf38",
+  "architecture": "amd64",
+  "os": "linux",
+  "verification": "SHA256 of actual Docker-exported configuration bytes"
+}

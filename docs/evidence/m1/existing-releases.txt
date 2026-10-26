@@ -1,0 +1,6 @@
+﻿UTC: 2026-10-14T16:59:58.5590037Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "list" "--all" "--all-namespaces" "-o" "json"
+Exit: 0
+[{"name":"traefik","namespace":"kube-system","revision":"1","updated":"2026-10-14 15:37:10.019383416 +0000 UTC","status":"deployed","chart":"traefik-40.1.4+up40.1.0","app_version":"v3.7.1"},{"name":"traefik-crd","namespace":"kube-system","revision":"1","updated":"2026-10-14 15:36:55.342736231 +0000 UTC","status":"deployed","chart":"traefik-crd-40.1.4+up40.1.0","app_version":"v3.7.1"}]
+
+

@@ -1,0 +1,90 @@
+﻿UTC: 2026-10-15T14:50:39.2034034Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "run" "--rm" "--entrypoint" "php" "urumi-store:m2" "-l" "/opt/urumi-store/bootstrap.php"
+Exit: 0
+No syntax errors detected in /opt/urumi-store/bootstrap.php
+
+
+UTC: 2026-10-15T14:50:40.1288583Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "run" "--rm" "--entrypoint" "php" "urumi-store:m2" "-l" "/opt/urumi-store/live.php"
+Exit: 0
+No syntax errors detected in /opt/urumi-store/live.php
+
+
+UTC: 2026-10-15T14:50:41.0830199Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "run" "--rm" "--entrypoint" "php" "urumi-store:m2" "-l" "/opt/urumi-store/ready.php"
+Exit: 0
+No syntax errors detected in /opt/urumi-store/ready.php
+
+
+UTC: 2026-10-15T14:50:41.9967748Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "run" "--rm" "--entrypoint" "php" "urumi-store:m2" "-l" "/opt/urumi-store/snapshot.php"
+Exit: 0
+No syntax errors detected in /opt/urumi-store/snapshot.php
+
+
+UTC: 2026-10-15T14:50:42.9058467Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "run" "--rm" "--entrypoint" "php" "urumi-store:m2" "-l" "/opt/urumi-store/verify-package.php"
+Exit: 0
+No syntax errors detected in /opt/urumi-store/verify-package.php
+
+
+UTC: 2026-10-15T14:54:22.8211489Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "run" "--rm" "--entrypoint" "php" "urumi-store:m2" "-l" "/opt/urumi-store/bootstrap.php"
+Exit: 0
+No syntax errors detected in /opt/urumi-store/bootstrap.php
+
+
+UTC: 2026-10-15T14:54:24.0588139Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "run" "--rm" "--entrypoint" "php" "urumi-store:m2" "-l" "/opt/urumi-store/live.php"
+Exit: 0
+No syntax errors detected in /opt/urumi-store/live.php
+
+
+UTC: 2026-10-15T14:54:25.2952571Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "run" "--rm" "--entrypoint" "php" "urumi-store:m2" "-l" "/opt/urumi-store/ready.php"
+Exit: 0
+No syntax errors detected in /opt/urumi-store/ready.php
+
+
+UTC: 2026-10-15T14:54:26.3635414Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "run" "--rm" "--entrypoint" "php" "urumi-store:m2" "-l" "/opt/urumi-store/snapshot.php"
+Exit: 0
+No syntax errors detected in /opt/urumi-store/snapshot.php
+
+
+UTC: 2026-10-15T14:54:27.4087624Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "run" "--rm" "--entrypoint" "php" "urumi-store:m2" "-l" "/opt/urumi-store/verify-package.php"
+Exit: 0
+No syntax errors detected in /opt/urumi-store/verify-package.php
+
+
+UTC: 2026-10-15T15:09:47.4871137Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "run" "--rm" "--entrypoint" "php" "urumi-store:m2" "-l" "/opt/urumi-store/bootstrap.php"
+Exit: 0
+No syntax errors detected in /opt/urumi-store/bootstrap.php
+
+
+UTC: 2026-10-15T15:09:48.6180594Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "run" "--rm" "--entrypoint" "php" "urumi-store:m2" "-l" "/opt/urumi-store/live.php"
+Exit: 0
+No syntax errors detected in /opt/urumi-store/live.php
+
+
+UTC: 2026-10-15T15:09:49.8825236Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "run" "--rm" "--entrypoint" "php" "urumi-store:m2" "-l" "/opt/urumi-store/ready.php"
+Exit: 0
+No syntax errors detected in /opt/urumi-store/ready.php
+
+
+UTC: 2026-10-15T15:09:51.1077334Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "run" "--rm" "--entrypoint" "php" "urumi-store:m2" "-l" "/opt/urumi-store/snapshot.php"
+Exit: 0
+No syntax errors detected in /opt/urumi-store/snapshot.php
+
+
+UTC: 2026-10-15T15:09:52.2295801Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "run" "--rm" "--entrypoint" "php" "urumi-store:m2" "-l" "/opt/urumi-store/verify-package.php"
+Exit: 0
+No syntax errors detected in /opt/urumi-store/verify-package.php
+
+

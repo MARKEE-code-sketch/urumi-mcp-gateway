@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "tool": "woocommerce__get_order",
+  "route": "HTTPS gateway /mcp",
+  "provider_calls": 0,
+  "write_calls": 0,
+  "order": {
+    "id": 21,
+    "status": "processing",
+    "currency": "INR",
+    "total": "499.00",
+    "line_items": [
+      {
+        "product_id": 12,
+        "name": "Urumi Demo Product",
+        "sku": "DEMO-001",
+        "quantity": 1,
+        "total": "499.00"
+      }
+    ]
+  }
+}

@@ -1,0 +1,110 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 604B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/nginxinc/nginx-unprivileged:1.30.6-alpine@sha256:782bb89768cc87b7f95c18b95baa1af250e5d451f26794f59363540161147c01
+#2 ...
+
+#3 [internal] load metadata for docker.io/library/node:24.18.0-alpine@sha256:a0b9bf06e4e6193cf7a0f58816cc935ff8c2a908f81e6f1a95432d679c54fbfd
+#3 DONE 3.6s
+
+#2 [internal] load metadata for docker.io/nginxinc/nginx-unprivileged:1.30.6-alpine@sha256:782bb89768cc87b7f95c18b95baa1af250e5d451f26794f59363540161147c01
+#2 DONE 3.9s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 71B 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [build 1/7] FROM docker.io/library/node:24.18.0-alpine@sha256:a0b9bf06e4e6193cf7a0f58816cc935ff8c2a908f81e6f1a95432d679c54fbfd
+#6 resolve docker.io/library/node:24.18.0-alpine@sha256:a0b9bf06e4e6193cf7a0f58816cc935ff8c2a908f81e6f1a95432d679c54fbfd 0.1s done
+#6 DONE 0.1s
+
+#7 [stage-1 1/3] FROM docker.io/nginxinc/nginx-unprivileged:1.30.6-alpine@sha256:782bb89768cc87b7f95c18b95baa1af250e5d451f26794f59363540161147c01
+#7 resolve docker.io/nginxinc/nginx-unprivileged:1.30.6-alpine@sha256:782bb89768cc87b7f95c18b95baa1af250e5d451f26794f59363540161147c01 0.1s done
+#7 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 16.38kB 0.0s done
+#5 DONE 0.1s
+
+#8 [build 4/7] RUN npm ci --no-audit --no-fund
+#8 CACHED
+
+#9 [build 2/7] WORKDIR /app
+#9 CACHED
+
+#10 [build 3/7] COPY package.json package-lock.json ./
+#10 CACHED
+
+#11 [build 5/7] COPY index.html tsconfig.json vite.config.ts ./
+#11 CACHED
+
+#12 [build 6/7] COPY src ./src
+#12 DONE 0.2s
+
+#13 [build 7/7] RUN npm run typecheck && npm run build
+#13 3.473 
+#13 3.473 > urumi-dashboard@0.1.0 typecheck
+#13 3.473 > tsc --noEmit
+#13 3.473 
+#13 11.88 
+#13 11.88 > urumi-dashboard@0.1.0 build
+#13 11.88 > vite build
+#13 11.88 
+#13 12.66 vite v7.3.1 building client environment for production...
+#13 12.90 transforming...
+#13 17.02 âœ“ 324 modules transformed.
+#13 17.61 rendering chunks...
+#13 17.66 computing gzip size...
+#13 17.77 dist/assets/plus-Bd69O6hL.svg                0.21 kB â”‚ gzip:   0.17 kB
+#13 17.77 dist/assets/caret-down-Cn6qDmS5.svg          0.21 kB â”‚ gzip:   0.18 kB
+#13 17.78 dist/assets/arrow-up-right-DNc69qXy.svg      0.22 kB â”‚ gzip:   0.18 kB
+#13 17.78 dist/assets/caret-right-B9H0s0Th.svg         0.22 kB â”‚ gzip:   0.17 kB
+#13 17.78 dist/assets/magnifying-glass-hfmbFh4V.svg    0.24 kB â”‚ gzip:   0.19 kB
+#13 17.78 dist/assets/list-CIXwnp_k.svg                0.25 kB â”‚ gzip:   0.18 kB
+#13 17.78 dist/assets/arrow-up-DLWa3vLV.svg            0.26 kB â”‚ gzip:   0.19 kB
+#13 17.78 dist/assets/urumi-mark-C-wxyej_.svg          0.26 kB â”‚ gzip:   0.21 kB
+#13 17.78 dist/assets/copy-ChcUWZci.svg                0.28 kB â”‚ gzip:   0.20 kB
+#13 17.78 dist/assets/x-BQERMe2h.svg                   0.28 kB â”‚ gzip:   0.20 kB
+#13 17.78 dist/assets/check-circle-BeI0d98t.svg        0.34 kB â”‚ gzip:   0.23 kB
+#13 17.78 dist/assets/sign-out-CBWDsJD2.svg            0.35 kB â”‚ gzip:   0.23 kB
+#13 17.78 dist/assets/arrow-square-out-mAzLYAl4.svg    0.35 kB â”‚ gzip:   0.24 kB
+#13 17.78 dist/assets/book-open-CZDyQqUR.svg           0.40 kB â”‚ gzip:   0.24 kB
+#13 17.78 dist/assets/chat-circle-dots-DVEfiD-8.svg    0.47 kB â”‚ gzip:   0.29 kB
+#13 17.78 dist/assets/stack-Dr1C3G1f.svg               0.48 kB â”‚ gzip:   0.27 kB
+#13 17.78 dist/index.html                              0.48 kB â”‚ gzip:   0.32 kB
+#13 17.78 dist/assets/package-DVgVRBu4.svg             0.49 kB â”‚ gzip:   0.30 kB
+#13 17.78 dist/assets/plug-PSee9Gmx.svg                0.52 kB â”‚ gzip:   0.29 kB
+#13 17.78 dist/assets/shield-check-BTPrQJqp.svg        0.54 kB â”‚ gzip:   0.34 kB
+#13 17.78 dist/assets/receipt-CgRKSrtK.svg             0.54 kB â”‚ gzip:   0.29 kB
+#13 17.78 dist/assets/list-checks-QwH9QZVh.svg         0.57 kB â”‚ gzip:   0.26 kB
+#13 17.78 dist/assets/key-CXzOGSjf.svg                 0.64 kB â”‚ gzip:   0.37 kB
+#13 17.78 dist/assets/users-three-Qeg-VIR3.svg         0.69 kB â”‚ gzip:   0.36 kB
+#13 17.78 dist/assets/Figtree-nnuniQY3.ttf            62.71 kB
+#13 17.78 dist/assets/index-BnMZ-dH3.css              22.02 kB â”‚ gzip:   5.33 kB
+#13 17.78 dist/assets/index-CDf9AfMA.js              397.95 kB â”‚ gzip: 123.50 kB
+#13 17.79 âœ“ built in 5.00s
+#13 DONE 18.0s
+
+#14 [stage-1 2/3] COPY nginx.conf /etc/nginx/nginx.conf
+#14 CACHED
+
+#15 [stage-1 3/3] COPY --from=build /app/dist /usr/share/nginx/html
+#15 DONE 0.1s
+
+#16 exporting to image
+#16 exporting layers
+#16 exporting layers 0.3s done
+#16 exporting manifest sha256:d23f0a4e157bb780af4cabaf179fbcf2502795fb874b3a021e16ddf9b1afd4cf 0.0s done
+#16 exporting config sha256:821b32789289c7982e7d497d83902033d0b064ab21de6f300418a2c6939bcf38 0.0s done
+#16 exporting attestation manifest sha256:efa80472afb972e7bc7b5dad49187963dadea0a3efed8d43e1162961872312f5
+#16 exporting attestation manifest sha256:efa80472afb972e7bc7b5dad49187963dadea0a3efed8d43e1162961872312f5 0.1s done
+#16 exporting manifest list sha256:912801aaff89b6811567b8e4c0a50d10012182c1796f2288a22df6ab70e661c9 0.0s done
+#16 naming to docker.io/urumi/dashboard:m8-server-errors done
+#16 unpacking to docker.io/urumi/dashboard:m8-server-errors 0.1s done
+#16 DONE 0.7s

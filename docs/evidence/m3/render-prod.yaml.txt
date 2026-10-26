@@ -1,0 +1,89 @@
+﻿UTC: 2026-10-15T14:56:14.0434627Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "template" "urumi" "deploy/charts/urumi" "-n" "urumi" "-f" "deploy/charts/urumi/values-prod.yaml" "--set" "woocommerceMcp.enabled=true"
+Exit: 0
+---
+# Source: urumi/templates/woocommerce-mcp/resources.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: urumi-woocommerce-mcp
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: woocommerce-mcp}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: gateway}
+      ports: [{protocol: TCP, port: 8000}]
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: kube-system}
+          podSelector:
+            matchLabels: {k8s-app: kube-dns}
+      ports: [{protocol: UDP, port: 53}, {protocol: TCP, port: 53}]
+    - to:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: urumi}
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/component: wordpress
+              app.kubernetes.io/instance: urumi
+              app.kubernetes.io/name: urumi
+      ports: [{protocol: TCP, port: 80}]
+---
+# Source: urumi/templates/woocommerce-mcp/resources.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: urumi-woocommerce-mcp
+spec:
+  type: ClusterIP
+  selector: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: woocommerce-mcp}
+  ports: [{name: mcp, port: 8000, targetPort: mcp}]
+---
+# Source: urumi/templates/woocommerce-mcp/resources.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: urumi-woocommerce-mcp
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: woocommerce-mcp}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: woocommerce-mcp}
+    spec:
+      automountServiceAccountToken: false
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, runAsGroup: 10001, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: woocommerce-mcp
+          image: "private-registry.example.com/woocommerce-mcp:replace-with-immutable-reference"
+          imagePullPolicy: IfNotPresent
+          securityContext: {readOnlyRootFilesystem: true, allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          ports: [{name: mcp, containerPort: 8000}]
+          env:
+            - {name: WOO_CANONICAL_ORIGIN, value: "https://shop.example.com"}
+            - {name: WOO_TRANSPORT_ORIGIN, value: "https://shop.example.com"}
+            - {name: WOO_CURRENCY, value: "INR"}
+            - {name: MCP_ALLOWED_HOSTS, value: "urumi-woocommerce-mcp,urumi-woocommerce-mcp.urumi.svc.cluster.local"}
+            - name: WOO_CONSUMER_KEY
+              valueFrom:
+                secretKeyRef: {name: urumi-woocommerce-rest, key: consumer-key}
+            - name: WOO_CONSUMER_SECRET
+              valueFrom:
+                secretKeyRef: {name: urumi-woocommerce-rest, key: consumer-secret}
+          startupProbe: {httpGet: {path: /livez, port: mcp}, periodSeconds: 2, timeoutSeconds: 2, failureThreshold: 30}
+          livenessProbe: {httpGet: {path: /livez, port: mcp}, periodSeconds: 10, timeoutSeconds: 2, failureThreshold: 3}
+          readinessProbe: {httpGet: {path: /readyz, port: mcp}, periodSeconds: 10, timeoutSeconds: 2, failureThreshold: 3}
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+
+

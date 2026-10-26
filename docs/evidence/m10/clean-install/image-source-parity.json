@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "component": "m10",
+      "frozen_input_count": 41,
+      "all_match": true
+    },
+    {
+      "component": "m8",
+      "frozen_input_count": 25,
+      "all_match": true
+    },
+    {
+      "component": "woocommerceMcp",
+      "actual_image_source_count": 9,
+      "all_match": true,
+      "immutable_image": "urumi/woocommerce-mcp@sha256:41921e625b0e2256ebea6ad86511bf4879aac2ee84b798926af4fa2aadf1e546"
+    },
+    {
+      "component": "inventoryMcp",
+      "actual_image_source_count": 7,
+      "all_match": true,
+      "immutable_image": "urumi/inventory-mcp@sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb"
+    },
+    {
+      "component": "store",
+      "actual_image_source_count": 5,
+      "all_match": true,
+      "immutable_image": "urumi-store@sha256:23494837a20cc9d2c7093cb8203f066eb9c78054956945ad4e779ab42e204d98"
+    }
+  ],
+  "images": {
+    "store": {
+      "repository": "urumi-store",
+      "digest": "sha256:23494837a20cc9d2c7093cb8203f066eb9c78054956945ad4e779ab42e204d98",
+      "tag": "m2-23494837a20c",
+      "pullPolicy": "IfNotPresent"
+    },
+    "woocommerceMcp": {
+      "repository": "urumi/woocommerce-mcp",
+      "tag": "m3",
+      "digest": "sha256:41921e625b0e2256ebea6ad86511bf4879aac2ee84b798926af4fa2aadf1e546",
+      "pullPolicy": "IfNotPresent"
+    },
+    "inventoryMcp": {
+      "repository": "urumi/inventory-mcp",
+      "tag": "m4",
+      "digest": "sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb",
+      "pullPolicy": "IfNotPresent"
+    },
+    "backend": {
+      "repository": "urumi/backend",
+      "tag": "m10-recovery",
+      "digest": "sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe",
+      "pullPolicy": "IfNotPresent"
+    },
+    "dashboard": {
+      "repository": "urumi/dashboard",
+      "tag": "m8",
+      "digest": "sha256:c619a07d7dab970dce601fe0add72e2cbdcbe1839ca65cce3922ebc46f999a76",
+      "pullPolicy": "IfNotPresent"
+    }
+  },
+  "database_images": [
+    "mariadb@sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+    "postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826"
+  ],
+  "source": "staged source package",
+  "scope": "cached immutable release artifacts: frozen inputs for frontend/backend; actual contained runtime source bytes for Woo, Inventory and store; no fixture image"
+}

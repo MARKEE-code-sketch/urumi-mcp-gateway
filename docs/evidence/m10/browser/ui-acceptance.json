@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-10-20T09:23:48.186Z",
+  "checks": [
+    "admin_browser_invitation_created_and_one_time_value_masked",
+    "member_browser_invitation_redeemed",
+    "member_browser_login_and_role_navigation",
+    "member_browser_own_key_issued",
+    "member_browser_own_key_revoked",
+    "member_browser_own_audit_view",
+    "admin_browser_registry_name_edit_and_restore_credentials_kept",
+    "admin_browser_real_tool_audit_visible"
+  ],
+  "tls_verification": "browser_default",
+  "invitation_fragment_cleared": true,
+  "user_id": "bfdf4132-080a-4e17-8b87-c9bd9bc25edb",
+  "member_role": "member",
+  "admin_navigation_hidden": true,
+  "key_id": "91a815df-9bed-4f27-992f-b0ae8ace0272",
+  "member_audit_admin_filter_hidden": true,
+  "registry_original_name_restored": true,
+  "audit_visible_count": 20,
+  "status": "PASS"
+}

@@ -1,0 +1,147 @@
+{
+  "module": "M6",
+  "review_date": "2026-10-18",
+  "status": "PASS",
+  "user_acceptance": "PENDING",
+  "review_method": "Independent read-only source and saved-evidence review; no runtime mutations by reviewer.",
+  "counts": {
+    "passed": 12,
+    "failed": 0,
+    "blocked": 0
+  },
+  "verification": {
+    "distinct_gateway_host_tests": 52,
+    "linux_gateway_tests": 47,
+    "linux_chat_tests": 72,
+    "linux_combined_passed": 119,
+    "actual_postgresql_regression_passed": 42,
+    "runtime_groups_passed": 12
+  },
+  "checks": [
+    {
+      "id": "M6-01",
+      "status": "PASS",
+      "evidence": [
+        "cluster-results.json",
+        "host-tests.txt"
+      ],
+      "note": "Real SDK/TCP and Kubernetes three-fixture aggregation; JSON/stateful SSE upstreams."
+    },
+    {
+      "id": "M6-02",
+      "status": "PASS",
+      "evidence": [
+        "host-tests.txt",
+        "host-catalog-tests.txt"
+      ],
+      "note": "Stable aliases, duplicate names, invalid names and injected collisions."
+    },
+    {
+      "id": "M6-03",
+      "status": "PASS",
+      "evidence": [
+        "host-tests.txt",
+        "host-catalog-tests.txt",
+        "linux-module-tests.txt"
+      ],
+      "note": "Discovery pagination, cursors, size/schema bounds and safe snapshot publication."
+    },
+    {
+      "id": "M6-04",
+      "status": "PASS",
+      "evidence": [
+        "host-tests.txt",
+        "host-upstream-auth-tests.txt",
+        "cluster-results.json",
+        "gateway-log.txt"
+      ],
+      "note": "Correct and incorrect actual upstream authentication, header separation, echoed-secret sanitization and safe logger boundary."
+    },
+    {
+      "id": "M6-05",
+      "status": "PASS",
+      "evidence": [
+        "host-tests.txt",
+        "cluster-results.json",
+        "cluster-audit-status.json"
+      ],
+      "note": "Wrong/missing credentials rejected; existing-client revocation returns HTTP 401."
+    },
+    {
+      "id": "M6-06",
+      "status": "PASS",
+      "evidence": [
+        "host-isolation-identity-tests.txt",
+        "linux-module-tests.txt"
+      ],
+      "note": "Forged/invalid session zero-submission checks and final-boundary revocation."
+    },
+    {
+      "id": "M6-07",
+      "status": "PASS",
+      "evidence": [
+        "host-tests.txt",
+        "m5-regression-tests.txt",
+        "cluster-results.json"
+      ],
+      "note": "Version-conditional status, obsolete refresh prevention and disabled route invalidation."
+    },
+    {
+      "id": "M6-08",
+      "status": "PASS",
+      "evidence": [
+        "host-isolation-identity-tests.txt",
+        "cluster-results.json"
+      ],
+      "note": "Concurrent slow/healthy isolation; listing 0.066 s, timeout 10.031 s, outage status 1.129 s."
+    },
+    {
+      "id": "M6-09",
+      "status": "PASS",
+      "evidence": [
+        "host-tests.txt",
+        "linux-module-tests.txt",
+        "cluster-audit-status.json"
+      ],
+      "note": "One attempt lifecycle, late-begin/cancellation regressions and failed-finalization uncertainty."
+    },
+    {
+      "id": "M6-10",
+      "status": "PASS",
+      "evidence": [
+        "host-tests.txt",
+        "host-catalog-tests.txt",
+        "cluster-results.json"
+      ],
+      "note": "Safe paginated previews, UUID error envelopes and stale/empty/disabled behavior."
+    },
+    {
+      "id": "M6-11",
+      "status": "PASS",
+      "evidence": [
+        "host-tests.txt",
+        "linux-module-tests.txt",
+        "network-denial.json"
+      ],
+      "note": "Checked numeric dialing, original-host TLS, mixed/private DNS and transport restrictions."
+    },
+    {
+      "id": "M6-12",
+      "status": "PASS",
+      "evidence": [
+        "cluster-resources.json",
+        "runtime-image-check.json",
+        "cluster-results.json",
+        "network-denial.json",
+        "final-root-check.json",
+        "final-shop-status.txt"
+      ],
+      "note": "Isolated Kubernetes resources, controlled failure/recovery, cleanup and retained shop identities."
+    }
+  ],
+  "limits": [
+    "Identity, registry, Secret and audit stand-ins remain independent-module fixtures.",
+    "Real M5 dispatch wiring, actual selected-upstream aggregation, browser/external-client/two-user acceptance and VPS operation remain later modules/M10.",
+    "Raw cluster-results.json remains PASS_RUNTIME_REVIEW_PENDING; this file is the derived review verdict."
+  ]
+}

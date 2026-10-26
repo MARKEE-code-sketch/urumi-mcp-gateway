@@ -1,0 +1,106 @@
+﻿{
+  "timestamp_utc": "2026-10-16T13:12:18.778277+00:00",
+  "url": "http://urumi-m4-check-inventory-mcp.urumi-m4-check.svc.cluster.local:8000/mcp",
+  "real_hosted": false,
+  "versions": {
+    "mcp": "1.26.0",
+    "httpx": "0.28.1"
+  },
+  "protocol": "2025-11-25",
+  "stateful_session": false,
+  "tools": [
+    {
+      "name": "lookup_sku",
+      "description": "Read fixed SAMPLE warehouse information, not live WooCommerce stock.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "\\S"
+          }
+        },
+        "required": [
+          "sku"
+        ],
+        "additionalProperties": false
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "found": {
+            "type": "boolean"
+          },
+          "warehouses": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 100
+                },
+                "quantity": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "name",
+                "quantity"
+              ],
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "sku",
+          "found",
+          "warehouses"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    }
+  ],
+  "selected_tool": "lookup_sku",
+  "arguments": {
+    "sku": "DEMO-001"
+  },
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"sku\": \"DEMO-001\", \"found\": true, \"warehouses\": [{\"name\": \"Bengaluru\", \"quantity\": 12}]}"
+      }
+    ],
+    "structuredContent": {
+      "sku": "DEMO-001",
+      "found": true,
+      "warehouses": [
+        {
+          "name": "Bengaluru",
+          "quantity": 12
+        }
+      ]
+    },
+    "isError": false
+  },
+  "status": "PASS",
+  "elapsed_seconds": 0.796,
+  "received_bytes": 1326
+}
+

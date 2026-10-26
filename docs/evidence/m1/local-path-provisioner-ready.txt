@@ -1,0 +1,12 @@
+﻿UTC: 2026-10-14T16:59:35.4019123Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "-n" "kube-system" "get" "deployment" "local-path-provisioner" "--ignore-not-found=true" "-o" "name"
+Exit: 0
+deployment.apps/local-path-provisioner
+
+
+UTC: 2026-10-14T16:59:35.6538026Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "-n" "kube-system" "rollout" "status" "deployment/local-path-provisioner" "--timeout=120s"
+Exit: 0
+deployment "local-path-provisioner" successfully rolled out
+
+

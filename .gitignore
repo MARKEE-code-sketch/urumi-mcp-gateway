@@ -1,0 +1,39 @@
+.env
+.env.*
+!.env.example
+.venv/
+.cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+.tools/
+.playwright-mcp/
+node_modules/
+frontend/dist/
+frontend/test-results/
+frontend/playwright-report/
+
+# Local credentials, connection experiments and generated backups.
+/connect_mcp.py
+.kube/
+kubeconfig*
+*.key
+*.pem
+*.p12
+*.pfx
+*.dump
+*.tar
+*.tar.gz
+*.zip
+
+# Generated test scratch directories and the original product brief.
+/pytest-*/
+*.docx
+*.pdf
+
+# Browser evidence can contain account, invitation or checkout information.
+/docs/evidence/**/*.png
+/docs/evidence/**/*.jpg
+/docs/evidence/**/*.jpeg
+/docs/evidence/**/*.webp

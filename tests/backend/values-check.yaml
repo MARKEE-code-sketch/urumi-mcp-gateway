@@ -1,0 +1,17 @@
+foundation: {enabled: false}
+store: {enabled: false}
+woocommerceMcp: {enabled: false}
+inventoryMcp: {enabled: false}
+platformDb:
+  enabled: true
+  image: postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+  existingSecret: urumi-m5-db
+  storage: {size: 2Gi, className: local-path}
+platformAccess:
+  enabled: true
+  secretNamespace: urumi-m5-upstream-secrets-check
+  serviceAccount: urumi-m5-backend
+m5Harness:
+  enabled: false
+  origin: https://gateway.example.test
+  localHttp: false

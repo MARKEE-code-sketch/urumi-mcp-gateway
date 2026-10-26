@@ -1,0 +1,6 @@
+gatewayCheck:
+  enabled: true
+  image:
+    repository: urumi/gateway-check
+    tag: m6
+    pullPolicy: IfNotPresent

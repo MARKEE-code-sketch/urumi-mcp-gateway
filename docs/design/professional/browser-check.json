@@ -1,0 +1,91 @@
+{
+  "checked_at": "2026-10-22T14:03:47.346Z",
+  "observations": [
+    {
+      "state": "start",
+      "viewport": 1440,
+      "document": 1440,
+      "font": "Figtree, Arial, sans-serif",
+      "loadedFonts": [
+        {
+          "family": "Figtree",
+          "status": "loaded"
+        }
+      ],
+      "composerVisibleInViewport": true,
+      "favicon": "urumi-mark.svg"
+    },
+    {
+      "state": "answer",
+      "viewport": 1440,
+      "document": 1440,
+      "font": "Figtree, Arial, sans-serif",
+      "loadedFonts": [
+        {
+          "family": "Figtree",
+          "status": "loaded"
+        }
+      ],
+      "composerVisibleInViewport": true,
+      "favicon": "urumi-mark.svg"
+    },
+    {
+      "state": "servers",
+      "viewport": 1440,
+      "document": 1440,
+      "font": "Figtree, Arial, sans-serif",
+      "loadedFonts": [
+        {
+          "family": "Figtree",
+          "status": "loaded"
+        }
+      ],
+      "composerVisibleInViewport": null,
+      "favicon": "urumi-mark.svg"
+    },
+    {
+      "state": "start",
+      "viewport": 390,
+      "document": 390,
+      "font": "Figtree, Arial, sans-serif",
+      "loadedFonts": [
+        {
+          "family": "Figtree",
+          "status": "loaded"
+        }
+      ],
+      "composerVisibleInViewport": false,
+      "favicon": "urumi-mark.svg"
+    },
+    {
+      "state": "answer",
+      "viewport": 390,
+      "document": 390,
+      "font": "Figtree, Arial, sans-serif",
+      "loadedFonts": [
+        {
+          "family": "Figtree",
+          "status": "loaded"
+        }
+      ],
+      "composerVisibleInViewport": false,
+      "favicon": "urumi-mark.svg"
+    },
+    {
+      "state": "servers",
+      "viewport": 390,
+      "document": 390,
+      "font": "Figtree, Arial, sans-serif",
+      "loadedFonts": [
+        {
+          "family": "Figtree",
+          "status": "loaded"
+        }
+      ],
+      "composerVisibleInViewport": null,
+      "favicon": "urumi-mark.svg"
+    }
+  ],
+  "externalRequests": [],
+  "errors": []
+}

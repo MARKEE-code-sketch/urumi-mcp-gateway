@@ -1,0 +1,24 @@
+{
+  "source": "User-supplied PowerShell terminal output",
+  "date": "2026-10-14",
+  "client": "@modelcontextprotocol/inspector@0.19.0",
+  "status": "FAIL",
+  "tool_response": {
+    "sku": "DEMO-001",
+    "found": true,
+    "warehouses": [
+      {
+        "name": "Bengaluru",
+        "quantity": 12
+      }
+    ],
+    "isError": false
+  },
+  "tool_response_status": "PASS",
+  "process_status": "FAIL",
+  "reported_client_exit_code": 3221226505,
+  "powershell_LASTEXITCODE": 1,
+  "assertion": "Assertion failed: !(handle->flags & UV_HANDLE_CLOSING), file src\\win\\async.c, line 94",
+  "warnings": "npm reports Inspector v1 packages deprecated; precise relationship to crash not established",
+  "limits": "Direct sample server call only. Not gateway integration; clean Inspector exit unproved."
+}

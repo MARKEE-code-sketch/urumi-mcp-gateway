@@ -1,0 +1,8 @@
+M10_BACKEND_ENTRYPOINT_MISSING: combined backend build is unavailable; no harness substitution.
+At C:\Users\mrina\Downloads\URUMI_Assignment\scripts\build-images.ps1:22 char:9
++         throw 'M10_BACKEND_ENTRYPOINT_MISSING: combined backend build ...
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (M10_BACKEND_ENT...s substitution.:String) [], RuntimeException
+    + FullyQualifiedErrorId : M10_BACKEND_ENTRYPOINT_MISSING: combined backend build is unavailable; no harness substi 
+   tution.
+ 

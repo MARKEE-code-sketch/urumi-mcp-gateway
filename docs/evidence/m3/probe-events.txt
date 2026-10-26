@@ -1,0 +1,51 @@
+﻿UTC: 2026-10-15T14:57:43.4137391Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "-n" "urumi-m3-check" "get" "events" "--sort-by=.metadata.creationTimestamp"
+Exit: 0
+LAST SEEN   TYPE      REASON              OBJECT                                                 MESSAGE
+87s         Normal    Scheduled           pod/m3-fake-shop-67fd858769-t94fs                      Successfully assigned urumi-m3-check/m3-fake-shop-67fd858769-t94fs to k3d-urumi-server-0
+88s         Normal    SuccessfulCreate    replicaset/m3-fake-shop-67fd858769                     Created pod: m3-fake-shop-67fd858769-t94fs
+88s         Normal    ScalingReplicaSet   deployment/m3-fake-shop                                Scaled up replica set m3-fake-shop-67fd858769 from 0 to 1
+87s         Normal    Pulled              pod/urumi-m3-check-woocommerce-mcp-877ddd5bf-2fn5s     Container image "urumi/woocommerce-mcp:m3" already present on machine and can be accessed by the pod
+87s         Normal    ScalingReplicaSet   deployment/urumi-m3-check-woocommerce-mcp              Scaled up replica set urumi-m3-check-woocommerce-mcp-877ddd5bf from 0 to 1
+87s         Normal    SuccessfulCreate    replicaset/urumi-m3-check-woocommerce-mcp-877ddd5bf    Created pod: urumi-m3-check-woocommerce-mcp-877ddd5bf-2fn5s
+87s         Normal    Pulled              pod/m3-fake-shop-67fd858769-t94fs                      Container image "urumi/woocommerce-mcp:m3" already present on machine and can be accessed by the pod
+87s         Normal    Created             pod/m3-fake-shop-67fd858769-t94fs                      Container created
+87s         Normal    Started             pod/m3-fake-shop-67fd858769-t94fs                      Container started
+82s         Warning   Unhealthy           pod/m3-fake-shop-67fd858769-t94fs                      Readiness probe failed: Get "http://10.42.0.34:8080/readyz": dial tcp 10.42.0.34:8080: connect: connection refused
+86s         Normal    Scheduled           pod/urumi-m3-check-woocommerce-mcp-877ddd5bf-2fn5s     Successfully assigned urumi-m3-check/urumi-m3-check-woocommerce-mcp-877ddd5bf-2fn5s to k3d-urumi-server-0
+86s         Normal    Started             pod/urumi-m3-check-woocommerce-mcp-877ddd5bf-2fn5s     Container started
+86s         Normal    Created             pod/urumi-m3-check-woocommerce-mcp-877ddd5bf-2fn5s     Container created
+83s         Warning   Unhealthy           pod/urumi-m3-check-woocommerce-mcp-877ddd5bf-2fn5s     Startup probe failed: Get "http://10.42.0.35:8000/livez": dial tcp 10.42.0.35:8000: connect: connection refused
+77s         Normal    SuccessfulCreate    job/m3-allowed-first                                   Created pod: m3-allowed-first-wwb75
+77s         Normal    Created             pod/m3-allowed-first-wwb75                             Container created
+77s         Normal    Pulled              pod/m3-allowed-first-wwb75                             Container image "urumi/woocommerce-mcp:m3" already present on machine and can be accessed by the pod
+76s         Normal    Scheduled           pod/m3-allowed-first-wwb75                             Successfully assigned urumi-m3-check/m3-allowed-first-wwb75 to k3d-urumi-server-0
+76s         Normal    Started             pod/m3-allowed-first-wwb75                             Container started
+63s         Normal    Completed           job/m3-allowed-first                                   Job completed
+62s         Normal    Scheduled           pod/m3-denied-h4rt9                                    Successfully assigned urumi-m3-check/m3-denied-h4rt9 to k3d-urumi-server-0
+63s         Normal    SuccessfulCreate    job/m3-denied                                          Created pod: m3-denied-h4rt9
+62s         Normal    Started             pod/m3-denied-h4rt9                                    Container started
+62s         Normal    Created             pod/m3-denied-h4rt9                                    Container created
+62s         Normal    Pulled              pod/m3-denied-h4rt9                                    Container image "urumi/woocommerce-mcp:m3" already present on machine and can be accessed by the pod
+49s         Normal    Completed           job/m3-denied                                          Job completed
+48s         Normal    Pulled              pod/m3-allowed-again-2qnbn                             Container image "urumi/woocommerce-mcp:m3" already present on machine and can be accessed by the pod
+48s         Normal    Created             pod/m3-allowed-again-2qnbn                             Container created
+48s         Normal    SuccessfulCreate    job/m3-allowed-again                                   Created pod: m3-allowed-again-2qnbn
+48s         Normal    Scheduled           pod/m3-allowed-again-2qnbn                             Successfully assigned urumi-m3-check/m3-allowed-again-2qnbn to k3d-urumi-server-0
+47s         Normal    Started             pod/m3-allowed-again-2qnbn                             Container started
+34s         Normal    Completed           job/m3-allowed-again                                   Job completed
+2s          Normal    Pulled              pod/urumi-m3-check-woocommerce-mcp-65f59967b9-pws24    Container image "urumi/woocommerce-mcp:m3" already present on machine and can be accessed by the pod
+33s         Normal    SuccessfulCreate    replicaset/urumi-m3-check-woocommerce-mcp-65f59967b9   Created pod: urumi-m3-check-woocommerce-mcp-65f59967b9-pws24
+2s          Normal    Started             pod/urumi-m3-check-woocommerce-mcp-65f59967b9-pws24    Container started
+2s          Normal    Created             pod/urumi-m3-check-woocommerce-mcp-65f59967b9-pws24    Container created
+32s         Normal    Scheduled           pod/urumi-m3-check-woocommerce-mcp-65f59967b9-pws24    Successfully assigned urumi-m3-check/urumi-m3-check-woocommerce-mcp-65f59967b9-pws24 to k3d-urumi-server-0
+33s         Normal    ScalingReplicaSet   deployment/urumi-m3-check-woocommerce-mcp              Scaled up replica set urumi-m3-check-woocommerce-mcp-65f59967b9 from 0 to 1
+29s         Warning   Unhealthy           pod/urumi-m3-check-woocommerce-mcp-65f59967b9-pws24    Startup probe failed: Get "http://10.42.0.39:8000/livez": dial tcp 10.42.0.39:8000: connect: connection refused
+27s         Normal    Killing             pod/urumi-m3-check-woocommerce-mcp-877ddd5bf-2fn5s     Stopping container woocommerce-mcp
+27s         Normal    SuccessfulDelete    replicaset/urumi-m3-check-woocommerce-mcp-877ddd5bf    Deleted pod: urumi-m3-check-woocommerce-mcp-877ddd5bf-2fn5s
+27s         Normal    ScalingReplicaSet   deployment/urumi-m3-check-woocommerce-mcp              Scaled down replica set urumi-m3-check-woocommerce-mcp-877ddd5bf from 1 to 0
+3s          Warning   Unhealthy           pod/urumi-m3-check-woocommerce-mcp-65f59967b9-pws24    Liveness probe failed: HTTP probe failed with statuscode: 404
+3s          Normal    Killing             pod/urumi-m3-check-woocommerce-mcp-65f59967b9-pws24    Container woocommerce-mcp failed liveness probe, will be restarted
+2s          Warning   Unhealthy           pod/urumi-m3-check-woocommerce-mcp-65f59967b9-pws24    Readiness probe failed: Get "http://10.42.0.39:8000/readyz": dial tcp 10.42.0.39:8000: connect: connection refused
+
+

@@ -1,0 +1,69 @@
+﻿{
+    "spec":  {
+                 "backoffLimit":  0,
+                 "activeDeadlineSeconds":  30,
+                 "template":  {
+                                  "metadata":  {
+                                                   "labels":  {
+                                                                  "m1-access":  "allowed",
+                                                                  "m1-check":  "true",
+                                                                  "app.kubernetes.io/instance":  "urumi"
+                                                              }
+                                               },
+                                  "spec":  {
+                                               "automountServiceAccountToken":  false,
+                                               "restartPolicy":  "Never",
+                                               "securityContext":  {
+                                                                       "runAsUser":  1000,
+                                                                       "seccompProfile":  {
+                                                                                              "type":  "RuntimeDefault"
+                                                                                          },
+                                                                       "runAsNonRoot":  true,
+                                                                       "runAsGroup":  1000
+                                                                   },
+                                               "containers":  [
+                                                                  {
+                                                                      "securityContext":  {
+                                                                                              "capabilities":  {
+                                                                                                                   "drop":  [
+                                                                                                                                "ALL"
+                                                                                                                            ]
+                                                                                                               },
+                                                                                              "allowPrivilegeEscalation":  false
+                                                                                          },
+                                                                      "command":  [
+                                                                                      "python",
+                                                                                      "-u",
+                                                                                      "-c",
+                                                                                      "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout)):\n            print(\"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                                                                                      "allowed"
+                                                                                  ],
+                                                                      "name":  "caller",
+                                                                      "resources":  {
+                                                                                        "limits":  {
+                                                                                                       "cpu":  "100m",
+                                                                                                       "memory":  "64Mi"
+                                                                                                   },
+                                                                                        "requests":  {
+                                                                                                         "cpu":  "25m",
+                                                                                                         "memory":  "32Mi"
+                                                                                                     }
+                                                                                    },
+                                                                      "image":  "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419"
+                                                                  }
+                                                              ]
+                                           }
+                              }
+             },
+    "metadata":  {
+                     "labels":  {
+                                    "m1-access":  "allowed",
+                                    "m1-check":  "true",
+                                    "app.kubernetes.io/instance":  "urumi"
+                                },
+                     "name":  "m1-check-allowed-6f8c5a8090",
+                     "namespace":  "urumi"
+                 },
+    "apiVersion":  "batch/v1",
+    "kind":  "Job"
+}

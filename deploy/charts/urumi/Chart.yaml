@@ -1,0 +1,6 @@
+apiVersion: v2
+name: urumi
+description: Shared Urumi deployment chart; M1 provides an opt-in foundation check.
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

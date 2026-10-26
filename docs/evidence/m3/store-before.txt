@@ -1,0 +1,7 @@
+﻿Deployment/urumi-wordpress/8ecc650c-0b35-4f59-b785-8d61e2b195d0
+PersistentVolumeClaim/urumi-foundation-data/c6f386c1-ef1e-4996-ab86-ed888999226e
+PersistentVolumeClaim/urumi-mariadb-data/91b18137-d90e-49f0-b16e-ab2686a82df0
+PersistentVolumeClaim/urumi-wordpress-content/cae72902-5c12-4c82-9225-965798cb78b4
+Service/urumi-mariadb/a05a7040-8d8f-49e3-abdf-b5f7735522c3
+Service/urumi-wordpress/221ad775-aef4-4a39-8b49-282ab820fa5e
+StatefulSet/urumi-mariadb/7738045c-43f5-49de-9b57-6096a5dc0e03

@@ -1,0 +1,38 @@
+﻿UTC: 2026-10-15T15:05:36.2963313Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "delete" "pod" "urumi-mariadb-0" "--wait=true" "--timeout=60s"
+Exit: 0
+pod "urumi-mariadb-0" deleted from urumi namespace
+
+
+UTC: 2026-10-15T15:05:42.3646832Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "statefulset/urumi-mariadb" "--timeout=180s"
+Exit: 0
+Waiting for 1 pods to be ready...
+partitioned roll out complete: 1 new pods have been updated...
+
+
+UTC: 2026-10-15T15:05:42.6447713Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "deployment/urumi-wordpress" "--timeout=180s"
+Exit: 0
+deployment "urumi-wordpress" successfully rolled out
+
+
+UTC: 2026-10-16T04:35:36.2237063Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "delete" "pod" "urumi-mariadb-0" "--wait=true" "--timeout=60s"
+Exit: 0
+pod "urumi-mariadb-0" deleted from urumi namespace
+
+
+UTC: 2026-10-16T04:35:42.3033804Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "statefulset/urumi-mariadb" "--timeout=180s"
+Exit: 0
+Waiting for 1 pods to be ready...
+partitioned roll out complete: 1 new pods have been updated...
+
+
+UTC: 2026-10-16T04:35:42.6475229Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "deployment/urumi-wordpress" "--timeout=180s"
+Exit: 0
+deployment "urumi-wordpress" successfully rolled out
+
+

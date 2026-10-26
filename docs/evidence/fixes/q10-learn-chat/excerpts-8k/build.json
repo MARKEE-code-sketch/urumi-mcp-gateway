@@ -1,0 +1,77 @@
+{
+  "status": "PASS",
+  "observed_utc": "2026-10-25T14:29:34.692561+00:00",
+  "commands": [
+    {
+      "command": [
+        "docker",
+        "build",
+        "--target",
+        "release",
+        "-t",
+        "urumi/backend:m10-q10-excerpts",
+        "-f",
+        "backend/Dockerfile",
+        "."
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "image",
+        "save",
+        "-o",
+        ".tools/m10/backend-q10-excerpts.tar",
+        "urumi/backend:m10-q10-excerpts"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        ".tools/m10/venv/Scripts/python.exe",
+        "scripts/m4/image_identity.py",
+        ".tools/m10/backend-q10-excerpts.tar",
+        "--image",
+        "urumi/backend:m10-q10-excerpts",
+        "--output",
+        "docs\\evidence\\fixes\\q10-learn-chat\\image-identity.json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "image",
+        "inspect",
+        "urumi/backend:m10-q10-excerpts",
+        "--format",
+        "{{json .Descriptor}}"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "image",
+        "inspect",
+        "urumi/backend:m10-q10-excerpts",
+        "--format",
+        "{{json .RepoDigests}}"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        ".tools/m1/k3d.exe",
+        "image",
+        "import",
+        "urumi/backend:m10-q10-excerpts",
+        "-c",
+        "urumi"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "source_inputs_unchanged": 43
+}

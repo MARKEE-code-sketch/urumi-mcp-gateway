@@ -1,0 +1,19 @@
+foundation:
+  enabled: false
+store:
+  enabled: false
+woocommerceMcp:
+  enabled: true
+  canonicalOrigin: http://fake-shop.urumi.test
+  transportOrigin: http://m3-fake-shop.urumi-m3-check.svc.cluster.local:8080
+  existingSecret: m3-fake-woocommerce-rest
+  allowedHosts:
+    - urumi-m3-check-woocommerce-mcp
+    - urumi-m3-check-woocommerce-mcp.urumi-m3-check.svc.cluster.local
+  networkPolicy:
+    shopNamespace: urumi-m3-check
+    shopLabels:
+      app.kubernetes.io/name: urumi
+      app.kubernetes.io/instance: urumi-m3-check
+      app.kubernetes.io/component: m3-fake-shop
+    shopPort: 8080

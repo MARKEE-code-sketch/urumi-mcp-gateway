@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "prompt": "Use Microsoft Learn to find official documentation explaining Kubernetes Pods. Summarise the result and provide the source links.",
+  "tls_bypass": false,
+  "http_status": 200,
+  "reply": {
+    "request_id": "186564d9-90df-41fa-a990-eeb82c479c33",
+    "state": "completed",
+    "answer": "**Microsoft Learn – “Create and delete pods” (Azure AKS)**  \nThis Microsoft Learn article explains what a Kubernetes Pod is, why it’s the smallest deployable unit in Kubernetes, and how it runs a single application instance on a node. It also walks through the lifecycle of a pod and shows how to create and delete a pod with `kubectl` commands, plus a sample YAML definition.  \n\n*Key points*  \n| Topic | Summary | Source |\n|-------|---------|--------|\n| Definition | A pod is a single instance of an app that can contain one or more containers sharing the same host, IP, and storage. | [Create and delete pods](https://learn.microsoft.com/azure/aks-hybrid-edge/windows-server/create-pods) |\n| Lifecycle | Pods are scheduled to run on nodes, live until the containers inside them finish or are removed, and are managed via standard Kubernetes APIs. | Same page |\n| CLI usage | `kubectl run … --restart=Never` creates a single pod; `kubectl get pods`, `kubectl describe pod <name>`, and `kubectl delete pod <name>` manage it. | Same page |\n| YAML example | Shows a minimal pod manifest (`apiVersion`, `kind: Pod`, `metadata`, `spec` with a container). | Same page |\n\n---\n\n**Additional Microsoft Learn reference**\n\n- **“Plan an Azure Kubernetes Service deployment”** – This training module includes a brief overview of core Kubernetes resources such as pods, deployments, and replicasets.  \n  *Source:* [Plan an Azure Kubernetes Service deployment](https://learn.microsoft.com/training/modules/plan-azure-kubernetes-service-deployment/)  \n\nThese Microsoft Learn pages provide the official explanation of Kubernetes Pods within the context of Azure Kubernetes Service.\nChat used shortened excerpts from 6 of 10 returned search results; open the links for full text.",
+    "tool_calls": [
+      {
+        "call_id": "66cff205-8c68-4c3d-8ca6-328ae2893d9c",
+        "tool_name": "learn__microsoft_docs_search",
+        "server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+        "outcome": "success",
+        "duration_ms": 2593,
+        "audit_id": "35f916b2-fe18-4622-81c0-444d7ece4607"
+      },
+      {
+        "call_id": "634c9344-fda7-4744-8e82-61eb670d4d22",
+        "tool_name": "learn__microsoft_docs_fetch",
+        "server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+        "outcome": "success",
+        "duration_ms": 2560,
+        "audit_id": "9d4fc312-6d30-4baa-989c-75b24b72762f"
+      }
+    ]
+  },
+  "rendered_links": [
+    {
+      "label": "Create and delete pods",
+      "href": "https://learn.microsoft.com/azure/aks-hybrid-edge/windows-server/create-pods"
+    },
+    {
+      "label": "Plan an Azure Kubernetes Service deployment",
+      "href": "https://learn.microsoft.com/training/modules/plan-azure-kubernetes-service-deployment/"
+    }
+  ]
+}

@@ -1,0 +1,3076 @@
+{
+  "local": {
+    "workloads": [
+      {
+        "name": "urumi-backend",
+        "component": "backend",
+        "containers": [
+          {
+            "image": "urumi/backend:m10-unavailable",
+            "probes": [
+              {
+                "httpGet": {
+                  "path": "/health/live",
+                  "port": "http"
+                },
+                "periodSeconds": 2,
+                "timeoutSeconds": 2,
+                "failureThreshold": 60
+              },
+              {
+                "httpGet": {
+                  "path": "/health/ready",
+                  "port": "http"
+                },
+                "periodSeconds": 5,
+                "timeoutSeconds": 5,
+                "failureThreshold": 3
+              },
+              {
+                "httpGet": {
+                  "path": "/health/live",
+                  "port": "http"
+                },
+                "periodSeconds": 10,
+                "timeoutSeconds": 2,
+                "failureThreshold": 3
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "1000m",
+                "memory": "512Mi"
+              },
+              "requests": {
+                "cpu": "100m",
+                "memory": "256Mi"
+              }
+            }
+          }
+        ],
+        "mounts": []
+      },
+      {
+        "name": "urumi-dashboard",
+        "component": "dashboard",
+        "containers": [
+          {
+            "image": "urumi/dashboard:m8",
+            "probes": [
+              {
+                "httpGet": {
+                  "path": "/livez",
+                  "port": "http"
+                },
+                "periodSeconds": 2,
+                "timeoutSeconds": 2,
+                "failureThreshold": 30
+              },
+              {
+                "httpGet": {
+                  "path": "/readyz",
+                  "port": "http"
+                },
+                "initialDelaySeconds": 2,
+                "periodSeconds": 5,
+                "timeoutSeconds": 2,
+                "failureThreshold": 3
+              },
+              {
+                "httpGet": {
+                  "path": "/livez",
+                  "port": "http"
+                },
+                "initialDelaySeconds": 5,
+                "periodSeconds": 10,
+                "timeoutSeconds": 2,
+                "failureThreshold": 3
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "250m",
+                "memory": "128Mi"
+              },
+              "requests": {
+                "cpu": "25m",
+                "memory": "32Mi"
+              }
+            }
+          }
+        ],
+        "mounts": [
+          {
+            "name": "tmp",
+            "mountPath": "/tmp"
+          },
+          {
+            "name": "nginx",
+            "mountPath": "/etc/nginx/nginx.conf",
+            "subPath": "nginx.conf",
+            "readOnly": true
+          }
+        ]
+      },
+      {
+        "name": "urumi-platform-db",
+        "component": "platform-db",
+        "containers": [
+          {
+            "image": "postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826",
+            "probes": [
+              {
+                "exec": {
+                  "command": [
+                    "pg_isready",
+                    "-U",
+                    "urumi",
+                    "-d",
+                    "urumi"
+                  ]
+                },
+                "periodSeconds": 2,
+                "failureThreshold": 60
+              },
+              {
+                "exec": {
+                  "command": [
+                    "pg_isready",
+                    "-U",
+                    "urumi",
+                    "-d",
+                    "urumi"
+                  ]
+                },
+                "periodSeconds": 3
+              },
+              {
+                "exec": {
+                  "command": [
+                    "pg_isready",
+                    "-U",
+                    "urumi",
+                    "-d",
+                    "urumi"
+                  ]
+                },
+                "periodSeconds": 10
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+              },
+              "requests": {
+                "cpu": "100m",
+                "memory": "128Mi"
+              }
+            }
+          }
+        ],
+        "mounts": [
+          {
+            "name": "data",
+            "mountPath": "/var/lib/postgresql/data"
+          }
+        ]
+      },
+      {
+        "name": "urumi-inventory-mcp",
+        "component": "inventory-mcp",
+        "containers": [
+          {
+            "image": "urumi/inventory-mcp:m4",
+            "probes": [
+              {
+                "httpGet": {
+                  "path": "/livez",
+                  "port": "mcp"
+                },
+                "periodSeconds": 2,
+                "timeoutSeconds": 2,
+                "failureThreshold": 30
+              },
+              {
+                "httpGet": {
+                  "path": "/readyz",
+                  "port": "mcp"
+                },
+                "periodSeconds": 10,
+                "timeoutSeconds": 2,
+                "failureThreshold": 3
+              },
+              {
+                "httpGet": {
+                  "path": "/livez",
+                  "port": "mcp"
+                },
+                "periodSeconds": 10,
+                "timeoutSeconds": 2,
+                "failureThreshold": 3
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "250m",
+                "memory": "128Mi"
+              },
+              "requests": {
+                "cpu": "50m",
+                "memory": "64Mi"
+              }
+            }
+          }
+        ],
+        "mounts": []
+      },
+      {
+        "name": "urumi-wordpress",
+        "component": "wordpress",
+        "containers": [
+          {
+            "image": "urumi-store:m2",
+            "probes": [
+              {
+                "httpGet": {
+                  "path": "/urumi-live.php",
+                  "port": 80
+                },
+                "periodSeconds": 5,
+                "timeoutSeconds": 3,
+                "failureThreshold": 36
+              },
+              {
+                "httpGet": {
+                  "path": "/urumi-ready.php",
+                  "port": 80
+                },
+                "periodSeconds": 10,
+                "timeoutSeconds": 3
+              },
+              {
+                "httpGet": {
+                  "path": "/urumi-live.php",
+                  "port": 80
+                },
+                "periodSeconds": 10,
+                "timeoutSeconds": 3,
+                "failureThreshold": 6
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "1000m",
+                "memory": "768Mi"
+              },
+              "requests": {
+                "cpu": "100m",
+                "memory": "256Mi"
+              }
+            }
+          }
+        ],
+        "mounts": [
+          {
+            "name": "content",
+            "mountPath": "/var/www/html"
+          },
+          {
+            "name": "database",
+            "mountPath": "/run/urumi/database",
+            "readOnly": true
+          },
+          {
+            "name": "salts",
+            "mountPath": "/run/urumi/salts",
+            "readOnly": true
+          }
+        ]
+      },
+      {
+        "name": "urumi-woocommerce-mcp",
+        "component": "woocommerce-mcp",
+        "containers": [
+          {
+            "image": "urumi/woocommerce-mcp:m3",
+            "probes": [
+              {
+                "httpGet": {
+                  "path": "/livez",
+                  "port": "mcp"
+                },
+                "periodSeconds": 2,
+                "timeoutSeconds": 2,
+                "failureThreshold": 30
+              },
+              {
+                "httpGet": {
+                  "path": "/readyz",
+                  "port": "mcp"
+                },
+                "periodSeconds": 10,
+                "timeoutSeconds": 2,
+                "failureThreshold": 3
+              },
+              {
+                "httpGet": {
+                  "path": "/livez",
+                  "port": "mcp"
+                },
+                "periodSeconds": 10,
+                "timeoutSeconds": 2,
+                "failureThreshold": 3
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "500m",
+                "memory": "256Mi"
+              },
+              "requests": {
+                "cpu": "100m",
+                "memory": "128Mi"
+              }
+            }
+          }
+        ],
+        "mounts": []
+      },
+      {
+        "name": "urumi-mariadb",
+        "component": "mariadb",
+        "containers": [
+          {
+            "image": "mariadb:11.4.13-noble",
+            "probes": [
+              {
+                "exec": {
+                  "command": [
+                    "healthcheck.sh",
+                    "--connect",
+                    "--innodb_initialized"
+                  ]
+                },
+                "periodSeconds": 5,
+                "timeoutSeconds": 3,
+                "failureThreshold": 36
+              },
+              {
+                "exec": {
+                  "command": [
+                    "healthcheck.sh",
+                    "--connect",
+                    "--innodb_initialized"
+                  ]
+                },
+                "periodSeconds": 5,
+                "timeoutSeconds": 3
+              },
+              {
+                "exec": {
+                  "command": [
+                    "healthcheck.sh",
+                    "--connect"
+                  ]
+                },
+                "periodSeconds": 10,
+                "timeoutSeconds": 3,
+                "failureThreshold": 6
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "1000m",
+                "memory": "768Mi"
+              },
+              "requests": {
+                "cpu": "100m",
+                "memory": "256Mi"
+              }
+            }
+          }
+        ],
+        "mounts": [
+          {
+            "name": "data",
+            "mountPath": "/var/lib/mysql"
+          },
+          {
+            "name": "database",
+            "mountPath": "/run/urumi/database",
+            "readOnly": true
+          }
+        ]
+      }
+    ],
+    "services": [
+      {
+        "name": "urumi-backend",
+        "ports": [
+          {
+            "name": "http",
+            "port": 8000,
+            "targetPort": "http"
+          }
+        ],
+        "selector": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "backend"
+        }
+      },
+      {
+        "name": "urumi-dashboard",
+        "ports": [
+          {
+            "name": "http",
+            "port": 80,
+            "targetPort": 8080
+          }
+        ],
+        "selector": {
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "dashboard"
+        }
+      },
+      {
+        "name": "urumi-platform-db",
+        "ports": [
+          {
+            "name": "postgres",
+            "port": 5432,
+            "targetPort": "postgres"
+          }
+        ],
+        "selector": {
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "platform-db"
+        }
+      },
+      {
+        "name": "urumi-inventory-mcp",
+        "ports": [
+          {
+            "name": "mcp",
+            "port": 8000,
+            "targetPort": "mcp"
+          }
+        ],
+        "selector": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "inventory-mcp"
+        }
+      },
+      {
+        "name": "urumi-mariadb",
+        "ports": [
+          {
+            "port": 3306,
+            "targetPort": 3306
+          }
+        ],
+        "selector": {
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "mariadb"
+        }
+      },
+      {
+        "name": "urumi-wordpress",
+        "ports": [
+          {
+            "port": 80,
+            "targetPort": 80
+          }
+        ],
+        "selector": {
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "wordpress"
+        }
+      },
+      {
+        "name": "urumi-woocommerce-mcp",
+        "ports": [
+          {
+            "name": "mcp",
+            "port": 8000,
+            "targetPort": "mcp"
+          }
+        ],
+        "selector": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "woocommerce-mcp"
+        }
+      }
+    ],
+    "ingresses": [
+      {
+        "name": "urumi-dashboard",
+        "paths": [
+          {
+            "host": "dashboard.urumi.test",
+            "path": "/api/v1",
+            "service": "urumi-backend"
+          },
+          {
+            "host": "dashboard.urumi.test",
+            "path": "/mcp",
+            "service": "urumi-backend"
+          },
+          {
+            "host": "dashboard.urumi.test",
+            "path": "/",
+            "service": "urumi-dashboard"
+          }
+        ],
+        "tls": [
+          {
+            "hosts": [
+              "dashboard.urumi.test"
+            ],
+            "secretName": "urumi-dashboard-tls"
+          }
+        ]
+      },
+      {
+        "name": "urumi-wordpress",
+        "paths": [
+          {
+            "host": "shop.urumi.test",
+            "path": "/",
+            "service": "urumi-wordpress"
+          }
+        ],
+        "tls": []
+      }
+    ],
+    "pvcs": [
+      {
+        "name": "urumi-platform-data",
+        "storageClassName": "local-path",
+        "storage": "2Gi"
+      },
+      {
+        "name": "urumi-mariadb-data",
+        "storageClassName": "local-path",
+        "storage": "2Gi"
+      },
+      {
+        "name": "urumi-wordpress-content",
+        "storageClassName": "local-path",
+        "storage": "2Gi"
+      }
+    ],
+    "secret_references": [
+      {
+        "name": "urumi-platform-db",
+        "key": "password"
+      },
+      {
+        "name": "urumi-groq",
+        "key": "api-key"
+      },
+      {
+        "name": "urumi-platform-db",
+        "key": "password"
+      },
+      {
+        "name": "urumi-store-db",
+        "keys": "mounted"
+      },
+      {
+        "name": "urumi-store-salts",
+        "keys": "mounted"
+      },
+      {
+        "name": "urumi-woocommerce-rest",
+        "key": "consumer-key"
+      },
+      {
+        "name": "urumi-woocommerce-rest",
+        "key": "consumer-secret"
+      },
+      {
+        "name": "urumi-store-db",
+        "keys": "mounted"
+      }
+    ],
+    "policies": [
+      {
+        "name": "urumi-backend",
+        "spec": {
+          "podSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/name": "urumi",
+              "app.kubernetes.io/instance": "urumi",
+              "app.kubernetes.io/component": "backend"
+            }
+          },
+          "policyTypes": [
+            "Ingress",
+            "Egress"
+          ],
+          "ingress": [
+            {
+              "from": [
+                {
+                  "namespaceSelector": {
+                    "matchLabels": {
+                      "kubernetes.io/metadata.name": "kube-system"
+                    }
+                  },
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/instance": "traefik-kube-system",
+                      "app.kubernetes.io/name": "traefik"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 8000
+                }
+              ]
+            }
+          ],
+          "egress": [
+            {
+              "to": [
+                {
+                  "namespaceSelector": {
+                    "matchLabels": {
+                      "kubernetes.io/metadata.name": "kube-system"
+                    }
+                  },
+                  "podSelector": {
+                    "matchLabels": {
+                      "k8s-app": "kube-dns"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "UDP",
+                  "port": 53
+                },
+                {
+                  "protocol": "TCP",
+                  "port": 53
+                }
+              ]
+            },
+            {
+              "to": [
+                {
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/instance": "urumi",
+                      "app.kubernetes.io/component": "platform-db"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 5432
+                }
+              ]
+            },
+            {
+              "to": [
+                {
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/name": "urumi",
+                      "app.kubernetes.io/instance": "urumi",
+                      "app.kubernetes.io/component": "woocommerce-mcp"
+                    }
+                  }
+                },
+                {
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/name": "urumi",
+                      "app.kubernetes.io/instance": "urumi",
+                      "app.kubernetes.io/component": "inventory-mcp"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 8000
+                }
+              ]
+            },
+            {
+              "to": [
+                {
+                  "ipBlock": {
+                    "cidr": "0.0.0.0/0",
+                    "except": [
+                      "0.0.0.0/8",
+                      "10.0.0.0/8",
+                      "100.64.0.0/10",
+                      "127.0.0.0/8",
+                      "169.254.0.0/16",
+                      "172.16.0.0/12",
+                      "192.0.0.0/24",
+                      "192.0.2.0/24",
+                      "192.168.0.0/16",
+                      "198.18.0.0/15",
+                      "198.51.100.0/24",
+                      "203.0.113.0/24",
+                      "224.0.0.0/4",
+                      "240.0.0.0/4"
+                    ]
+                  }
+                },
+                {
+                  "ipBlock": {
+                    "cidr": "2000::/3",
+                    "except": [
+                      "2001:db8::/32"
+                    ]
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 443
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "urumi-dashboard",
+        "spec": {
+          "podSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/name": "urumi",
+              "app.kubernetes.io/instance": "urumi",
+              "app.kubernetes.io/component": "dashboard"
+            }
+          },
+          "policyTypes": [
+            "Ingress",
+            "Egress"
+          ],
+          "ingress": [
+            {
+              "from": [
+                {
+                  "namespaceSelector": {
+                    "matchLabels": {
+                      "kubernetes.io/metadata.name": "kube-system"
+                    }
+                  },
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/instance": "traefik-kube-system",
+                      "app.kubernetes.io/name": "traefik"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 8080
+                }
+              ]
+            }
+          ],
+          "egress": []
+        }
+      },
+      {
+        "name": "urumi-platform-db",
+        "spec": {
+          "podSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/instance": "urumi",
+              "app.kubernetes.io/component": "platform-db"
+            }
+          },
+          "policyTypes": [
+            "Ingress"
+          ],
+          "ingress": [
+            {
+              "from": [
+                {
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/instance": "urumi",
+                      "app.kubernetes.io/component": "backend"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 5432
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "urumi-inventory-mcp",
+        "spec": {
+          "podSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/name": "urumi",
+              "app.kubernetes.io/instance": "urumi",
+              "app.kubernetes.io/component": "inventory-mcp"
+            }
+          },
+          "policyTypes": [
+            "Ingress",
+            "Egress"
+          ],
+          "ingress": [
+            {
+              "from": [
+                {
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/name": "urumi",
+                      "app.kubernetes.io/instance": "urumi",
+                      "app.kubernetes.io/component": "backend",
+                      "urumi.dev/gateway": "true"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 8000
+                }
+              ]
+            }
+          ],
+          "egress": []
+        }
+      },
+      {
+        "name": "urumi-store-database",
+        "spec": {
+          "podSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/instance": "urumi",
+              "app.kubernetes.io/component": "mariadb"
+            }
+          },
+          "policyTypes": [
+            "Ingress"
+          ],
+          "ingress": [
+            {
+              "from": [
+                {
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/instance": "urumi",
+                      "app.kubernetes.io/component": "wordpress"
+                    }
+                  }
+                },
+                {
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/instance": "urumi",
+                      "urumi-m2-access": "setup"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 3306
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "urumi-wordpress",
+        "spec": {
+          "podSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/instance": "urumi",
+              "app.kubernetes.io/component": "wordpress"
+            }
+          },
+          "policyTypes": [
+            "Ingress",
+            "Egress"
+          ],
+          "ingress": [
+            {
+              "from": [
+                {
+                  "namespaceSelector": {
+                    "matchLabels": {
+                      "kubernetes.io/metadata.name": "kube-system"
+                    }
+                  },
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/instance": "traefik-kube-system",
+                      "app.kubernetes.io/name": "traefik"
+                    }
+                  }
+                },
+                {
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/name": "urumi",
+                      "app.kubernetes.io/instance": "urumi",
+                      "app.kubernetes.io/component": "woocommerce-mcp"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 80
+                }
+              ]
+            }
+          ],
+          "egress": [
+            {
+              "to": [
+                {
+                  "namespaceSelector": {
+                    "matchLabels": {
+                      "kubernetes.io/metadata.name": "kube-system"
+                    }
+                  },
+                  "podSelector": {
+                    "matchLabels": {
+                      "k8s-app": "kube-dns"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "UDP",
+                  "port": 53
+                },
+                {
+                  "protocol": "TCP",
+                  "port": 53
+                }
+              ]
+            },
+            {
+              "to": [
+                {
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/instance": "urumi",
+                      "app.kubernetes.io/component": "mariadb"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 3306
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "urumi-woocommerce-mcp",
+        "spec": {
+          "podSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/name": "urumi",
+              "app.kubernetes.io/instance": "urumi",
+              "app.kubernetes.io/component": "woocommerce-mcp"
+            }
+          },
+          "policyTypes": [
+            "Ingress",
+            "Egress"
+          ],
+          "ingress": [
+            {
+              "from": [
+                {
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/name": "urumi",
+                      "app.kubernetes.io/instance": "urumi",
+                      "app.kubernetes.io/component": "backend",
+                      "urumi.dev/gateway": "true"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 8000
+                }
+              ]
+            }
+          ],
+          "egress": [
+            {
+              "to": [
+                {
+                  "namespaceSelector": {
+                    "matchLabels": {
+                      "kubernetes.io/metadata.name": "kube-system"
+                    }
+                  },
+                  "podSelector": {
+                    "matchLabels": {
+                      "k8s-app": "kube-dns"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "UDP",
+                  "port": 53
+                },
+                {
+                  "protocol": "TCP",
+                  "port": 53
+                }
+              ]
+            },
+            {
+              "to": [
+                {
+                  "namespaceSelector": {
+                    "matchLabels": {
+                      "kubernetes.io/metadata.name": "urumi"
+                    }
+                  },
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/name": "urumi",
+                      "app.kubernetes.io/instance": "urumi",
+                      "app.kubernetes.io/component": "wordpress"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 80
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "rbac": [
+      {
+        "apiVersion": "v1",
+        "kind": "Namespace",
+        "metadata": {
+          "name": "urumi-upstream-secrets",
+          "labels": {
+            "urumi-module": "m5",
+            "urumi-owner": "urumi"
+          },
+          "annotations": {
+            "helm.sh/resource-policy": "keep"
+          }
+        }
+      },
+      {
+        "apiVersion": "v1",
+        "kind": "ServiceAccount",
+        "metadata": {
+          "name": "urumi-backend"
+        }
+      },
+      {
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "Role",
+        "metadata": {
+          "name": "urumi-upstream-secrets",
+          "namespace": "urumi-upstream-secrets"
+        },
+        "rules": [
+          {
+            "apiGroups": [
+              ""
+            ],
+            "resources": [
+              "secrets"
+            ],
+            "verbs": [
+              "get",
+              "create",
+              "update",
+              "delete"
+            ]
+          }
+        ]
+      },
+      {
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "RoleBinding",
+        "metadata": {
+          "name": "urumi-upstream-secrets",
+          "namespace": "urumi-upstream-secrets"
+        },
+        "subjects": [
+          {
+            "kind": "ServiceAccount",
+            "name": "urumi-backend",
+            "namespace": "urumi"
+          }
+        ],
+        "roleRef": {
+          "kind": "Role",
+          "name": "urumi-upstream-secrets",
+          "apiGroup": "rbac.authorization.k8s.io"
+        }
+      }
+    ],
+    "policy_paths": [
+      {
+        "policy": "backend",
+        "direction": "ingress",
+        "peer_namespace": "kube-system",
+        "peer_labels": {
+          "app.kubernetes.io/instance": "traefik-kube-system",
+          "app.kubernetes.io/name": "traefik"
+        },
+        "port": 8000,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "backend",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/component": "arbitrary"
+        },
+        "port": 8000,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": false
+      },
+      {
+        "policy": "dashboard",
+        "direction": "ingress",
+        "peer_namespace": "kube-system",
+        "peer_labels": {
+          "app.kubernetes.io/instance": "traefik-kube-system",
+          "app.kubernetes.io/name": "traefik"
+        },
+        "port": 8080,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "dashboard",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/component": "arbitrary"
+        },
+        "port": 8080,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": false
+      },
+      {
+        "policy": "wordpress",
+        "direction": "ingress",
+        "peer_namespace": "kube-system",
+        "peer_labels": {
+          "app.kubernetes.io/instance": "traefik-kube-system",
+          "app.kubernetes.io/name": "traefik"
+        },
+        "port": 80,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "wordpress",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/component": "arbitrary"
+        },
+        "port": 80,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": false
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "platform-db"
+        },
+        "port": 5432,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "platform-db",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "backend",
+          "urumi.dev/gateway": "true"
+        },
+        "port": 5432,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "platform-db",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "dashboard"
+        },
+        "port": 5432,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": false
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "woocommerce-mcp"
+        },
+        "port": 8000,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "woocommerce-mcp",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "backend",
+          "urumi.dev/gateway": "true"
+        },
+        "port": 8000,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "woocommerce-mcp",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "dashboard"
+        },
+        "port": 8000,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": false
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "inventory-mcp"
+        },
+        "port": 8000,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "inventory-mcp",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "backend",
+          "urumi.dev/gateway": "true"
+        },
+        "port": 8000,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "inventory-mcp",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "dashboard"
+        },
+        "port": 8000,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": false
+      },
+      {
+        "policy": "wordpress",
+        "direction": "egress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "mariadb"
+        },
+        "port": 3306,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "store-database",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "wordpress"
+        },
+        "port": 3306,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "kube-system",
+        "peer_labels": {
+          "k8s-app": "kube-dns"
+        },
+        "port": 53,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "woocommerce-mcp",
+        "direction": "egress",
+        "peer_namespace": "kube-system",
+        "peer_labels": {
+          "k8s-app": "kube-dns"
+        },
+        "port": 53,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "kube-system",
+        "peer_labels": {
+          "k8s-app": "kube-dns"
+        },
+        "port": 53,
+        "protocol": "UDP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "woocommerce-mcp",
+        "direction": "egress",
+        "peer_namespace": "kube-system",
+        "peer_labels": {
+          "k8s-app": "kube-dns"
+        },
+        "port": 53,
+        "protocol": "UDP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "",
+        "peer_labels": {},
+        "port": 443,
+        "protocol": "TCP",
+        "address": "8.8.8.8",
+        "allowed": true
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "",
+        "peer_labels": {},
+        "port": 443,
+        "protocol": "TCP",
+        "address": "127.0.0.1",
+        "allowed": false
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "",
+        "peer_labels": {},
+        "port": 443,
+        "protocol": "TCP",
+        "address": "10.2.3.4",
+        "allowed": false
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "",
+        "peer_labels": {},
+        "port": 443,
+        "protocol": "TCP",
+        "address": "169.254.169.254",
+        "allowed": false
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "",
+        "peer_labels": {},
+        "port": 443,
+        "protocol": "TCP",
+        "address": "192.0.2.10",
+        "allowed": false
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "",
+        "peer_labels": {},
+        "port": 443,
+        "protocol": "TCP",
+        "address": "224.0.0.1",
+        "allowed": false
+      },
+      {
+        "policy": "woocommerce-mcp",
+        "direction": "egress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "wordpress"
+        },
+        "port": 80,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "wordpress",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "woocommerce-mcp"
+        },
+        "port": 80,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      }
+    ]
+  },
+  "prod": {
+    "workloads": [
+      {
+        "name": "urumi-backend",
+        "component": "backend",
+        "containers": [
+          {
+            "image": "private-registry.example.com/backend:replace-with-immutable-reference",
+            "probes": [
+              {
+                "httpGet": {
+                  "path": "/health/live",
+                  "port": "http"
+                },
+                "periodSeconds": 2,
+                "timeoutSeconds": 2,
+                "failureThreshold": 60
+              },
+              {
+                "httpGet": {
+                  "path": "/health/ready",
+                  "port": "http"
+                },
+                "periodSeconds": 5,
+                "timeoutSeconds": 5,
+                "failureThreshold": 3
+              },
+              {
+                "httpGet": {
+                  "path": "/health/live",
+                  "port": "http"
+                },
+                "periodSeconds": 10,
+                "timeoutSeconds": 2,
+                "failureThreshold": 3
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "1000m",
+                "memory": "512Mi"
+              },
+              "requests": {
+                "cpu": "100m",
+                "memory": "256Mi"
+              }
+            }
+          }
+        ],
+        "mounts": []
+      },
+      {
+        "name": "urumi-dashboard",
+        "component": "dashboard",
+        "containers": [
+          {
+            "image": "private-registry.example.com/dashboard:replace-with-immutable-reference",
+            "probes": [
+              {
+                "httpGet": {
+                  "path": "/livez",
+                  "port": "http"
+                },
+                "periodSeconds": 2,
+                "timeoutSeconds": 2,
+                "failureThreshold": 30
+              },
+              {
+                "httpGet": {
+                  "path": "/readyz",
+                  "port": "http"
+                },
+                "initialDelaySeconds": 2,
+                "periodSeconds": 5,
+                "timeoutSeconds": 2,
+                "failureThreshold": 3
+              },
+              {
+                "httpGet": {
+                  "path": "/livez",
+                  "port": "http"
+                },
+                "initialDelaySeconds": 5,
+                "periodSeconds": 10,
+                "timeoutSeconds": 2,
+                "failureThreshold": 3
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "250m",
+                "memory": "128Mi"
+              },
+              "requests": {
+                "cpu": "25m",
+                "memory": "32Mi"
+              }
+            }
+          }
+        ],
+        "mounts": [
+          {
+            "name": "tmp",
+            "mountPath": "/tmp"
+          },
+          {
+            "name": "nginx",
+            "mountPath": "/etc/nginx/nginx.conf",
+            "subPath": "nginx.conf",
+            "readOnly": true
+          }
+        ]
+      },
+      {
+        "name": "urumi-platform-db",
+        "component": "platform-db",
+        "containers": [
+          {
+            "image": "postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826",
+            "probes": [
+              {
+                "exec": {
+                  "command": [
+                    "pg_isready",
+                    "-U",
+                    "urumi",
+                    "-d",
+                    "urumi"
+                  ]
+                },
+                "periodSeconds": 2,
+                "failureThreshold": 60
+              },
+              {
+                "exec": {
+                  "command": [
+                    "pg_isready",
+                    "-U",
+                    "urumi",
+                    "-d",
+                    "urumi"
+                  ]
+                },
+                "periodSeconds": 3
+              },
+              {
+                "exec": {
+                  "command": [
+                    "pg_isready",
+                    "-U",
+                    "urumi",
+                    "-d",
+                    "urumi"
+                  ]
+                },
+                "periodSeconds": 10
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "500m",
+                "memory": "512Mi"
+              },
+              "requests": {
+                "cpu": "100m",
+                "memory": "128Mi"
+              }
+            }
+          }
+        ],
+        "mounts": [
+          {
+            "name": "data",
+            "mountPath": "/var/lib/postgresql/data"
+          }
+        ]
+      },
+      {
+        "name": "urumi-inventory-mcp",
+        "component": "inventory-mcp",
+        "containers": [
+          {
+            "image": "private-registry.example.com/inventory-mcp:replace-with-immutable-reference",
+            "probes": [
+              {
+                "httpGet": {
+                  "path": "/livez",
+                  "port": "mcp"
+                },
+                "periodSeconds": 2,
+                "timeoutSeconds": 2,
+                "failureThreshold": 30
+              },
+              {
+                "httpGet": {
+                  "path": "/readyz",
+                  "port": "mcp"
+                },
+                "periodSeconds": 10,
+                "timeoutSeconds": 2,
+                "failureThreshold": 3
+              },
+              {
+                "httpGet": {
+                  "path": "/livez",
+                  "port": "mcp"
+                },
+                "periodSeconds": 10,
+                "timeoutSeconds": 2,
+                "failureThreshold": 3
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "250m",
+                "memory": "128Mi"
+              },
+              "requests": {
+                "cpu": "50m",
+                "memory": "64Mi"
+              }
+            }
+          }
+        ],
+        "mounts": []
+      },
+      {
+        "name": "urumi-wordpress",
+        "component": "wordpress",
+        "containers": [
+          {
+            "image": "private-registry.example.com/urumi-store:replace-with-immutable-reference",
+            "probes": [
+              {
+                "httpGet": {
+                  "path": "/urumi-live.php",
+                  "port": 80
+                },
+                "periodSeconds": 5,
+                "timeoutSeconds": 3,
+                "failureThreshold": 36
+              },
+              {
+                "httpGet": {
+                  "path": "/urumi-ready.php",
+                  "port": 80
+                },
+                "periodSeconds": 10,
+                "timeoutSeconds": 3
+              },
+              {
+                "httpGet": {
+                  "path": "/urumi-live.php",
+                  "port": 80
+                },
+                "periodSeconds": 10,
+                "timeoutSeconds": 3,
+                "failureThreshold": 6
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "1000m",
+                "memory": "768Mi"
+              },
+              "requests": {
+                "cpu": "100m",
+                "memory": "256Mi"
+              }
+            }
+          }
+        ],
+        "mounts": [
+          {
+            "name": "content",
+            "mountPath": "/var/www/html"
+          },
+          {
+            "name": "database",
+            "mountPath": "/run/urumi/database",
+            "readOnly": true
+          },
+          {
+            "name": "salts",
+            "mountPath": "/run/urumi/salts",
+            "readOnly": true
+          }
+        ]
+      },
+      {
+        "name": "urumi-woocommerce-mcp",
+        "component": "woocommerce-mcp",
+        "containers": [
+          {
+            "image": "private-registry.example.com/woocommerce-mcp:replace-with-immutable-reference",
+            "probes": [
+              {
+                "httpGet": {
+                  "path": "/livez",
+                  "port": "mcp"
+                },
+                "periodSeconds": 2,
+                "timeoutSeconds": 2,
+                "failureThreshold": 30
+              },
+              {
+                "httpGet": {
+                  "path": "/readyz",
+                  "port": "mcp"
+                },
+                "periodSeconds": 10,
+                "timeoutSeconds": 2,
+                "failureThreshold": 3
+              },
+              {
+                "httpGet": {
+                  "path": "/livez",
+                  "port": "mcp"
+                },
+                "periodSeconds": 10,
+                "timeoutSeconds": 2,
+                "failureThreshold": 3
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "500m",
+                "memory": "256Mi"
+              },
+              "requests": {
+                "cpu": "100m",
+                "memory": "128Mi"
+              }
+            }
+          }
+        ],
+        "mounts": []
+      },
+      {
+        "name": "urumi-mariadb",
+        "component": "mariadb",
+        "containers": [
+          {
+            "image": "mariadb:11.4.13-noble",
+            "probes": [
+              {
+                "exec": {
+                  "command": [
+                    "healthcheck.sh",
+                    "--connect",
+                    "--innodb_initialized"
+                  ]
+                },
+                "periodSeconds": 5,
+                "timeoutSeconds": 3,
+                "failureThreshold": 36
+              },
+              {
+                "exec": {
+                  "command": [
+                    "healthcheck.sh",
+                    "--connect",
+                    "--innodb_initialized"
+                  ]
+                },
+                "periodSeconds": 5,
+                "timeoutSeconds": 3
+              },
+              {
+                "exec": {
+                  "command": [
+                    "healthcheck.sh",
+                    "--connect"
+                  ]
+                },
+                "periodSeconds": 10,
+                "timeoutSeconds": 3,
+                "failureThreshold": 6
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "1000m",
+                "memory": "768Mi"
+              },
+              "requests": {
+                "cpu": "100m",
+                "memory": "256Mi"
+              }
+            }
+          }
+        ],
+        "mounts": [
+          {
+            "name": "data",
+            "mountPath": "/var/lib/mysql"
+          },
+          {
+            "name": "database",
+            "mountPath": "/run/urumi/database",
+            "readOnly": true
+          }
+        ]
+      }
+    ],
+    "services": [
+      {
+        "name": "urumi-backend",
+        "ports": [
+          {
+            "name": "http",
+            "port": 8000,
+            "targetPort": "http"
+          }
+        ],
+        "selector": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "backend"
+        }
+      },
+      {
+        "name": "urumi-dashboard",
+        "ports": [
+          {
+            "name": "http",
+            "port": 80,
+            "targetPort": 8080
+          }
+        ],
+        "selector": {
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "dashboard"
+        }
+      },
+      {
+        "name": "urumi-platform-db",
+        "ports": [
+          {
+            "name": "postgres",
+            "port": 5432,
+            "targetPort": "postgres"
+          }
+        ],
+        "selector": {
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "platform-db"
+        }
+      },
+      {
+        "name": "urumi-inventory-mcp",
+        "ports": [
+          {
+            "name": "mcp",
+            "port": 8000,
+            "targetPort": "mcp"
+          }
+        ],
+        "selector": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "inventory-mcp"
+        }
+      },
+      {
+        "name": "urumi-mariadb",
+        "ports": [
+          {
+            "port": 3306,
+            "targetPort": 3306
+          }
+        ],
+        "selector": {
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "mariadb"
+        }
+      },
+      {
+        "name": "urumi-wordpress",
+        "ports": [
+          {
+            "port": 80,
+            "targetPort": 80
+          }
+        ],
+        "selector": {
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "wordpress"
+        }
+      },
+      {
+        "name": "urumi-woocommerce-mcp",
+        "ports": [
+          {
+            "name": "mcp",
+            "port": 8000,
+            "targetPort": "mcp"
+          }
+        ],
+        "selector": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "woocommerce-mcp"
+        }
+      }
+    ],
+    "ingresses": [
+      {
+        "name": "urumi-dashboard",
+        "paths": [
+          {
+            "host": "dashboard.example.com",
+            "path": "/api/v1",
+            "service": "urumi-backend"
+          },
+          {
+            "host": "dashboard.example.com",
+            "path": "/mcp",
+            "service": "urumi-backend"
+          },
+          {
+            "host": "dashboard.example.com",
+            "path": "/",
+            "service": "urumi-dashboard"
+          }
+        ],
+        "tls": [
+          {
+            "hosts": [
+              "dashboard.example.com"
+            ],
+            "secretName": "urumi-dashboard-tls"
+          }
+        ]
+      },
+      {
+        "name": "urumi-wordpress",
+        "paths": [
+          {
+            "host": "shop.example.com",
+            "path": "/",
+            "service": "urumi-wordpress"
+          }
+        ],
+        "tls": [
+          {
+            "hosts": [
+              "shop.example.com"
+            ],
+            "secretName": "urumi-shop-tls"
+          }
+        ]
+      }
+    ],
+    "pvcs": [
+      {
+        "name": "urumi-platform-data",
+        "storageClassName": "local-path",
+        "storage": "2Gi"
+      },
+      {
+        "name": "urumi-mariadb-data",
+        "storageClassName": "local-path",
+        "storage": "2Gi"
+      },
+      {
+        "name": "urumi-wordpress-content",
+        "storageClassName": "local-path",
+        "storage": "2Gi"
+      }
+    ],
+    "secret_references": [
+      {
+        "name": "urumi-platform-db",
+        "key": "password"
+      },
+      {
+        "name": "urumi-groq",
+        "key": "api-key"
+      },
+      {
+        "name": "urumi-platform-db",
+        "key": "password"
+      },
+      {
+        "name": "urumi-store-db",
+        "keys": "mounted"
+      },
+      {
+        "name": "urumi-store-salts",
+        "keys": "mounted"
+      },
+      {
+        "name": "urumi-woocommerce-rest",
+        "key": "consumer-key"
+      },
+      {
+        "name": "urumi-woocommerce-rest",
+        "key": "consumer-secret"
+      },
+      {
+        "name": "urumi-store-db",
+        "keys": "mounted"
+      }
+    ],
+    "policies": [
+      {
+        "name": "urumi-backend",
+        "spec": {
+          "podSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/name": "urumi",
+              "app.kubernetes.io/instance": "urumi",
+              "app.kubernetes.io/component": "backend"
+            }
+          },
+          "policyTypes": [
+            "Ingress",
+            "Egress"
+          ],
+          "ingress": [
+            {
+              "from": [
+                {
+                  "namespaceSelector": {
+                    "matchLabels": {
+                      "kubernetes.io/metadata.name": "kube-system"
+                    }
+                  },
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/instance": "traefik-kube-system",
+                      "app.kubernetes.io/name": "traefik"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 8000
+                }
+              ]
+            }
+          ],
+          "egress": [
+            {
+              "to": [
+                {
+                  "namespaceSelector": {
+                    "matchLabels": {
+                      "kubernetes.io/metadata.name": "kube-system"
+                    }
+                  },
+                  "podSelector": {
+                    "matchLabels": {
+                      "k8s-app": "kube-dns"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "UDP",
+                  "port": 53
+                },
+                {
+                  "protocol": "TCP",
+                  "port": 53
+                }
+              ]
+            },
+            {
+              "to": [
+                {
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/instance": "urumi",
+                      "app.kubernetes.io/component": "platform-db"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 5432
+                }
+              ]
+            },
+            {
+              "to": [
+                {
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/name": "urumi",
+                      "app.kubernetes.io/instance": "urumi",
+                      "app.kubernetes.io/component": "woocommerce-mcp"
+                    }
+                  }
+                },
+                {
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/name": "urumi",
+                      "app.kubernetes.io/instance": "urumi",
+                      "app.kubernetes.io/component": "inventory-mcp"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 8000
+                }
+              ]
+            },
+            {
+              "to": [
+                {
+                  "ipBlock": {
+                    "cidr": "0.0.0.0/0",
+                    "except": [
+                      "0.0.0.0/8",
+                      "10.0.0.0/8",
+                      "100.64.0.0/10",
+                      "127.0.0.0/8",
+                      "169.254.0.0/16",
+                      "172.16.0.0/12",
+                      "192.0.0.0/24",
+                      "192.0.2.0/24",
+                      "192.168.0.0/16",
+                      "198.18.0.0/15",
+                      "198.51.100.0/24",
+                      "203.0.113.0/24",
+                      "224.0.0.0/4",
+                      "240.0.0.0/4"
+                    ]
+                  }
+                },
+                {
+                  "ipBlock": {
+                    "cidr": "2000::/3",
+                    "except": [
+                      "2001:db8::/32"
+                    ]
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 443
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "urumi-dashboard",
+        "spec": {
+          "podSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/name": "urumi",
+              "app.kubernetes.io/instance": "urumi",
+              "app.kubernetes.io/component": "dashboard"
+            }
+          },
+          "policyTypes": [
+            "Ingress",
+            "Egress"
+          ],
+          "ingress": [
+            {
+              "from": [
+                {
+                  "namespaceSelector": {
+                    "matchLabels": {
+                      "kubernetes.io/metadata.name": "kube-system"
+                    }
+                  },
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/instance": "traefik-kube-system",
+                      "app.kubernetes.io/name": "traefik"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 8080
+                }
+              ]
+            }
+          ],
+          "egress": []
+        }
+      },
+      {
+        "name": "urumi-platform-db",
+        "spec": {
+          "podSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/instance": "urumi",
+              "app.kubernetes.io/component": "platform-db"
+            }
+          },
+          "policyTypes": [
+            "Ingress"
+          ],
+          "ingress": [
+            {
+              "from": [
+                {
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/instance": "urumi",
+                      "app.kubernetes.io/component": "backend"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 5432
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "urumi-inventory-mcp",
+        "spec": {
+          "podSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/name": "urumi",
+              "app.kubernetes.io/instance": "urumi",
+              "app.kubernetes.io/component": "inventory-mcp"
+            }
+          },
+          "policyTypes": [
+            "Ingress",
+            "Egress"
+          ],
+          "ingress": [
+            {
+              "from": [
+                {
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/name": "urumi",
+                      "app.kubernetes.io/instance": "urumi",
+                      "app.kubernetes.io/component": "backend",
+                      "urumi.dev/gateway": "true"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 8000
+                }
+              ]
+            }
+          ],
+          "egress": []
+        }
+      },
+      {
+        "name": "urumi-store-database",
+        "spec": {
+          "podSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/instance": "urumi",
+              "app.kubernetes.io/component": "mariadb"
+            }
+          },
+          "policyTypes": [
+            "Ingress"
+          ],
+          "ingress": [
+            {
+              "from": [
+                {
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/instance": "urumi",
+                      "app.kubernetes.io/component": "wordpress"
+                    }
+                  }
+                },
+                {
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/instance": "urumi",
+                      "urumi-m2-access": "setup"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 3306
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "urumi-wordpress",
+        "spec": {
+          "podSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/instance": "urumi",
+              "app.kubernetes.io/component": "wordpress"
+            }
+          },
+          "policyTypes": [
+            "Ingress",
+            "Egress"
+          ],
+          "ingress": [
+            {
+              "from": [
+                {
+                  "namespaceSelector": {
+                    "matchLabels": {
+                      "kubernetes.io/metadata.name": "kube-system"
+                    }
+                  },
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/instance": "traefik-kube-system",
+                      "app.kubernetes.io/name": "traefik"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 80
+                }
+              ]
+            }
+          ],
+          "egress": [
+            {
+              "to": [
+                {
+                  "namespaceSelector": {
+                    "matchLabels": {
+                      "kubernetes.io/metadata.name": "kube-system"
+                    }
+                  },
+                  "podSelector": {
+                    "matchLabels": {
+                      "k8s-app": "kube-dns"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "UDP",
+                  "port": 53
+                },
+                {
+                  "protocol": "TCP",
+                  "port": 53
+                }
+              ]
+            },
+            {
+              "to": [
+                {
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/instance": "urumi",
+                      "app.kubernetes.io/component": "mariadb"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 3306
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "urumi-woocommerce-mcp",
+        "spec": {
+          "podSelector": {
+            "matchLabels": {
+              "app.kubernetes.io/name": "urumi",
+              "app.kubernetes.io/instance": "urumi",
+              "app.kubernetes.io/component": "woocommerce-mcp"
+            }
+          },
+          "policyTypes": [
+            "Ingress",
+            "Egress"
+          ],
+          "ingress": [
+            {
+              "from": [
+                {
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/name": "urumi",
+                      "app.kubernetes.io/instance": "urumi",
+                      "app.kubernetes.io/component": "backend",
+                      "urumi.dev/gateway": "true"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 8000
+                }
+              ]
+            }
+          ],
+          "egress": [
+            {
+              "to": [
+                {
+                  "namespaceSelector": {
+                    "matchLabels": {
+                      "kubernetes.io/metadata.name": "kube-system"
+                    }
+                  },
+                  "podSelector": {
+                    "matchLabels": {
+                      "k8s-app": "kube-dns"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "UDP",
+                  "port": 53
+                },
+                {
+                  "protocol": "TCP",
+                  "port": 53
+                }
+              ]
+            },
+            {
+              "to": [
+                {
+                  "namespaceSelector": {
+                    "matchLabels": {
+                      "kubernetes.io/metadata.name": "kube-system"
+                    }
+                  },
+                  "podSelector": {
+                    "matchLabels": {
+                      "app.kubernetes.io/instance": "traefik-kube-system",
+                      "app.kubernetes.io/name": "traefik"
+                    }
+                  }
+                }
+              ],
+              "ports": [
+                {
+                  "protocol": "TCP",
+                  "port": 8443
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "rbac": [
+      {
+        "apiVersion": "v1",
+        "kind": "Namespace",
+        "metadata": {
+          "name": "urumi-upstream-secrets",
+          "labels": {
+            "urumi-module": "m5",
+            "urumi-owner": "urumi"
+          },
+          "annotations": {
+            "helm.sh/resource-policy": "keep"
+          }
+        }
+      },
+      {
+        "apiVersion": "v1",
+        "kind": "ServiceAccount",
+        "metadata": {
+          "name": "urumi-backend"
+        }
+      },
+      {
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "Role",
+        "metadata": {
+          "name": "urumi-upstream-secrets",
+          "namespace": "urumi-upstream-secrets"
+        },
+        "rules": [
+          {
+            "apiGroups": [
+              ""
+            ],
+            "resources": [
+              "secrets"
+            ],
+            "verbs": [
+              "get",
+              "create",
+              "update",
+              "delete"
+            ]
+          }
+        ]
+      },
+      {
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "RoleBinding",
+        "metadata": {
+          "name": "urumi-upstream-secrets",
+          "namespace": "urumi-upstream-secrets"
+        },
+        "subjects": [
+          {
+            "kind": "ServiceAccount",
+            "name": "urumi-backend",
+            "namespace": "urumi"
+          }
+        ],
+        "roleRef": {
+          "kind": "Role",
+          "name": "urumi-upstream-secrets",
+          "apiGroup": "rbac.authorization.k8s.io"
+        }
+      }
+    ],
+    "policy_paths": [
+      {
+        "policy": "backend",
+        "direction": "ingress",
+        "peer_namespace": "kube-system",
+        "peer_labels": {
+          "app.kubernetes.io/instance": "traefik-kube-system",
+          "app.kubernetes.io/name": "traefik"
+        },
+        "port": 8000,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "backend",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/component": "arbitrary"
+        },
+        "port": 8000,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": false
+      },
+      {
+        "policy": "dashboard",
+        "direction": "ingress",
+        "peer_namespace": "kube-system",
+        "peer_labels": {
+          "app.kubernetes.io/instance": "traefik-kube-system",
+          "app.kubernetes.io/name": "traefik"
+        },
+        "port": 8080,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "dashboard",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/component": "arbitrary"
+        },
+        "port": 8080,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": false
+      },
+      {
+        "policy": "wordpress",
+        "direction": "ingress",
+        "peer_namespace": "kube-system",
+        "peer_labels": {
+          "app.kubernetes.io/instance": "traefik-kube-system",
+          "app.kubernetes.io/name": "traefik"
+        },
+        "port": 80,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "wordpress",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/component": "arbitrary"
+        },
+        "port": 80,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": false
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "platform-db"
+        },
+        "port": 5432,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "platform-db",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "backend",
+          "urumi.dev/gateway": "true"
+        },
+        "port": 5432,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "platform-db",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "dashboard"
+        },
+        "port": 5432,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": false
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "woocommerce-mcp"
+        },
+        "port": 8000,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "woocommerce-mcp",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "backend",
+          "urumi.dev/gateway": "true"
+        },
+        "port": 8000,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "woocommerce-mcp",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "dashboard"
+        },
+        "port": 8000,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": false
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "inventory-mcp"
+        },
+        "port": 8000,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "inventory-mcp",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "backend",
+          "urumi.dev/gateway": "true"
+        },
+        "port": 8000,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "inventory-mcp",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "dashboard"
+        },
+        "port": 8000,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": false
+      },
+      {
+        "policy": "wordpress",
+        "direction": "egress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "mariadb"
+        },
+        "port": 3306,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "store-database",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "wordpress"
+        },
+        "port": 3306,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "kube-system",
+        "peer_labels": {
+          "k8s-app": "kube-dns"
+        },
+        "port": 53,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "woocommerce-mcp",
+        "direction": "egress",
+        "peer_namespace": "kube-system",
+        "peer_labels": {
+          "k8s-app": "kube-dns"
+        },
+        "port": 53,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "kube-system",
+        "peer_labels": {
+          "k8s-app": "kube-dns"
+        },
+        "port": 53,
+        "protocol": "UDP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "woocommerce-mcp",
+        "direction": "egress",
+        "peer_namespace": "kube-system",
+        "peer_labels": {
+          "k8s-app": "kube-dns"
+        },
+        "port": 53,
+        "protocol": "UDP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "",
+        "peer_labels": {},
+        "port": 443,
+        "protocol": "TCP",
+        "address": "8.8.8.8",
+        "allowed": true
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "",
+        "peer_labels": {},
+        "port": 443,
+        "protocol": "TCP",
+        "address": "127.0.0.1",
+        "allowed": false
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "",
+        "peer_labels": {},
+        "port": 443,
+        "protocol": "TCP",
+        "address": "10.2.3.4",
+        "allowed": false
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "",
+        "peer_labels": {},
+        "port": 443,
+        "protocol": "TCP",
+        "address": "169.254.169.254",
+        "allowed": false
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "",
+        "peer_labels": {},
+        "port": 443,
+        "protocol": "TCP",
+        "address": "192.0.2.10",
+        "allowed": false
+      },
+      {
+        "policy": "backend",
+        "direction": "egress",
+        "peer_namespace": "",
+        "peer_labels": {},
+        "port": 443,
+        "protocol": "TCP",
+        "address": "224.0.0.1",
+        "allowed": false
+      },
+      {
+        "policy": "woocommerce-mcp",
+        "direction": "egress",
+        "peer_namespace": "kube-system",
+        "peer_labels": {
+          "app.kubernetes.io/instance": "traefik-kube-system",
+          "app.kubernetes.io/name": "traefik"
+        },
+        "port": 8443,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": true
+      },
+      {
+        "policy": "woocommerce-mcp",
+        "direction": "egress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "wordpress"
+        },
+        "port": 80,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": false
+      },
+      {
+        "policy": "wordpress",
+        "direction": "ingress",
+        "peer_namespace": "urumi",
+        "peer_labels": {
+          "app.kubernetes.io/name": "urumi",
+          "app.kubernetes.io/instance": "urumi",
+          "app.kubernetes.io/component": "woocommerce-mcp"
+        },
+        "port": 80,
+        "protocol": "TCP",
+        "address": null,
+        "allowed": false
+      }
+    ]
+  }
+}

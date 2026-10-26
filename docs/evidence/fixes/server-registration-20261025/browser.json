@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "slug": "qa-reg-mvnwqgcw",
+  "responses": [
+    {
+      "method": "POST",
+      "status": 201,
+      "contentType": "application/json"
+    },
+    {
+      "method": "PATCH",
+      "status": 200,
+      "contentType": "application/json"
+    },
+    {
+      "method": "DELETE",
+      "status": 204
+    }
+  ],
+  "disabled_bearer_create_edit_remove": true,
+  "outage_message": "Correct message and uncertain-write warning, one request, no automatic retry",
+  "final_servers": [
+    "Microsoft Learn",
+    "Inventory",
+    "WooCommerce"
+  ]
+}

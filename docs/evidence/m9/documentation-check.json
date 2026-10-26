@@ -1,0 +1,12 @@
+{
+  "files": [
+    "README.md",
+    "docs/operations.md",
+    "docs/system-design.md",
+    "docs/threat-model.md",
+    "docs/optional-items.md"
+  ],
+  "links": "all relative file targets exist",
+  "command_scope": "PowerShell/root and Linux/root explicitly separated",
+  "future_commands": "M10 labeled; no installation/backup/restore success claimed"
+}

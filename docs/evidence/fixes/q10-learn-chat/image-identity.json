@@ -1,0 +1,7 @@
+{
+  "image": "urumi/backend:m10-q10-rate-wait",
+  "config_digest": "sha256:9a9dfa128ab98aa85f29c51a7496e384e27e0f9152240f1d4197d381c0feb223",
+  "architecture": "amd64",
+  "os": "linux",
+  "verification": "SHA256 of actual Docker-exported configuration bytes"
+}

@@ -1,0 +1,7 @@
+{
+  "image": "urumi/backend:m10",
+  "config_digest": "sha256:c423ace6fa14e4ce5cefe2ecea25cecdcf08a7b33e00cdc71000ee75d3f0fd52",
+  "architecture": "amd64",
+  "os": "linux",
+  "verification": "SHA256 of actual Docker-exported configuration bytes"
+}

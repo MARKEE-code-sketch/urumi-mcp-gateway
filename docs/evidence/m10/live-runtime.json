@@ -1,0 +1,2086 @@
+{
+  "observed_utc": "2026-10-20T04:24:56.305207+00:00",
+  "context": "k3d-urumi",
+  "namespace": "urumi-m10",
+  "scope": "Read-only actual runtime snapshot; no Secret objects/data or environment values collected; no complete user-flow claim.",
+  "resources": [
+    {
+      "kind": "Pod",
+      "name": "urumi-m10-backend-7f8544fc7f-pdstc",
+      "namespace": "urumi-m10",
+      "uid": "408553a0-1784-4d31-900d-b2d3fc3b8b13",
+      "phase": "Running",
+      "service_account": "urumi-m10-backend",
+      "automount_service_account_token": true,
+      "security_context": {
+        "runAsGroup": 10001,
+        "runAsNonRoot": true,
+        "runAsUser": 10001,
+        "seccompProfile": {
+          "type": "RuntimeDefault"
+        }
+      },
+      "ready": "True",
+      "containers": [
+        {
+          "name": "backend",
+          "image": "urumi/backend@sha256:b863c9ccfca8c20bce2eb2e260f63650be63f7e8f4ac731f2a57dd49bc884646",
+          "image_id": "docker.io/urumi/backend@sha256:b863c9ccfca8c20bce2eb2e260f63650be63f7e8f4ac731f2a57dd49bc884646",
+          "ready": true,
+          "restart_count": 0,
+          "resources": {
+            "limits": {
+              "cpu": "1",
+              "memory": "512Mi"
+            },
+            "requests": {
+              "cpu": "100m",
+              "memory": "256Mi"
+            }
+          },
+          "security_context": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "readOnlyRootFilesystem": true
+          },
+          "readiness_probe": {
+            "failureThreshold": 3,
+            "httpGet": {
+              "path": "/health/ready",
+              "port": "http",
+              "scheme": "HTTP"
+            },
+            "periodSeconds": 5,
+            "successThreshold": 1,
+            "timeoutSeconds": 5
+          },
+          "liveness_probe": {
+            "failureThreshold": 3,
+            "httpGet": {
+              "path": "/health/live",
+              "port": "http",
+              "scheme": "HTTP"
+            },
+            "periodSeconds": 10,
+            "successThreshold": 1,
+            "timeoutSeconds": 2
+          },
+          "startup_probe": {
+            "failureThreshold": 60,
+            "httpGet": {
+              "path": "/health/live",
+              "port": "http",
+              "scheme": "HTTP"
+            },
+            "periodSeconds": 2,
+            "successThreshold": 1,
+            "timeoutSeconds": 2
+          },
+          "secret_refs": [
+            {
+              "name": "urumi-m10-platform-db",
+              "key": "password"
+            },
+            {
+              "name": "urumi-m10-groq",
+              "key": "api-key"
+            }
+          ]
+        }
+      ],
+      "volumes": [
+        {
+          "name": "kube-api-access-ksrr5",
+          "type": "projected",
+          "claim_name": null,
+          "secret_name": null
+        }
+      ]
+    },
+    {
+      "kind": "Pod",
+      "name": "urumi-m10-dashboard-8bb474b46-x9nj6",
+      "namespace": "urumi-m10",
+      "uid": "9b96c029-6b4c-468f-9f60-23c11caf8b07",
+      "phase": "Running",
+      "service_account": "default",
+      "automount_service_account_token": false,
+      "security_context": {
+        "fsGroup": 101,
+        "runAsGroup": 101,
+        "runAsNonRoot": true,
+        "runAsUser": 101,
+        "seccompProfile": {
+          "type": "RuntimeDefault"
+        }
+      },
+      "ready": "True",
+      "containers": [
+        {
+          "name": "dashboard",
+          "image": "urumi/dashboard@sha256:c619a07d7dab970dce601fe0add72e2cbdcbe1839ca65cce3922ebc46f999a76",
+          "image_id": "docker.io/urumi/dashboard@sha256:c619a07d7dab970dce601fe0add72e2cbdcbe1839ca65cce3922ebc46f999a76",
+          "ready": true,
+          "restart_count": 0,
+          "resources": {
+            "limits": {
+              "cpu": "250m",
+              "memory": "128Mi"
+            },
+            "requests": {
+              "cpu": "25m",
+              "memory": "32Mi"
+            }
+          },
+          "security_context": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "readOnlyRootFilesystem": true
+          },
+          "readiness_probe": {
+            "failureThreshold": 3,
+            "httpGet": {
+              "path": "/readyz",
+              "port": "http",
+              "scheme": "HTTP"
+            },
+            "initialDelaySeconds": 2,
+            "periodSeconds": 5,
+            "successThreshold": 1,
+            "timeoutSeconds": 2
+          },
+          "liveness_probe": {
+            "failureThreshold": 3,
+            "httpGet": {
+              "path": "/livez",
+              "port": "http",
+              "scheme": "HTTP"
+            },
+            "initialDelaySeconds": 5,
+            "periodSeconds": 10,
+            "successThreshold": 1,
+            "timeoutSeconds": 2
+          },
+          "startup_probe": {
+            "failureThreshold": 30,
+            "httpGet": {
+              "path": "/livez",
+              "port": "http",
+              "scheme": "HTTP"
+            },
+            "periodSeconds": 2,
+            "successThreshold": 1,
+            "timeoutSeconds": 2
+          },
+          "secret_refs": []
+        }
+      ],
+      "volumes": [
+        {
+          "name": "tmp",
+          "type": "emptyDir",
+          "claim_name": null,
+          "secret_name": null
+        },
+        {
+          "name": "nginx",
+          "type": "configMap",
+          "claim_name": null,
+          "secret_name": null
+        }
+      ]
+    },
+    {
+      "kind": "Pod",
+      "name": "urumi-m10-inventory-mcp-58bcd997b7-5glf5",
+      "namespace": "urumi-m10",
+      "uid": "a7fe1d89-37c2-4df2-aa22-6fa506c7ddb7",
+      "phase": "Running",
+      "service_account": "default",
+      "automount_service_account_token": false,
+      "security_context": {
+        "runAsGroup": 10001,
+        "runAsNonRoot": true,
+        "runAsUser": 10001,
+        "seccompProfile": {
+          "type": "RuntimeDefault"
+        }
+      },
+      "ready": "True",
+      "containers": [
+        {
+          "name": "inventory-mcp",
+          "image": "urumi/inventory-mcp@sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb",
+          "image_id": "docker.io/urumi/inventory-mcp@sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb",
+          "ready": true,
+          "restart_count": 0,
+          "resources": {
+            "limits": {
+              "cpu": "250m",
+              "memory": "128Mi"
+            },
+            "requests": {
+              "cpu": "50m",
+              "memory": "64Mi"
+            }
+          },
+          "security_context": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "readOnlyRootFilesystem": true
+          },
+          "readiness_probe": {
+            "failureThreshold": 3,
+            "httpGet": {
+              "path": "/readyz",
+              "port": "mcp",
+              "scheme": "HTTP"
+            },
+            "periodSeconds": 10,
+            "successThreshold": 1,
+            "timeoutSeconds": 2
+          },
+          "liveness_probe": {
+            "failureThreshold": 3,
+            "httpGet": {
+              "path": "/livez",
+              "port": "mcp",
+              "scheme": "HTTP"
+            },
+            "periodSeconds": 10,
+            "successThreshold": 1,
+            "timeoutSeconds": 2
+          },
+          "startup_probe": {
+            "failureThreshold": 30,
+            "httpGet": {
+              "path": "/livez",
+              "port": "mcp",
+              "scheme": "HTTP"
+            },
+            "periodSeconds": 2,
+            "successThreshold": 1,
+            "timeoutSeconds": 2
+          },
+          "secret_refs": []
+        }
+      ],
+      "volumes": []
+    },
+    {
+      "kind": "Pod",
+      "name": "urumi-m10-mariadb-0",
+      "namespace": "urumi-m10",
+      "uid": "44f43c6c-3c05-4108-9a4c-448701f04f64",
+      "phase": "Running",
+      "service_account": "default",
+      "automount_service_account_token": false,
+      "security_context": {},
+      "ready": "True",
+      "containers": [
+        {
+          "name": "mariadb",
+          "image": "mariadb@sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+          "image_id": "docker.io/library/mariadb@sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6",
+          "ready": true,
+          "restart_count": 0,
+          "resources": {
+            "limits": {
+              "cpu": "1",
+              "memory": "768Mi"
+            },
+            "requests": {
+              "cpu": "100m",
+              "memory": "256Mi"
+            }
+          },
+          "security_context": {},
+          "readiness_probe": {
+            "exec": {
+              "command": [
+                "healthcheck.sh",
+                "--connect",
+                "--innodb_initialized"
+              ]
+            },
+            "failureThreshold": 3,
+            "periodSeconds": 5,
+            "successThreshold": 1,
+            "timeoutSeconds": 3
+          },
+          "liveness_probe": {
+            "exec": {
+              "command": [
+                "healthcheck.sh",
+                "--connect"
+              ]
+            },
+            "failureThreshold": 6,
+            "periodSeconds": 10,
+            "successThreshold": 1,
+            "timeoutSeconds": 3
+          },
+          "startup_probe": {
+            "exec": {
+              "command": [
+                "healthcheck.sh",
+                "--connect",
+                "--innodb_initialized"
+              ]
+            },
+            "failureThreshold": 36,
+            "periodSeconds": 5,
+            "successThreshold": 1,
+            "timeoutSeconds": 3
+          },
+          "secret_refs": []
+        }
+      ],
+      "volumes": [
+        {
+          "name": "data",
+          "type": "persistentVolumeClaim",
+          "claim_name": "urumi-m10-mariadb-data",
+          "secret_name": null
+        },
+        {
+          "name": "database",
+          "type": "secret",
+          "claim_name": null,
+          "secret_name": "urumi-m10-store-db"
+        }
+      ]
+    },
+    {
+      "kind": "Pod",
+      "name": "urumi-m10-platform-db-6dbbf758c-7s6d4",
+      "namespace": "urumi-m10",
+      "uid": "ca42c08e-5eb1-4333-b1bb-4bcafc614e32",
+      "phase": "Running",
+      "service_account": "default",
+      "automount_service_account_token": false,
+      "security_context": {},
+      "ready": "True",
+      "containers": [
+        {
+          "name": "postgres",
+          "image": "postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826",
+          "image_id": "docker.io/library/postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826",
+          "ready": true,
+          "restart_count": 0,
+          "resources": {
+            "limits": {
+              "cpu": "500m",
+              "memory": "512Mi"
+            },
+            "requests": {
+              "cpu": "100m",
+              "memory": "128Mi"
+            }
+          },
+          "security_context": {},
+          "readiness_probe": {
+            "exec": {
+              "command": [
+                "pg_isready",
+                "-U",
+                "urumi",
+                "-d",
+                "urumi"
+              ]
+            },
+            "failureThreshold": 3,
+            "periodSeconds": 3,
+            "successThreshold": 1,
+            "timeoutSeconds": 1
+          },
+          "liveness_probe": {
+            "exec": {
+              "command": [
+                "pg_isready",
+                "-U",
+                "urumi",
+                "-d",
+                "urumi"
+              ]
+            },
+            "failureThreshold": 3,
+            "periodSeconds": 10,
+            "successThreshold": 1,
+            "timeoutSeconds": 1
+          },
+          "startup_probe": {
+            "exec": {
+              "command": [
+                "pg_isready",
+                "-U",
+                "urumi",
+                "-d",
+                "urumi"
+              ]
+            },
+            "failureThreshold": 60,
+            "periodSeconds": 2,
+            "successThreshold": 1,
+            "timeoutSeconds": 1
+          },
+          "secret_refs": [
+            {
+              "name": "urumi-m10-platform-db",
+              "key": "password"
+            }
+          ]
+        }
+      ],
+      "volumes": [
+        {
+          "name": "data",
+          "type": "persistentVolumeClaim",
+          "claim_name": "urumi-m10-platform-data",
+          "secret_name": null
+        }
+      ]
+    },
+    {
+      "kind": "Pod",
+      "name": "urumi-m10-woocommerce-mcp-5458999fc5-2hdlb",
+      "namespace": "urumi-m10",
+      "uid": "c5322127-cecb-4da1-8913-e29fa89268d0",
+      "phase": "Running",
+      "service_account": "default",
+      "automount_service_account_token": false,
+      "security_context": {
+        "runAsGroup": 10001,
+        "runAsNonRoot": true,
+        "runAsUser": 10001,
+        "seccompProfile": {
+          "type": "RuntimeDefault"
+        }
+      },
+      "ready": "True",
+      "containers": [
+        {
+          "name": "woocommerce-mcp",
+          "image": "urumi/woocommerce-mcp@sha256:41921e625b0e2256ebea6ad86511bf4879aac2ee84b798926af4fa2aadf1e546",
+          "image_id": "docker.io/urumi/woocommerce-mcp@sha256:41921e625b0e2256ebea6ad86511bf4879aac2ee84b798926af4fa2aadf1e546",
+          "ready": true,
+          "restart_count": 0,
+          "resources": {
+            "limits": {
+              "cpu": "500m",
+              "memory": "256Mi"
+            },
+            "requests": {
+              "cpu": "100m",
+              "memory": "128Mi"
+            }
+          },
+          "security_context": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "readOnlyRootFilesystem": true
+          },
+          "readiness_probe": {
+            "failureThreshold": 3,
+            "httpGet": {
+              "path": "/readyz",
+              "port": "mcp",
+              "scheme": "HTTP"
+            },
+            "periodSeconds": 10,
+            "successThreshold": 1,
+            "timeoutSeconds": 2
+          },
+          "liveness_probe": {
+            "failureThreshold": 3,
+            "httpGet": {
+              "path": "/livez",
+              "port": "mcp",
+              "scheme": "HTTP"
+            },
+            "periodSeconds": 10,
+            "successThreshold": 1,
+            "timeoutSeconds": 2
+          },
+          "startup_probe": {
+            "failureThreshold": 30,
+            "httpGet": {
+              "path": "/livez",
+              "port": "mcp",
+              "scheme": "HTTP"
+            },
+            "periodSeconds": 2,
+            "successThreshold": 1,
+            "timeoutSeconds": 2
+          },
+          "secret_refs": [
+            {
+              "name": "urumi-m10-woocommerce-rest",
+              "key": "consumer-key"
+            },
+            {
+              "name": "urumi-m10-woocommerce-rest",
+              "key": "consumer-secret"
+            }
+          ]
+        }
+      ],
+      "volumes": []
+    },
+    {
+      "kind": "Pod",
+      "name": "urumi-m10-wordpress-5cbd95478d-kgs8x",
+      "namespace": "urumi-m10",
+      "uid": "c508bf43-d1fd-4794-956e-b968b963d89d",
+      "phase": "Running",
+      "service_account": "default",
+      "automount_service_account_token": false,
+      "security_context": {
+        "fsGroup": 33
+      },
+      "ready": "True",
+      "containers": [
+        {
+          "name": "wordpress",
+          "image": "urumi-store@sha256:23494837a20cc9d2c7093cb8203f066eb9c78054956945ad4e779ab42e204d98",
+          "image_id": "docker.io/library/urumi-store@sha256:23494837a20cc9d2c7093cb8203f066eb9c78054956945ad4e779ab42e204d98",
+          "ready": true,
+          "restart_count": 0,
+          "resources": {
+            "limits": {
+              "cpu": "1",
+              "memory": "768Mi"
+            },
+            "requests": {
+              "cpu": "100m",
+              "memory": "256Mi"
+            }
+          },
+          "security_context": {},
+          "readiness_probe": {
+            "failureThreshold": 3,
+            "httpGet": {
+              "path": "/urumi-ready.php",
+              "port": 80,
+              "scheme": "HTTP"
+            },
+            "periodSeconds": 10,
+            "successThreshold": 1,
+            "timeoutSeconds": 3
+          },
+          "liveness_probe": {
+            "failureThreshold": 6,
+            "httpGet": {
+              "path": "/urumi-live.php",
+              "port": 80,
+              "scheme": "HTTP"
+            },
+            "periodSeconds": 10,
+            "successThreshold": 1,
+            "timeoutSeconds": 3
+          },
+          "startup_probe": {
+            "failureThreshold": 36,
+            "httpGet": {
+              "path": "/urumi-live.php",
+              "port": 80,
+              "scheme": "HTTP"
+            },
+            "periodSeconds": 5,
+            "successThreshold": 1,
+            "timeoutSeconds": 3
+          },
+          "secret_refs": []
+        }
+      ],
+      "volumes": [
+        {
+          "name": "content",
+          "type": "persistentVolumeClaim",
+          "claim_name": "urumi-m10-wordpress-content",
+          "secret_name": null
+        },
+        {
+          "name": "database",
+          "type": "secret",
+          "claim_name": null,
+          "secret_name": "urumi-m10-store-db"
+        },
+        {
+          "name": "salts",
+          "type": "secret",
+          "claim_name": null,
+          "secret_name": "urumi-m10-store-salts"
+        }
+      ]
+    },
+    {
+      "kind": "Deployment",
+      "name": "urumi-m10-backend",
+      "namespace": "urumi-m10",
+      "uid": "be89fd61-6ded-4124-8a96-1d474f8130c6",
+      "replicas": 1,
+      "ready_replicas": 1,
+      "available_replicas": 1
+    },
+    {
+      "kind": "Deployment",
+      "name": "urumi-m10-dashboard",
+      "namespace": "urumi-m10",
+      "uid": "25c81643-aba0-440f-a550-d51a8574580a",
+      "replicas": 1,
+      "ready_replicas": 1,
+      "available_replicas": 1
+    },
+    {
+      "kind": "Deployment",
+      "name": "urumi-m10-inventory-mcp",
+      "namespace": "urumi-m10",
+      "uid": "3023955c-ab32-45a2-8dcf-be910e0c27f5",
+      "replicas": 1,
+      "ready_replicas": 1,
+      "available_replicas": 1
+    },
+    {
+      "kind": "Deployment",
+      "name": "urumi-m10-platform-db",
+      "namespace": "urumi-m10",
+      "uid": "0cc82297-ac4f-47d4-94ab-037e42171c9c",
+      "replicas": 1,
+      "ready_replicas": 1,
+      "available_replicas": 1
+    },
+    {
+      "kind": "Deployment",
+      "name": "urumi-m10-woocommerce-mcp",
+      "namespace": "urumi-m10",
+      "uid": "9bbd22bd-7a26-453f-b00d-f95c43551871",
+      "replicas": 1,
+      "ready_replicas": 1,
+      "available_replicas": 1
+    },
+    {
+      "kind": "Deployment",
+      "name": "urumi-m10-wordpress",
+      "namespace": "urumi-m10",
+      "uid": "cc154042-2e5d-4945-ade5-3c72b9cd8e63",
+      "replicas": 1,
+      "ready_replicas": 1,
+      "available_replicas": 1
+    },
+    {
+      "kind": "StatefulSet",
+      "name": "urumi-m10-mariadb",
+      "namespace": "urumi-m10",
+      "uid": "dd490b17-4ddd-4fe3-b810-7f8d4a6d8be3",
+      "replicas": 1,
+      "ready_replicas": 1,
+      "available_replicas": 1
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-m10-backend",
+      "namespace": "urumi-m10",
+      "uid": "8efcd080-8a3b-4eea-9a3f-ec0c080401aa",
+      "type": "ClusterIP",
+      "ports": [
+        {
+          "name": "http",
+          "port": 8000,
+          "protocol": "TCP",
+          "targetPort": "http"
+        }
+      ],
+      "selector": {
+        "app.kubernetes.io/component": "backend",
+        "app.kubernetes.io/instance": "urumi-m10",
+        "app.kubernetes.io/name": "urumi"
+      }
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-m10-dashboard",
+      "namespace": "urumi-m10",
+      "uid": "0245e259-d228-4cdd-93ab-a57b47466dfc",
+      "type": "ClusterIP",
+      "ports": [
+        {
+          "name": "http",
+          "port": 80,
+          "protocol": "TCP",
+          "targetPort": 8080
+        }
+      ],
+      "selector": {
+        "app.kubernetes.io/component": "dashboard",
+        "app.kubernetes.io/instance": "urumi-m10"
+      }
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-m10-inventory-mcp",
+      "namespace": "urumi-m10",
+      "uid": "8116213a-e717-4d89-aad4-5dd400f8b762",
+      "type": "ClusterIP",
+      "ports": [
+        {
+          "name": "mcp",
+          "port": 8000,
+          "protocol": "TCP",
+          "targetPort": "mcp"
+        }
+      ],
+      "selector": {
+        "app.kubernetes.io/component": "inventory-mcp",
+        "app.kubernetes.io/instance": "urumi-m10",
+        "app.kubernetes.io/name": "urumi"
+      }
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-m10-mariadb",
+      "namespace": "urumi-m10",
+      "uid": "5a8648bb-9879-4564-9723-add1aab73bb6",
+      "type": "ClusterIP",
+      "ports": [
+        {
+          "port": 3306,
+          "protocol": "TCP",
+          "targetPort": 3306
+        }
+      ],
+      "selector": {
+        "app.kubernetes.io/component": "mariadb",
+        "app.kubernetes.io/instance": "urumi-m10"
+      }
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-m10-platform-db",
+      "namespace": "urumi-m10",
+      "uid": "eeab38ff-69c0-4480-945a-b4fbead66cfe",
+      "type": "ClusterIP",
+      "ports": [
+        {
+          "name": "postgres",
+          "port": 5432,
+          "protocol": "TCP",
+          "targetPort": "postgres"
+        }
+      ],
+      "selector": {
+        "app.kubernetes.io/component": "platform-db",
+        "app.kubernetes.io/instance": "urumi-m10"
+      }
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-m10-woocommerce-mcp",
+      "namespace": "urumi-m10",
+      "uid": "1bd5da4d-0a52-4b3a-9445-5593ad3b68f0",
+      "type": "ClusterIP",
+      "ports": [
+        {
+          "name": "mcp",
+          "port": 8000,
+          "protocol": "TCP",
+          "targetPort": "mcp"
+        }
+      ],
+      "selector": {
+        "app.kubernetes.io/component": "woocommerce-mcp",
+        "app.kubernetes.io/instance": "urumi-m10",
+        "app.kubernetes.io/name": "urumi"
+      }
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-m10-wordpress",
+      "namespace": "urumi-m10",
+      "uid": "912c83c3-fd3c-42e6-a9a3-45f9b4c54d28",
+      "type": "ClusterIP",
+      "ports": [
+        {
+          "port": 80,
+          "protocol": "TCP",
+          "targetPort": 80
+        }
+      ],
+      "selector": {
+        "app.kubernetes.io/component": "wordpress",
+        "app.kubernetes.io/instance": "urumi-m10"
+      }
+    },
+    {
+      "kind": "Ingress",
+      "name": "urumi-m10-dashboard",
+      "namespace": "urumi-m10",
+      "uid": "6aee67b3-8f51-4034-b8c7-7eaf5af2a3ab",
+      "ingress_class": "traefik",
+      "rules": [
+        {
+          "host": "dashboard-m10.urumi.test",
+          "http": {
+            "paths": [
+              {
+                "backend": {
+                  "service": {
+                    "name": "urumi-m10-backend",
+                    "port": {
+                      "number": 8000
+                    }
+                  }
+                },
+                "path": "/api/v1",
+                "pathType": "Prefix"
+              },
+              {
+                "backend": {
+                  "service": {
+                    "name": "urumi-m10-backend",
+                    "port": {
+                      "number": 8000
+                    }
+                  }
+                },
+                "path": "/mcp",
+                "pathType": "Prefix"
+              },
+              {
+                "backend": {
+                  "service": {
+                    "name": "urumi-m10-dashboard",
+                    "port": {
+                      "number": 80
+                    }
+                  }
+                },
+                "path": "/",
+                "pathType": "Prefix"
+              }
+            ]
+          }
+        }
+      ],
+      "tls": [
+        {
+          "hosts": [
+            "dashboard-m10.urumi.test"
+          ],
+          "secretName": "urumi-m10-dashboard-tls"
+        }
+      ]
+    },
+    {
+      "kind": "Ingress",
+      "name": "urumi-m10-wordpress",
+      "namespace": "urumi-m10",
+      "uid": "0baa8309-c711-4eae-a5b0-4c4e94820970",
+      "ingress_class": "traefik",
+      "rules": [
+        {
+          "host": "shop-m10.urumi.test",
+          "http": {
+            "paths": [
+              {
+                "backend": {
+                  "service": {
+                    "name": "urumi-m10-wordpress",
+                    "port": {
+                      "number": 80
+                    }
+                  }
+                },
+                "path": "/",
+                "pathType": "Prefix"
+              }
+            ]
+          }
+        }
+      ],
+      "tls": null
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-m10-mariadb-data",
+      "namespace": "urumi-m10",
+      "uid": "a0fec4df-b7ff-4ef9-b2fe-a9af4eb8959e",
+      "phase": "Bound",
+      "access_modes": [
+        "ReadWriteOnce"
+      ],
+      "storage_class": "local-path",
+      "capacity": {
+        "storage": "2Gi"
+      }
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-m10-platform-data",
+      "namespace": "urumi-m10",
+      "uid": "710a5b52-744c-4525-b446-bbba455eb2cf",
+      "phase": "Bound",
+      "access_modes": [
+        "ReadWriteOnce"
+      ],
+      "storage_class": "local-path",
+      "capacity": {
+        "storage": "2Gi"
+      }
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-m10-wordpress-content",
+      "namespace": "urumi-m10",
+      "uid": "b5ad912d-7d6c-4bf9-aa8e-b4803005162b",
+      "phase": "Bound",
+      "access_modes": [
+        "ReadWriteOnce"
+      ],
+      "storage_class": "local-path",
+      "capacity": {
+        "storage": "2Gi"
+      }
+    },
+    {
+      "kind": "NetworkPolicy",
+      "name": "urumi-m10-backend",
+      "namespace": "urumi-m10",
+      "uid": "3bafde3a-ae4b-4e73-8754-07a3dc370280",
+      "policy": {
+        "egress": [
+          {
+            "ports": [
+              {
+                "port": 53,
+                "protocol": "UDP"
+              },
+              {
+                "port": 53,
+                "protocol": "TCP"
+              }
+            ],
+            "to": [
+              {
+                "namespaceSelector": {
+                  "matchLabels": {
+                    "kubernetes.io/metadata.name": "kube-system"
+                  }
+                },
+                "podSelector": {
+                  "matchLabels": {
+                    "k8s-app": "kube-dns"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "ports": [
+              {
+                "port": 5432,
+                "protocol": "TCP"
+              }
+            ],
+            "to": [
+              {
+                "podSelector": {
+                  "matchLabels": {
+                    "app.kubernetes.io/component": "platform-db",
+                    "app.kubernetes.io/instance": "urumi-m10"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "ports": [
+              {
+                "port": 8000,
+                "protocol": "TCP"
+              }
+            ],
+            "to": [
+              {
+                "podSelector": {
+                  "matchLabels": {
+                    "app.kubernetes.io/component": "woocommerce-mcp",
+                    "app.kubernetes.io/instance": "urumi-m10",
+                    "app.kubernetes.io/name": "urumi"
+                  }
+                }
+              },
+              {
+                "podSelector": {
+                  "matchLabels": {
+                    "app.kubernetes.io/component": "inventory-mcp",
+                    "app.kubernetes.io/instance": "urumi-m10",
+                    "app.kubernetes.io/name": "urumi"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "ports": [
+              {
+                "port": 6443,
+                "protocol": "TCP"
+              }
+            ],
+            "to": [
+              {
+                "ipBlock": {
+                  "cidr": "172.18.0.2/32"
+                }
+              }
+            ]
+          },
+          {
+            "ports": [
+              {
+                "port": 443,
+                "protocol": "TCP"
+              }
+            ],
+            "to": [
+              {
+                "ipBlock": {
+                  "cidr": "0.0.0.0/0",
+                  "except": [
+                    "0.0.0.0/8",
+                    "10.0.0.0/8",
+                    "100.64.0.0/10",
+                    "127.0.0.0/8",
+                    "169.254.0.0/16",
+                    "172.16.0.0/12",
+                    "192.0.0.0/24",
+                    "192.0.2.0/24",
+                    "192.168.0.0/16",
+                    "198.18.0.0/15",
+                    "198.51.100.0/24",
+                    "203.0.113.0/24",
+                    "224.0.0.0/4",
+                    "240.0.0.0/4"
+                  ]
+                }
+              },
+              {
+                "ipBlock": {
+                  "cidr": "2000::/3",
+                  "except": [
+                    "2001:db8::/32"
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "ingress": [
+          {
+            "from": [
+              {
+                "namespaceSelector": {
+                  "matchLabels": {
+                    "kubernetes.io/metadata.name": "kube-system"
+                  }
+                },
+                "podSelector": {
+                  "matchLabels": {
+                    "app.kubernetes.io/instance": "traefik-kube-system",
+                    "app.kubernetes.io/name": "traefik"
+                  }
+                }
+              }
+            ],
+            "ports": [
+              {
+                "port": 8000,
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ],
+        "podSelector": {
+          "matchLabels": {
+            "app.kubernetes.io/component": "backend",
+            "app.kubernetes.io/instance": "urumi-m10",
+            "app.kubernetes.io/name": "urumi"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "kind": "NetworkPolicy",
+      "name": "urumi-m10-dashboard",
+      "namespace": "urumi-m10",
+      "uid": "50f47a87-0dd0-4756-9fef-69eb26ff94a5",
+      "policy": {
+        "ingress": [
+          {
+            "from": [
+              {
+                "namespaceSelector": {
+                  "matchLabels": {
+                    "kubernetes.io/metadata.name": "kube-system"
+                  }
+                },
+                "podSelector": {
+                  "matchLabels": {
+                    "app.kubernetes.io/instance": "traefik-kube-system",
+                    "app.kubernetes.io/name": "traefik"
+                  }
+                }
+              }
+            ],
+            "ports": [
+              {
+                "port": 8080,
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ],
+        "podSelector": {
+          "matchLabels": {
+            "app.kubernetes.io/component": "dashboard",
+            "app.kubernetes.io/instance": "urumi-m10",
+            "app.kubernetes.io/name": "urumi"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "kind": "NetworkPolicy",
+      "name": "urumi-m10-inventory-mcp",
+      "namespace": "urumi-m10",
+      "uid": "1ba57c6b-b1dc-4905-bd4d-2130dd7e17e9",
+      "policy": {
+        "ingress": [
+          {
+            "from": [
+              {
+                "podSelector": {
+                  "matchLabels": {
+                    "app.kubernetes.io/component": "backend",
+                    "app.kubernetes.io/instance": "urumi-m10",
+                    "app.kubernetes.io/name": "urumi",
+                    "urumi.dev/gateway": "true"
+                  }
+                }
+              }
+            ],
+            "ports": [
+              {
+                "port": 8000,
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ],
+        "podSelector": {
+          "matchLabels": {
+            "app.kubernetes.io/component": "inventory-mcp",
+            "app.kubernetes.io/instance": "urumi-m10",
+            "app.kubernetes.io/name": "urumi"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "kind": "NetworkPolicy",
+      "name": "urumi-m10-platform-db",
+      "namespace": "urumi-m10",
+      "uid": "4b116afa-24a9-43e8-8ef8-dabfdf109ed3",
+      "policy": {
+        "ingress": [
+          {
+            "from": [
+              {
+                "podSelector": {
+                  "matchLabels": {
+                    "app.kubernetes.io/component": "backend",
+                    "app.kubernetes.io/instance": "urumi-m10"
+                  }
+                }
+              }
+            ],
+            "ports": [
+              {
+                "port": 5432,
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ],
+        "podSelector": {
+          "matchLabels": {
+            "app.kubernetes.io/component": "platform-db",
+            "app.kubernetes.io/instance": "urumi-m10"
+          }
+        },
+        "policyTypes": [
+          "Ingress"
+        ]
+      }
+    },
+    {
+      "kind": "NetworkPolicy",
+      "name": "urumi-m10-store-database",
+      "namespace": "urumi-m10",
+      "uid": "3891becc-5155-44a3-ae25-87356848f4d4",
+      "policy": {
+        "ingress": [
+          {
+            "from": [
+              {
+                "podSelector": {
+                  "matchLabels": {
+                    "app.kubernetes.io/component": "wordpress",
+                    "app.kubernetes.io/instance": "urumi-m10"
+                  }
+                }
+              },
+              {
+                "podSelector": {
+                  "matchLabels": {
+                    "app.kubernetes.io/instance": "urumi-m10",
+                    "urumi-m2-access": "setup"
+                  }
+                }
+              }
+            ],
+            "ports": [
+              {
+                "port": 3306,
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ],
+        "podSelector": {
+          "matchLabels": {
+            "app.kubernetes.io/component": "mariadb",
+            "app.kubernetes.io/instance": "urumi-m10"
+          }
+        },
+        "policyTypes": [
+          "Ingress"
+        ]
+      }
+    },
+    {
+      "kind": "NetworkPolicy",
+      "name": "urumi-m10-woocommerce-mcp",
+      "namespace": "urumi-m10",
+      "uid": "1171ecee-d5fd-46a9-b520-eb5498830d72",
+      "policy": {
+        "egress": [
+          {
+            "ports": [
+              {
+                "port": 53,
+                "protocol": "UDP"
+              },
+              {
+                "port": 53,
+                "protocol": "TCP"
+              }
+            ],
+            "to": [
+              {
+                "namespaceSelector": {
+                  "matchLabels": {
+                    "kubernetes.io/metadata.name": "kube-system"
+                  }
+                },
+                "podSelector": {
+                  "matchLabels": {
+                    "k8s-app": "kube-dns"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "ports": [
+              {
+                "port": 80,
+                "protocol": "TCP"
+              }
+            ],
+            "to": [
+              {
+                "namespaceSelector": {
+                  "matchLabels": {
+                    "kubernetes.io/metadata.name": "urumi-m10"
+                  }
+                },
+                "podSelector": {
+                  "matchLabels": {
+                    "app.kubernetes.io/component": "wordpress",
+                    "app.kubernetes.io/instance": "urumi-m10",
+                    "app.kubernetes.io/name": "urumi"
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "ingress": [
+          {
+            "from": [
+              {
+                "podSelector": {
+                  "matchLabels": {
+                    "app.kubernetes.io/component": "backend",
+                    "app.kubernetes.io/instance": "urumi-m10",
+                    "app.kubernetes.io/name": "urumi",
+                    "urumi.dev/gateway": "true"
+                  }
+                }
+              }
+            ],
+            "ports": [
+              {
+                "port": 8000,
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ],
+        "podSelector": {
+          "matchLabels": {
+            "app.kubernetes.io/component": "woocommerce-mcp",
+            "app.kubernetes.io/instance": "urumi-m10",
+            "app.kubernetes.io/name": "urumi"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "kind": "NetworkPolicy",
+      "name": "urumi-m10-wordpress",
+      "namespace": "urumi-m10",
+      "uid": "c63ac1e6-6465-4c2e-8433-88589a4dab6f",
+      "policy": {
+        "egress": [
+          {
+            "ports": [
+              {
+                "port": 53,
+                "protocol": "UDP"
+              },
+              {
+                "port": 53,
+                "protocol": "TCP"
+              }
+            ],
+            "to": [
+              {
+                "namespaceSelector": {
+                  "matchLabels": {
+                    "kubernetes.io/metadata.name": "kube-system"
+                  }
+                },
+                "podSelector": {
+                  "matchLabels": {
+                    "k8s-app": "kube-dns"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "ports": [
+              {
+                "port": 3306,
+                "protocol": "TCP"
+              }
+            ],
+            "to": [
+              {
+                "podSelector": {
+                  "matchLabels": {
+                    "app.kubernetes.io/component": "mariadb",
+                    "app.kubernetes.io/instance": "urumi-m10"
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "ingress": [
+          {
+            "from": [
+              {
+                "namespaceSelector": {
+                  "matchLabels": {
+                    "kubernetes.io/metadata.name": "kube-system"
+                  }
+                },
+                "podSelector": {
+                  "matchLabels": {
+                    "app.kubernetes.io/instance": "traefik-kube-system",
+                    "app.kubernetes.io/name": "traefik"
+                  }
+                }
+              },
+              {
+                "podSelector": {
+                  "matchLabels": {
+                    "app.kubernetes.io/component": "woocommerce-mcp",
+                    "app.kubernetes.io/instance": "urumi-m10",
+                    "app.kubernetes.io/name": "urumi"
+                  }
+                }
+              }
+            ],
+            "ports": [
+              {
+                "port": 80,
+                "protocol": "TCP"
+              }
+            ]
+          }
+        ],
+        "podSelector": {
+          "matchLabels": {
+            "app.kubernetes.io/component": "wordpress",
+            "app.kubernetes.io/instance": "urumi-m10"
+          }
+        },
+        "policyTypes": [
+          "Ingress",
+          "Egress"
+        ]
+      }
+    },
+    {
+      "kind": "ServiceAccount",
+      "name": "default",
+      "namespace": "urumi-m10",
+      "uid": "f11ffd64-616f-42e1-b895-8ea0a54f30c9"
+    },
+    {
+      "kind": "ServiceAccount",
+      "name": "urumi-m10-backend",
+      "namespace": "urumi-m10",
+      "uid": "e970e220-900f-4678-8a0a-29b75d0bb2a8"
+    }
+  ],
+  "backend_identity": {
+    "exported_config_digest": "sha256:c423ace6fa14e4ce5cefe2ecea25cecdcf08a7b33e00cdc71000ee75d3f0fd52",
+    "actual_pod_image_id": "docker.io/urumi/backend@sha256:b863c9ccfca8c20bce2eb2e260f63650be63f7e8f4ac731f2a57dd49bc884646",
+    "matches": true,
+    "oci_index_digest": "sha256:b863c9ccfca8c20bce2eb2e260f63650be63f7e8f4ac731f2a57dd49bc884646",
+    "linux_amd64_manifest_digest": "sha256:8f0576ac133e2e8a088b690303e0e826cb6d8af6010937d3c99b16c166e1f372",
+    "runtime_config_digest": "sha256:c423ace6fa14e4ce5cefe2ecea25cecdcf08a7b33e00cdc71000ee75d3f0fd52",
+    "config_bytes_sha256_verified": true,
+    "method": "Read-only containerd content: actual Pod OCI index -> linux/amd64 manifest -> config; hash each actual content blob; do not retain or print config contents."
+  },
+  "rbac_checks": [
+    {
+      "namespace": "urumi-m10-secrets",
+      "verb": "get",
+      "resource": "secrets",
+      "answer": "yes",
+      "exit_code": 0
+    },
+    {
+      "namespace": "urumi-m10-secrets",
+      "verb": "create",
+      "resource": "secrets",
+      "answer": "yes",
+      "exit_code": 0
+    },
+    {
+      "namespace": "urumi-m10-secrets",
+      "verb": "update",
+      "resource": "secrets",
+      "answer": "yes",
+      "exit_code": 0
+    },
+    {
+      "namespace": "urumi-m10-secrets",
+      "verb": "delete",
+      "resource": "secrets",
+      "answer": "yes",
+      "exit_code": 0
+    },
+    {
+      "namespace": "urumi-m10-secrets",
+      "verb": "list",
+      "resource": "secrets",
+      "answer": "no",
+      "exit_code": 1
+    },
+    {
+      "namespace": "urumi-m10-secrets",
+      "verb": "watch",
+      "resource": "secrets",
+      "answer": "no",
+      "exit_code": 1
+    },
+    {
+      "namespace": "urumi-m10",
+      "verb": "get",
+      "resource": "secrets",
+      "answer": "no",
+      "exit_code": 1
+    },
+    {
+      "namespace": "urumi-m10",
+      "verb": "create",
+      "resource": "secrets",
+      "answer": "no",
+      "exit_code": 1
+    },
+    {
+      "namespace": "urumi-m10",
+      "verb": "update",
+      "resource": "secrets",
+      "answer": "no",
+      "exit_code": 1
+    },
+    {
+      "namespace": "urumi-m10",
+      "verb": "delete",
+      "resource": "secrets",
+      "answer": "no",
+      "exit_code": 1
+    },
+    {
+      "namespace": "urumi-m10",
+      "verb": "list",
+      "resource": "secrets",
+      "answer": "no",
+      "exit_code": 1
+    },
+    {
+      "namespace": "urumi-m10",
+      "verb": "watch",
+      "resource": "secrets",
+      "answer": "no",
+      "exit_code": 1
+    },
+    {
+      "namespace": "urumi",
+      "verb": "get",
+      "resource": "secrets",
+      "answer": "no",
+      "exit_code": 1
+    },
+    {
+      "namespace": "urumi",
+      "verb": "create",
+      "resource": "secrets",
+      "answer": "no",
+      "exit_code": 1
+    },
+    {
+      "namespace": "urumi",
+      "verb": "update",
+      "resource": "secrets",
+      "answer": "no",
+      "exit_code": 1
+    },
+    {
+      "namespace": "urumi",
+      "verb": "delete",
+      "resource": "secrets",
+      "answer": "no",
+      "exit_code": 1
+    },
+    {
+      "namespace": "urumi",
+      "verb": "list",
+      "resource": "secrets",
+      "answer": "no",
+      "exit_code": 1
+    },
+    {
+      "namespace": "urumi",
+      "verb": "watch",
+      "resource": "secrets",
+      "answer": "no",
+      "exit_code": 1
+    }
+  ],
+  "retained_resources": [
+    {
+      "kind": "Pod",
+      "name": "urumi-mariadb-0",
+      "uid": "56861a6b-313d-42bc-ab29-df25934eccbc",
+      "unchanged": true
+    },
+    {
+      "kind": "Pod",
+      "name": "urumi-wordpress-5fdfc9c5f7-dldh4",
+      "uid": "2aea7ffc-4310-4f53-a4c9-f22052905252",
+      "unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-foundation-data",
+      "uid": "c6f386c1-ef1e-4996-ab86-ed888999226e",
+      "unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-mariadb-data",
+      "uid": "91b18137-d90e-49f0-b16e-ab2686a82df0",
+      "unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-wordpress-content",
+      "uid": "cae72902-5c12-4c82-9225-965798cb78b4",
+      "unchanged": true
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-mariadb",
+      "uid": "a05a7040-8d8f-49e3-abdf-b5f7735522c3",
+      "unchanged": true
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-wordpress",
+      "uid": "221ad775-aef4-4a39-8b49-282ab820fa5e",
+      "unchanged": true
+    }
+  ],
+  "commands": [
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods,deployments,statefulsets,services,ingresses,pvc,networkpolicies,serviceaccounts",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "auth",
+        "can-i",
+        "get",
+        "secrets",
+        "--namespace",
+        "urumi-m10-secrets",
+        "--as",
+        "system:serviceaccount:urumi-m10:urumi-m10-backend"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "auth",
+        "can-i",
+        "create",
+        "secrets",
+        "--namespace",
+        "urumi-m10-secrets",
+        "--as",
+        "system:serviceaccount:urumi-m10:urumi-m10-backend"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "auth",
+        "can-i",
+        "update",
+        "secrets",
+        "--namespace",
+        "urumi-m10-secrets",
+        "--as",
+        "system:serviceaccount:urumi-m10:urumi-m10-backend"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "auth",
+        "can-i",
+        "delete",
+        "secrets",
+        "--namespace",
+        "urumi-m10-secrets",
+        "--as",
+        "system:serviceaccount:urumi-m10:urumi-m10-backend"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "auth",
+        "can-i",
+        "list",
+        "secrets",
+        "--namespace",
+        "urumi-m10-secrets",
+        "--as",
+        "system:serviceaccount:urumi-m10:urumi-m10-backend"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "auth",
+        "can-i",
+        "watch",
+        "secrets",
+        "--namespace",
+        "urumi-m10-secrets",
+        "--as",
+        "system:serviceaccount:urumi-m10:urumi-m10-backend"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "auth",
+        "can-i",
+        "get",
+        "secrets",
+        "--namespace",
+        "urumi-m10",
+        "--as",
+        "system:serviceaccount:urumi-m10:urumi-m10-backend"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "auth",
+        "can-i",
+        "create",
+        "secrets",
+        "--namespace",
+        "urumi-m10",
+        "--as",
+        "system:serviceaccount:urumi-m10:urumi-m10-backend"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "auth",
+        "can-i",
+        "update",
+        "secrets",
+        "--namespace",
+        "urumi-m10",
+        "--as",
+        "system:serviceaccount:urumi-m10:urumi-m10-backend"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "auth",
+        "can-i",
+        "delete",
+        "secrets",
+        "--namespace",
+        "urumi-m10",
+        "--as",
+        "system:serviceaccount:urumi-m10:urumi-m10-backend"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "auth",
+        "can-i",
+        "list",
+        "secrets",
+        "--namespace",
+        "urumi-m10",
+        "--as",
+        "system:serviceaccount:urumi-m10:urumi-m10-backend"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "auth",
+        "can-i",
+        "watch",
+        "secrets",
+        "--namespace",
+        "urumi-m10",
+        "--as",
+        "system:serviceaccount:urumi-m10:urumi-m10-backend"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "auth",
+        "can-i",
+        "get",
+        "secrets",
+        "--namespace",
+        "urumi",
+        "--as",
+        "system:serviceaccount:urumi-m10:urumi-m10-backend"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "auth",
+        "can-i",
+        "create",
+        "secrets",
+        "--namespace",
+        "urumi",
+        "--as",
+        "system:serviceaccount:urumi-m10:urumi-m10-backend"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "auth",
+        "can-i",
+        "update",
+        "secrets",
+        "--namespace",
+        "urumi",
+        "--as",
+        "system:serviceaccount:urumi-m10:urumi-m10-backend"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "auth",
+        "can-i",
+        "delete",
+        "secrets",
+        "--namespace",
+        "urumi",
+        "--as",
+        "system:serviceaccount:urumi-m10:urumi-m10-backend"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "auth",
+        "can-i",
+        "list",
+        "secrets",
+        "--namespace",
+        "urumi",
+        "--as",
+        "system:serviceaccount:urumi-m10:urumi-m10-backend"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "auth",
+        "can-i",
+        "watch",
+        "secrets",
+        "--namespace",
+        "urumi",
+        "--as",
+        "system:serviceaccount:urumi-m10:urumi-m10-backend"
+      ],
+      "exit_code": 1
+    },
+    {
+      "command": [
+        "C:\\Program Files\\Docker\\Docker\\resources\\bin\\kubectl.EXE",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi",
+        "get",
+        "pods,pvc,services",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "k3d-urumi-server-0",
+        "ctr",
+        "-n",
+        "k8s.io",
+        "content",
+        "get",
+        "sha256:b863c9ccfca8c20bce2eb2e260f63650be63f7e8f4ac731f2a57dd49bc884646"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "k3d-urumi-server-0",
+        "ctr",
+        "-n",
+        "k8s.io",
+        "content",
+        "get",
+        "sha256:8f0576ac133e2e8a088b690303e0e826cb6d8af6010937d3c99b16c166e1f372"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "exec",
+        "k3d-urumi-server-0",
+        "ctr",
+        "-n",
+        "k8s.io",
+        "content",
+        "get",
+        "sha256:c423ace6fa14e4ce5cefe2ecea25cecdcf08a7b33e00cdc71000ee75d3f0fd52"
+      ],
+      "exit_code": 0
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "source_files_copied": 268,
+  "forbidden_paths": 0,
+  "renders": [
+    {
+      "profile": "local",
+      "render_sha256": "a59d62b1894cbc363adb8e80220b9dfe50f9ace7e69be93fbd09ccf75a00341e",
+      "exit_code": 0
+    },
+    {
+      "profile": "prod",
+      "render_sha256": "7c8bdd1d19df33f0817eed9026422883d4d2a7d32a6a015fa21b53ed941114c6",
+      "exit_code": 0
+    }
+  ],
+  "external_prerequisites": "Host Python and pinned checker dependencies, Helm and PowerShell. No .tools/.env/kubeconfig copied; Docker/build/runtime installation not claimed."
+}

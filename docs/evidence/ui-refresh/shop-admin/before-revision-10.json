@@ -1,0 +1,76 @@
+{
+  "shop": {
+    "theme": "urumi-shop",
+    "settings": {
+      "home": "http://shop-m10.urumi.test",
+      "siteurl": "http://shop-m10.urumi.test",
+      "show_on_front": "posts",
+      "woocommerce_currency": "INR",
+      "woocommerce_cod_settings": {
+        "enabled": "yes",
+        "title": "Cash on delivery",
+        "enable_for_virtual": "yes"
+      },
+      "woocommerce_cart_page_id": "6",
+      "woocommerce_checkout_page_id": "7",
+      "woocommerce_myaccount_page_id": "8"
+    },
+    "products": [
+      {
+        "id": 12,
+        "sku": "DEMO-001",
+        "price": "499.00"
+      },
+      {
+        "id": 18,
+        "sku": "M10-BROWSER-NOTEBOOK",
+        "price": "129"
+      },
+      {
+        "id": 20,
+        "sku": "M10-TLS-PROBE",
+        "price": "1.00"
+      }
+    ],
+    "order_ids": [
+      16,
+      19,
+      21
+    ],
+    "urls": {
+      "shop": "http://shop-m10.urumi.test/shop/",
+      "cart": "http://shop-m10.urumi.test/cart/",
+      "checkout": "http://shop-m10.urumi.test/checkout/",
+      "account": "http://shop-m10.urumi.test/my-account/"
+    }
+  },
+  "resources": {
+    "claims": [
+      {
+        "name": "urumi-m10-mariadb-data",
+        "uid": "a0fec4df-b7ff-4ef9-b2fe-a9af4eb8959e",
+        "phase": "Bound"
+      },
+      {
+        "name": "urumi-m10-platform-data",
+        "uid": "710a5b52-744c-4525-b446-bbba455eb2cf",
+        "phase": "Bound"
+      },
+      {
+        "name": "urumi-m10-wordpress-content",
+        "uid": "b5ad912d-7d6c-4bf9-aa8e-b4803005162b",
+        "phase": "Bound"
+      }
+    ],
+    "pods": {
+      "backend": "7fde4154-437d-48af-8d63-b283a78311ff",
+      "dashboard": "f1bcac5d-6d6d-4b72-b57c-bd29a8b5f23b",
+      "inventory-mcp": "629b5d08-4de4-4e71-b406-963e6a761636",
+      "mariadb": "09221dd6-99af-45a0-950b-b152446d9bed",
+      "platform-db": "a70af0ad-a169-48b9-b399-f0c55b46bb9d",
+      "woocommerce-mcp": "3de7c21b-0373-4ff2-b91d-0b7d6961d1c1",
+      "wordpress": "eef7acc7-f6a3-4fa3-b5dc-933221ef3d2e"
+    }
+  },
+  "helm_revision": 10
+}

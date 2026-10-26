@@ -1,0 +1,67 @@
+﻿{
+    "spec":  {
+                 "backoffLimit":  0,
+                 "activeDeadlineSeconds":  90,
+                 "template":  {
+                                  "metadata":  {
+                                                   "labels":  {
+                                                                  "app.kubernetes.io/name":  "urumi",
+                                                                  "app.kubernetes.io/component":  "unrelated",
+                                                                  "app.kubernetes.io/instance":  "urumi-m3-check"
+                                                              }
+                                               },
+                                  "spec":  {
+                                               "automountServiceAccountToken":  false,
+                                               "restartPolicy":  "Never",
+                                               "securityContext":  {
+                                                                       "runAsUser":  10001,
+                                                                       "seccompProfile":  {
+                                                                                              "type":  "RuntimeDefault"
+                                                                                          },
+                                                                       "runAsNonRoot":  true,
+                                                                       "runAsGroup":  10001
+                                                                   },
+                                               "containers":  [
+                                                                  {
+                                                                      "securityContext":  {
+                                                                                              "allowPrivilegeEscalation":  false,
+                                                                                              "readOnlyRootFilesystem":  true,
+                                                                                              "capabilities":  {
+                                                                                                                   "drop":  [
+                                                                                                                                "ALL"
+                                                                                                                            ]
+                                                                                                               }
+                                                                                          },
+                                                                      "name":  "client",
+                                                                      "resources":  {
+                                                                                        "limits":  {
+                                                                                                       "cpu":  "250m",
+                                                                                                       "memory":  "128Mi"
+                                                                                                   },
+                                                                                        "requests":  {
+                                                                                                         "cpu":  "50m",
+                                                                                                         "memory":  "64Mi"
+                                                                                                     }
+                                                                                    },
+                                                                      "imagePullPolicy":  "IfNotPresent",
+                                                                      "image":  "urumi/woocommerce-mcp:m3",
+                                                                      "command":  [
+                                                                                      "python",
+                                                                                      "tests/woocommerce_mcp/cluster_client.py",
+                                                                                      "--url",
+                                                                                      "http://urumi-m3-check-woocommerce-mcp.urumi-m3-check.svc.cluster.local:8000/mcp",
+                                                                                      "--mode",
+                                                                                      "denied"
+                                                                                  ]
+                                                                  }
+                                                              ]
+                                           }
+                              }
+             },
+    "metadata":  {
+                     "namespace":  "urumi-m3-check",
+                     "name":  "m3-denied"
+                 },
+    "apiVersion":  "batch/v1",
+    "kind":  "Job"
+}

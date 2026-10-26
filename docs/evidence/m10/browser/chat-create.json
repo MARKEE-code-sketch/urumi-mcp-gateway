@@ -1,0 +1,23 @@
+{
+  "action": "chat-create",
+  "checked_at": "2026-10-20T04:26:57.628Z",
+  "tls_verification": "browser_default",
+  "checks": [
+    "real_dashboard_chat_response"
+  ],
+  "http_status": 200,
+  "reply": {
+    "answer": "Product created successfully.\n\n**Product ID:** 18  \n**Price:** ₹129.00",
+    "state": "completed",
+    "request_id": "5e30de6a-9219-4635-a045-32c9c9dac2c5",
+    "tool_calls": [
+      {
+        "tool_name": "woocommerce__create_product",
+        "outcome": "success",
+        "audit_id": "193ec61e-66de-4ea4-af6f-d69ac4bb11da"
+      }
+    ]
+  },
+  "created_product_visible": true,
+  "status": "PASS"
+}

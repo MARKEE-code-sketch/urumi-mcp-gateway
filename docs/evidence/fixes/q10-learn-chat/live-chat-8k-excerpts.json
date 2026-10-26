@@ -1,0 +1,31 @@
+{
+  "status": "FAIL",
+  "prompt": "Use Microsoft Learn to find official documentation explaining Kubernetes Pods. Summarise the result and provide the source links.",
+  "tls_bypass": false,
+  "http_status": 200,
+  "reply": {
+    "request_id": "057d78cd-aff9-489f-b246-3bf0a76b92e1",
+    "state": "failed",
+    "answer": "The language model is unavailable; earlier tool results remain visible.\nChat used shortened excerpts from 10 of 10 returned search results; open the links for full text.",
+    "tool_calls": [
+      {
+        "call_id": "82256899-4d42-4970-afc4-868f01c45668",
+        "tool_name": "learn__microsoft_docs_search",
+        "server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+        "outcome": "success",
+        "duration_ms": 2966,
+        "audit_id": "16d12e55-47d7-437e-8673-e19ecccd325f"
+      },
+      {
+        "call_id": "eb301ee0-03b6-4b46-8bca-05025cafc5c5",
+        "tool_name": "learn__microsoft_docs_search",
+        "server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+        "outcome": "success",
+        "duration_ms": 3046,
+        "audit_id": "00c87c33-a3a0-4a12-98cf-663f739bfc0e"
+      }
+    ]
+  },
+  "rendered_links": [],
+  "error": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'failed'\n- 'completed'\n"
+}

@@ -1,0 +1,60 @@
+﻿UTC: 2026-10-15T15:04:32.2396310Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "upgrade" "urumi" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "--namespace" "urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m2/values-runtime.json" "--set" "foundation.enabled=false" "--set" "store.networkPolicy.enabled=false" "--wait" "--timeout" "180s"
+Exit: 0
+Release "urumi" has been upgraded. Happy Helming!
+NAME: urumi
+LAST DEPLOYED: Thu Oct 15 20:34:30 2026
+NAMESPACE: urumi
+STATUS: deployed
+REVISION: 10
+TEST SUITE: None
+
+
+UTC: 2026-10-15T15:04:45.6514444Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "upgrade" "urumi" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "--namespace" "urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m2/values-runtime.json" "--set" "foundation.enabled=false" "--set" "store.networkPolicy.enabled=true" "--wait" "--timeout" "180s"
+Exit: 0
+Release "urumi" has been upgraded. Happy Helming!
+NAME: urumi
+LAST DEPLOYED: Thu Oct 15 20:34:44 2026
+NAMESPACE: urumi
+STATUS: deployed
+REVISION: 11
+TEST SUITE: None
+
+
+UTC: 2026-10-16T04:34:24.5335820Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "upgrade" "urumi" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "--namespace" "urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m2/values-runtime.json" "--set" "foundation.enabled=false" "--set" "store.networkPolicy.enabled=false" "--wait" "--timeout" "180s"
+Exit: 0
+Release "urumi" has been upgraded. Happy Helming!
+NAME: urumi
+LAST DEPLOYED: Fri Oct 16 10:04:23 2026
+NAMESPACE: urumi
+STATUS: deployed
+REVISION: 13
+TEST SUITE: None
+
+
+UTC: 2026-10-16T04:34:40.5119028Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "upgrade" "urumi" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "--namespace" "urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m2/values-runtime.json" "--set" "foundation.enabled=false" "--set" "store.networkPolicy.enabled=true" "--wait" "--timeout" "180s"
+Exit: 0
+Release "urumi" has been upgraded. Happy Helming!
+NAME: urumi
+LAST DEPLOYED: Fri Oct 16 10:04:38 2026
+NAMESPACE: urumi
+STATUS: deployed
+REVISION: 14
+TEST SUITE: None
+
+
+UTC: 2026-10-16T04:50:12.5254612Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "upgrade" "urumi" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "--namespace" "urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m2/values-runtime.json" "--set" "foundation.enabled=false" "--set" "store.networkPolicy.enabled=true" "--wait" "--timeout" "180s"
+Exit: 0
+Release "urumi" has been upgraded. Happy Helming!
+NAME: urumi
+LAST DEPLOYED: Fri Oct 16 10:20:11 2026
+NAMESPACE: urumi
+STATUS: deployed
+REVISION: 15
+TEST SUITE: None
+
+

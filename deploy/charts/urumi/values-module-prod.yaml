@@ -1,0 +1,22 @@
+# Original production-shaped opt-in module profile; not the full release.
+foundation:
+  enabled: false
+  ingress: {host: foundation.example.com}
+  storage: {className: ""}
+store:
+  canonicalUrl: https://shop.example.com
+  ingress: {host: shop.example.com}
+  storage: {className: ""}
+  image: {repository: private-registry.example.com/urumi-store, tag: replace-with-immutable-reference}
+woocommerceMcp:
+  canonicalOrigin: https://shop.example.com
+  transportOrigin: https://shop.example.com
+  image: {repository: private-registry.example.com/woocommerce-mcp, tag: replace-with-immutable-reference}
+inventoryMcp:
+  image: {repository: private-registry.example.com/inventory-mcp, tag: replace-with-immutable-reference}
+platformDb:
+  storage: {className: ""}
+m5Harness:
+  origin: https://gateway.example.com
+  localHttp: false
+  image: {repository: private-registry.example.com/m5-harness, tag: replace-with-immutable-reference}

@@ -1,0 +1,7 @@
+{
+  "node": "node:24.18.0-alpine@sha256:a0b9bf06e4e6193cf7a0f58816cc935ff8c2a908f81e6f1a95432d679c54fbfd",
+  "nginx": "nginxinc/nginx-unprivileged:1.30.6-alpine@sha256:782bb89768cc87b7f95c18b95baa1af250e5d451f26794f59363540161147c01",
+  "resolved_by": "docker buildx imagetools inspect; exact NGINX version from OCI metadata",
+  "fixture_base_local_index": "sha256:705f68d673bd729f374645d5080042a510caadc669d808a3ec9fbb2d84a7fc10",
+  "fixture_base_runtime_config": "sha256:48a2f637063bb048b6bc16f25b2ee91b9302756c5a926659af8c548386970573"
+}

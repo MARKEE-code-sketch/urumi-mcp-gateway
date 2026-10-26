@@ -1,0 +1,6 @@
+interface:
+  display_name: "MCP Kubernetes Acceptance QA"
+  short_description: "Check deployment and MCP flows with evidence"
+  default_prompt: "Use $mcp-kubernetes-acceptance-qa to audit this Urumi module or deployment against the approved requirements and evidence."
+policy:
+  allow_implicit_invocation: true

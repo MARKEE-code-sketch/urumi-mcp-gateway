@@ -43,7 +43,7 @@ Urumi brings a real storefront and a team's AI tools into one workspace. An admi
 | 🛡️ **Credential separation** | Keep store, upstream and model-provider credentials on the server side. |
 | ☸️ **Portable deployment** | Run locally on Kubernetes and configure the same Helm chart for a k3s VPS. |
 
-**Repository scope:** this public repository publishes the product README and architecture assets. Runtime source is maintained separately. Deployment commands and source paths below refer to the complete application source checkout; cloning this documentation repository alone does not install the application.
+The repository includes the dashboard, backend/gateway/chat, first-party MCP services, Helm chart, local/production values, component tests and operating guides. Credentials and private operator inputs are supplied separately during deployment.
 
 ## Architecture
 
@@ -131,6 +131,8 @@ Commands below use **PowerShell**, from the source checkout root. Use `npm.cmd` 
 ### 1. Prepare the environment
 
 ```powershell
+git clone https://github.com/MARKEE-code-sketch/urumi-mcp-gateway.git
+cd urumi-mcp-gateway
 python -m venv .tools/dev-venv
 ./.tools/dev-venv/Scripts/python.exe -m pip install -r scripts/m10/requirements.txt
 npm.cmd --prefix frontend ci
@@ -419,6 +421,8 @@ npm.cmd --prefix frontend run build
 
 Integration checks require a deliberately selected environment. Use disposable databases for migrations; never point historical reset helpers at retained data.
 
+Sanitized text reports are under `docs/evidence`. Browser screenshots are retained locally rather than published, so historical image references in those reports may point to local-only evidence. Architecture diagrams and runtime UI assets are included.
+
 A meaningful running-system check:
 
 1. Complete checkout and verify the same order in shop administration.
@@ -429,7 +433,7 @@ A meaningful running-system check:
 6. Replace an owned upstream Pod; if needed use a controlled sustained outage. Observe Unreachable, check a healthy peer and restore original replicas.
 7. Match calls to attributed audits and check persistence after a scoped restart.
 
-Local browser/MCP, revocation, failure-isolation and persistence checks have been exercised. Provider-dependent chat remains subject to rate limits and model decisions; one successful run is not a reliability guarantee. Fault/write tests need an explicit target and restoration plan.
+Local browser/MCP, revocation, failure-isolation and persistence checks have been exercised. The maintainer reported completing the full manual checklist successfully on **26 October 2026**; this is a manual sign-off, separate from the recorded automated checks. Provider-dependent chat remains subject to rate limits and model decisions; one successful run is not a reliability guarantee. Fault/write tests need an explicit target and restoration plan.
 
 ## Source layout
 

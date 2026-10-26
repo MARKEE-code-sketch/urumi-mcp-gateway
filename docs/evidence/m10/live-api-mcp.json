@@ -1,0 +1,108 @@
+{
+  "checked_at": "2026-10-20T04:21:24.806927+00:00",
+  "scope": "Real HTTPS API and MCP checks; no LLM client or browser proof.",
+  "checks": [
+    {
+      "check": "identity_roles_and_redaction",
+      "status": "PASS"
+    },
+    {
+      "check": "sample_inventory_lookup",
+      "status": "PASS",
+      "found": true
+    },
+    {
+      "check": "real_learn_search_through_gateway",
+      "status": "PASS",
+      "tool_name": "learn__microsoft_code_sample_search"
+    },
+    {
+      "check": "list_products",
+      "status": "PASS",
+      "item_count": 1
+    },
+    {
+      "check": "list_orders",
+      "status": "PASS",
+      "item_count": 0
+    },
+    {
+      "check": "disable_isolation",
+      "status": "PASS"
+    },
+    {
+      "check": "audit_attribution",
+      "status": "PASS"
+    },
+    {
+      "check": "key_revoked_and_rejected",
+      "status": "PASS"
+    }
+  ],
+  "ids": {
+    "admin_user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+    "inventory_server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+    "learn_server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+    "member_user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+    "key_id": "1aeec973-e48b-41d0-9131-33e9340c117c"
+  },
+  "tool_names": [
+    "inventory__lookup_sku",
+    "woocommerce__create_product",
+    "woocommerce__get_order",
+    "woocommerce__list_orders",
+    "woocommerce__list_products",
+    "woocommerce__update_order_status",
+    "learn__microsoft_code_sample_search",
+    "learn__microsoft_docs_fetch",
+    "learn__microsoft_docs_search"
+  ],
+  "audit": [
+    {
+      "audit_id": "bfeb5edd-bbc2-4711-90e4-094b36db3d40",
+      "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+      "key_id": "1aeec973-e48b-41d0-9131-33e9340c117c",
+      "auth_source": "api_key",
+      "public_tool_name": "woocommerce__list_products",
+      "outcome": "success",
+      "error_code": null
+    },
+    {
+      "audit_id": "e32573e2-78ac-40e5-8925-048fb6889cb5",
+      "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+      "key_id": "1aeec973-e48b-41d0-9131-33e9340c117c",
+      "auth_source": "api_key",
+      "public_tool_name": "woocommerce__list_orders",
+      "outcome": "success",
+      "error_code": null
+    },
+    {
+      "audit_id": "e5ad2092-502b-4fdd-8f2f-45cf5d6192c1",
+      "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+      "key_id": "1aeec973-e48b-41d0-9131-33e9340c117c",
+      "auth_source": "api_key",
+      "public_tool_name": "woocommerce__list_products",
+      "outcome": "success",
+      "error_code": null
+    },
+    {
+      "audit_id": "ab5afdb3-556f-43ff-9d30-96feae5f53e5",
+      "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+      "key_id": "1aeec973-e48b-41d0-9131-33e9340c117c",
+      "auth_source": "api_key",
+      "public_tool_name": "learn__microsoft_code_sample_search",
+      "outcome": "success",
+      "error_code": null
+    },
+    {
+      "audit_id": "c043faff-b3f9-45c9-8b90-adc86350aca4",
+      "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+      "key_id": "1aeec973-e48b-41d0-9131-33e9340c117c",
+      "auth_source": "api_key",
+      "public_tool_name": "inventory__lookup_sku",
+      "outcome": "success",
+      "error_code": null
+    }
+  ],
+  "status": "PASS_API_MCP_ONLY"
+}

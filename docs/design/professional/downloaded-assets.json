@@ -1,0 +1,117 @@
+{
+  "note": "Local open-license font and Phosphor assets downloaded 2026-10-22; source links and licenses in README. No frontend dependencies installed.",
+  "files": [
+    {
+      "path": "Figtree-OFL.txt",
+      "sha256": "140d37233e7f3ce7313798befa9600893bcceaf41a55fa0fa5ad52f7f657a268"
+    },
+    {
+      "path": "Figtree.ttf",
+      "sha256": "26ad3db9b31ff7dde67a91ff515d022d2f495cd506590699cf264f0bfe6fb714"
+    },
+    {
+      "path": "icons/arrow-left.svg",
+      "sha256": "3c2001cf957d182fc54927e4b286cc8cf66dd97830f441ca2650d42a63a9006a"
+    },
+    {
+      "path": "icons/arrow-square-out.svg",
+      "sha256": "8610e8f5c7d4952ae1ada34ef56fa7cbab1780bc85f25a5c9482b74144790fc8"
+    },
+    {
+      "path": "icons/arrow-up-right.svg",
+      "sha256": "44db5257b360ec04863eb6daaa41f220c8b714d23fb81403517d0a30acfda9f4"
+    },
+    {
+      "path": "icons/arrow-up.svg",
+      "sha256": "361aa9f9c52a759bf598faf6ed38ccd426f949f541d662c65b5b5d868fa76980"
+    },
+    {
+      "path": "icons/book-open.svg",
+      "sha256": "b38cdb3a15dcf00cfa4811e318b021e25c6a87b47acbb11888e16d107a5642da"
+    },
+    {
+      "path": "icons/caret-down.svg",
+      "sha256": "53f0cf2d0b144ac3cb07e353e0cd0853ffb3ed432d741460ce288edfcb0924b1"
+    },
+    {
+      "path": "icons/caret-right.svg",
+      "sha256": "e6dec01e074807965b7f3146b976a9b5e82c31d9c2c88aeb52e77cc2ab16c1d7"
+    },
+    {
+      "path": "icons/chat-circle-dots.svg",
+      "sha256": "2af44e36757c90c999e070065ae61c495c66c8e88f43c5f07964dc3367cad60d"
+    },
+    {
+      "path": "icons/check-circle.svg",
+      "sha256": "e02a080c3d1a758de5c5fd41abd913dec4cffbc70fe1e9637dbf7ce35f377055"
+    },
+    {
+      "path": "icons/copy.svg",
+      "sha256": "5a892fc6a72866e60c67db2088a87653cf44b57b1a5d183b36e950cdc5dd66b3"
+    },
+    {
+      "path": "icons/cube.svg",
+      "sha256": "7c0f13cb492d0dd212e48ab259dabec4627df32d71aa00ce31b3228c0f35112b"
+    },
+    {
+      "path": "icons/dots-three.svg",
+      "sha256": "ca4e748007101155641ec3041cd129bb03a8030d0eed16e313b9dd75e6beac77"
+    },
+    {
+      "path": "icons/key.svg",
+      "sha256": "61694102f24a2eb4ce68f337fb6bf81090aef219328cb10dc2bd3f3c9e2ea266"
+    },
+    {
+      "path": "icons/list-checks.svg",
+      "sha256": "b2d11fc95de627d6abe9feeced5f7e0cdce3ccdf8d9f9d2334d596b8b5cc5cc4"
+    },
+    {
+      "path": "icons/list.svg",
+      "sha256": "fb1851842c74b40a3f42ce3d6ae0e67ede556b624218e79c0f4ead7d9ceec51f"
+    },
+    {
+      "path": "icons/magnifying-glass.svg",
+      "sha256": "f9fa2561978a9a3291e8ae0ebfcb651104f5069fade8f84871627bca68889cde"
+    },
+    {
+      "path": "icons/package.svg",
+      "sha256": "b190e7e8f5c6e68be08e9fca1310d0f2c341aa7f1384aa99457206fab755e1f6"
+    },
+    {
+      "path": "icons/plug.svg",
+      "sha256": "513534dd9665042bfed73c669130a904a0ab17df06cc8c0e4a717721474839d9"
+    },
+    {
+      "path": "icons/plus.svg",
+      "sha256": "d688feb9dd2e41c1721d6906a05a2a42e18cd774762fe706d72b2bdfd91cddc4"
+    },
+    {
+      "path": "icons/receipt.svg",
+      "sha256": "7e3473e35fc2b7b9b66032aef0b19fc22e947d10472b67da0b38fb29d84af7ea"
+    },
+    {
+      "path": "icons/shield-check.svg",
+      "sha256": "bb04d552c0baaaabd90f7eb60760cb0c7ddb7e9f47e4b76e9599ddd7dfd8eaa7"
+    },
+    {
+      "path": "icons/sign-out.svg",
+      "sha256": "511fe7958ef31f8904185631fd7045c11f35c8034a2a64ccb3bdcc4dfa81df77"
+    },
+    {
+      "path": "icons/stack.svg",
+      "sha256": "ee9eaaeb345e8a28c9662cf8a59147cb86080bd922e41f143444189e0116ea7e"
+    },
+    {
+      "path": "icons/users-three.svg",
+      "sha256": "0e326e4ef7d1ae16f9988791f68fde7bae513bdc8c06db437cfd55bf13670bcf"
+    },
+    {
+      "path": "icons/x.svg",
+      "sha256": "7397b15e1fa66eaf6ff9b59fe91d483cb5c3bcf75b2fe052097ab6f0593b513a"
+    },
+    {
+      "path": "Phosphor-LICENSE.txt",
+      "sha256": "b5b1f1da112d18ea2147decfd48ddc1bf2b5aeb6c265381579340e95b15a2bb2"
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+﻿UTC: 2026-10-14T17:05:22.0921128Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "services" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-14T17:00:00Z",
+                "labels": {
+                    "app.kubernetes.io/component": "foundation",
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/managed-by": "Helm",
+                    "app.kubernetes.io/name": "urumi",
+                    "helm.sh/chart": "urumi-0.1.0"
+                },
+                "name": "urumi-foundation",
+                "namespace": "urumi",
+                "resourceVersion": "2900",
+                "uid": "e889b654-3aee-4aae-b7f1-af4f07191741"
+            },
+            "spec": {
+                "clusterIP": "10.43.150.177",
+                "clusterIPs": [
+                    "10.43.150.177"
+                ],
+                "internalTrafficPolicy": "Cluster",
+                "ipFamilies": [
+                    "IPv4"
+                ],
+                "ipFamilyPolicy": "SingleStack",
+                "ports": [
+                    {
+                        "name": "http",
+                        "port": 80,
+                        "protocol": "TCP",
+                        "targetPort": "http"
+                    }
+                ],
+                "selector": {
+                    "app.kubernetes.io/component": "foundation",
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/name": "urumi"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-14T17:05:22.3771713Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "ingress" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "networking.k8s.io/v1",
+            "kind": "Ingress",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi",
+                    "meta.helm.sh/release-namespace": "urumi"
+                },
+                "creationTimestamp": "2026-10-14T17:00:00Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "foundation",
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/managed-by": "Helm",
+                    "app.kubernetes.io/name": "urumi",
+                    "helm.sh/chart": "urumi-0.1.0"
+                },
+                "name": "urumi-foundation",
+                "namespace": "urumi",
+                "resourceVersion": "2906",
+                "uid": "1e336d17-efa1-4419-b55e-853f1895cb57"
+            },
+            "spec": {
+                "ingressClassName": "traefik",
+                "rules": [
+                    {
+                        "host": "foundation.urumi.test",
+                        "http": {
+                            "paths": [
+                                {
+                                    "backend": {
+                                        "service": {
+                                            "name": "urumi-foundation",
+                                            "port": {
+                                                "number": 80
+                                            }
+                                        }
+                                    },
+                                    "path": "/",
+                                    "pathType": "Prefix"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "loadBalancer": {
+                    "ingress": [
+                        {
+                            "ip": "172.18.0.3"
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-14T17:05:22.5815121Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "services" "-n" "kube-system" "-o" "wide"
+Exit: 0
+NAME             TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE   SELECTOR
+kube-dns         ClusterIP      10.43.0.10      <none>        53/UDP,53/TCP,9153/TCP       89m   k8s-app=kube-dns
+metrics-server   ClusterIP      10.43.102.203   <none>        443/TCP                      89m   k8s-app=metrics-server
+traefik          LoadBalancer   10.43.176.205   172.18.0.3    80:31178/TCP,443:32661/TCP   88m   app.kubernetes.io/instance=traefik-kube-system,app.kubernetes.io/name=traefik
+
+

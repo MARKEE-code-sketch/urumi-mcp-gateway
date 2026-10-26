@@ -1,0 +1,13 @@
+{
+  "module": "M5",
+  "status": "FAIL",
+  "checks": [
+    {
+      "name": "real-operator-bootstrap-secret-invitation-sessions-role-csrf-and-keys",
+      "status": "PASS"
+    }
+  ],
+  "synthetic_audits_only": true,
+  "error_category": "ReadTimeout",
+  "safe_message": "Live check failed; sensitive dependency output suppressed."
+}

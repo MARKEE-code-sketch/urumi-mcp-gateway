@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "provider": "groq",
+  "model": "openai/gpt-oss-20b",
+  "account_free_access_confirmed_by_operator": true,
+  "duration_seconds": 1.606,
+  "boundary": "Real provider; fake identity and fake gateway only; no MCP/shop calls.",
+  "expected_call": {
+    "tool_name": "inventory__lookup_sku",
+    "arguments": {
+      "sku": "DEMO-001"
+    }
+  },
+  "actual_calls": [
+    {
+      "tool_name": "inventory__lookup_sku",
+      "arguments": {
+        "sku": "DEMO-001"
+      }
+    }
+  ],
+  "provider_requested_calls": [
+    {
+      "provider_call_id": "fc_f66e7db4-2793-486b-9c18-0785529c62b2",
+      "tool_name": "inventory__lookup_sku"
+    }
+  ],
+  "provider_rounds": 2,
+  "reply": {
+    "request_id": "8133b616-b3ed-4113-89c5-707e47e737d1",
+    "state": "completed",
+    "answer": "The sample warehouse information for SKU\u202f`DEMO-001` shows:\n\n- **Warehouse name:** Bengaluru  \n- **Quantity:** 12 units",
+    "tool_calls": [
+      {
+        "call_id": "a943177f-3c5b-4ea2-b42f-938a75a29724",
+        "tool_name": "inventory__lookup_sku",
+        "server_id": "d49ffc92-cd06-40ce-8743-7fca522d27d6",
+        "outcome": "success",
+        "duration_ms": 1,
+        "audit_id": "ec8fba17-b359-46b8-806f-eccd1f55d073"
+      }
+    ]
+  }
+}

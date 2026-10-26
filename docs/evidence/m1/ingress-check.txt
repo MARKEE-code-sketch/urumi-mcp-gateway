@@ -1,0 +1,10 @@
+﻿UTC: 2026-10-14T17:04:43.0044200Z
+Command: curl.exe "--noproxy" "*" "--fail" "--silent" "--show-error" "--max-time" "10" "--resolve" "foundation.urumi.test:80:127.0.0.1" "http://foundation.urumi.test:80/"
+Exit: 0
+<!doctype html>
+<html lang="en">
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Urumi M1</title></head>
+  <body><h1>Urumi M1 — Kubernetes is serving this page.</h1><p>This temporary page checks routing, saved storage, and connection rules.</p></body>
+</html>
+
+

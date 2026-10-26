@@ -1,0 +1,750 @@
+﻿UTC: 2026-10-16T13:07:33.5373712Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "-n" "urumi-m4-check" "get" "deployments,pods,services,networkpolicies" "-o" "yaml"
+Exit: 0
+apiVersion: v1
+items:
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      meta.helm.sh/release-name: urumi-m4-check
+      meta.helm.sh/release-namespace: urumi-m4-check
+    creationTimestamp: "2026-10-16T13:07:16Z"
+    generation: 1
+    labels:
+      app.kubernetes.io/managed-by: Helm
+    name: urumi-m4-check-inventory-mcp
+    namespace: urumi-m4-check
+    resourceVersion: "21679"
+    uid: 76289fba-021a-4916-865f-28356e47650a
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/component: inventory-mcp
+        app.kubernetes.io/instance: urumi-m4-check
+        app.kubernetes.io/name: urumi
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        labels:
+          app.kubernetes.io/component: inventory-mcp
+          app.kubernetes.io/instance: urumi-m4-check
+          app.kubernetes.io/name: urumi
+      spec:
+        automountServiceAccountToken: false
+        containers:
+        - env:
+          - name: MCP_ALLOWED_HOSTS
+            value: urumi-m4-check-inventory-mcp,urumi-m4-check-inventory-mcp.urumi-m4-check.svc,urumi-m4-check-inventory-mcp.urumi-m4-check.svc.cluster.local
+          image: urumi/inventory-mcp:m4
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /livez
+              port: mcp
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 2
+          name: inventory-mcp
+          ports:
+          - containerPort: 8000
+            name: mcp
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /readyz
+              port: mcp
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 2
+          resources:
+            limits:
+              cpu: 250m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+          startupProbe:
+            failureThreshold: 30
+            httpGet:
+              path: /livez
+              port: mcp
+              scheme: HTTP
+            periodSeconds: 2
+            successThreshold: 1
+            timeoutSeconds: 2
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext:
+          runAsGroup: 10001
+          runAsNonRoot: true
+          runAsUser: 10001
+          seccompProfile:
+            type: RuntimeDefault
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2026-10-16T13:07:31Z"
+      lastUpdateTime: "2026-10-16T13:07:31Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2026-10-16T13:07:16Z"
+      lastUpdateTime: "2026-10-16T13:07:31Z"
+      message: ReplicaSet "urumi-m4-check-inventory-mcp-5d86b84cf5" has successfully
+        progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    terminatingReplicas: 0
+    updatedReplicas: 1
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2026-10-16T13:07:17Z"
+    generateName: urumi-m4-check-inventory-mcp-5d86b84cf5-
+    generation: 1
+    labels:
+      app.kubernetes.io/component: inventory-mcp
+      app.kubernetes.io/instance: urumi-m4-check
+      app.kubernetes.io/name: urumi
+      pod-template-hash: 5d86b84cf5
+    name: urumi-m4-check-inventory-mcp-5d86b84cf5-4gs8j
+    namespace: urumi-m4-check
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: urumi-m4-check-inventory-mcp-5d86b84cf5
+      uid: 8cb799fe-c381-4a18-8ad0-75bf944cdce0
+    resourceVersion: "21675"
+    uid: a75bde1b-2005-4f57-95a1-84d825853778
+  spec:
+    automountServiceAccountToken: false
+    containers:
+    - env:
+      - name: MCP_ALLOWED_HOSTS
+        value: urumi-m4-check-inventory-mcp,urumi-m4-check-inventory-mcp.urumi-m4-check.svc,urumi-m4-check-inventory-mcp.urumi-m4-check.svc.cluster.local
+      image: urumi/inventory-mcp:m4
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /livez
+          port: mcp
+          scheme: HTTP
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 2
+      name: inventory-mcp
+      ports:
+      - containerPort: 8000
+        name: mcp
+        protocol: TCP
+      readinessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /readyz
+          port: mcp
+          scheme: HTTP
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 2
+      resources:
+        limits:
+          cpu: 250m
+          memory: 128Mi
+        requests:
+          cpu: 50m
+          memory: 64Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        readOnlyRootFilesystem: true
+      startupProbe:
+        failureThreshold: 30
+        httpGet:
+          path: /livez
+          port: mcp
+          scheme: HTTP
+        periodSeconds: 2
+        successThreshold: 1
+        timeoutSeconds: 2
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: k3d-urumi-server-0
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      runAsGroup: 10001
+      runAsNonRoot: true
+      runAsUser: 10001
+      seccompProfile:
+        type: RuntimeDefault
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+  status:
+    allocatedResources:
+      cpu: 50m
+      memory: 64Mi
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-16T13:07:17Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-16T13:07:17Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-16T13:07:31Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-16T13:07:31Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-16T13:07:17Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - allocatedResources:
+        cpu: 50m
+        memory: 64Mi
+      containerID: containerd://382e83097f092853d2b3e6ac1efb5c4ce08a740540e21fc0dfc83bfdb9dfa326
+      image: docker.io/urumi/inventory-mcp:m4
+      imageID: sha256:32f6307e850d6ccd3cb1e857ff949dfafbf63631594ed7196cc9684b20a57817
+      lastState: {}
+      name: inventory-mcp
+      ready: true
+      resources:
+        limits:
+          cpu: 250m
+          memory: 128Mi
+        requests:
+          cpu: 50m
+          memory: 64Mi
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-10-16T13:07:18Z"
+      user:
+        linux:
+          gid: 10001
+          supplementalGroups:
+          - 10001
+          uid: 10001
+    hostIP: 172.18.0.2
+    hostIPs:
+    - ip: 172.18.0.2
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.42.0.71
+    podIPs:
+    - ip: 10.42.0.71
+    qosClass: Burstable
+    resources:
+      limits:
+        cpu: 250m
+        memory: 128Mi
+      requests:
+        cpu: 28m
+        memory: 64Mi
+    startTime: "2026-10-16T13:07:17Z"
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: urumi-m4-check
+      meta.helm.sh/release-namespace: urumi-m4-check
+    creationTimestamp: "2026-10-16T13:07:16Z"
+    labels:
+      app.kubernetes.io/managed-by: Helm
+    name: urumi-m4-check-inventory-mcp
+    namespace: urumi-m4-check
+    resourceVersion: "21639"
+    uid: 035bd436-5e0f-4b16-bd4e-56af7a864779
+  spec:
+    clusterIP: 10.43.77.193
+    clusterIPs:
+    - 10.43.77.193
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: mcp
+      port: 8000
+      protocol: TCP
+      targetPort: mcp
+    selector:
+      app.kubernetes.io/component: inventory-mcp
+      app.kubernetes.io/instance: urumi-m4-check
+      app.kubernetes.io/name: urumi
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: urumi-m4-check
+      meta.helm.sh/release-namespace: urumi-m4-check
+    creationTimestamp: "2026-10-16T13:07:16Z"
+    generation: 1
+    labels:
+      app.kubernetes.io/managed-by: Helm
+    name: urumi-m4-check-inventory-mcp
+    namespace: urumi-m4-check
+    resourceVersion: "21637"
+    uid: 470c75e4-6750-47c1-b495-e63063e7c788
+  spec:
+    ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app.kubernetes.io/component: gateway
+            app.kubernetes.io/instance: urumi-m4-check
+            app.kubernetes.io/name: urumi
+      ports:
+      - port: 8000
+        protocol: TCP
+    podSelector:
+      matchLabels:
+        app.kubernetes.io/component: inventory-mcp
+        app.kubernetes.io/instance: urumi-m4-check
+        app.kubernetes.io/name: urumi
+    policyTypes:
+    - Ingress
+    - Egress
+kind: List
+metadata:
+  resourceVersion: ""
+
+
+UTC: 2026-10-16T13:10:08.7203293Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "-n" "urumi-m4-check" "get" "deployments,pods,services,networkpolicies" "-o" "yaml"
+Exit: 0
+apiVersion: v1
+items:
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      meta.helm.sh/release-name: urumi-m4-check
+      meta.helm.sh/release-namespace: urumi-m4-check
+    creationTimestamp: "2026-10-16T13:09:51Z"
+    generation: 1
+    labels:
+      app.kubernetes.io/managed-by: Helm
+    name: urumi-m4-check-inventory-mcp
+    namespace: urumi-m4-check
+    resourceVersion: "21817"
+    uid: a4cfa523-341e-4571-ae31-7d0d19b1de5b
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/component: inventory-mcp
+        app.kubernetes.io/instance: urumi-m4-check
+        app.kubernetes.io/name: urumi
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        labels:
+          app.kubernetes.io/component: inventory-mcp
+          app.kubernetes.io/instance: urumi-m4-check
+          app.kubernetes.io/name: urumi
+      spec:
+        automountServiceAccountToken: false
+        containers:
+        - env:
+          - name: MCP_ALLOWED_HOSTS
+            value: urumi-m4-check-inventory-mcp,urumi-m4-check-inventory-mcp.urumi-m4-check.svc,urumi-m4-check-inventory-mcp.urumi-m4-check.svc.cluster.local
+          image: urumi/inventory-mcp:m4
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /livez
+              port: mcp
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 2
+          name: inventory-mcp
+          ports:
+          - containerPort: 8000
+            name: mcp
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /readyz
+              port: mcp
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 2
+          resources:
+            limits:
+              cpu: 250m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+          startupProbe:
+            failureThreshold: 30
+            httpGet:
+              path: /livez
+              port: mcp
+              scheme: HTTP
+            periodSeconds: 2
+            successThreshold: 1
+            timeoutSeconds: 2
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext:
+          runAsGroup: 10001
+          runAsNonRoot: true
+          runAsUser: 10001
+          seccompProfile:
+            type: RuntimeDefault
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2026-10-16T13:10:05Z"
+      lastUpdateTime: "2026-10-16T13:10:05Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2026-10-16T13:09:51Z"
+      lastUpdateTime: "2026-10-16T13:10:05Z"
+      message: ReplicaSet "urumi-m4-check-inventory-mcp-5d86b84cf5" has successfully
+        progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    terminatingReplicas: 0
+    updatedReplicas: 1
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2026-10-16T13:09:51Z"
+    generateName: urumi-m4-check-inventory-mcp-5d86b84cf5-
+    generation: 1
+    labels:
+      app.kubernetes.io/component: inventory-mcp
+      app.kubernetes.io/instance: urumi-m4-check
+      app.kubernetes.io/name: urumi
+      pod-template-hash: 5d86b84cf5
+    name: urumi-m4-check-inventory-mcp-5d86b84cf5-8vf8w
+    namespace: urumi-m4-check
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: urumi-m4-check-inventory-mcp-5d86b84cf5
+      uid: 8372f356-fc56-4838-a4ec-319c68e4e4b1
+    resourceVersion: "21813"
+    uid: 520f5d59-34c0-45f4-a9e1-b4e4febb7a65
+  spec:
+    automountServiceAccountToken: false
+    containers:
+    - env:
+      - name: MCP_ALLOWED_HOSTS
+        value: urumi-m4-check-inventory-mcp,urumi-m4-check-inventory-mcp.urumi-m4-check.svc,urumi-m4-check-inventory-mcp.urumi-m4-check.svc.cluster.local
+      image: urumi/inventory-mcp:m4
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /livez
+          port: mcp
+          scheme: HTTP
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 2
+      name: inventory-mcp
+      ports:
+      - containerPort: 8000
+        name: mcp
+        protocol: TCP
+      readinessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /readyz
+          port: mcp
+          scheme: HTTP
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 2
+      resources:
+        limits:
+          cpu: 250m
+          memory: 128Mi
+        requests:
+          cpu: 50m
+          memory: 64Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        readOnlyRootFilesystem: true
+      startupProbe:
+        failureThreshold: 30
+        httpGet:
+          path: /livez
+          port: mcp
+          scheme: HTTP
+        periodSeconds: 2
+        successThreshold: 1
+        timeoutSeconds: 2
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: k3d-urumi-server-0
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      runAsGroup: 10001
+      runAsNonRoot: true
+      runAsUser: 10001
+      seccompProfile:
+        type: RuntimeDefault
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+  status:
+    allocatedResources:
+      cpu: 50m
+      memory: 64Mi
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-16T13:09:52Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-16T13:09:51Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-16T13:10:05Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-16T13:10:05Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-16T13:09:51Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - allocatedResources:
+        cpu: 50m
+        memory: 64Mi
+      containerID: containerd://1c883a47f512bca04fbc5a09ab96c93adcfd8723b8484062fa98c9982e408aa2
+      image: docker.io/urumi/inventory-mcp:m4
+      imageID: sha256:32f6307e850d6ccd3cb1e857ff949dfafbf63631594ed7196cc9684b20a57817
+      lastState: {}
+      name: inventory-mcp
+      ready: true
+      resources:
+        limits:
+          cpu: 250m
+          memory: 128Mi
+        requests:
+          cpu: 50m
+          memory: 64Mi
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-10-16T13:09:52Z"
+      user:
+        linux:
+          gid: 10001
+          supplementalGroups:
+          - 10001
+          uid: 10001
+    hostIP: 172.18.0.2
+    hostIPs:
+    - ip: 172.18.0.2
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.42.0.72
+    podIPs:
+    - ip: 10.42.0.72
+    qosClass: Burstable
+    resources:
+      limits:
+        cpu: 250m
+        memory: 128Mi
+      requests:
+        cpu: 28m
+        memory: 64Mi
+    startTime: "2026-10-16T13:09:51Z"
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: urumi-m4-check
+      meta.helm.sh/release-namespace: urumi-m4-check
+    creationTimestamp: "2026-10-16T13:09:51Z"
+    labels:
+      app.kubernetes.io/managed-by: Helm
+    name: urumi-m4-check-inventory-mcp
+    namespace: urumi-m4-check
+    resourceVersion: "21778"
+    uid: b554a844-dd34-440e-a1f0-674a9595a1c9
+  spec:
+    clusterIP: 10.43.223.179
+    clusterIPs:
+    - 10.43.223.179
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: mcp
+      port: 8000
+      protocol: TCP
+      targetPort: mcp
+    selector:
+      app.kubernetes.io/component: inventory-mcp
+      app.kubernetes.io/instance: urumi-m4-check
+      app.kubernetes.io/name: urumi
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: urumi-m4-check
+      meta.helm.sh/release-namespace: urumi-m4-check
+    creationTimestamp: "2026-10-16T13:09:51Z"
+    generation: 1
+    labels:
+      app.kubernetes.io/managed-by: Helm
+    name: urumi-m4-check-inventory-mcp
+    namespace: urumi-m4-check
+    resourceVersion: "21776"
+    uid: 8ed17855-ff4c-437e-99a0-05742b483978
+  spec:
+    ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app.kubernetes.io/component: gateway
+            app.kubernetes.io/instance: urumi-m4-check
+            app.kubernetes.io/name: urumi
+      ports:
+      - port: 8000
+        protocol: TCP
+    podSelector:
+      matchLabels:
+        app.kubernetes.io/component: inventory-mcp
+        app.kubernetes.io/instance: urumi-m4-check
+        app.kubernetes.io/name: urumi
+    policyTypes:
+    - Ingress
+    - Egress
+kind: List
+metadata:
+  resourceVersion: ""
+
+

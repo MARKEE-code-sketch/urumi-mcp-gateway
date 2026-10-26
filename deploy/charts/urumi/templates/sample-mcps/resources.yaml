@@ -1,0 +1,60 @@
+{{- if .Values.inventoryMcp.enabled }}
+{{- $name := printf "%s-inventory-mcp" .Release.Name }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: inventory-mcp}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: inventory-mcp}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets: {{ toJson . }}
+      {{- end }}
+      automountServiceAccountToken: false
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, runAsGroup: 10001, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: inventory-mcp
+          image: {{ if .Values.inventoryMcp.image.digest }}{{ printf "%s@%s" .Values.inventoryMcp.image.repository .Values.inventoryMcp.image.digest | quote }}{{ else }}{{ printf "%s:%s" .Values.inventoryMcp.image.repository .Values.inventoryMcp.image.tag | quote }}{{ end }}
+          imagePullPolicy: {{ .Values.inventoryMcp.image.pullPolicy }}
+          securityContext: {readOnlyRootFilesystem: true, allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          ports: [{name: mcp, containerPort: 8000}]
+          env:
+            - name: MCP_ALLOWED_HOSTS
+              value: {{ join "," (concat (list $name (printf "%s.%s.svc" $name .Release.Namespace) (printf "%s.%s.svc.cluster.local" $name .Release.Namespace)) .Values.inventoryMcp.allowedHosts) | quote }}
+          startupProbe: {httpGet: {path: /livez, port: mcp}, periodSeconds: 2, timeoutSeconds: 2, failureThreshold: 30}
+          livenessProbe: {httpGet: {path: /livez, port: mcp}, periodSeconds: 10, timeoutSeconds: 2, failureThreshold: 3}
+          readinessProbe: {httpGet: {path: /readyz, port: mcp}, periodSeconds: 10, timeoutSeconds: 2, failureThreshold: 3}
+          resources:
+            {{- toYaml .Values.inventoryMcp.resources | nindent 12 }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $name }}
+spec:
+  type: ClusterIP
+  selector: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: inventory-mcp}
+  ports: [{name: mcp, port: 8000, targetPort: mcp}]
+{{- if .Values.inventoryMcp.networkPolicy.enabled }}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ $name }}
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: inventory-mcp}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: {{ if .Values.release.enabled }}backend, urumi.dev/gateway: "true"{{ else }}gateway{{ end }}}
+      ports: [{protocol: TCP, port: 8000}]
+  egress: []
+{{- end }}
+{{- end }}

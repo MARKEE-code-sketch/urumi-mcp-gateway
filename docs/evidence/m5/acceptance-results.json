@@ -1,0 +1,153 @@
+{
+  "module": "M5",
+  "date": "2026-10-17",
+  "status": "PASS",
+  "scope": "Independent M5 implementation and verification; final gateway integration is excluded.",
+  "user_acceptance": "PENDING",
+  "independent_review": "PASS",
+  "review_method": "Independent source and recorded-evidence assessment; reviewer did not personally rerun the commands.",
+  "host_tests": 41,
+  "live_runtime_checks": 11,
+  "spec_acceptance_groups": 12,
+  "raw_runtime_status": "PASS_RUNTIME_REVIEW_PENDING",
+  "checks": [
+    {
+      "id": "M5-01",
+      "name": "Bootstrap and migrations",
+      "status": "PASS",
+      "evidence": [
+        "host-tests.txt",
+        "migration-preservation.json",
+        "cluster-results.json"
+      ],
+      "notes": "First-admin race, Secret-backed operator bootstrap/removal, exact 001-to-002 identity preservation and repeat migrations."
+    },
+    {
+      "id": "M5-02",
+      "name": "Invitations",
+      "status": "PASS",
+      "evidence": [
+        "host-tests.txt",
+        "cluster-results.json"
+      ],
+      "notes": "Concurrent one-use redemption, expiry/spent/invalid/duplicate cases and live member creation."
+    },
+    {
+      "id": "M5-03",
+      "name": "Login, sessions and browser protection",
+      "status": "PASS",
+      "evidence": [
+        "host-tests.txt",
+        "harness-config-check.json",
+        "cluster-results.json"
+      ],
+      "notes": "Fixed expiry, rotation/logout, stable CSRF, exact Origin checks, cookie flags and bearer/cookie separation. Browser TLS is not claimed."
+    },
+    {
+      "id": "M5-04",
+      "name": "Direct API permissions",
+      "status": "PASS",
+      "evidence": [
+        "host-tests.txt",
+        "cluster-results.json"
+      ],
+      "notes": "Admin/member and own/other-user UUID boundaries enforced directly by the API."
+    },
+    {
+      "id": "M5-05",
+      "name": "Personal keys",
+      "status": "PASS",
+      "evidence": [
+        "host-tests.txt",
+        "cluster-results.json"
+      ],
+      "notes": "Hash-only at rest, one-time issuance, multiple keys, concurrent revocation and persisted active/revoked validators after replacement."
+    },
+    {
+      "id": "M5-06",
+      "name": "Registry",
+      "status": "PASS",
+      "evidence": [
+        "host-tests.txt",
+        "cluster-results.json"
+      ],
+      "notes": "CRUD, immutable slug, credential modes/retention/clear, safe summaries/statuses and durable actual credential resolution."
+    },
+    {
+      "id": "M5-07",
+      "name": "Destination and header policy",
+      "status": "PASS",
+      "evidence": [
+        "host-tests.txt",
+        "cluster-results.json"
+      ],
+      "notes": "Registration allowlist/HTTPS and reserved/invalid header rules. Connection-time DNS and redirects remain M6."
+    },
+    {
+      "id": "M5-08",
+      "name": "Secret failure and recovery",
+      "status": "PASS",
+      "evidence": [
+        "host-tests.txt",
+        "cluster-results.json"
+      ],
+      "notes": "Real PostgreSQL fault triggers, controlled remote failures, delayed creation/lock loss, durable tombstones and concurrent recovery; live ownership and UID guard."
+    },
+    {
+      "id": "M5-09",
+      "name": "Effective RBAC",
+      "status": "PASS",
+      "evidence": [
+        "auth-can-i.json",
+        "secret-rbac.json",
+        "cluster-results.json"
+      ],
+      "notes": "Actual owned Secret CRUD/metadata update and denied list/watch/foreign-namespace/workload calls, beyond rendered Role declarations."
+    },
+    {
+      "id": "M5-10",
+      "name": "Activity lifecycle",
+      "status": "PASS",
+      "evidence": [
+        "host-tests.txt",
+        "cluster-results.json"
+      ],
+      "notes": "Real failed initial/final SQL writes, all outcomes, one finalization, visibility and abandoned/current ownership. Activity fixtures are synthetic; no upstream dispatch."
+    },
+    {
+      "id": "M5-11",
+      "name": "Durable restart",
+      "status": "PASS",
+      "evidence": [
+        "cluster-results.json",
+        "recovery-pods-final-during.json"
+      ],
+      "notes": "Actual database and harness replacement; exact private identity/registry row equality, credential match, same PVC UID and separate backup restore."
+    },
+    {
+      "id": "M5-12",
+      "name": "Deployment, redaction and cleanup",
+      "status": "PASS",
+      "evidence": [
+        "linux-pip-check.txt",
+        "helm-lint.txt",
+        "render-local.yaml.txt",
+        "render-prod.yaml.txt",
+        "runtime-image-check.json",
+        "cluster-resource-settings.json",
+        "cluster-results.json"
+      ],
+      "notes": "Both renders, actual probes/resources/internal Services, image identity, 32-file credential scan with zero hits, owned namespace cleanup and original store resource preservation."
+    }
+  ],
+  "preserved_failures": [
+    "cluster-results-initial.json",
+    "cluster-results-second-timeout.json"
+  ],
+  "remaining_scope": [
+    "M6 actual dispatch and existing MCP-session revocation, resolved-address policy and redirects",
+    "M8 browser pages and actual browser HTTPS/TLS",
+    "M10 final wiring and two-user end-to-end demonstration",
+    "Live VPS deployment is unverified"
+  ]
+}

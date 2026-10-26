@@ -1,0 +1,57 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 901B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/python:3.13.5-slim-bookworm@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 250B 0.0s done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 DONE 0.0s
+
+#5 [runtime 1/7] FROM docker.io/library/python:3.13.5-slim-bookworm@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419
+#5 resolve docker.io/library/python:3.13.5-slim-bookworm@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419 0.1s done
+#5 DONE 0.1s
+
+#4 [internal] load build context
+#4 transferring context: 196.41kB 0.1s done
+#4 DONE 0.1s
+
+#6 [runtime 2/7] WORKDIR /app
+#6 CACHED
+
+#7 [runtime 3/7] COPY backend/requirements.lock.txt /app/backend/requirements.lock.txt
+#7 CACHED
+
+#8 [runtime 4/7] RUN pip install --no-cache-dir -r /app/backend/requirements.lock.txt && pip check
+#8 CACHED
+
+#9 [runtime 5/7] COPY backend /app/backend
+#9 DONE 0.2s
+
+#10 [runtime 6/7] COPY contracts /app/contracts
+#10 DONE 0.1s
+
+#11 [runtime 7/7] RUN useradd --uid 10001 --create-home urumi
+#11 DONE 1.1s
+
+#12 [release 1/1] RUN test -f /app/backend/main.py && test -f /app/backend/orchestrator.py
+#12 DONE 0.5s
+
+#13 exporting to image
+#13 exporting layers
+#13 exporting layers 0.4s done
+#13 exporting manifest sha256:8f0576ac133e2e8a088b690303e0e826cb6d8af6010937d3c99b16c166e1f372 0.0s done
+#13 exporting config sha256:c423ace6fa14e4ce5cefe2ecea25cecdcf08a7b33e00cdc71000ee75d3f0fd52 0.0s done
+#13 exporting attestation manifest sha256:b97be24cceae42980fab0e197dd0b92a865610cc651c99f142438dbe6ae81437 0.1s done
+#13 exporting manifest list sha256:b863c9ccfca8c20bce2eb2e260f63650be63f7e8f4ac731f2a57dd49bc884646
+#13 exporting manifest list sha256:b863c9ccfca8c20bce2eb2e260f63650be63f7e8f4ac731f2a57dd49bc884646 0.0s done
+#13 naming to docker.io/urumi/backend:m10 done
+#13 unpacking to docker.io/urumi/backend:m10
+#13 unpacking to docker.io/urumi/backend:m10 0.2s done
+#13 DONE 0.9s

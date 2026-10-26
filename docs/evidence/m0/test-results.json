@@ -1,0 +1,98 @@
+{
+  "scope": "M0 fixtures over real localhost HTTP, not the application or Kubernetes",
+  "status": "PASS",
+  "tests_run": 14,
+  "failures": 0,
+  "errors": 0,
+  "duration_seconds": 17.053,
+  "negotiated_protocol": "2025-11-25",
+  "versions": {
+    "mcp": "1.26.0",
+    "httpx": "0.28.1",
+    "jsonschema": "4.26.0",
+    "starlette": "0.52.1",
+    "uvicorn": "0.40.0",
+    "python-dotenv": "1.2.1"
+  },
+  "tests": [
+    {
+      "test": "test_contracts.ContractChecks.test_all_six_definitions_are_valid_schemas",
+      "status": "PASS",
+      "duration_seconds": 0.075
+    },
+    {
+      "test": "test_contracts.ContractChecks.test_all_success_examples_match_both_schemas",
+      "status": "PASS",
+      "duration_seconds": 0.003
+    },
+    {
+      "test": "test_contracts.ContractChecks.test_errors_do_not_claim_success_schema",
+      "status": "PASS",
+      "duration_seconds": 0.0
+    },
+    {
+      "test": "test_contracts.ContractChecks.test_invalid_inputs_are_rejected",
+      "status": "PASS",
+      "duration_seconds": 0.001
+    },
+    {
+      "test": "test_protocol.ProtocolChecks.test_call_before_discovery",
+      "status": "PASS",
+      "duration_seconds": 1.101
+    },
+    {
+      "test": "test_protocol.ProtocolChecks.test_custom_header_and_no_auth_clients",
+      "status": "PASS",
+      "duration_seconds": 2.195
+    },
+    {
+      "test": "test_protocol.ProtocolChecks.test_initialize_and_paginated_discovery",
+      "status": "PASS",
+      "duration_seconds": 1.032
+    },
+    {
+      "test": "test_protocol.ProtocolChecks.test_missing_and_wrong_authentication_rejected",
+      "status": "PASS",
+      "duration_seconds": 0.905
+    },
+    {
+      "test": "test_protocol.ProtocolChecks.test_safe_execution_errors_and_invalid_inputs",
+      "status": "PASS",
+      "duration_seconds": 1.483
+    },
+    {
+      "test": "test_protocol.ProtocolChecks.test_six_sample_tools_return_valid_output",
+      "status": "PASS",
+      "duration_seconds": 1.666
+    },
+    {
+      "test": "test_protocol.ProtocolChecks.test_slow_fixture_can_be_cancelled_and_other_endpoint_works",
+      "status": "PASS",
+      "duration_seconds": 2.326
+    },
+    {
+      "test": "test_protocol.ProtocolChecks.test_stateful_session_is_created_and_terminated",
+      "status": "PASS",
+      "duration_seconds": 2.198
+    },
+    {
+      "test": "test_protocol.ProtocolChecks.test_stateless_reconnect",
+      "status": "PASS",
+      "duration_seconds": 2.194
+    },
+    {
+      "test": "test_protocol.ProtocolChecks.test_unknown_tool_and_invalid_cursor_are_protocol_errors",
+      "status": "PASS",
+      "duration_seconds": 0.947
+    }
+  ],
+  "warnings": [],
+  "not_proven": [
+    "real shop",
+    "gateway authorization/audit",
+    "live Groq model",
+    "Microsoft Learn",
+    "Codex/Inspector client compatibility",
+    "Kubernetes"
+  ]
+}

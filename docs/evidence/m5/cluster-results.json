@@ -1,0 +1,107 @@
+{
+  "module": "M5",
+  "status": "PASS_RUNTIME_REVIEW_PENDING",
+  "checks": [
+    {
+      "name": "real-operator-bootstrap-secret-invitation-sessions-role-csrf-and-keys",
+      "status": "PASS"
+    },
+    {
+      "name": "real-registry-secret-backed-registration-disable-role-and-url-checks",
+      "status": "PASS",
+      "synthetic_audit_rows": 2
+    },
+    {
+      "name": "actual-serviceaccount-secret-crud-uid-ownership-and-rbac",
+      "status": "PASS",
+      "evidence": {
+        "status": "PASS",
+        "owned_secret_crud": true,
+        "immutable_metadata_put": true,
+        "wrong_uid_conflict": 409,
+        "foreign_ownership_rejected": true,
+        "actual_serviceaccount_denials": {
+          "list": 403,
+          "watch": 403,
+          "foreign-namespace": 403,
+          "workloads": 403
+        }
+      }
+    },
+    {
+      "name": "actual-database-outage-live-ready-fencing-without-restart-storm",
+      "status": "PASS",
+      "observed_seconds": 15
+    },
+    {
+      "name": "database-pod-replacement-supervisor-recovery-and-pvc-durability",
+      "status": "PASS",
+      "durable_counts": {
+        "users": 2,
+        "invitations": 1,
+        "sessions": 3,
+        "api_keys": 2,
+        "servers": 1,
+        "audit_records": 2
+      },
+      "private_full_identity_registry_rows_unchanged": true,
+      "actual_credential_resolved_and_matched": true,
+      "pvc_uid": "210de06f-ccba-483d-a8b4-af4c7bf3b474",
+      "database_pod_before_uid": "ca4174ea-8a31-4cef-ad25-810a6f77a988",
+      "database_pod_after_uid": "068f5bd8-f33b-4933-adac-e5b49cc87c76",
+      "harness_pod_uid": "826f6168-c470-4ea0-aad8-40d23c8af911",
+      "supervisor_restart_before": 0,
+      "supervisor_restart_after": 1
+    },
+    {
+      "name": "actual-harness-pod-replacement-active-revoked-identities-registry-and-audits",
+      "status": "PASS",
+      "private_full_identity_registry_rows_unchanged": true,
+      "actual_credential_resolved_and_matched": true,
+      "pvc_uid": "210de06f-ccba-483d-a8b4-af4c7bf3b474",
+      "harness_before_delete_uid": "244fb9de-a5ec-4f24-991f-191fa7d4c49b",
+      "harness_after_delete_uid": "f2b0dc40-390e-4084-8d70-02ade2d2f0e1",
+      "harness_restart_after_delete": 0
+    },
+    {
+      "name": "actual-private-pg-dump-separate-database-restore",
+      "status": "PASS",
+      "restored_counts": {
+        "users": 2,
+        "invitations": 1,
+        "sessions": 3,
+        "api_keys": 2,
+        "servers": 1,
+        "audit_records": 3
+      },
+      "restored_revocations": {
+        "revoked_sessions": 1,
+        "revoked_keys": 1
+      },
+      "raw_dump_saved_only_in_ignored_tools": true
+    },
+    {
+      "name": "saved-evidence-actual-credential-session-key-redaction",
+      "status": "PASS",
+      "scanned_files": 32,
+      "matches": 0
+    },
+    {
+      "name": "actual-probes-resources-internal-exposure-and-secret-free-logs",
+      "status": "PASS"
+    },
+    {
+      "name": "original-store-resources-and-pvc-identities-preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "owned-disposable-namespaces-cleaned",
+      "status": "PASS"
+    }
+  ],
+  "synthetic_audits_only": true,
+  "last_action": {
+    "method": "GET",
+    "path": "/audit?user_id=96c3138a-1973-4511-8aa2-b2857ec9838d"
+  }
+}

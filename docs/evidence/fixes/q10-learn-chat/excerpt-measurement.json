@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "payload_bytes": 7102,
+  "excerpt": {
+    "returned_results": 10,
+    "retained_results": 10
+  },
+  "full_source_urls_preserved": true,
+  "gateway_result_unchanged": true
+}

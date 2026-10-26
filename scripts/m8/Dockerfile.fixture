@@ -1,0 +1,4 @@
+FROM urumi/gateway-check:m6
+COPY scripts/m8/fixture_server.py /app/scripts/m8/fixture_server.py
+USER 10001:10001
+ENTRYPOINT ["python","scripts/m8/fixture_server.py","--host","0.0.0.0","--port","8000"]

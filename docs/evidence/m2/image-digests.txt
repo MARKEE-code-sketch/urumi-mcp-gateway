@@ -1,0 +1,72 @@
+﻿UTC: 2026-10-15T14:49:58.2762542Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "image" "inspect" "wordpress:7.1.3-php8.3-apache" "--format" "{{json .RepoDigests}}"
+Exit: 0
+["wordpress@sha256:81a34254acaa6ff3b9a67268c2745e9a041c4094cbe5ccd35b75ed3bbdc033b5"]
+
+
+UTC: 2026-10-15T14:49:58.5582243Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "image" "inspect" "wordpress:cli-2.12.0-php8.3" "--format" "{{json .RepoDigests}}"
+Exit: 0
+["wordpress@sha256:36243da432a0f0a3b56dc3240ecee9b159108d71305e7c064d987a20a465bfde"]
+
+
+UTC: 2026-10-15T14:49:58.7501004Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "image" "inspect" "mariadb:11.4.13-noble" "--format" "{{json .RepoDigests}}"
+Exit: 0
+["mariadb@sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6"]
+
+
+UTC: 2026-10-15T14:50:37.6786731Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "image" "inspect" "urumi-store:m2" "--format" "{{.Id}}"
+Exit: 0
+sha256:fe04b431b535a8f97b11b0413685694f577170b0c0ad797154b7d9bec04c59c2
+
+
+UTC: 2026-10-15T14:54:12.3877358Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "image" "inspect" "wordpress:7.1.3-php8.3-apache" "--format" "{{json .RepoDigests}}"
+Exit: 0
+["wordpress@sha256:81a34254acaa6ff3b9a67268c2745e9a041c4094cbe5ccd35b75ed3bbdc033b5"]
+
+
+UTC: 2026-10-15T14:54:12.6906965Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "image" "inspect" "wordpress:cli-2.12.0-php8.3" "--format" "{{json .RepoDigests}}"
+Exit: 0
+["wordpress@sha256:36243da432a0f0a3b56dc3240ecee9b159108d71305e7c064d987a20a465bfde"]
+
+
+UTC: 2026-10-15T14:54:12.8982422Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "image" "inspect" "mariadb:11.4.13-noble" "--format" "{{json .RepoDigests}}"
+Exit: 0
+["mariadb@sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6"]
+
+
+UTC: 2026-10-15T14:54:21.8399265Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "image" "inspect" "urumi-store:m2" "--format" "{{.Id}}"
+Exit: 0
+sha256:4b1bc9edacb0df7146124c6f700b386cb5d6d48ecb7388029d1686e6a7238a3a
+
+
+UTC: 2026-10-15T15:09:33.9093909Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "image" "inspect" "wordpress:7.1.3-php8.3-apache" "--format" "{{json .RepoDigests}}"
+Exit: 0
+["wordpress@sha256:81a34254acaa6ff3b9a67268c2745e9a041c4094cbe5ccd35b75ed3bbdc033b5"]
+
+
+UTC: 2026-10-15T15:09:34.3009924Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "image" "inspect" "wordpress:cli-2.12.0-php8.3" "--format" "{{json .RepoDigests}}"
+Exit: 0
+["wordpress@sha256:36243da432a0f0a3b56dc3240ecee9b159108d71305e7c064d987a20a465bfde"]
+
+
+UTC: 2026-10-15T15:09:34.5677854Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "image" "inspect" "mariadb:11.4.13-noble" "--format" "{{json .RepoDigests}}"
+Exit: 0
+["mariadb@sha256:1292844148b311e4ed4300022a996d39083f415a963e970cf47cad1b3b18e3a6"]
+
+
+UTC: 2026-10-15T15:09:46.3235244Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "image" "inspect" "urumi-store:m2" "--format" "{{.Id}}"
+Exit: 0
+sha256:23494837a20cc9d2c7093cb8203f066eb9c78054956945ad4e779ab42e204d98
+
+

@@ -1,0 +1,22 @@
+{{- if .Values.store.enabled }}
+{{- range $item := list (dict "name" "mariadb-data" "size" .Values.store.storage.databaseSize) (dict "name" "wordpress-content" "size" .Values.store.storage.contentSize) }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ $.Release.Name }}-{{ $item.name }}
+  labels:
+    app.kubernetes.io/instance: {{ $.Release.Name }}
+    app.kubernetes.io/part-of: urumi-store
+  annotations:
+    helm.sh/resource-policy: keep
+spec:
+  accessModes: [ReadWriteOnce]
+  {{- if $.Values.store.storage.className }}
+  storageClassName: {{ $.Values.store.storage.className | quote }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ $item.size }}
+{{- end }}
+{{- end }}

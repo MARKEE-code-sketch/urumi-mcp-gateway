@@ -1,0 +1,205 @@
+/* Shared Urumi branding; WordPress keeps its navigation and form behaviour. */
+@font-face {
+  font-family: Figtree;
+  src: url('Figtree.ttf') format('truetype');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+body.wp-admin,
+body.login {
+  --urumi-primary: #147d69;
+  --urumi-primary-dark: #116655;
+  --urumi-mint: #eaf6ef;
+  --urumi-ink: #252b29;
+  --urumi-muted: #68746e;
+  --urumi-border: #dfe7e1;
+  --wp-admin-theme-color: #147d69;
+  --wp-admin-theme-color-darker-10: #116655;
+  --wp-admin-theme-color-darker-20: #0e5547;
+  --wp-admin-theme-color--rgb: 20, 125, 105;
+  font-family: Figtree, Arial, sans-serif;
+  font-size: 16px;
+  color: var(--urumi-ink);
+  background: #f5f8f5;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.wp-admin input,
+body.wp-admin select,
+body.wp-admin textarea,
+body.wp-admin button,
+body.login input,
+body.login button {
+  font-family: Figtree, Arial, sans-serif;
+}
+
+body.wp-admin a,
+body.login a { color: var(--urumi-primary-dark); }
+body.wp-admin a:hover,
+body.login a:hover { color: #0b5142; }
+body.wp-admin a:focus,
+body.login a:focus { box-shadow: 0 0 0 2px var(--urumi-primary); }
+
+body.wp-admin .wrap { margin-top: 26px; }
+body.wp-admin .wrap h1 { font-size: 30px; font-weight: 650; line-height: 1.3; letter-spacing: -.6px; }
+body.wp-admin .wrap h2 { font-size: 21px; line-height: 1.35; }
+body.wp-admin .wrap p,
+body.wp-admin .form-table th,
+body.wp-admin .form-table td,
+body.wp-admin .form-table td p { font-size: 15px; line-height: 1.6; }
+body.wp-admin .description { color: #5b6961; }
+
+/* Keep native menu widths, collapse rules and touch targets. */
+body.wp-admin #adminmenuback,
+body.wp-admin #adminmenuwrap,
+body.wp-admin #adminmenu { background: #fff; }
+body.wp-admin #adminmenuback { border-right: 1px solid var(--urumi-border); }
+body.wp-admin #adminmenu a,
+body.wp-admin #adminmenu .wp-submenu a { color: #43564c; }
+body.wp-admin #adminmenu .wp-menu-name { font-size: 15px; font-weight: 550; }
+body.wp-admin #adminmenu div.wp-menu-image::before,
+body.wp-admin #collapse-button { color: #6b7c71; }
+body.wp-admin #adminmenu .wp-submenu { background: #f3f8f4; }
+body.wp-admin #adminmenu .wp-submenu a { font-size: 14px; }
+body.wp-admin #adminmenu li.menu-top:hover,
+body.wp-admin #adminmenu li.opensub > a.menu-top,
+body.wp-admin #adminmenu li > a.menu-top:focus,
+body.wp-admin #adminmenu .wp-submenu a:hover,
+body.wp-admin #adminmenu .wp-submenu a:focus { color: var(--urumi-primary-dark); background: var(--urumi-mint); }
+body.wp-admin #adminmenu li:hover div.wp-menu-image::before,
+body.wp-admin #adminmenu li.opensub div.wp-menu-image::before { color: var(--urumi-primary); }
+body.wp-admin #adminmenu .wp-has-current-submenu .wp-submenu,
+body.wp-admin #adminmenu .wp-has-current-submenu .wp-submenu.sub-open { background: #f3f8f4; }
+body.wp-admin #adminmenu li.current a.menu-top,
+body.wp-admin #adminmenu li.wp-has-current-submenu a.wp-has-current-submenu,
+body.wp-admin #adminmenu li.current.menu-top { color: #fff; background: var(--urumi-primary-dark); }
+body.wp-admin #adminmenu li.current div.wp-menu-image::before,
+body.wp-admin #adminmenu li.wp-has-current-submenu div.wp-menu-image::before { color: #fff; }
+body.wp-admin #adminmenu .wp-submenu li.current a,
+body.wp-admin #adminmenu .wp-submenu li.current a:hover { color: var(--urumi-primary-dark); font-weight: 700; }
+body.wp-admin #adminmenu .awaiting-mod,
+body.wp-admin #adminmenu .update-plugins { background: var(--urumi-primary-dark); color: #fff; }
+body.wp-admin #adminmenu li.current .awaiting-mod,
+body.wp-admin #adminmenu li.wp-has-current-submenu .update-plugins { background: #fff; color: var(--urumi-primary-dark); }
+
+body.wp-admin #wpadminbar { background: #153e33; color: #fff; }
+body.wp-admin #wpadminbar,
+body.wp-admin #wpadminbar * { font-family: Figtree, Arial, sans-serif; }
+body.wp-admin #wpadminbar .ab-icon,
+body.wp-admin #wpadminbar .ab-icon::before,
+body.wp-admin #wpadminbar .ab-item::before { font-family: dashicons; }
+body.wp-admin #wpadminbar .ab-icon::before,
+body.wp-admin #wpadminbar .ab-item::before { color: #c5e2d3; }
+body.wp-admin #wpadminbar .ab-item { color: #fff; }
+body.wp-admin #wpadminbar .menupop .ab-sub-wrapper { background: #153e33; }
+body.wp-admin #wpadminbar .ab-top-menu > li.hover > .ab-item,
+body.wp-admin #wpadminbar .ab-top-menu > li:hover > .ab-item,
+body.wp-admin #wpadminbar .ab-top-menu > li > .ab-item:focus,
+body.wp-admin #wpadminbar .ab-submenu .ab-item:hover { background: #205344; color: #fff; }
+
+body.wp-admin .postbox,
+body.wp-admin .widefat,
+body.wp-admin .stuffbox {
+  border: 1px solid var(--urumi-border);
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgb(23 55 36 / 3%);
+  background: #fff;
+}
+body.wp-admin .postbox-header { border-bottom-color: var(--urumi-border); }
+body.wp-admin .postbox .hndle { font-size: 16px; }
+body.wp-admin .widefat th { font-weight: 600; }
+body.wp-admin .widefat td,
+body.wp-admin .widefat th { font-size: 14px; }
+body.wp-admin .striped > tbody > :nth-child(odd) { background-color: #f7faf7; }
+body.wp-admin .wp-list-table thead th,
+body.wp-admin .wp-list-table tfoot th { background: #f1f7f2; }
+body.wp-admin .wp-list-table thead th:first-child { border-radius: 10px 0 0; }
+body.wp-admin .wp-list-table thead th:last-child { border-radius: 0 10px 0 0; }
+body.wp-admin .tablenav { margin-top: 14px; margin-bottom: 14px; }
+body.wp-admin .subsubsub { font-size: 14px; }
+body.wp-admin .notice { border-radius: 0 7px 7px 0; }
+body.wp-admin .notice p { font-size: 14px; }
+
+body.wp-admin .button,
+body.wp-admin .page-title-action,
+body.login .button { border-color: #b5cbbd; border-radius: 6px; background: #fff; color: var(--urumi-primary-dark); font-family: Figtree, Arial, sans-serif; font-weight: 600; }
+body.wp-admin .button:hover,
+body.wp-admin .page-title-action:hover,
+body.login .button:hover { border-color: var(--urumi-primary); background: var(--urumi-mint); color: var(--urumi-primary-dark); }
+body.wp-admin .button-primary,
+body.login .button-primary { background: var(--urumi-primary-dark); border-color: var(--urumi-primary-dark); color: #fff; text-shadow: none; box-shadow: none; }
+body.wp-admin .button-primary:hover,
+body.wp-admin .button-primary:focus,
+body.login .button-primary:hover,
+body.login .button-primary:focus { background: #0c5546; border-color: #0c5546; color: #fff; }
+body.wp-admin .button-primary:disabled,
+body.wp-admin .button-primary.disabled { background: #e5eae6 !important; border-color: #d7dfd9 !important; color: #65716a !important; }
+
+body.wp-admin input[type='text'],
+body.wp-admin input[type='search'],
+body.wp-admin input[type='email'],
+body.wp-admin input[type='url'],
+body.wp-admin input[type='password'],
+body.wp-admin input[type='number'],
+body.wp-admin select,
+body.wp-admin textarea,
+body.login input[type='text'],
+body.login input[type='password'],
+body.login input[type='email'] { border-color: #b8c8bd; border-radius: 6px; }
+body.wp-admin input:focus,
+body.wp-admin select:focus,
+body.wp-admin textarea:focus,
+body.login input:focus { border-color: var(--urumi-primary); box-shadow: 0 0 0 1px var(--urumi-primary); outline: 2px solid transparent; }
+/* Real WooCommerce data is rendered by the dashboard widget in admin.php. */
+body.wp-admin .urumi-admin-overview { padding: 12px 10px 16px; }
+body.wp-admin .urumi-admin-intro { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 22px; background: var(--urumi-mint); border-radius: 10px; }
+body.wp-admin .urumi-admin-intro h2 { margin: 8px 0; font-size: 28px; font-weight: 650; letter-spacing: -.6px; }
+body.wp-admin .urumi-admin-intro p { margin: 0; color: #4e6658; max-width: 560px; }
+body.wp-admin .urumi-admin-eyebrow { color: var(--urumi-primary-dark); font-size: 11px; font-weight: 750; text-transform: uppercase; letter-spacing: 1.6px; }
+body.wp-admin .urumi-admin-mark { width: 48px; height: 48px; flex-shrink: 0; }
+body.wp-admin .urumi-admin-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+body.wp-admin a.urumi-admin-metric { display: flex; flex-direction: column; align-items: flex-start; gap: 7px; padding: 18px; border: 1px solid var(--urumi-border); border-radius: 9px; color: var(--urumi-ink); text-decoration: none; }
+body.wp-admin a.urumi-admin-metric:hover { border-color: #8caf9b; background: #f8fbf8; }
+body.wp-admin .urumi-admin-metric .dashicons { color: var(--urumi-primary); margin-bottom: 6px; }
+body.wp-admin .urumi-admin-metric strong { font-size: 28px; font-weight: 650; line-height: 1.2; }
+body.wp-admin .urumi-admin-metric span:not(.dashicons) { font-size: 14px; color: #5b6d60; }
+body.wp-admin .urumi-admin-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+body.wp-admin .urumi-admin-actions .button { padding: 5px 15px; font-size: 14px; }
+body.wp-admin .welcome-panel { background: #fff; color: var(--urumi-ink); border: 1px solid var(--urumi-border); border-radius: 12px; }
+body.wp-admin .welcome-panel .urumi-admin-overview { padding: 44px 24px 24px; }
+body.wp-admin .welcome-panel .welcome-panel-close { color: var(--urumi-muted); }
+
+body.login #login { width: min(380px, calc(100% - 40px)); padding-top: 6vh; }
+body.login h1 a { width: 72px; height: 72px; background-image: url('urumi-mark.svg'); background-size: 58px; background-position: center; margin-bottom: 24px; }
+body.login form { margin-top: 22px; padding: 30px; border: 1px solid var(--urumi-border); border-radius: 14px; box-shadow: 0 8px 32px rgb(28 65 42 / 5%); }
+body.login label { font-size: 16px; color: #374b3e; }
+body.login form .input { font-family: Figtree, Arial, sans-serif; font-size: 20px; }
+body.login .forgetmenot label { font-size: 14px; }
+body.login .button-primary { min-height: 40px; padding-inline: 18px; font-size: 15px; }
+body.login #nav,
+body.login #backtoblog { padding-inline: 8px; font-size: 14px; }
+body.login #nav a,
+body.login #backtoblog a { color: var(--urumi-primary-dark); }
+body.login .message,
+body.login .success,
+body.login #login_error { border-radius: 7px; font-size: 15px; }
+body.login .message { border-left-color: var(--urumi-primary); }
+
+@media (max-width: 782px) {
+  body.wp-admin .wrap { margin-top: 18px; }
+  body.wp-admin .wrap h1 { font-size: 27px; }
+  body.wp-admin .urumi-admin-overview { padding: 6px 2px 12px; }
+  body.wp-admin .urumi-admin-intro { padding: 18px; }
+  body.wp-admin .urumi-admin-intro h2 { font-size: 25px; }
+  body.wp-admin .urumi-admin-metrics { gap: 8px; }
+  body.wp-admin a.urumi-admin-metric { padding: 12px; }
+  body.wp-admin .urumi-admin-metric strong { font-size: 25px; }
+}
+
+@media (max-width: 420px) {
+  body.wp-admin .urumi-admin-metrics { grid-template-columns: 1fr; }
+  body.wp-admin .urumi-admin-mark { width: 36px; height: 36px; }
+  body.login form { padding: 24px; }
+}

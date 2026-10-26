@@ -1,0 +1,106 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-10-24T10:12:46.444248+00:00",
+  "member_B_id": "b22d3f72-c947-4101-9068-6d7024494aa5",
+  "shop_write_calls": 0,
+  "provider_calls": 0,
+  "original_user_key": {
+    "http_status": 401,
+    "code": "KEY_REVOKED",
+    "request_id": "82410bbf-3ec7-4fc4-98ff-5b4728565e6e"
+  },
+  "selected_test_key_id": "defae4c3-0ca5-4b51-a3bd-76f5a5a808ec",
+  "control_test_key_id": "83d836fb-503c-4729-93fe-93a7359194fa",
+  "selected_revoked_while_both_sessions_open": true,
+  "control_same_session_survived": true,
+  "control_result": {
+    "sku": "DEMO-001",
+    "found": true,
+    "warehouses": [
+      {
+        "name": "Bengaluru",
+        "quantity": 12
+      }
+    ]
+  },
+  "selected_client_state": {
+    "before": {
+      "sku": "DEMO-001",
+      "found": true,
+      "warehouses": [
+        {
+          "name": "Bengaluru",
+          "quantity": 12
+        }
+      ]
+    },
+    "same_session_next_call_attempted": true,
+    "call_exception_type": "CancelledError",
+    "transport_exit_type": "ExceptionGroup"
+  },
+  "audits": [
+    {
+      "audit_id": "dc05943e-130c-4191-acbc-a81bc7468fe4",
+      "request_id": "228c5b8b-d7d0-4af6-8440-dd46b590e92b",
+      "user_id": "b22d3f72-c947-4101-9068-6d7024494aa5",
+      "key_id": "defae4c3-0ca5-4b51-a3bd-76f5a5a808ec",
+      "auth_source": "api_key",
+      "public_tool_name": "inventory__lookup_sku",
+      "upstream_tool_name": null,
+      "outcome": "denied",
+      "error_code": "KEY_REVOKED",
+      "started_at": "2026-10-24T10:12:48.735373Z"
+    },
+    {
+      "audit_id": "7067bfe0-9939-4beb-bc4e-eeb3c7719329",
+      "request_id": "ceb64b7f-9761-4bfe-96f3-9e237a463fbc",
+      "user_id": "b22d3f72-c947-4101-9068-6d7024494aa5",
+      "key_id": "defae4c3-0ca5-4b51-a3bd-76f5a5a808ec",
+      "auth_source": "api_key",
+      "public_tool_name": "inventory__lookup_sku",
+      "upstream_tool_name": "lookup_sku",
+      "outcome": "success",
+      "error_code": null,
+      "started_at": "2026-10-24T10:12:48.251749Z"
+    },
+    {
+      "audit_id": "d60bd734-8096-4f6e-b4bc-9b3c0c0a524d",
+      "request_id": "4f1b164d-e6e3-4159-a0b0-6d9d36ba7cbe",
+      "user_id": "b22d3f72-c947-4101-9068-6d7024494aa5",
+      "key_id": "83d836fb-503c-4729-93fe-93a7359194fa",
+      "auth_source": "api_key",
+      "public_tool_name": "inventory__lookup_sku",
+      "upstream_tool_name": "lookup_sku",
+      "outcome": "success",
+      "error_code": null,
+      "started_at": "2026-10-24T10:12:48.947427Z"
+    },
+    {
+      "audit_id": "9804454f-6b02-46cd-a2c2-e779dc336ff9",
+      "request_id": "a1b97baa-c102-451d-8d67-6281721cc783",
+      "user_id": "b22d3f72-c947-4101-9068-6d7024494aa5",
+      "key_id": "83d836fb-503c-4729-93fe-93a7359194fa",
+      "auth_source": "api_key",
+      "public_tool_name": "inventory__lookup_sku",
+      "upstream_tool_name": "lookup_sku",
+      "outcome": "success",
+      "error_code": null,
+      "started_at": "2026-10-24T10:12:47.515161Z"
+    }
+  ],
+  "B_browser_chat": {
+    "result": "Usable",
+    "evidence_source": "User confirmation in conversation",
+    "operator_browser_retest": false
+  },
+  "temporary_test_key_cleanup": [
+    {
+      "key_id": "defae4c3-0ca5-4b51-a3bd-76f5a5a808ec",
+      "revoked": true
+    },
+    {
+      "key_id": "83d836fb-503c-4729-93fe-93a7359194fa",
+      "revoked": true
+    }
+  ]
+}

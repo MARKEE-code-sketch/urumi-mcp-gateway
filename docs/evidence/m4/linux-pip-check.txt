@@ -1,0 +1,14 @@
+﻿UTC: 2026-10-16T13:06:42.5923067Z
+Command: docker.exe "run" "--rm" "urumi/inventory-mcp:m4" "python" "-m" "pip" "check"
+Exit: 0
+No broken requirements found.
+
+WARNING: The directory '/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+
+UTC: 2026-10-16T13:09:22.4553956Z
+Command: docker.exe "run" "--rm" "urumi/inventory-mcp:m4" "python" "-m" "pip" "check"
+Exit: 0
+No broken requirements found.
+
+WARNING: The directory '/.cache/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.
+

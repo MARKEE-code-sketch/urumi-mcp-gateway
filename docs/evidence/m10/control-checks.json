@@ -1,0 +1,192 @@
+{
+  "status": "PASS_CONTROLS_ONLY",
+  "checked_at": "2026-10-20T09:20:56.337477+00:00",
+  "scope": "Owned keys and Inventory-only controls; no browser/chat planner claim.",
+  "checks": [
+    {
+      "check": "selected_key_revocation",
+      "status": "PASS",
+      "open_session_next_call_rejected": true,
+      "raw_http_status": 401,
+      "control_key_works": true
+    },
+    {
+      "check": "server_disable",
+      "status": "PASS",
+      "gateway_absent": true,
+      "member_preview_empty": true,
+      "stale_name_invalid_params": true,
+      "healthy_peers": {
+        "woocommerce": "PASS",
+        "learn": "PASS"
+      }
+    },
+    {
+      "check": "inventory_failure_isolation",
+      "status": "PASS",
+      "deleted_pod": {
+        "name": "urumi-m10-inventory-mcp-58bcd997b7-5glf5",
+        "uid": "a7fe1d89-37c2-4df2-aa22-6fa506c7ddb7",
+        "atomic_uid_precondition": true
+      },
+      "method": "pod_delete",
+      "observed": {
+        "id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+        "status": "Unreachable",
+        "status_reason": "CONNECTION_FAILED",
+        "last_checked_at": "2026-10-20T09:21:09.247429Z"
+      },
+      "failed_inventory_call": true,
+      "healthy_peers": {
+        "woocommerce": "PASS",
+        "learn": "PASS"
+      }
+    },
+    {
+      "check": "inventory_recovery",
+      "status": "PASS",
+      "observed": {
+        "id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+        "status": "Connected",
+        "status_reason": null,
+        "last_checked_at": "2026-10-20T09:21:24.649201Z"
+      },
+      "replacement_uids": [
+        "629b5d08-4de4-4e71-b406-963e6a761636"
+      ]
+    }
+  ],
+  "cleanup": {
+    "server_enabled": true,
+    "original_replicas": 1,
+    "final_replicas": 1,
+    "replicas_restored": true,
+    "inventory_ready": true,
+    "eabd2d81-118b-4ed5-92bf-c2c01e744013": "REVOKED",
+    "c1cd71ba-5cfc-422c-8b15-e5f760d47a44": "REVOKED"
+  },
+  "namespace": "urumi-m10",
+  "ids": {
+    "member_user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+    "admin_user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+    "selected_key_id": "eabd2d81-118b-4ed5-92bf-c2c01e744013",
+    "control_key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44"
+  },
+  "revoked_session_transport_exit": {
+    "exception_types": [
+      "ExceptionGroup",
+      "HTTPStatusError"
+    ],
+    "failed_checks": []
+  },
+  "audit": [
+    {
+      "audit_id": "e272085d-7049-45c0-97ac-b799c7c9956a",
+      "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+      "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+      "auth_source": "api_key",
+      "public_tool_name": "inventory__lookup_sku",
+      "outcome": "success",
+      "error_code": null
+    },
+    {
+      "audit_id": "41b6ebdb-b1b1-41ac-a98f-23296b354859",
+      "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+      "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+      "auth_source": "api_key",
+      "public_tool_name": "learn__microsoft_code_sample_search",
+      "outcome": "success",
+      "error_code": null
+    },
+    {
+      "audit_id": "76885781-8c12-465b-84c0-235ee05cfe89",
+      "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+      "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+      "auth_source": "api_key",
+      "public_tool_name": "woocommerce__list_products",
+      "outcome": "success",
+      "error_code": null
+    },
+    {
+      "audit_id": "48cb07a3-b1e2-4a3a-998f-e5d3b44eda14",
+      "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+      "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+      "auth_source": "api_key",
+      "public_tool_name": "inventory__lookup_sku",
+      "outcome": "error",
+      "error_code": "UPSTREAM_UNAVAILABLE"
+    },
+    {
+      "audit_id": "ea4f99d7-6c52-4161-a8cf-f9066457fc31",
+      "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+      "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+      "auth_source": "api_key",
+      "public_tool_name": "inventory__lookup_sku",
+      "outcome": "success",
+      "error_code": null
+    },
+    {
+      "audit_id": "d4fd39ca-19d4-40dc-8a05-82e17696b19b",
+      "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+      "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+      "auth_source": "api_key",
+      "public_tool_name": "learn__microsoft_code_sample_search",
+      "outcome": "success",
+      "error_code": null
+    },
+    {
+      "audit_id": "6f59a17e-f58d-4247-9021-2013020a88c8",
+      "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+      "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+      "auth_source": "api_key",
+      "public_tool_name": "woocommerce__list_products",
+      "outcome": "success",
+      "error_code": null
+    },
+    {
+      "audit_id": "f307ab51-17f3-4e66-9df6-39319f22663b",
+      "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+      "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+      "auth_source": "api_key",
+      "public_tool_name": "inventory__lookup_sku",
+      "outcome": "denied",
+      "error_code": "TOOL_NOT_FOUND"
+    },
+    {
+      "audit_id": "8ddfc2ff-46ee-4566-9d16-a6a0828e7903",
+      "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+      "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+      "auth_source": "api_key",
+      "public_tool_name": "woocommerce__list_products",
+      "outcome": "success",
+      "error_code": null
+    },
+    {
+      "audit_id": "483270c6-60a8-481a-b115-b42fd4bcc8f5",
+      "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+      "key_id": "eabd2d81-118b-4ed5-92bf-c2c01e744013",
+      "auth_source": "api_key",
+      "public_tool_name": "woocommerce__list_products",
+      "outcome": "denied",
+      "error_code": "KEY_REVOKED"
+    },
+    {
+      "audit_id": "06205f27-9076-4fc3-8cfc-faef5ea6782a",
+      "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+      "key_id": "eabd2d81-118b-4ed5-92bf-c2c01e744013",
+      "auth_source": "api_key",
+      "public_tool_name": "woocommerce__list_products",
+      "outcome": "denied",
+      "error_code": "KEY_REVOKED"
+    },
+    {
+      "audit_id": "bb9ede46-19fc-4283-83dc-ff502c1f9966",
+      "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+      "key_id": "eabd2d81-118b-4ed5-92bf-c2c01e744013",
+      "auth_source": "api_key",
+      "public_tool_name": "woocommerce__list_products",
+      "outcome": "success",
+      "error_code": null
+    }
+  ]
+}

@@ -1,0 +1,266 @@
+{
+  "checked_at": "2026-10-24T09:56:20.142474+00:00",
+  "endpoint": "https://dashboard-m10.urumi.test/mcp",
+  "transport": "Streamable HTTP",
+  "selected_key_id": "cdf98e76-8f53-4516-9dbd-54e69d7c071f",
+  "K2": "Succeeded",
+  "K3": "Succeeded",
+  "K4": "Succeeded",
+  "K5": "Succeeded",
+  "calls": [
+    {
+      "tool": "woocommerce__list_orders",
+      "arguments": {
+        "page": 1,
+        "per_page": 50,
+        "created_from": "2026-10-24T00:00:00+05:30",
+        "created_to": "2026-10-24T23:59:59.999999+05:30"
+      },
+      "result": {
+        "items": [],
+        "page": 1,
+        "per_page": 50,
+        "has_more": false
+      }
+    },
+    {
+      "tool": "woocommerce__get_order",
+      "arguments": {
+        "order_id": 21
+      },
+      "result": {
+        "order": {
+          "id": 21,
+          "number": "21",
+          "status": "processing",
+          "currency": "INR",
+          "total": "499.00",
+          "date_created": "2026-10-23T04:03:57Z",
+          "line_items": [
+            {
+              "product_id": 12,
+              "name": "Urumi Demo Product",
+              "sku": "DEMO-001",
+              "quantity": 1,
+              "total": "499.00"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tool": "woocommerce__list_products",
+      "arguments": {
+        "sku": "DEMO-001",
+        "per_page": 50
+      },
+      "result": {
+        "items": [
+          {
+            "id": 12,
+            "name": "Urumi Demo Product",
+            "sku": "DEMO-001",
+            "status": "publish",
+            "permalink": "http://shop-m10.urumi.test/product/urumi-demo-product/",
+            "price": "499.00",
+            "regular_price": "499.00",
+            "currency": "INR"
+          }
+        ],
+        "page": 1,
+        "per_page": 50,
+        "has_more": false
+      }
+    },
+    {
+      "tool": "inventory__lookup_sku",
+      "arguments": {
+        "sku": "DEMO-001"
+      },
+      "result": {
+        "sku": "DEMO-001",
+        "found": true,
+        "warehouses": [
+          {
+            "name": "Bengaluru",
+            "quantity": 12
+          }
+        ]
+      }
+    }
+  ],
+  "provider_calls": 0,
+  "shop_write_calls": 0,
+  "member_B_id": "b22d3f72-c947-4101-9068-6d7024494aa5",
+  "discovered_tools": [
+    "inventory__lookup_sku",
+    "woocommerce__create_product",
+    "woocommerce__get_order",
+    "woocommerce__list_orders",
+    "woocommerce__list_products",
+    "woocommerce__update_order_status",
+    "learn__microsoft_code_sample_search",
+    "learn__microsoft_docs_fetch",
+    "learn__microsoft_docs_search"
+  ],
+  "enabled_server_slugs": [
+    "learn",
+    "inventory",
+    "woocommerce"
+  ],
+  "tls_verified": true,
+  "upstream_credentials_given_to_client": false,
+  "today_IST": "2026-10-24",
+  "today_order_count": 0,
+  "audit": [
+    {
+      "audit_id": "38f5d29b-8ba0-41ac-ac59-4c3799d837b7",
+      "request_id": "6465f69a-544e-4dd3-af0a-06dce473cf85",
+      "user_id": "b22d3f72-c947-4101-9068-6d7024494aa5",
+      "key_id": "cdf98e76-8f53-4516-9dbd-54e69d7c071f",
+      "auth_source": "api_key",
+      "public_tool_name": "inventory__lookup_sku",
+      "upstream_tool_name": "lookup_sku",
+      "outcome": "success",
+      "started_at": "2026-10-24T09:56:24.370102Z",
+      "duration_ms": 279
+    },
+    {
+      "audit_id": "e2de8cae-8892-4133-94c0-cba553af7e5d",
+      "request_id": "2a9453d8-a918-4be2-a08f-b2602fd6d641",
+      "user_id": "b22d3f72-c947-4101-9068-6d7024494aa5",
+      "key_id": "cdf98e76-8f53-4516-9dbd-54e69d7c071f",
+      "auth_source": "api_key",
+      "public_tool_name": "woocommerce__list_products",
+      "upstream_tool_name": "list_products",
+      "outcome": "success",
+      "started_at": "2026-10-24T09:56:23.827578Z",
+      "duration_ms": 491
+    },
+    {
+      "audit_id": "d6a63508-de5d-42d1-b15d-f10a0551020a",
+      "request_id": "92a881fe-aadc-4a13-97f7-421dc7cb9cbd",
+      "user_id": "b22d3f72-c947-4101-9068-6d7024494aa5",
+      "key_id": "cdf98e76-8f53-4516-9dbd-54e69d7c071f",
+      "auth_source": "api_key",
+      "public_tool_name": "woocommerce__get_order",
+      "upstream_tool_name": "get_order",
+      "outcome": "success",
+      "started_at": "2026-10-24T09:56:23.190257Z",
+      "duration_ms": 497
+    },
+    {
+      "audit_id": "b41aa0a8-ee86-48b6-b9ac-7f8e064431fb",
+      "request_id": "1c134363-fe65-43e5-9e01-009d0bd40cb1",
+      "user_id": "b22d3f72-c947-4101-9068-6d7024494aa5",
+      "key_id": "cdf98e76-8f53-4516-9dbd-54e69d7c071f",
+      "auth_source": "api_key",
+      "public_tool_name": "woocommerce__list_orders",
+      "upstream_tool_name": "list_orders",
+      "outcome": "success",
+      "started_at": "2026-10-24T09:56:22.094736Z",
+      "duration_ms": 961
+    }
+  ],
+  "negative_auth": [
+    {
+      "key_case": "missing",
+      "method": "initialize",
+      "http_status": 401,
+      "error_code": "UNAUTHENTICATED",
+      "request_id": "d8627dca-3089-400f-baf3-44c2c769c395"
+    },
+    {
+      "key_case": "missing",
+      "method": "tools/call",
+      "http_status": 401,
+      "error_code": "UNAUTHENTICATED",
+      "request_id": "fff762a2-f10f-40de-a94c-0a7e5b447c58"
+    },
+    {
+      "key_case": "wrong",
+      "method": "initialize",
+      "http_status": 401,
+      "error_code": "UNAUTHENTICATED",
+      "request_id": "492944a1-233b-4445-b221-0a982ac36af0"
+    },
+    {
+      "key_case": "wrong",
+      "method": "tools/call",
+      "http_status": 401,
+      "error_code": "UNAUTHENTICATED",
+      "request_id": "0f7c20b3-c97a-4854-8e9f-f52ee5bbd399"
+    }
+  ],
+  "denied_audit": [
+    {
+      "audit_id": "449d4917-2388-4205-afa2-12e115a91f42",
+      "request_id": "0f7c20b3-c97a-4854-8e9f-f52ee5bbd399",
+      "user_id": null,
+      "key_id": null,
+      "outcome": "denied",
+      "upstream_tool_name": null
+    },
+    {
+      "audit_id": "96e8bce1-e470-4b01-b8d0-596e751c5053",
+      "request_id": "fff762a2-f10f-40de-a94c-0a7e5b447c58",
+      "user_id": null,
+      "key_id": null,
+      "outcome": "denied",
+      "upstream_tool_name": null
+    }
+  ],
+  "control_key_id": "acf44edd-35bb-4ffa-89e5-7f0f91ee3520",
+  "control_key_prefix": "ugw_acf44edd",
+  "selected_session_kept_open": true,
+  "K5_detail": {
+    "selected_key_revoked": true,
+    "open_session_next_call_denied": true,
+    "denial_audit": {
+      "audit_id": "dbebfeba-80b4-4d94-9b50-389fccfce34b",
+      "request_id": "ba5b8b5b-5a1f-485e-baa7-0276c3f679f8",
+      "user_id": "b22d3f72-c947-4101-9068-6d7024494aa5",
+      "key_id": "cdf98e76-8f53-4516-9dbd-54e69d7c071f",
+      "auth_source": "api_key",
+      "public_tool_name": "inventory__lookup_sku",
+      "upstream_tool_name": null,
+      "outcome": "denied",
+      "error_code": "KEY_REVOKED",
+      "started_at": "2026-10-24T10:05:21.634571Z"
+    },
+    "newly_issued_control_not_retested_after_transport_shutdown": true,
+    "alternate_control": {
+      "id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+      "prefix": "ugw_eef85311",
+      "created_at": "2026-10-20T04:27:01.973675Z",
+      "revoked_at": null
+    },
+    "alternate_control_existed_before_revocation": true,
+    "alternate_control_result": {
+      "sku": "DEMO-001",
+      "found": true,
+      "warehouses": [
+        {
+          "name": "Bengaluru",
+          "quantity": 12
+        }
+      ]
+    },
+    "alternate_control_audit": {
+      "audit_id": "de681dec-03ef-45e5-91de-db9c3df45abe",
+      "request_id": "70c472fa-c810-43e4-a7ef-0342af93dfdc",
+      "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+      "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+      "auth_source": "api_key",
+      "public_tool_name": "inventory__lookup_sku",
+      "upstream_tool_name": "lookup_sku",
+      "outcome": "success",
+      "error_code": null,
+      "started_at": "2026-10-24T10:07:44.520658Z"
+    },
+    "B_browser_chat_confirmation": "User confirmed; no new operator browser retest",
+    "SDK_transport_shutdown_type": "ExceptionGroup",
+    "complete_controlled_repeat": "k5-verification.json",
+    "original_client_process_closed_after_denial": true
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "action": "chat-orders",
+  "checked_at": "2026-10-20T04:27:21.095Z",
+  "tls_verification": "browser_default",
+  "checks": [
+    "real_dashboard_chat_response"
+  ],
+  "http_status": 200,
+  "reply": {
+    "answer": "Here are the orders that were created between 18:30 UTC on 19 Oct 2026 and 04:27 UTC on 20 Oct 2026 (which corresponds to 00:00 – 10:00 Asia/Kolkata time for that day):\n\n| Order ID | Status      | Total (INR) | Items (quantity × total) |\n|----------|-------------|-------------|--------------------------|\n| **16**   | `processing` | **499.00**  | • 1 × 499.00 – `Urumi Demo Product` (SKU: DEMO-001) |\n\n- **Order 16**  \n  - **Status:** `processing`  \n  - **Total:** ₹ 499.00  \n  - **Items:** one unit of *Urumi Demo Product* (SKU DEMO‑001) costing ₹ 499.00.\n\nNo other orders fall within the specified time window.",
+    "state": "completed",
+    "request_id": "faa0abb6-5f7b-4716-a668-3630ea41cf89",
+    "tool_calls": [
+      {
+        "tool_name": "woocommerce__list_orders",
+        "outcome": "success",
+        "audit_id": "5cd061d8-9dfe-46b4-ae85-e1660f2f2646"
+      }
+    ]
+  },
+  "status": "PASS"
+}

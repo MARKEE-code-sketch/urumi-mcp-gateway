@@ -1,0 +1,1453 @@
+﻿UTC: 2026-10-14T17:49:34.8943100Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "pvc" "urumi-foundation-data" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "kind": "PersistentVolumeClaim",
+    "metadata": {
+        "annotations": {
+            "helm.sh/resource-policy": "keep",
+            "meta.helm.sh/release-name": "urumi",
+            "meta.helm.sh/release-namespace": "urumi",
+            "pv.kubernetes.io/bind-completed": "yes",
+            "pv.kubernetes.io/bound-by-controller": "yes",
+            "volume.beta.kubernetes.io/storage-provisioner": "rancher.io/local-path",
+            "volume.kubernetes.io/selected-node": "k3d-urumi-server-0",
+            "volume.kubernetes.io/storage-provisioner": "rancher.io/local-path"
+        },
+        "creationTimestamp": "2026-10-14T17:00:00Z",
+        "finalizers": [
+            "kubernetes.io/pvc-protection"
+        ],
+        "labels": {
+            "app.kubernetes.io/component": "foundation",
+            "app.kubernetes.io/instance": "urumi",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "urumi",
+            "helm.sh/chart": "urumi-0.1.0"
+        },
+        "name": "urumi-foundation-data",
+        "namespace": "urumi",
+        "resourceVersion": "2945",
+        "uid": "c6f386c1-ef1e-4996-ab86-ed888999226e"
+    },
+    "spec": {
+        "accessModes": [
+            "ReadWriteOnce"
+        ],
+        "resources": {
+            "requests": {
+                "storage": "1Gi"
+            }
+        },
+        "storageClassName": "local-path",
+        "volumeMode": "Filesystem",
+        "volumeName": "pvc-c6f386c1-ef1e-4996-ab86-ed888999226e"
+    },
+    "status": {
+        "accessModes": [
+            "ReadWriteOnce"
+        ],
+        "capacity": {
+            "storage": "1Gi"
+        },
+        "phase": "Bound"
+    }
+}
+
+
+UTC: 2026-10-14T17:49:37.4975969Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "delete" "job" "m1-check-allowed-bc6eb79139 m1-check-denied-db4aaa81d2 m1-check-allowed-6f8c5a8090 m1-check-denied-629d6a2c21 m1-check-allowed-5dc153bcf8 m1-check-denied-d22968e6b1 m1-check-allowed-cba0db6318 m1-check-denied-46c1717932 m1-check-allowed-73e545496e" "--ignore-not-found=true" "--wait=true" "--timeout=30s"
+Exit: 0
+
+
+UTC: 2026-10-14T17:49:37.9963213Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "deployment,service,ingress,configmap,networkpolicy" "-l" "app.kubernetes.io/instance=urumi,app.kubernetes.io/component=foundation" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-14T17:49:38.2338089Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "pvc" "urumi-foundation-data" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "kind": "PersistentVolumeClaim",
+    "metadata": {
+        "annotations": {
+            "helm.sh/resource-policy": "keep",
+            "meta.helm.sh/release-name": "urumi",
+            "meta.helm.sh/release-namespace": "urumi",
+            "pv.kubernetes.io/bind-completed": "yes",
+            "pv.kubernetes.io/bound-by-controller": "yes",
+            "volume.beta.kubernetes.io/storage-provisioner": "rancher.io/local-path",
+            "volume.kubernetes.io/selected-node": "k3d-urumi-server-0",
+            "volume.kubernetes.io/storage-provisioner": "rancher.io/local-path"
+        },
+        "creationTimestamp": "2026-10-14T17:00:00Z",
+        "finalizers": [
+            "kubernetes.io/pvc-protection"
+        ],
+        "labels": {
+            "app.kubernetes.io/component": "foundation",
+            "app.kubernetes.io/instance": "urumi",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "urumi",
+            "helm.sh/chart": "urumi-0.1.0"
+        },
+        "name": "urumi-foundation-data",
+        "namespace": "urumi",
+        "resourceVersion": "2945",
+        "uid": "c6f386c1-ef1e-4996-ab86-ed888999226e"
+    },
+    "spec": {
+        "accessModes": [
+            "ReadWriteOnce"
+        ],
+        "resources": {
+            "requests": {
+                "storage": "1Gi"
+            }
+        },
+        "storageClassName": "local-path",
+        "volumeMode": "Filesystem",
+        "volumeName": "pvc-c6f386c1-ef1e-4996-ab86-ed888999226e"
+    },
+    "status": {
+        "accessModes": [
+            "ReadWriteOnce"
+        ],
+        "capacity": {
+            "storage": "1Gi"
+        },
+        "phase": "Bound"
+    }
+}
+
+
+UTC: 2026-10-14T18:02:55.4889225Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "pvc" "urumi-foundation-data" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "kind": "PersistentVolumeClaim",
+    "metadata": {
+        "annotations": {
+            "helm.sh/resource-policy": "keep",
+            "meta.helm.sh/release-name": "urumi",
+            "meta.helm.sh/release-namespace": "urumi",
+            "pv.kubernetes.io/bind-completed": "yes",
+            "pv.kubernetes.io/bound-by-controller": "yes",
+            "volume.beta.kubernetes.io/storage-provisioner": "rancher.io/local-path",
+            "volume.kubernetes.io/selected-node": "k3d-urumi-server-0",
+            "volume.kubernetes.io/storage-provisioner": "rancher.io/local-path"
+        },
+        "creationTimestamp": "2026-10-14T17:00:00Z",
+        "finalizers": [
+            "kubernetes.io/pvc-protection"
+        ],
+        "labels": {
+            "app.kubernetes.io/component": "foundation",
+            "app.kubernetes.io/instance": "urumi",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "urumi",
+            "helm.sh/chart": "urumi-0.1.0"
+        },
+        "name": "urumi-foundation-data",
+        "namespace": "urumi",
+        "resourceVersion": "2945",
+        "uid": "c6f386c1-ef1e-4996-ab86-ed888999226e"
+    },
+    "spec": {
+        "accessModes": [
+            "ReadWriteOnce"
+        ],
+        "resources": {
+            "requests": {
+                "storage": "1Gi"
+            }
+        },
+        "storageClassName": "local-path",
+        "volumeMode": "Filesystem",
+        "volumeName": "pvc-c6f386c1-ef1e-4996-ab86-ed888999226e"
+    },
+    "status": {
+        "accessModes": [
+            "ReadWriteOnce"
+        ],
+        "capacity": {
+            "storage": "1Gi"
+        },
+        "phase": "Bound"
+    }
+}
+
+
+UTC: 2026-10-14T18:02:56.7008408Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "job" "m1-check-allowed-bc6eb79139" "--ignore-not-found=true" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "batch/v1",
+    "kind": "Job",
+    "metadata": {
+        "creationTimestamp": "2026-10-14T17:00:46Z",
+        "generation": 1,
+        "labels": {
+            "app.kubernetes.io/instance": "urumi",
+            "m1-access": "allowed",
+            "m1-check": "true"
+        },
+        "name": "m1-check-allowed-bc6eb79139",
+        "namespace": "urumi",
+        "resourceVersion": "3006",
+        "uid": "e2ecbddd-a0c8-4246-9b55-34257fe4cbf0"
+    },
+    "spec": {
+        "activeDeadlineSeconds": 30,
+        "backoffLimit": 0,
+        "completionMode": "NonIndexed",
+        "completions": 1,
+        "manualSelector": false,
+        "parallelism": 1,
+        "podReplacementPolicy": "TerminatingOrFailed",
+        "selector": {
+            "matchLabels": {
+                "batch.kubernetes.io/controller-uid": "e2ecbddd-a0c8-4246-9b55-34257fe4cbf0"
+            }
+        },
+        "suspend": false,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "batch.kubernetes.io/controller-uid": "e2ecbddd-a0c8-4246-9b55-34257fe4cbf0",
+                    "batch.kubernetes.io/job-name": "m1-check-allowed-bc6eb79139",
+                    "controller-uid": "e2ecbddd-a0c8-4246-9b55-34257fe4cbf0",
+                    "job-name": "m1-check-allowed-bc6eb79139",
+                    "m1-access": "allowed",
+                    "m1-check": "true"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-u",
+                            "-c",
+                            "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout)):\n            print(\"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                            "allowed"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "caller",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 1000,
+                    "runAsNonRoot": true,
+                    "runAsUser": 1000,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "terminationGracePeriodSeconds": 30
+            }
+        }
+    },
+    "status": {
+        "completionTime": "2026-10-14T17:00:56Z",
+        "conditions": [
+            {
+                "lastProbeTime": "2026-10-14T17:00:56Z",
+                "lastTransitionTime": "2026-10-14T17:00:56Z",
+                "message": "Reached expected number of succeeded pods",
+                "reason": "CompletionsReached",
+                "status": "True",
+                "type": "SuccessCriteriaMet"
+            },
+            {
+                "lastProbeTime": "2026-10-14T17:00:56Z",
+                "lastTransitionTime": "2026-10-14T17:00:56Z",
+                "message": "Reached expected number of succeeded pods",
+                "reason": "CompletionsReached",
+                "status": "True",
+                "type": "Complete"
+            }
+        ],
+        "ready": 0,
+        "startTime": "2026-10-14T17:00:46Z",
+        "succeeded": 1,
+        "terminating": 0,
+        "uncountedTerminatedPods": {}
+    }
+}
+
+
+UTC: 2026-10-14T18:02:57.1181170Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "delete" "job" "m1-check-allowed-bc6eb79139" "--cascade=foreground" "--wait=true" "--timeout=30s"
+Exit: 0
+job.batch "m1-check-allowed-bc6eb79139" deleted from urumi namespace
+
+
+UTC: 2026-10-14T18:02:57.3533888Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "job" "m1-check-denied-db4aaa81d2" "--ignore-not-found=true" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "batch/v1",
+    "kind": "Job",
+    "metadata": {
+        "creationTimestamp": "2026-10-14T17:00:58Z",
+        "generation": 1,
+        "labels": {
+            "app.kubernetes.io/instance": "urumi",
+            "m1-access": "denied",
+            "m1-check": "true"
+        },
+        "name": "m1-check-denied-db4aaa81d2",
+        "namespace": "urumi",
+        "resourceVersion": "3030",
+        "uid": "505e14cd-dbf2-4ce8-9170-ffaf7612ac14"
+    },
+    "spec": {
+        "activeDeadlineSeconds": 30,
+        "backoffLimit": 0,
+        "completionMode": "NonIndexed",
+        "completions": 1,
+        "manualSelector": false,
+        "parallelism": 1,
+        "podReplacementPolicy": "TerminatingOrFailed",
+        "selector": {
+            "matchLabels": {
+                "batch.kubernetes.io/controller-uid": "505e14cd-dbf2-4ce8-9170-ffaf7612ac14"
+            }
+        },
+        "suspend": false,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "batch.kubernetes.io/controller-uid": "505e14cd-dbf2-4ce8-9170-ffaf7612ac14",
+                    "batch.kubernetes.io/job-name": "m1-check-denied-db4aaa81d2",
+                    "controller-uid": "505e14cd-dbf2-4ce8-9170-ffaf7612ac14",
+                    "job-name": "m1-check-denied-db4aaa81d2",
+                    "m1-access": "denied",
+                    "m1-check": "true"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-u",
+                            "-c",
+                            "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout)):\n            print(\"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                            "allowed"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "caller",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 1000,
+                    "runAsNonRoot": true,
+                    "runAsUser": 1000,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "terminationGracePeriodSeconds": 30
+            }
+        }
+    },
+    "status": {
+        "completionTime": "2026-10-14T17:01:07Z",
+        "conditions": [
+            {
+                "lastProbeTime": "2026-10-14T17:01:07Z",
+                "lastTransitionTime": "2026-10-14T17:01:07Z",
+                "message": "Reached expected number of succeeded pods",
+                "reason": "CompletionsReached",
+                "status": "True",
+                "type": "SuccessCriteriaMet"
+            },
+            {
+                "lastProbeTime": "2026-10-14T17:01:07Z",
+                "lastTransitionTime": "2026-10-14T17:01:07Z",
+                "message": "Reached expected number of succeeded pods",
+                "reason": "CompletionsReached",
+                "status": "True",
+                "type": "Complete"
+            }
+        ],
+        "ready": 0,
+        "startTime": "2026-10-14T17:00:58Z",
+        "succeeded": 1,
+        "terminating": 0,
+        "uncountedTerminatedPods": {}
+    }
+}
+
+
+UTC: 2026-10-14T18:02:57.7056272Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "delete" "job" "m1-check-denied-db4aaa81d2" "--cascade=foreground" "--wait=true" "--timeout=30s"
+Exit: 0
+job.batch "m1-check-denied-db4aaa81d2" deleted from urumi namespace
+
+
+UTC: 2026-10-14T18:02:57.9516254Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "job" "m1-check-allowed-6f8c5a8090" "--ignore-not-found=true" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "batch/v1",
+    "kind": "Job",
+    "metadata": {
+        "creationTimestamp": "2026-10-14T17:01:10Z",
+        "generation": 1,
+        "labels": {
+            "app.kubernetes.io/instance": "urumi",
+            "m1-access": "allowed",
+            "m1-check": "true"
+        },
+        "name": "m1-check-allowed-6f8c5a8090",
+        "namespace": "urumi",
+        "resourceVersion": "3060",
+        "uid": "b56d2631-128f-431c-9473-aa17cd86d958"
+    },
+    "spec": {
+        "activeDeadlineSeconds": 30,
+        "backoffLimit": 0,
+        "completionMode": "NonIndexed",
+        "completions": 1,
+        "manualSelector": false,
+        "parallelism": 1,
+        "podReplacementPolicy": "TerminatingOrFailed",
+        "selector": {
+            "matchLabels": {
+                "batch.kubernetes.io/controller-uid": "b56d2631-128f-431c-9473-aa17cd86d958"
+            }
+        },
+        "suspend": false,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "batch.kubernetes.io/controller-uid": "b56d2631-128f-431c-9473-aa17cd86d958",
+                    "batch.kubernetes.io/job-name": "m1-check-allowed-6f8c5a8090",
+                    "controller-uid": "b56d2631-128f-431c-9473-aa17cd86d958",
+                    "job-name": "m1-check-allowed-6f8c5a8090",
+                    "m1-access": "allowed",
+                    "m1-check": "true"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-u",
+                            "-c",
+                            "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout)):\n            print(\"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                            "allowed"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "caller",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 1000,
+                    "runAsNonRoot": true,
+                    "runAsUser": 1000,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "terminationGracePeriodSeconds": 30
+            }
+        }
+    },
+    "status": {
+        "completionTime": "2026-10-14T17:01:21Z",
+        "conditions": [
+            {
+                "lastProbeTime": "2026-10-14T17:01:21Z",
+                "lastTransitionTime": "2026-10-14T17:01:21Z",
+                "message": "Reached expected number of succeeded pods",
+                "reason": "CompletionsReached",
+                "status": "True",
+                "type": "SuccessCriteriaMet"
+            },
+            {
+                "lastProbeTime": "2026-10-14T17:01:22Z",
+                "lastTransitionTime": "2026-10-14T17:01:22Z",
+                "message": "Reached expected number of succeeded pods",
+                "reason": "CompletionsReached",
+                "status": "True",
+                "type": "Complete"
+            }
+        ],
+        "ready": 0,
+        "startTime": "2026-10-14T17:01:10Z",
+        "succeeded": 1,
+        "terminating": 0,
+        "uncountedTerminatedPods": {}
+    }
+}
+
+
+UTC: 2026-10-14T18:02:58.2794909Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "delete" "job" "m1-check-allowed-6f8c5a8090" "--cascade=foreground" "--wait=true" "--timeout=30s"
+Exit: 0
+job.batch "m1-check-allowed-6f8c5a8090" deleted from urumi namespace
+
+
+UTC: 2026-10-14T18:02:58.5622587Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "job" "m1-check-denied-629d6a2c21" "--ignore-not-found=true" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "batch/v1",
+    "kind": "Job",
+    "metadata": {
+        "creationTimestamp": "2026-10-14T17:01:23Z",
+        "generation": 1,
+        "labels": {
+            "app.kubernetes.io/instance": "urumi",
+            "m1-access": "denied",
+            "m1-check": "true"
+        },
+        "name": "m1-check-denied-629d6a2c21",
+        "namespace": "urumi",
+        "resourceVersion": "3088",
+        "uid": "c0196d67-9a82-4360-a38f-db68e4b8f646"
+    },
+    "spec": {
+        "activeDeadlineSeconds": 30,
+        "backoffLimit": 0,
+        "completionMode": "NonIndexed",
+        "completions": 1,
+        "manualSelector": false,
+        "parallelism": 1,
+        "podReplacementPolicy": "TerminatingOrFailed",
+        "selector": {
+            "matchLabels": {
+                "batch.kubernetes.io/controller-uid": "c0196d67-9a82-4360-a38f-db68e4b8f646"
+            }
+        },
+        "suspend": false,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "batch.kubernetes.io/controller-uid": "c0196d67-9a82-4360-a38f-db68e4b8f646",
+                    "batch.kubernetes.io/job-name": "m1-check-denied-629d6a2c21",
+                    "controller-uid": "c0196d67-9a82-4360-a38f-db68e4b8f646",
+                    "job-name": "m1-check-denied-629d6a2c21",
+                    "m1-access": "denied",
+                    "m1-check": "true"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-u",
+                            "-c",
+                            "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout)):\n            print(\"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                            "denied"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "caller",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 1000,
+                    "runAsNonRoot": true,
+                    "runAsUser": 1000,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "terminationGracePeriodSeconds": 30
+            }
+        }
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": "2026-10-14T17:01:35Z",
+                "lastTransitionTime": "2026-10-14T17:01:35Z",
+                "message": "Job has reached the specified backoff limit",
+                "reason": "BackoffLimitExceeded",
+                "status": "True",
+                "type": "FailureTarget"
+            },
+            {
+                "lastProbeTime": "2026-10-14T17:01:35Z",
+                "lastTransitionTime": "2026-10-14T17:01:35Z",
+                "message": "Job has reached the specified backoff limit",
+                "reason": "BackoffLimitExceeded",
+                "status": "True",
+                "type": "Failed"
+            }
+        ],
+        "failed": 1,
+        "ready": 0,
+        "startTime": "2026-10-14T17:01:23Z",
+        "terminating": 0,
+        "uncountedTerminatedPods": {}
+    }
+}
+
+
+UTC: 2026-10-14T18:02:58.8969583Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "delete" "job" "m1-check-denied-629d6a2c21" "--cascade=foreground" "--wait=true" "--timeout=30s"
+Exit: 0
+job.batch "m1-check-denied-629d6a2c21" deleted from urumi namespace
+
+
+UTC: 2026-10-14T18:02:59.1303404Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "job" "m1-check-allowed-5dc153bcf8" "--ignore-not-found=true" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "batch/v1",
+    "kind": "Job",
+    "metadata": {
+        "creationTimestamp": "2026-10-14T17:03:40Z",
+        "generation": 1,
+        "labels": {
+            "app.kubernetes.io/instance": "urumi",
+            "m1-access": "allowed",
+            "m1-check": "true"
+        },
+        "name": "m1-check-allowed-5dc153bcf8",
+        "namespace": "urumi",
+        "resourceVersion": "3164",
+        "uid": "93409eec-1134-4a25-848d-05b47ec128aa"
+    },
+    "spec": {
+        "activeDeadlineSeconds": 30,
+        "backoffLimit": 0,
+        "completionMode": "NonIndexed",
+        "completions": 1,
+        "manualSelector": false,
+        "parallelism": 1,
+        "podReplacementPolicy": "TerminatingOrFailed",
+        "selector": {
+            "matchLabels": {
+                "batch.kubernetes.io/controller-uid": "93409eec-1134-4a25-848d-05b47ec128aa"
+            }
+        },
+        "suspend": false,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "batch.kubernetes.io/controller-uid": "93409eec-1134-4a25-848d-05b47ec128aa",
+                    "batch.kubernetes.io/job-name": "m1-check-allowed-5dc153bcf8",
+                    "controller-uid": "93409eec-1134-4a25-848d-05b47ec128aa",
+                    "job-name": "m1-check-allowed-5dc153bcf8",
+                    "m1-access": "allowed",
+                    "m1-check": "true"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-u",
+                            "-c",
+                            "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout, ConnectionRefusedError)):\n            print(\"TCP_REJECTED_AFTER_DNS\" if isinstance(reason, ConnectionRefusedError) else \"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                            "allowed"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "caller",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 1000,
+                    "runAsNonRoot": true,
+                    "runAsUser": 1000,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "terminationGracePeriodSeconds": 30
+            }
+        }
+    },
+    "status": {
+        "completionTime": "2026-10-14T17:03:50Z",
+        "conditions": [
+            {
+                "lastProbeTime": "2026-10-14T17:03:50Z",
+                "lastTransitionTime": "2026-10-14T17:03:50Z",
+                "message": "Reached expected number of succeeded pods",
+                "reason": "CompletionsReached",
+                "status": "True",
+                "type": "SuccessCriteriaMet"
+            },
+            {
+                "lastProbeTime": "2026-10-14T17:03:50Z",
+                "lastTransitionTime": "2026-10-14T17:03:50Z",
+                "message": "Reached expected number of succeeded pods",
+                "reason": "CompletionsReached",
+                "status": "True",
+                "type": "Complete"
+            }
+        ],
+        "ready": 0,
+        "startTime": "2026-10-14T17:03:40Z",
+        "succeeded": 1,
+        "terminating": 0,
+        "uncountedTerminatedPods": {}
+    }
+}
+
+
+UTC: 2026-10-14T18:02:59.4749544Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "delete" "job" "m1-check-allowed-5dc153bcf8" "--cascade=foreground" "--wait=true" "--timeout=30s"
+Exit: 0
+job.batch "m1-check-allowed-5dc153bcf8" deleted from urumi namespace
+
+
+UTC: 2026-10-14T18:02:59.7119999Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "job" "m1-check-denied-d22968e6b1" "--ignore-not-found=true" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "batch/v1",
+    "kind": "Job",
+    "metadata": {
+        "creationTimestamp": "2026-10-14T17:03:52Z",
+        "generation": 1,
+        "labels": {
+            "app.kubernetes.io/instance": "urumi",
+            "m1-access": "denied",
+            "m1-check": "true"
+        },
+        "name": "m1-check-denied-d22968e6b1",
+        "namespace": "urumi",
+        "resourceVersion": "3188",
+        "uid": "a38ba6f3-c708-4c2d-a01f-b49ec5b3ae09"
+    },
+    "spec": {
+        "activeDeadlineSeconds": 30,
+        "backoffLimit": 0,
+        "completionMode": "NonIndexed",
+        "completions": 1,
+        "manualSelector": false,
+        "parallelism": 1,
+        "podReplacementPolicy": "TerminatingOrFailed",
+        "selector": {
+            "matchLabels": {
+                "batch.kubernetes.io/controller-uid": "a38ba6f3-c708-4c2d-a01f-b49ec5b3ae09"
+            }
+        },
+        "suspend": false,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "batch.kubernetes.io/controller-uid": "a38ba6f3-c708-4c2d-a01f-b49ec5b3ae09",
+                    "batch.kubernetes.io/job-name": "m1-check-denied-d22968e6b1",
+                    "controller-uid": "a38ba6f3-c708-4c2d-a01f-b49ec5b3ae09",
+                    "job-name": "m1-check-denied-d22968e6b1",
+                    "m1-access": "denied",
+                    "m1-check": "true"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-u",
+                            "-c",
+                            "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout, ConnectionRefusedError)):\n            print(\"TCP_REJECTED_AFTER_DNS\" if isinstance(reason, ConnectionRefusedError) else \"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                            "allowed"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "caller",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 1000,
+                    "runAsNonRoot": true,
+                    "runAsUser": 1000,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "terminationGracePeriodSeconds": 30
+            }
+        }
+    },
+    "status": {
+        "completionTime": "2026-10-14T17:04:02Z",
+        "conditions": [
+            {
+                "lastProbeTime": "2026-10-14T17:04:02Z",
+                "lastTransitionTime": "2026-10-14T17:04:02Z",
+                "message": "Reached expected number of succeeded pods",
+                "reason": "CompletionsReached",
+                "status": "True",
+                "type": "SuccessCriteriaMet"
+            },
+            {
+                "lastProbeTime": "2026-10-14T17:04:02Z",
+                "lastTransitionTime": "2026-10-14T17:04:02Z",
+                "message": "Reached expected number of succeeded pods",
+                "reason": "CompletionsReached",
+                "status": "True",
+                "type": "Complete"
+            }
+        ],
+        "ready": 0,
+        "startTime": "2026-10-14T17:03:52Z",
+        "succeeded": 1,
+        "terminating": 0,
+        "uncountedTerminatedPods": {}
+    }
+}
+
+
+UTC: 2026-10-14T18:03:00.0473428Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "delete" "job" "m1-check-denied-d22968e6b1" "--cascade=foreground" "--wait=true" "--timeout=30s"
+Exit: 0
+job.batch "m1-check-denied-d22968e6b1" deleted from urumi namespace
+
+
+UTC: 2026-10-14T18:03:00.2869982Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "job" "m1-check-allowed-cba0db6318" "--ignore-not-found=true" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "batch/v1",
+    "kind": "Job",
+    "metadata": {
+        "creationTimestamp": "2026-10-14T17:04:06Z",
+        "generation": 1,
+        "labels": {
+            "app.kubernetes.io/instance": "urumi",
+            "m1-access": "allowed",
+            "m1-check": "true"
+        },
+        "name": "m1-check-allowed-cba0db6318",
+        "namespace": "urumi",
+        "resourceVersion": "3219",
+        "uid": "a6c2684e-e3f5-4357-b921-3bbb2a0c7233"
+    },
+    "spec": {
+        "activeDeadlineSeconds": 30,
+        "backoffLimit": 0,
+        "completionMode": "NonIndexed",
+        "completions": 1,
+        "manualSelector": false,
+        "parallelism": 1,
+        "podReplacementPolicy": "TerminatingOrFailed",
+        "selector": {
+            "matchLabels": {
+                "batch.kubernetes.io/controller-uid": "a6c2684e-e3f5-4357-b921-3bbb2a0c7233"
+            }
+        },
+        "suspend": false,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "batch.kubernetes.io/controller-uid": "a6c2684e-e3f5-4357-b921-3bbb2a0c7233",
+                    "batch.kubernetes.io/job-name": "m1-check-allowed-cba0db6318",
+                    "controller-uid": "a6c2684e-e3f5-4357-b921-3bbb2a0c7233",
+                    "job-name": "m1-check-allowed-cba0db6318",
+                    "m1-access": "allowed",
+                    "m1-check": "true"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-u",
+                            "-c",
+                            "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout, ConnectionRefusedError)):\n            print(\"TCP_REJECTED_AFTER_DNS\" if isinstance(reason, ConnectionRefusedError) else \"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                            "allowed"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "caller",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 1000,
+                    "runAsNonRoot": true,
+                    "runAsUser": 1000,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "terminationGracePeriodSeconds": 30
+            }
+        }
+    },
+    "status": {
+        "completionTime": "2026-10-14T17:04:17Z",
+        "conditions": [
+            {
+                "lastProbeTime": "2026-10-14T17:04:17Z",
+                "lastTransitionTime": "2026-10-14T17:04:17Z",
+                "message": "Reached expected number of succeeded pods",
+                "reason": "CompletionsReached",
+                "status": "True",
+                "type": "SuccessCriteriaMet"
+            },
+            {
+                "lastProbeTime": "2026-10-14T17:04:17Z",
+                "lastTransitionTime": "2026-10-14T17:04:17Z",
+                "message": "Reached expected number of succeeded pods",
+                "reason": "CompletionsReached",
+                "status": "True",
+                "type": "Complete"
+            }
+        ],
+        "ready": 0,
+        "startTime": "2026-10-14T17:04:06Z",
+        "succeeded": 1,
+        "terminating": 0,
+        "uncountedTerminatedPods": {}
+    }
+}
+
+
+UTC: 2026-10-14T18:03:00.6289116Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "delete" "job" "m1-check-allowed-cba0db6318" "--cascade=foreground" "--wait=true" "--timeout=30s"
+Exit: 0
+job.batch "m1-check-allowed-cba0db6318" deleted from urumi namespace
+
+
+UTC: 2026-10-14T18:03:00.9333761Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "job" "m1-check-denied-46c1717932" "--ignore-not-found=true" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "batch/v1",
+    "kind": "Job",
+    "metadata": {
+        "creationTimestamp": "2026-10-14T17:04:19Z",
+        "generation": 1,
+        "labels": {
+            "app.kubernetes.io/instance": "urumi",
+            "m1-access": "denied",
+            "m1-check": "true"
+        },
+        "name": "m1-check-denied-46c1717932",
+        "namespace": "urumi",
+        "resourceVersion": "3245",
+        "uid": "c5c0b250-1362-4b4d-a0c6-9b8a6c6a698e"
+    },
+    "spec": {
+        "activeDeadlineSeconds": 30,
+        "backoffLimit": 0,
+        "completionMode": "NonIndexed",
+        "completions": 1,
+        "manualSelector": false,
+        "parallelism": 1,
+        "podReplacementPolicy": "TerminatingOrFailed",
+        "selector": {
+            "matchLabels": {
+                "batch.kubernetes.io/controller-uid": "c5c0b250-1362-4b4d-a0c6-9b8a6c6a698e"
+            }
+        },
+        "suspend": false,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "batch.kubernetes.io/controller-uid": "c5c0b250-1362-4b4d-a0c6-9b8a6c6a698e",
+                    "batch.kubernetes.io/job-name": "m1-check-denied-46c1717932",
+                    "controller-uid": "c5c0b250-1362-4b4d-a0c6-9b8a6c6a698e",
+                    "job-name": "m1-check-denied-46c1717932",
+                    "m1-access": "denied",
+                    "m1-check": "true"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-u",
+                            "-c",
+                            "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout, ConnectionRefusedError)):\n            print(\"TCP_REJECTED_AFTER_DNS\" if isinstance(reason, ConnectionRefusedError) else \"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                            "denied"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "caller",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 1000,
+                    "runAsNonRoot": true,
+                    "runAsUser": 1000,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "terminationGracePeriodSeconds": 30
+            }
+        }
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": "2026-10-14T17:04:30Z",
+                "lastTransitionTime": "2026-10-14T17:04:30Z",
+                "message": "Job has reached the specified backoff limit",
+                "reason": "BackoffLimitExceeded",
+                "status": "True",
+                "type": "FailureTarget"
+            },
+            {
+                "lastProbeTime": "2026-10-14T17:04:30Z",
+                "lastTransitionTime": "2026-10-14T17:04:30Z",
+                "message": "Job has reached the specified backoff limit",
+                "reason": "BackoffLimitExceeded",
+                "status": "True",
+                "type": "Failed"
+            }
+        ],
+        "failed": 1,
+        "ready": 0,
+        "startTime": "2026-10-14T17:04:19Z",
+        "terminating": 0,
+        "uncountedTerminatedPods": {}
+    }
+}
+
+
+UTC: 2026-10-14T18:03:01.3022497Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "delete" "job" "m1-check-denied-46c1717932" "--cascade=foreground" "--wait=true" "--timeout=30s"
+Exit: 0
+job.batch "m1-check-denied-46c1717932" deleted from urumi namespace
+
+
+UTC: 2026-10-14T18:03:01.5341467Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "job" "m1-check-allowed-73e545496e" "--ignore-not-found=true" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "batch/v1",
+    "kind": "Job",
+    "metadata": {
+        "creationTimestamp": "2026-10-14T17:04:32Z",
+        "generation": 1,
+        "labels": {
+            "app.kubernetes.io/instance": "urumi",
+            "m1-access": "allowed",
+            "m1-check": "true"
+        },
+        "name": "m1-check-allowed-73e545496e",
+        "namespace": "urumi",
+        "resourceVersion": "3269",
+        "uid": "64bd6c18-3569-4d03-9c60-2a96f923447a"
+    },
+    "spec": {
+        "activeDeadlineSeconds": 30,
+        "backoffLimit": 0,
+        "completionMode": "NonIndexed",
+        "completions": 1,
+        "manualSelector": false,
+        "parallelism": 1,
+        "podReplacementPolicy": "TerminatingOrFailed",
+        "selector": {
+            "matchLabels": {
+                "batch.kubernetes.io/controller-uid": "64bd6c18-3569-4d03-9c60-2a96f923447a"
+            }
+        },
+        "suspend": false,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "app.kubernetes.io/instance": "urumi",
+                    "batch.kubernetes.io/controller-uid": "64bd6c18-3569-4d03-9c60-2a96f923447a",
+                    "batch.kubernetes.io/job-name": "m1-check-allowed-73e545496e",
+                    "controller-uid": "64bd6c18-3569-4d03-9c60-2a96f923447a",
+                    "job-name": "m1-check-allowed-73e545496e",
+                    "m1-access": "allowed",
+                    "m1-check": "true"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "-u",
+                            "-c",
+                            "import socket, urllib.request, urllib.error, time, sys\nhost = \"urumi-foundation.urumi.svc.cluster.local\"\nprint(\"DNS\", socket.gethostbyname(host), flush=True)\ndenied = sys.argv[1] == \"denied\"\ndeadline = time.monotonic() + 25\nwhile True:\n    try:\n        with urllib.request.urlopen(\"http://\" + host + \"/\", timeout=3) as response:\n            text = response.read().decode()\n        if \"Kubernetes is serving this page\" not in text:\n            raise RuntimeError(\"Unexpected page body\")\n        if not denied:\n            print(\"HTTP_MARKER_OK\", flush=True)\n            break\n        if time.monotonic() \u003e= deadline:\n            print(\"DENIAL_NOT_ENFORCED\", flush=True)\n            sys.exit(2)\n        time.sleep(1)\n    except urllib.error.HTTPError:\n        raise\n    except (TimeoutError, urllib.error.URLError) as error:\n        reason = getattr(error, \"reason\", error)\n        if denied and isinstance(reason, (TimeoutError, socket.timeout, ConnectionRefusedError)):\n            print(\"TCP_REJECTED_AFTER_DNS\" if isinstance(reason, ConnectionRefusedError) else \"TCP_TIMEOUT_AFTER_DNS\", flush=True)\n            sys.exit(42)\n        raise",
+                            "allowed"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "caller",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File"
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "runAsGroup": 1000,
+                    "runAsNonRoot": true,
+                    "runAsUser": 1000,
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "terminationGracePeriodSeconds": 30
+            }
+        }
+    },
+    "status": {
+        "completionTime": "2026-10-14T17:04:41Z",
+        "conditions": [
+            {
+                "lastProbeTime": "2026-10-14T17:04:41Z",
+                "lastTransitionTime": "2026-10-14T17:04:41Z",
+                "message": "Reached expected number of succeeded pods",
+                "reason": "CompletionsReached",
+                "status": "True",
+                "type": "SuccessCriteriaMet"
+            },
+            {
+                "lastProbeTime": "2026-10-14T17:04:41Z",
+                "lastTransitionTime": "2026-10-14T17:04:41Z",
+                "message": "Reached expected number of succeeded pods",
+                "reason": "CompletionsReached",
+                "status": "True",
+                "type": "Complete"
+            }
+        ],
+        "ready": 0,
+        "startTime": "2026-10-14T17:04:32Z",
+        "succeeded": 1,
+        "terminating": 0,
+        "uncountedTerminatedPods": {}
+    }
+}
+
+
+UTC: 2026-10-14T18:03:01.8857750Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "delete" "job" "m1-check-allowed-73e545496e" "--cascade=foreground" "--wait=true" "--timeout=30s"
+Exit: 0
+job.batch "m1-check-allowed-73e545496e" deleted from urumi namespace
+
+
+UTC: 2026-10-14T18:03:02.4164496Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "jobs,pods" "-l" "m1-check=true,app.kubernetes.io/instance=urumi" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-14T18:03:02.9614568Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "deployment,service,ingress,configmap,networkpolicy" "-l" "app.kubernetes.io/instance=urumi,app.kubernetes.io/component=foundation" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-14T18:03:03.2075891Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "pvc" "urumi-foundation-data" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "kind": "PersistentVolumeClaim",
+    "metadata": {
+        "annotations": {
+            "helm.sh/resource-policy": "keep",
+            "meta.helm.sh/release-name": "urumi",
+            "meta.helm.sh/release-namespace": "urumi",
+            "pv.kubernetes.io/bind-completed": "yes",
+            "pv.kubernetes.io/bound-by-controller": "yes",
+            "volume.beta.kubernetes.io/storage-provisioner": "rancher.io/local-path",
+            "volume.kubernetes.io/selected-node": "k3d-urumi-server-0",
+            "volume.kubernetes.io/storage-provisioner": "rancher.io/local-path"
+        },
+        "creationTimestamp": "2026-10-14T17:00:00Z",
+        "finalizers": [
+            "kubernetes.io/pvc-protection"
+        ],
+        "labels": {
+            "app.kubernetes.io/component": "foundation",
+            "app.kubernetes.io/instance": "urumi",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "urumi",
+            "helm.sh/chart": "urumi-0.1.0"
+        },
+        "name": "urumi-foundation-data",
+        "namespace": "urumi",
+        "resourceVersion": "2945",
+        "uid": "c6f386c1-ef1e-4996-ab86-ed888999226e"
+    },
+    "spec": {
+        "accessModes": [
+            "ReadWriteOnce"
+        ],
+        "resources": {
+            "requests": {
+                "storage": "1Gi"
+            }
+        },
+        "storageClassName": "local-path",
+        "volumeMode": "Filesystem",
+        "volumeName": "pvc-c6f386c1-ef1e-4996-ab86-ed888999226e"
+    },
+    "status": {
+        "accessModes": [
+            "ReadWriteOnce"
+        ],
+        "capacity": {
+            "storage": "1Gi"
+        },
+        "phase": "Bound"
+    }
+}
+
+

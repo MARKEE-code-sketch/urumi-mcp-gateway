@@ -1,0 +1,12 @@
+{
+  "url": "https://learn.microsoft.com/azure/aks-hybrid-edge/windows-server/create-pods",
+  "bytes": 2491,
+  "structured": [],
+  "blocks": [
+    {
+      "type": "text",
+      "bytes": 2296,
+      "prefix": "# Create and delete pods\r\n\r\n> \r\n> Applies to: AKS on Windows Server\r\n\r\nKubernetes uses pods to run an instance of your application. This article describes how to create and delete "
+    }
+  ]
+}

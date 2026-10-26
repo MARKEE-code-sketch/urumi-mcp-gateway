@@ -1,0 +1,132 @@
+﻿UTC: 2026-10-16T13:07:08.4011853Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "template" "urumi" "deploy/charts/urumi" "-n" "urumi" "-f" "deploy/charts/urumi/values-local.yaml" "--set" "inventoryMcp.enabled=true"
+Exit: 0
+---
+# Source: urumi/templates/sample-mcps/resources.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: urumi-inventory-mcp
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: inventory-mcp}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: gateway}
+      ports: [{protocol: TCP, port: 8000}]
+  egress: []
+---
+# Source: urumi/templates/sample-mcps/resources.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: urumi-inventory-mcp
+spec:
+  type: ClusterIP
+  selector: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: inventory-mcp}
+  ports: [{name: mcp, port: 8000, targetPort: mcp}]
+---
+# Source: urumi/templates/sample-mcps/resources.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: urumi-inventory-mcp
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: inventory-mcp}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: inventory-mcp}
+    spec:
+      automountServiceAccountToken: false
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, runAsGroup: 10001, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: inventory-mcp
+          image: "urumi/inventory-mcp:m4"
+          imagePullPolicy: IfNotPresent
+          securityContext: {readOnlyRootFilesystem: true, allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          ports: [{name: mcp, containerPort: 8000}]
+          env:
+            - name: MCP_ALLOWED_HOSTS
+              value: "urumi-inventory-mcp,urumi-inventory-mcp.urumi.svc,urumi-inventory-mcp.urumi.svc.cluster.local"
+          startupProbe: {httpGet: {path: /livez, port: mcp}, periodSeconds: 2, timeoutSeconds: 2, failureThreshold: 30}
+          livenessProbe: {httpGet: {path: /livez, port: mcp}, periodSeconds: 10, timeoutSeconds: 2, failureThreshold: 3}
+          readinessProbe: {httpGet: {path: /readyz, port: mcp}, periodSeconds: 10, timeoutSeconds: 2, failureThreshold: 3}
+          resources:
+            limits:
+              cpu: 250m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+
+
+UTC: 2026-10-16T13:09:42.7021138Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "template" "urumi" "deploy/charts/urumi" "-n" "urumi" "-f" "deploy/charts/urumi/values-local.yaml" "--set" "inventoryMcp.enabled=true"
+Exit: 0
+---
+# Source: urumi/templates/sample-mcps/resources.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: urumi-inventory-mcp
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: inventory-mcp}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: gateway}
+      ports: [{protocol: TCP, port: 8000}]
+  egress: []
+---
+# Source: urumi/templates/sample-mcps/resources.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: urumi-inventory-mcp
+spec:
+  type: ClusterIP
+  selector: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: inventory-mcp}
+  ports: [{name: mcp, port: 8000, targetPort: mcp}]
+---
+# Source: urumi/templates/sample-mcps/resources.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: urumi-inventory-mcp
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: inventory-mcp}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: urumi, app.kubernetes.io/instance: urumi, app.kubernetes.io/component: inventory-mcp}
+    spec:
+      automountServiceAccountToken: false
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, runAsGroup: 10001, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: inventory-mcp
+          image: "urumi/inventory-mcp:m4"
+          imagePullPolicy: IfNotPresent
+          securityContext: {readOnlyRootFilesystem: true, allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          ports: [{name: mcp, containerPort: 8000}]
+          env:
+            - name: MCP_ALLOWED_HOSTS
+              value: "urumi-inventory-mcp,urumi-inventory-mcp.urumi.svc,urumi-inventory-mcp.urumi.svc.cluster.local"
+          startupProbe: {httpGet: {path: /livez, port: mcp}, periodSeconds: 2, timeoutSeconds: 2, failureThreshold: 30}
+          livenessProbe: {httpGet: {path: /livez, port: mcp}, periodSeconds: 10, timeoutSeconds: 2, failureThreshold: 3}
+          readinessProbe: {httpGet: {path: /readyz, port: mcp}, periodSeconds: 10, timeoutSeconds: 2, failureThreshold: 3}
+          resources:
+            limits:
+              cpu: 250m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+
+

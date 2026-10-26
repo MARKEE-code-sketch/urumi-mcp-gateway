@@ -1,0 +1,1 @@
+﻿M2 command failed (1): C:\Program Files\Docker\Docker\resources\bin\kubectl.exe. Inspect sanitized command log; secret-input output withheld.

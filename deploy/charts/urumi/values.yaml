@@ -1,0 +1,196 @@
+# The temporary M1 workload is absent unless explicitly enabled.
+foundation:
+  enabled: false
+  image:
+    repository: python
+    tag: "3.13.5-slim-bookworm"
+    # Setup resolves the immutable digest; use sha256:<digest> here.
+    digest: ""
+    pullPolicy: IfNotPresent
+  ingress:
+    className: traefik
+    host: foundation.urumi.test
+  storage:
+    size: 1Gi
+    # Empty uses the cluster's default StorageClass.
+    className: ""
+  resources:
+    requests:
+      cpu: 50m
+      memory: 64Mi
+    limits:
+      cpu: 250m
+      memory: 128Mi
+  networkPolicy:
+    enabled: true
+    traefikNamespace: kube-system
+    traefikPodLabels:
+      app.kubernetes.io/name: traefik
+      app.kubernetes.io/instance: traefik-kube-system
+
+# Each module is enabled explicitly after its independent review.
+store:
+  enabled: false
+  image:
+    repository: urumi-store
+    digest: ""
+    tag: m2
+    pullPolicy: IfNotPresent
+  databaseImage: mariadb:11.4.13-noble
+  canonicalUrl: http://shop.urumi.test
+  ingress:
+    host: shop.urumi.test
+    className: traefik
+    tlsSecret: ""
+  storage:
+    className: ""
+    databaseSize: 2Gi
+    contentSize: 2Gi
+  secrets:
+    database: urumi-store-db
+    admin: urumi-store-admin
+    salts: urumi-store-salts
+    rest: urumi-woocommerce-rest
+  resources:
+    wordpress:
+      requests: {cpu: 100m, memory: 256Mi}
+      limits: {cpu: 1000m, memory: 768Mi}
+    database:
+      requests: {cpu: 100m, memory: 256Mi}
+      limits: {cpu: 1000m, memory: 768Mi}
+  networkPolicy:
+    enabled: true
+
+woocommerceMcp:
+  enabled: false
+  image:
+    repository: urumi/woocommerce-mcp
+    tag: m3
+    digest: ""
+    pullPolicy: IfNotPresent
+  canonicalOrigin: http://shop.urumi.test
+  transportOrigin: http://urumi-wordpress.urumi.svc.cluster.local
+  currency: INR
+  existingSecret: urumi-woocommerce-rest
+  allowedHosts: []
+  hostAliases: []
+  resources:
+    requests: {cpu: 100m, memory: 128Mi}
+    limits: {cpu: 500m, memory: 256Mi}
+  networkPolicy:
+    enabled: true
+    transportMode: direct-http
+    shopNamespace: urumi
+    shopLabels:
+      app.kubernetes.io/name: urumi
+      app.kubernetes.io/instance: urumi
+      app.kubernetes.io/component: wordpress
+    shopPort: 80
+
+inventoryMcp:
+  enabled: false
+  image:
+    repository: urumi/inventory-mcp
+    tag: m4
+    digest: ""
+    pullPolicy: IfNotPresent
+  allowedHosts: []
+  resources:
+    requests: {cpu: 50m, memory: 64Mi}
+    limits: {cpu: 250m, memory: 128Mi}
+  networkPolicy:
+    enabled: true
+
+platformDb:
+  enabled: false
+  image: postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826
+  existingSecret: urumi-platform-db
+  storage:
+    size: 2Gi
+    className: ""
+  resources:
+    requests: {cpu: 100m, memory: 128Mi}
+    limits: {cpu: 500m, memory: 512Mi}
+
+platformAccess:
+  enabled: false
+  secretNamespace: urumi-upstream-secrets
+  serviceAccount: urumi-backend
+
+m5Harness:
+  enabled: false
+  image:
+    repository: urumi/m5-harness
+    tag: m5
+    pullPolicy: IfNotPresent
+  origin: https://gateway.example.test
+  localHttp: false
+  internalUrls:
+    - http://urumi-woocommerce-mcp.urumi.svc.cluster.local:8000/mcp
+    - http://urumi-inventory-mcp.urumi.svc.cluster.local:8000/mcp
+  resources:
+    requests: {cpu: 100m, memory: 256Mi}
+    limits: {cpu: 1000m, memory: 512Mi}
+
+# Independent M6 checks only; final gateway composition belongs to M10.
+gatewayCheck:
+  enabled: false
+  image:
+    repository: urumi/gateway-check
+    tag: m6
+    pullPolicy: IfNotPresent
+  existingSecret: urumi-m6-check-access
+  resources:
+    gateway:
+      requests: {cpu: 100m, memory: 256Mi}
+      limits: {cpu: 1000m, memory: 512Mi}
+    fixture:
+      requests: {cpu: 25m, memory: 32Mi}
+      limits: {cpu: 250m, memory: 128Mi}
+
+# Full release is renderable before M10; deployment preflight remains fail-closed.
+release:
+  enabled: false
+  environment: local
+  provenance: ""
+imagePullSecrets: []
+networking:
+  ingressNamespace: kube-system
+  ingressPodLabels:
+    app.kubernetes.io/name: traefik
+    app.kubernetes.io/instance: traefik-kube-system
+  ingressTlsTargetPort: 8443
+backend:
+  enabled: false
+  replicas: 1
+  workers: 1
+  image:
+    repository: urumi/backend
+    tag: m10-unavailable
+    digest: ""
+    pullPolicy: IfNotPresent
+  origin: https://dashboard.urumi.test
+  allowedHosts: []
+  existingProviderSecret: urumi-groq
+  model: openai/gpt-oss-20b
+  resources:
+    requests: {cpu: 100m, memory: 256Mi}
+    limits: {cpu: 1000m, memory: 512Mi}
+  networkPolicy:
+    enabled: true
+    apiServerCidrs: []
+    apiServerPort: 6443
+dashboard:
+  enabled: false
+  image:
+    repository: urumi/dashboard
+    tag: m8
+    digest: ""
+    pullPolicy: IfNotPresent
+  ingress:
+    host: dashboard.urumi.test
+    className: traefik
+    tlsSecret: urumi-dashboard-tls
+  resources:
+    requests: {cpu: 25m, memory: 32Mi}
+    limits: {cpu: 250m, memory: 128Mi}

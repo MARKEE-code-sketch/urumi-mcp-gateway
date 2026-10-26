@@ -1,0 +1,64 @@
+{
+  "status": "PASS",
+  "gateway_tool_count": 11,
+  "context7_tools": [
+    "context7__query-docs",
+    "context7__resolve-library-id"
+  ],
+  "tool": "context7__resolve-library-id",
+  "arguments": {
+    "libraryName": "fastapi",
+    "query": "Find the official FastAPI Python framework documentation."
+  },
+  "fastapi_ids": [
+    "/mjhea0/awesome-fastapi",
+    "/websites/deepwiki_fastapi_fastapi",
+    "/websites/fastapi_tiangolo",
+    "/websites/fastapi_tiangolo_learn",
+    "/websites/fastapi_tiangolo_reference"
+  ],
+  "response_bytes": 1707,
+  "response_sha256": "00265e98304d45d9690d02925e364b34400fd81d519d4262a1946e3cfc15437d",
+  "audit": {
+    "audit_id": "52f8b083-0ee5-4fa1-a92f-b5055eb02204",
+    "request_id": "693d00c2-55c2-46fa-a8f8-bdf4bf8cdcda",
+    "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+    "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+    "auth_source": "api_key",
+    "server_id": "1dde0ef3-f7fe-4c7d-84db-feb777e0e5f1",
+    "public_tool_name": "context7__resolve-library-id",
+    "upstream_tool_name": "resolve-library-id",
+    "outcome": "success",
+    "duration_ms": 4864
+  },
+  "server_statuses": [
+    {
+      "name": "Context7",
+      "slug": "context7",
+      "enabled": true,
+      "status": "Connected",
+      "status_reason": null
+    },
+    {
+      "name": "Microsoft Learn",
+      "slug": "learn",
+      "enabled": true,
+      "status": "Unreachable",
+      "status_reason": "CONNECTION_FAILED"
+    },
+    {
+      "name": "Inventory",
+      "slug": "inventory",
+      "enabled": true,
+      "status": "Connected",
+      "status_reason": null
+    },
+    {
+      "name": "WooCommerce",
+      "slug": "woocommerce",
+      "enabled": true,
+      "status": "Connected",
+      "status_reason": null
+    }
+  ]
+}

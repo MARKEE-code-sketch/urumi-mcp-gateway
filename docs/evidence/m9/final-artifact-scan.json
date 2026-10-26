@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "source_files_checked": 230,
+  "all_evidence_files_checked": 341,
+  "module_evidence_files_checked": 61,
+  "actual_private_sentinel_count": 6,
+  "actual_private_matches": [],
+  "dummy_one_time_output_sentinel_count": 2,
+  "dummy_one_time_matches_in_module_evidence": [],
+  "prohibited_module_evidence_files": [],
+  "encoding_checks": [
+    "UTF-8",
+    "UTF-16LE",
+    "UTF-16BE"
+  ],
+  "scope": "Known values only; source fixture definitions and deliberately documented dummy login password are allowed. Screenshots were visually reviewed separately. Unknown-secret absence is not guaranteed."
+}

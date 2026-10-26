@@ -1,0 +1,18 @@
+﻿UTC: 2026-10-15T14:51:33.8839555Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "list" "--all" "--all-namespaces" "-o" "json" "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "--namespace" "urumi"
+Exit: 0
+[{"name":"traefik","namespace":"kube-system","revision":"1","updated":"2026-10-14 15:37:10.019383416 +0000 UTC","status":"deployed","chart":"traefik-40.1.4+up40.1.0","app_version":"v3.7.1"},{"name":"traefik-crd","namespace":"kube-system","revision":"1","updated":"2026-10-14 15:36:55.342736231 +0000 UTC","status":"deployed","chart":"traefik-crd-40.1.4+up40.1.0","app_version":"v3.7.1"},{"name":"urumi","namespace":"urumi","revision":"7","updated":"2026-10-14 23:32:56.1224862 +0530 IST","status":"deployed","chart":"urumi-0.1.0","app_version":"0.1.0"}]
+
+
+UTC: 2026-10-15T14:55:02.1816325Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "list" "--all" "--all-namespaces" "-o" "json" "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "--namespace" "urumi"
+Exit: 0
+[{"name":"traefik","namespace":"kube-system","revision":"1","updated":"2026-10-14 15:37:10.019383416 +0000 UTC","status":"deployed","chart":"traefik-40.1.4+up40.1.0","app_version":"v3.7.1"},{"name":"traefik-crd","namespace":"kube-system","revision":"1","updated":"2026-10-14 15:36:55.342736231 +0000 UTC","status":"deployed","chart":"traefik-crd-40.1.4+up40.1.0","app_version":"v3.7.1"},{"name":"urumi","namespace":"urumi","revision":"8","updated":"2026-10-15 20:21:39.2461299 +0530 IST","status":"deployed","chart":"urumi-0.1.0","app_version":"0.1.0"}]
+
+
+UTC: 2026-10-15T15:10:44.7864854Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "list" "--all" "--all-namespaces" "-o" "json" "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "--namespace" "urumi"
+Exit: 0
+[{"name":"traefik","namespace":"kube-system","revision":"1","updated":"2026-10-14 15:37:10.019383416 +0000 UTC","status":"deployed","chart":"traefik-40.1.4+up40.1.0","app_version":"v3.7.1"},{"name":"traefik-crd","namespace":"kube-system","revision":"1","updated":"2026-10-14 15:36:55.342736231 +0000 UTC","status":"deployed","chart":"traefik-crd-40.1.4+up40.1.0","app_version":"v3.7.1"},{"name":"urumi","namespace":"urumi","revision":"11","updated":"2026-10-15 20:34:44.5771628 +0530 IST","status":"deployed","chart":"urumi-0.1.0","app_version":"0.1.0"}]
+
+

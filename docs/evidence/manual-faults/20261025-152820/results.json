@@ -1,0 +1,884 @@
+{
+  "checked_at": "2026-10-25T15:28:21.246622+00:00",
+  "namespace": "urumi-m10",
+  "context": "k3d-urumi",
+  "F4": "Succeeded",
+  "F5": "Succeeded",
+  "calls": [
+    {
+      "stage": "baseline",
+      "tool": "woocommerce__list_products",
+      "arguments": {
+        "per_page": 50
+      },
+      "result": {
+        "is_error": false,
+        "data": {
+          "items": [
+            {
+              "id": 12,
+              "name": "Urumi Demo Product",
+              "sku": "DEMO-001",
+              "status": "publish",
+              "permalink": "http://shop-m10.urumi.test/product/urumi-demo-product/",
+              "price": "499.00",
+              "regular_price": "499.00",
+              "currency": "INR"
+            },
+            {
+              "id": 18,
+              "name": "M10 Browser Demo Notebook",
+              "sku": "M10-BROWSER-NOTEBOOK",
+              "status": "publish",
+              "permalink": "http://shop-m10.urumi.test/product/m10-browser-demo-notebook/",
+              "price": "129.00",
+              "regular_price": "129.00",
+              "currency": "INR"
+            },
+            {
+              "id": 20,
+              "name": "M10 HTTPS Transport Probe",
+              "sku": "M10-TLS-PROBE",
+              "status": "draft",
+              "permalink": "http://shop-m10.urumi.test/?post_type=product&p=20",
+              "price": "1.00",
+              "regular_price": "1.00",
+              "currency": "INR"
+            },
+            {
+              "id": 23,
+              "name": "QA Blue Mug RUN_TAG",
+              "sku": "QA-MUG-RUN_TAG",
+              "status": "publish",
+              "permalink": "http://shop-m10.urumi.test/product/qa-blue-mug-run_tag/",
+              "price": "299.00",
+              "regular_price": "299.00",
+              "currency": "INR"
+            }
+          ],
+          "page": 1,
+          "per_page": 50,
+          "has_more": false
+        }
+      },
+      "audit": {
+        "audit_id": "6ed3aa21-ac62-4384-a6ba-0ff622a269a7",
+        "request_id": "1ba820c5-b6ab-4905-a1b0-0efcfe4e6990",
+        "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+        "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+        "auth_source": "api_key",
+        "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+        "public_tool_name": "woocommerce__list_products",
+        "upstream_tool_name": "list_products",
+        "outcome": "success",
+        "error_code": null,
+        "started_at": "2026-10-25T15:28:23.864620Z",
+        "duration_ms": 742
+      }
+    },
+    {
+      "stage": "baseline",
+      "tool": "inventory__lookup_sku",
+      "arguments": {
+        "sku": "DEMO-001"
+      },
+      "result": {
+        "is_error": false,
+        "data": {
+          "sku": "DEMO-001",
+          "found": true,
+          "warehouses": [
+            {
+              "name": "Bengaluru",
+              "quantity": 12
+            }
+          ]
+        }
+      },
+      "audit": {
+        "audit_id": "de32b910-8e87-43f1-92b5-2aea7c57d941",
+        "request_id": "244d8ac7-cc70-4f7d-8f0f-a3eb86875674",
+        "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+        "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+        "auth_source": "api_key",
+        "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+        "public_tool_name": "inventory__lookup_sku",
+        "upstream_tool_name": "lookup_sku",
+        "outcome": "success",
+        "error_code": null,
+        "started_at": "2026-10-25T15:28:24.795701Z",
+        "duration_ms": 299
+      }
+    },
+    {
+      "stage": "F4 immediately after Pod deletion",
+      "tool": "inventory__lookup_sku",
+      "arguments": {
+        "sku": "DEMO-001"
+      },
+      "result": {
+        "is_error": true,
+        "error_code": "UPSTREAM_UNAVAILABLE"
+      },
+      "audit": {
+        "audit_id": "637e0edc-f43f-4f78-9f89-fac45450f11d",
+        "request_id": "a41035bb-5b66-49bf-8f66-0c5527d4e949",
+        "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+        "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+        "auth_source": "api_key",
+        "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+        "public_tool_name": "inventory__lookup_sku",
+        "upstream_tool_name": "lookup_sku",
+        "outcome": "error",
+        "error_code": "UPSTREAM_UNAVAILABLE",
+        "started_at": "2026-10-25T15:28:26.447607Z",
+        "duration_ms": 424
+      }
+    },
+    {
+      "stage": "F4 while Inventory Pod is replacing",
+      "tool": "woocommerce__list_products",
+      "arguments": {
+        "per_page": 50
+      },
+      "result": {
+        "is_error": false,
+        "data": {
+          "items": [
+            {
+              "id": 12,
+              "name": "Urumi Demo Product",
+              "sku": "DEMO-001",
+              "status": "publish",
+              "permalink": "http://shop-m10.urumi.test/product/urumi-demo-product/",
+              "price": "499.00",
+              "regular_price": "499.00",
+              "currency": "INR"
+            },
+            {
+              "id": 18,
+              "name": "M10 Browser Demo Notebook",
+              "sku": "M10-BROWSER-NOTEBOOK",
+              "status": "publish",
+              "permalink": "http://shop-m10.urumi.test/product/m10-browser-demo-notebook/",
+              "price": "129.00",
+              "regular_price": "129.00",
+              "currency": "INR"
+            },
+            {
+              "id": 20,
+              "name": "M10 HTTPS Transport Probe",
+              "sku": "M10-TLS-PROBE",
+              "status": "draft",
+              "permalink": "http://shop-m10.urumi.test/?post_type=product&p=20",
+              "price": "1.00",
+              "regular_price": "1.00",
+              "currency": "INR"
+            },
+            {
+              "id": 23,
+              "name": "QA Blue Mug RUN_TAG",
+              "sku": "QA-MUG-RUN_TAG",
+              "status": "publish",
+              "permalink": "http://shop-m10.urumi.test/product/qa-blue-mug-run_tag/",
+              "price": "299.00",
+              "regular_price": "299.00",
+              "currency": "INR"
+            }
+          ],
+          "page": 1,
+          "per_page": 50,
+          "has_more": false
+        }
+      },
+      "audit": {
+        "audit_id": "a7b1969a-f455-4d03-a704-10e8964ea871",
+        "request_id": "c10f5c1c-5ab3-4799-b7bc-22b2bda8d5e2",
+        "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+        "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+        "auth_source": "api_key",
+        "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+        "public_tool_name": "woocommerce__list_products",
+        "upstream_tool_name": "list_products",
+        "outcome": "success",
+        "error_code": null,
+        "started_at": "2026-10-25T15:28:26.488401Z",
+        "duration_ms": 635
+      }
+    },
+    {
+      "stage": "F4 recovered",
+      "tool": "inventory__lookup_sku",
+      "arguments": {
+        "sku": "DEMO-001"
+      },
+      "result": {
+        "is_error": false,
+        "data": {
+          "sku": "DEMO-001",
+          "found": true,
+          "warehouses": [
+            {
+              "name": "Bengaluru",
+              "quantity": 12
+            }
+          ]
+        }
+      },
+      "audit": {
+        "audit_id": "8786b7d1-e7fb-4e54-b894-0927e81c5aff",
+        "request_id": "2fc293bd-a8c0-419f-8bf8-7aef67e8cf6e",
+        "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+        "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+        "auth_source": "api_key",
+        "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+        "public_tool_name": "inventory__lookup_sku",
+        "upstream_tool_name": "lookup_sku",
+        "outcome": "success",
+        "error_code": null,
+        "started_at": "2026-10-25T15:28:50.949699Z",
+        "duration_ms": 455
+      }
+    },
+    {
+      "stage": "F5 zero replicas",
+      "tool": "inventory__lookup_sku",
+      "arguments": {
+        "sku": "DEMO-001"
+      },
+      "result": {
+        "is_error": true,
+        "error_code": "UPSTREAM_UNAVAILABLE"
+      },
+      "audit": {
+        "audit_id": "c3a849f0-4a80-41f8-bda5-0da75c6fdf4e",
+        "request_id": "ed2fc117-323d-4105-bd0f-1317b5ac5a40",
+        "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+        "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+        "auth_source": "api_key",
+        "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+        "public_tool_name": "inventory__lookup_sku",
+        "upstream_tool_name": "lookup_sku",
+        "outcome": "error",
+        "error_code": "UPSTREAM_UNAVAILABLE",
+        "started_at": "2026-10-25T15:28:56.791848Z",
+        "duration_ms": 362
+      }
+    },
+    {
+      "stage": "F5 zero replicas healthy peer",
+      "tool": "woocommerce__list_products",
+      "arguments": {
+        "per_page": 50
+      },
+      "result": {
+        "is_error": false,
+        "data": {
+          "items": [
+            {
+              "id": 12,
+              "name": "Urumi Demo Product",
+              "sku": "DEMO-001",
+              "status": "publish",
+              "permalink": "http://shop-m10.urumi.test/product/urumi-demo-product/",
+              "price": "499.00",
+              "regular_price": "499.00",
+              "currency": "INR"
+            },
+            {
+              "id": 18,
+              "name": "M10 Browser Demo Notebook",
+              "sku": "M10-BROWSER-NOTEBOOK",
+              "status": "publish",
+              "permalink": "http://shop-m10.urumi.test/product/m10-browser-demo-notebook/",
+              "price": "129.00",
+              "regular_price": "129.00",
+              "currency": "INR"
+            },
+            {
+              "id": 20,
+              "name": "M10 HTTPS Transport Probe",
+              "sku": "M10-TLS-PROBE",
+              "status": "draft",
+              "permalink": "http://shop-m10.urumi.test/?post_type=product&p=20",
+              "price": "1.00",
+              "regular_price": "1.00",
+              "currency": "INR"
+            },
+            {
+              "id": 23,
+              "name": "QA Blue Mug RUN_TAG",
+              "sku": "QA-MUG-RUN_TAG",
+              "status": "publish",
+              "permalink": "http://shop-m10.urumi.test/product/qa-blue-mug-run_tag/",
+              "price": "299.00",
+              "regular_price": "299.00",
+              "currency": "INR"
+            }
+          ],
+          "page": 1,
+          "per_page": 50,
+          "has_more": false
+        }
+      },
+      "audit": {
+        "audit_id": "302e2014-3b8c-4385-b611-559d9e475964",
+        "request_id": "1133ab30-8eb4-4f7c-ab0a-dac281f160d9",
+        "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+        "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+        "auth_source": "api_key",
+        "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+        "public_tool_name": "woocommerce__list_products",
+        "upstream_tool_name": "list_products",
+        "outcome": "success",
+        "error_code": null,
+        "started_at": "2026-10-25T15:28:57.513034Z",
+        "duration_ms": 1644
+      }
+    },
+    {
+      "stage": "F5 recovered",
+      "tool": "inventory__lookup_sku",
+      "arguments": {
+        "sku": "DEMO-001"
+      },
+      "result": {
+        "is_error": false,
+        "data": {
+          "sku": "DEMO-001",
+          "found": true,
+          "warehouses": [
+            {
+              "name": "Bengaluru",
+              "quantity": 12
+            }
+          ]
+        }
+      },
+      "audit": {
+        "audit_id": "dcf56dab-2a52-467b-82a2-c816be7e340e",
+        "request_id": "5cd47e6a-332b-436e-9f88-829a29965d4a",
+        "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+        "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+        "auth_source": "api_key",
+        "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+        "public_tool_name": "inventory__lookup_sku",
+        "upstream_tool_name": "lookup_sku",
+        "outcome": "success",
+        "error_code": null,
+        "started_at": "2026-10-25T15:29:36.358597Z",
+        "duration_ms": 643
+      }
+    },
+    {
+      "stage": "final",
+      "tool": "woocommerce__list_products",
+      "arguments": {
+        "per_page": 50
+      },
+      "result": {
+        "is_error": false,
+        "data": {
+          "items": [
+            {
+              "id": 12,
+              "name": "Urumi Demo Product",
+              "sku": "DEMO-001",
+              "status": "publish",
+              "permalink": "http://shop-m10.urumi.test/product/urumi-demo-product/",
+              "price": "499.00",
+              "regular_price": "499.00",
+              "currency": "INR"
+            },
+            {
+              "id": 18,
+              "name": "M10 Browser Demo Notebook",
+              "sku": "M10-BROWSER-NOTEBOOK",
+              "status": "publish",
+              "permalink": "http://shop-m10.urumi.test/product/m10-browser-demo-notebook/",
+              "price": "129.00",
+              "regular_price": "129.00",
+              "currency": "INR"
+            },
+            {
+              "id": 20,
+              "name": "M10 HTTPS Transport Probe",
+              "sku": "M10-TLS-PROBE",
+              "status": "draft",
+              "permalink": "http://shop-m10.urumi.test/?post_type=product&p=20",
+              "price": "1.00",
+              "regular_price": "1.00",
+              "currency": "INR"
+            },
+            {
+              "id": 23,
+              "name": "QA Blue Mug RUN_TAG",
+              "sku": "QA-MUG-RUN_TAG",
+              "status": "publish",
+              "permalink": "http://shop-m10.urumi.test/product/qa-blue-mug-run_tag/",
+              "price": "299.00",
+              "regular_price": "299.00",
+              "currency": "INR"
+            }
+          ],
+          "page": 1,
+          "per_page": 50,
+          "has_more": false
+        }
+      },
+      "audit": {
+        "audit_id": "d739ea00-4190-4f67-b899-e0fb61988a50",
+        "request_id": "4a09e5b8-572d-4e46-9901-d1fee774e5f1",
+        "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+        "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+        "auth_source": "api_key",
+        "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+        "public_tool_name": "woocommerce__list_products",
+        "upstream_tool_name": "list_products",
+        "outcome": "success",
+        "error_code": null,
+        "started_at": "2026-10-25T15:29:37.278525Z",
+        "duration_ms": 1107
+      }
+    }
+  ],
+  "provider_calls": 0,
+  "shop_write_calls": 0,
+  "coverage": "Real Kubernetes controls and external MCP tool equivalents of Q1/Q7; no new chat planner claim.",
+  "original_replicas": 1,
+  "deployment_uid": "3023955c-ab32-45a2-8dcf-be910e0c27f5",
+  "registry_before": [
+    {
+      "id": "1dde0ef3-f7fe-4c7d-84db-feb777e0e5f1",
+      "slug": "context7",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true,
+      "auth_type": "bearer",
+      "header_name": null
+    },
+    {
+      "id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+      "slug": "inventory",
+      "url": "http://urumi-m10-inventory-mcp.urumi-m10.svc.cluster.local:8000/mcp",
+      "enabled": true,
+      "auth_type": "none",
+      "header_name": null
+    },
+    {
+      "id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+      "slug": "woocommerce",
+      "url": "http://urumi-m10-woocommerce-mcp.urumi-m10.svc.cluster.local:8000/mcp",
+      "enabled": true,
+      "auth_type": "none",
+      "header_name": null
+    },
+    {
+      "id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+      "slug": "learn",
+      "url": "https://learn.microsoft.com/api/mcp",
+      "enabled": true,
+      "auth_type": "none",
+      "header_name": null
+    }
+  ],
+  "before": {
+    "namespace_uid": "89c6dab6-b118-42f3-940e-e8d8f91820bf",
+    "workloads": [
+      {
+        "name": "urumi-m10-backend",
+        "uid": "be89fd61-6ded-4124-8a96-1d474f8130c6",
+        "spec_sha256": "f80ed5b418eafe0132ad6f88dda78c7de03cfe2c40bac320520ed41c5e697d2f",
+        "replicas": 1,
+        "ready": 1
+      },
+      {
+        "name": "urumi-m10-dashboard",
+        "uid": "25c81643-aba0-440f-a550-d51a8574580a",
+        "spec_sha256": "31b32c1e3248c69332f5718a4915928b2c36a9c4396110d7b8b8a80447109f63",
+        "replicas": 1,
+        "ready": 1
+      },
+      {
+        "name": "urumi-m10-inventory-mcp",
+        "uid": "3023955c-ab32-45a2-8dcf-be910e0c27f5",
+        "spec_sha256": "d2b0cdcbbcfacbb4552b066be955e31cf7efb241b4e6460762fcbfbda982371e",
+        "replicas": 1,
+        "ready": 1
+      },
+      {
+        "name": "urumi-m10-mariadb",
+        "uid": "dd490b17-4ddd-4fe3-b810-7f8d4a6d8be3",
+        "spec_sha256": "73bab11c65e7d568cd1921d2d26d06d73d0efa0a66251ed58662309c9718922d",
+        "replicas": 1,
+        "ready": 1
+      },
+      {
+        "name": "urumi-m10-platform-db",
+        "uid": "0cc82297-ac4f-47d4-94ab-037e42171c9c",
+        "spec_sha256": "49fd881d7d265fd9d3976a58812a4d937d34579fa0c89479596a508ddfc51e46",
+        "replicas": 1,
+        "ready": 1
+      },
+      {
+        "name": "urumi-m10-woocommerce-mcp",
+        "uid": "9bbd22bd-7a26-453f-b00d-f95c43551871",
+        "spec_sha256": "51e8d854ebef4e4dbbd9a17e4ec9f3f00c3d1e00afd3702fe6039f5abe036e48",
+        "replicas": 1,
+        "ready": 1
+      },
+      {
+        "name": "urumi-m10-wordpress",
+        "uid": "cc154042-2e5d-4945-ade5-3c72b9cd8e63",
+        "spec_sha256": "b1b0eb3d376ec948edc32c74d4849f3faac03008379881b2fc878324ad4df5e1",
+        "replicas": 1,
+        "ready": 1
+      }
+    ],
+    "pods": [
+      {
+        "name": "urumi-m10-backend-9cfc7f9f6-9slv9",
+        "uid": "9df4ec32-a01f-41db-8aea-a11bcb633158",
+        "component": "backend",
+        "ready": true
+      },
+      {
+        "name": "urumi-m10-dashboard-576bc6cd97-dklfj",
+        "uid": "12791229-e7de-462c-8cd2-5f183e8006a4",
+        "component": "dashboard",
+        "ready": true
+      },
+      {
+        "name": "urumi-m10-inventory-mcp-58bcd997b7-774wj",
+        "uid": "629b5d08-4de4-4e71-b406-963e6a761636",
+        "component": "inventory-mcp",
+        "ready": true
+      },
+      {
+        "name": "urumi-m10-mariadb-0",
+        "uid": "09221dd6-99af-45a0-950b-b152446d9bed",
+        "component": "mariadb",
+        "ready": true
+      },
+      {
+        "name": "urumi-m10-platform-db-6dbbf758c-wb9z5",
+        "uid": "a70af0ad-a169-48b9-b399-f0c55b46bb9d",
+        "component": "platform-db",
+        "ready": true
+      },
+      {
+        "name": "urumi-m10-woocommerce-mcp-5458999fc5-crtvm",
+        "uid": "3de7c21b-0373-4ff2-b91d-0b7d6961d1c1",
+        "component": "woocommerce-mcp",
+        "ready": true
+      },
+      {
+        "name": "urumi-m10-wordpress-54c8c64897-fkbbd",
+        "uid": "820f790e-d39b-4b64-9719-40babad4407b",
+        "component": "wordpress",
+        "ready": true
+      }
+    ],
+    "claims": [
+      {
+        "name": "urumi-m10-mariadb-data",
+        "uid": "a0fec4df-b7ff-4ef9-b2fe-a9af4eb8959e",
+        "phase": "Bound"
+      },
+      {
+        "name": "urumi-m10-platform-data",
+        "uid": "710a5b52-744c-4525-b446-bbba455eb2cf",
+        "phase": "Bound"
+      },
+      {
+        "name": "urumi-m10-wordpress-content",
+        "uid": "b5ad912d-7d6c-4bf9-aa8e-b4803005162b",
+        "phase": "Bound"
+      }
+    ]
+  },
+  "shop_products_before": {
+    "items": [
+      {
+        "id": 12,
+        "name": "Urumi Demo Product",
+        "sku": "DEMO-001",
+        "status": "publish",
+        "permalink": "http://shop-m10.urumi.test/product/urumi-demo-product/",
+        "price": "499.00",
+        "regular_price": "499.00",
+        "currency": "INR"
+      },
+      {
+        "id": 18,
+        "name": "M10 Browser Demo Notebook",
+        "sku": "M10-BROWSER-NOTEBOOK",
+        "status": "publish",
+        "permalink": "http://shop-m10.urumi.test/product/m10-browser-demo-notebook/",
+        "price": "129.00",
+        "regular_price": "129.00",
+        "currency": "INR"
+      },
+      {
+        "id": 20,
+        "name": "M10 HTTPS Transport Probe",
+        "sku": "M10-TLS-PROBE",
+        "status": "draft",
+        "permalink": "http://shop-m10.urumi.test/?post_type=product&p=20",
+        "price": "1.00",
+        "regular_price": "1.00",
+        "currency": "INR"
+      },
+      {
+        "id": 23,
+        "name": "QA Blue Mug RUN_TAG",
+        "sku": "QA-MUG-RUN_TAG",
+        "status": "publish",
+        "permalink": "http://shop-m10.urumi.test/product/qa-blue-mug-run_tag/",
+        "price": "299.00",
+        "regular_price": "299.00",
+        "currency": "INR"
+      }
+    ],
+    "page": 1,
+    "per_page": 50,
+    "has_more": false
+  },
+  "F4_deleted_pod": {
+    "name": "urumi-m10-inventory-mcp-58bcd997b7-774wj",
+    "uid": "629b5d08-4de4-4e71-b406-963e6a761636",
+    "atomic_uid_precondition": true
+  },
+  "F4_inventory_immediate_failed_safely": true,
+  "F4_unreachable_observed": {
+    "id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+    "status": "Unreachable",
+    "status_reason": "CONNECTION_FAILED",
+    "last_checked_at": "2026-10-25T15:28:29.241899Z"
+  },
+  "F4_replacement": {
+    "name": "urumi-m10-inventory-mcp-58bcd997b7-ppjpp",
+    "uid": "cc0256a3-4a75-4aa6-aad4-60fb3a250a1d",
+    "ready": true
+  },
+  "F5_unreachable_observed": {
+    "id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+    "status": "Unreachable",
+    "status_reason": "CONNECTION_FAILED",
+    "last_checked_at": "2026-10-25T15:28:54.593447Z"
+  },
+  "F5_replacement": {
+    "name": "urumi-m10-inventory-mcp-58bcd997b7-ssvvr",
+    "uid": "3febe315-a145-4b25-a2f5-917abc048df4",
+    "ready": true
+  },
+  "shop_products_after": {
+    "items": [
+      {
+        "id": 12,
+        "name": "Urumi Demo Product",
+        "sku": "DEMO-001",
+        "status": "publish",
+        "permalink": "http://shop-m10.urumi.test/product/urumi-demo-product/",
+        "price": "499.00",
+        "regular_price": "499.00",
+        "currency": "INR"
+      },
+      {
+        "id": 18,
+        "name": "M10 Browser Demo Notebook",
+        "sku": "M10-BROWSER-NOTEBOOK",
+        "status": "publish",
+        "permalink": "http://shop-m10.urumi.test/product/m10-browser-demo-notebook/",
+        "price": "129.00",
+        "regular_price": "129.00",
+        "currency": "INR"
+      },
+      {
+        "id": 20,
+        "name": "M10 HTTPS Transport Probe",
+        "sku": "M10-TLS-PROBE",
+        "status": "draft",
+        "permalink": "http://shop-m10.urumi.test/?post_type=product&p=20",
+        "price": "1.00",
+        "regular_price": "1.00",
+        "currency": "INR"
+      },
+      {
+        "id": 23,
+        "name": "QA Blue Mug RUN_TAG",
+        "sku": "QA-MUG-RUN_TAG",
+        "status": "publish",
+        "permalink": "http://shop-m10.urumi.test/product/qa-blue-mug-run_tag/",
+        "price": "299.00",
+        "regular_price": "299.00",
+        "currency": "INR"
+      }
+    ],
+    "page": 1,
+    "per_page": 50,
+    "has_more": false
+  },
+  "final_inventory_pod": {
+    "name": "urumi-m10-inventory-mcp-58bcd997b7-ssvvr",
+    "uid": "3febe315-a145-4b25-a2f5-917abc048df4",
+    "ready": true
+  },
+  "replicas_restored": true,
+  "final_inventory_registry": {
+    "id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+    "status": "Connected",
+    "status_reason": null,
+    "last_checked_at": "2026-10-25T15:29:40.280959Z"
+  },
+  "after": {
+    "namespace_uid": "89c6dab6-b118-42f3-940e-e8d8f91820bf",
+    "workloads": [
+      {
+        "name": "urumi-m10-backend",
+        "uid": "be89fd61-6ded-4124-8a96-1d474f8130c6",
+        "spec_sha256": "f80ed5b418eafe0132ad6f88dda78c7de03cfe2c40bac320520ed41c5e697d2f",
+        "replicas": 1,
+        "ready": 1
+      },
+      {
+        "name": "urumi-m10-dashboard",
+        "uid": "25c81643-aba0-440f-a550-d51a8574580a",
+        "spec_sha256": "31b32c1e3248c69332f5718a4915928b2c36a9c4396110d7b8b8a80447109f63",
+        "replicas": 1,
+        "ready": 1
+      },
+      {
+        "name": "urumi-m10-inventory-mcp",
+        "uid": "3023955c-ab32-45a2-8dcf-be910e0c27f5",
+        "spec_sha256": "d2b0cdcbbcfacbb4552b066be955e31cf7efb241b4e6460762fcbfbda982371e",
+        "replicas": 1,
+        "ready": 1
+      },
+      {
+        "name": "urumi-m10-mariadb",
+        "uid": "dd490b17-4ddd-4fe3-b810-7f8d4a6d8be3",
+        "spec_sha256": "73bab11c65e7d568cd1921d2d26d06d73d0efa0a66251ed58662309c9718922d",
+        "replicas": 1,
+        "ready": 1
+      },
+      {
+        "name": "urumi-m10-platform-db",
+        "uid": "0cc82297-ac4f-47d4-94ab-037e42171c9c",
+        "spec_sha256": "49fd881d7d265fd9d3976a58812a4d937d34579fa0c89479596a508ddfc51e46",
+        "replicas": 1,
+        "ready": 1
+      },
+      {
+        "name": "urumi-m10-woocommerce-mcp",
+        "uid": "9bbd22bd-7a26-453f-b00d-f95c43551871",
+        "spec_sha256": "51e8d854ebef4e4dbbd9a17e4ec9f3f00c3d1e00afd3702fe6039f5abe036e48",
+        "replicas": 1,
+        "ready": 1
+      },
+      {
+        "name": "urumi-m10-wordpress",
+        "uid": "cc154042-2e5d-4945-ade5-3c72b9cd8e63",
+        "spec_sha256": "b1b0eb3d376ec948edc32c74d4849f3faac03008379881b2fc878324ad4df5e1",
+        "replicas": 1,
+        "ready": 1
+      }
+    ],
+    "pods": [
+      {
+        "name": "urumi-m10-backend-9cfc7f9f6-9slv9",
+        "uid": "9df4ec32-a01f-41db-8aea-a11bcb633158",
+        "component": "backend",
+        "ready": true
+      },
+      {
+        "name": "urumi-m10-dashboard-576bc6cd97-dklfj",
+        "uid": "12791229-e7de-462c-8cd2-5f183e8006a4",
+        "component": "dashboard",
+        "ready": true
+      },
+      {
+        "name": "urumi-m10-inventory-mcp-58bcd997b7-ssvvr",
+        "uid": "3febe315-a145-4b25-a2f5-917abc048df4",
+        "component": "inventory-mcp",
+        "ready": true
+      },
+      {
+        "name": "urumi-m10-mariadb-0",
+        "uid": "09221dd6-99af-45a0-950b-b152446d9bed",
+        "component": "mariadb",
+        "ready": true
+      },
+      {
+        "name": "urumi-m10-platform-db-6dbbf758c-wb9z5",
+        "uid": "a70af0ad-a169-48b9-b399-f0c55b46bb9d",
+        "component": "platform-db",
+        "ready": true
+      },
+      {
+        "name": "urumi-m10-woocommerce-mcp-5458999fc5-crtvm",
+        "uid": "3de7c21b-0373-4ff2-b91d-0b7d6961d1c1",
+        "component": "woocommerce-mcp",
+        "ready": true
+      },
+      {
+        "name": "urumi-m10-wordpress-54c8c64897-fkbbd",
+        "uid": "820f790e-d39b-4b64-9719-40babad4407b",
+        "component": "wordpress",
+        "ready": true
+      }
+    ],
+    "claims": [
+      {
+        "name": "urumi-m10-mariadb-data",
+        "uid": "a0fec4df-b7ff-4ef9-b2fe-a9af4eb8959e",
+        "phase": "Bound"
+      },
+      {
+        "name": "urumi-m10-platform-data",
+        "uid": "710a5b52-744c-4525-b446-bbba455eb2cf",
+        "phase": "Bound"
+      },
+      {
+        "name": "urumi-m10-wordpress-content",
+        "uid": "b5ad912d-7d6c-4bf9-aa8e-b4803005162b",
+        "phase": "Bound"
+      }
+    ]
+  },
+  "other_six_pods_workload_specs_and_pvcs_preserved": true,
+  "registry_after": [
+    {
+      "id": "1dde0ef3-f7fe-4c7d-84db-feb777e0e5f1",
+      "slug": "context7",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true,
+      "auth_type": "bearer",
+      "header_name": null
+    },
+    {
+      "id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+      "slug": "inventory",
+      "url": "http://urumi-m10-inventory-mcp.urumi-m10.svc.cluster.local:8000/mcp",
+      "enabled": true,
+      "auth_type": "none",
+      "header_name": null
+    },
+    {
+      "id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+      "slug": "woocommerce",
+      "url": "http://urumi-m10-woocommerce-mcp.urumi-m10.svc.cluster.local:8000/mcp",
+      "enabled": true,
+      "auth_type": "none",
+      "header_name": null
+    },
+    {
+      "id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+      "slug": "learn",
+      "url": "https://learn.microsoft.com/api/mcp",
+      "enabled": true,
+      "auth_type": "none",
+      "header_name": null
+    }
+  ],
+  "status": "PASS"
+}

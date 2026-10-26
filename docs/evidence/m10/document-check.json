@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "files_checked": 10,
+  "local_links": "All targets exist",
+  "code_fences": "Paired",
+  "scope": "UTF-8 text and local file targets; not browser/document rendering."
+}

@@ -1,0 +1,11 @@
+{
+  "action": "checkout-notebook",
+  "checked_at": "2026-10-20T04:27:36.978Z",
+  "tls_verification": "browser_default",
+  "checks": [
+    "storefront_checkout_order_received"
+  ],
+  "order_id": 19,
+  "product_name": "M10 Browser Demo Notebook",
+  "status": "PASS"
+}

@@ -1,0 +1,19 @@
+﻿UTC: 2026-10-14T15:37:06.2750862Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "-n" "kube-system" "rollout" "status" "deployment/coredns" "--timeout=120s"
+Exit: 0
+Waiting for deployment "coredns" rollout to finish: 0 of 1 updated replicas are available...
+deployment "coredns" successfully rolled out
+
+
+UTC: 2026-10-14T16:59:33.9881233Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "-n" "kube-system" "get" "deployment" "coredns" "--ignore-not-found=true" "-o" "name"
+Exit: 0
+deployment.apps/coredns
+
+
+UTC: 2026-10-14T16:59:34.6909819Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "-n" "kube-system" "rollout" "status" "deployment/coredns" "--timeout=120s"
+Exit: 0
+deployment "coredns" successfully rolled out
+
+

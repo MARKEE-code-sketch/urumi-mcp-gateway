@@ -1,0 +1,15 @@
+{
+  "checked_at": "2026-10-21T02:38:05.487177+00:00",
+  "checks": [
+    "exact_namespace_owner_and_uid",
+    "all_three_pvc_owners_and_uids",
+    "scoped_helm_uninstall",
+    "uid_precondition_deletes",
+    "both_owned_namespaces_absent"
+  ],
+  "provider_calls": 0,
+  "scope": "staged source chart/helpers; explicit cached immutable image inputs and private operator inputs",
+  "status": "PASS",
+  "namespace": "urumi-m10-clean",
+  "removed_owned_pvcs": 3
+}

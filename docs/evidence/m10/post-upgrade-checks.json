@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-10-21T02:37:09.573171+00:00",
+  "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+  "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+  "tool_names": [
+    "inventory__lookup_sku",
+    "woocommerce__create_product",
+    "woocommerce__get_order",
+    "woocommerce__list_orders",
+    "woocommerce__list_products",
+    "woocommerce__update_order_status",
+    "learn__microsoft_code_sample_search",
+    "learn__microsoft_docs_fetch",
+    "learn__microsoft_docs_search"
+  ],
+  "order_ids": [
+    16,
+    19
+  ],
+  "inventory_result_received": true,
+  "scope": "Real authenticated gateway reads after the final image upgrade; no writes or provider calls."
+}

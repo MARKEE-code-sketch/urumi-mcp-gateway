@@ -1,0 +1,11 @@
+{
+  "image": "urumi/backend:m10-q10-per-completion",
+  "descriptor": {
+    "mediaType": "application/vnd.oci.image.index.v1+json",
+    "digest": "sha256:751e3450720ac7d8b95ea852d4cf0665f7c006882b1c89d3d435aaaf13efc1a2",
+    "size": 856
+  },
+  "repo_digests": [
+    "urumi/backend@sha256:751e3450720ac7d8b95ea852d4cf0665f7c006882b1c89d3d435aaaf13efc1a2"
+  ]
+}

@@ -1,0 +1,72 @@
+{{- if .Values.foundation.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "urumi.foundationName" . }}
+  labels:
+    {{- include "urumi.foundationLabels" . | nindent 4 }}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      {{- include "urumi.foundationSelectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "urumi.foundationSelectorLabels" . | nindent 8 }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/foundation/configmap.yaml") . | sha256sum }}
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+      containers:
+        - name: page
+          image: {{ include "urumi.foundationImage" . | quote }}
+          imagePullPolicy: {{ .Values.foundation.image.pullPolicy }}
+          command: ["python", "-B", "/config/server.py"]
+          ports:
+            - name: http
+              containerPort: 8080
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            periodSeconds: 3
+            timeoutSeconds: 2
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+          resources:
+            {{- toYaml .Values.foundation.resources | nindent 12 }}
+          volumeMounts:
+            - name: config
+              mountPath: /config
+              readOnly: true
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "urumi.foundationName" . }}-config
+            defaultMode: 292
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ include "urumi.foundationName" . }}-data
+{{- end }}

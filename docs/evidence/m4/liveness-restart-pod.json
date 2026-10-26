@@ -1,0 +1,259 @@
+﻿{
+    "apiVersion":  "v1",
+    "kind":  "Pod",
+    "metadata":  {
+                     "creationTimestamp":  "2026-10-16T13:11:04Z",
+                     "generateName":  "urumi-m4-check-inventory-mcp-7668bb9d98-",
+                     "generation":  1,
+                     "labels":  {
+                                    "app.kubernetes.io/component":  "inventory-mcp",
+                                    "app.kubernetes.io/instance":  "urumi-m4-check",
+                                    "app.kubernetes.io/name":  "urumi",
+                                    "pod-template-hash":  "7668bb9d98"
+                                },
+                     "name":  "urumi-m4-check-inventory-mcp-7668bb9d98-dn9df",
+                     "namespace":  "urumi-m4-check",
+                     "ownerReferences":  [
+                                             {
+                                                 "apiVersion":  "apps/v1",
+                                                 "blockOwnerDeletion":  true,
+                                                 "controller":  true,
+                                                 "kind":  "ReplicaSet",
+                                                 "name":  "urumi-m4-check-inventory-mcp-7668bb9d98",
+                                                 "uid":  "49338a68-4661-4b4c-bed2-15873da08fa8"
+                                             }
+                                         ],
+                     "resourceVersion":  "21986",
+                     "uid":  "800bcc63-0ef3-4f26-901c-7ee2ab0f96d7"
+                 },
+    "spec":  {
+                 "automountServiceAccountToken":  false,
+                 "containers":  [
+                                    {
+                                        "env":  [
+                                                    {
+                                                        "name":  "MCP_ALLOWED_HOSTS",
+                                                        "value":  "urumi-m4-check-inventory-mcp,urumi-m4-check-inventory-mcp.urumi-m4-check.svc,urumi-m4-check-inventory-mcp.urumi-m4-check.svc.cluster.local"
+                                                    }
+                                                ],
+                                        "image":  "urumi/inventory-mcp:m4",
+                                        "imagePullPolicy":  "IfNotPresent",
+                                        "livenessProbe":  {
+                                                              "failureThreshold":  3,
+                                                              "httpGet":  {
+                                                                              "path":  "/m4-missing-livez",
+                                                                              "port":  "mcp",
+                                                                              "scheme":  "HTTP"
+                                                                          },
+                                                              "periodSeconds":  10,
+                                                              "successThreshold":  1,
+                                                              "timeoutSeconds":  2
+                                                          },
+                                        "name":  "inventory-mcp",
+                                        "ports":  [
+                                                      {
+                                                          "containerPort":  8000,
+                                                          "name":  "mcp",
+                                                          "protocol":  "TCP"
+                                                      }
+                                                  ],
+                                        "readinessProbe":  {
+                                                               "failureThreshold":  3,
+                                                               "httpGet":  {
+                                                                               "path":  "/readyz",
+                                                                               "port":  "mcp",
+                                                                               "scheme":  "HTTP"
+                                                                           },
+                                                               "periodSeconds":  10,
+                                                               "successThreshold":  1,
+                                                               "timeoutSeconds":  2
+                                                           },
+                                        "resources":  {
+                                                          "limits":  {
+                                                                         "cpu":  "250m",
+                                                                         "memory":  "128Mi"
+                                                                     },
+                                                          "requests":  {
+                                                                           "cpu":  "50m",
+                                                                           "memory":  "64Mi"
+                                                                       }
+                                                      },
+                                        "securityContext":  {
+                                                                "allowPrivilegeEscalation":  false,
+                                                                "capabilities":  {
+                                                                                     "drop":  [
+                                                                                                  "ALL"
+                                                                                              ]
+                                                                                 },
+                                                                "readOnlyRootFilesystem":  true
+                                                            },
+                                        "startupProbe":  {
+                                                             "failureThreshold":  30,
+                                                             "httpGet":  {
+                                                                             "path":  "/livez",
+                                                                             "port":  "mcp",
+                                                                             "scheme":  "HTTP"
+                                                                         },
+                                                             "periodSeconds":  2,
+                                                             "successThreshold":  1,
+                                                             "timeoutSeconds":  2
+                                                         },
+                                        "terminationMessagePath":  "/dev/termination-log",
+                                        "terminationMessagePolicy":  "File"
+                                    }
+                                ],
+                 "dnsPolicy":  "ClusterFirst",
+                 "enableServiceLinks":  true,
+                 "nodeName":  "k3d-urumi-server-0",
+                 "preemptionPolicy":  "PreemptLowerPriority",
+                 "priority":  0,
+                 "restartPolicy":  "Always",
+                 "schedulerName":  "default-scheduler",
+                 "securityContext":  {
+                                         "runAsGroup":  10001,
+                                         "runAsNonRoot":  true,
+                                         "runAsUser":  10001,
+                                         "seccompProfile":  {
+                                                                "type":  "RuntimeDefault"
+                                                            }
+                                     },
+                 "serviceAccount":  "default",
+                 "serviceAccountName":  "default",
+                 "terminationGracePeriodSeconds":  30,
+                 "tolerations":  [
+                                     {
+                                         "effect":  "NoExecute",
+                                         "key":  "node.kubernetes.io/not-ready",
+                                         "operator":  "Exists",
+                                         "tolerationSeconds":  300
+                                     },
+                                     {
+                                         "effect":  "NoExecute",
+                                         "key":  "node.kubernetes.io/unreachable",
+                                         "operator":  "Exists",
+                                         "tolerationSeconds":  300
+                                     }
+                                 ]
+             },
+    "status":  {
+                   "allocatedResources":  {
+                                              "cpu":  "50m",
+                                              "memory":  "64Mi"
+                                          },
+                   "conditions":  [
+                                      {
+                                          "lastProbeTime":  null,
+                                          "lastTransitionTime":  "2026-10-16T13:11:05Z",
+                                          "observedGeneration":  1,
+                                          "status":  "True",
+                                          "type":  "PodReadyToStartContainers"
+                                      },
+                                      {
+                                          "lastProbeTime":  null,
+                                          "lastTransitionTime":  "2026-10-16T13:11:04Z",
+                                          "observedGeneration":  1,
+                                          "status":  "True",
+                                          "type":  "Initialized"
+                                      },
+                                      {
+                                          "lastProbeTime":  null,
+                                          "lastTransitionTime":  "2026-10-16T13:11:46Z",
+                                          "message":  "containers with unready status: [inventory-mcp]",
+                                          "observedGeneration":  1,
+                                          "reason":  "ContainersNotReady",
+                                          "status":  "False",
+                                          "type":  "Ready"
+                                      },
+                                      {
+                                          "lastProbeTime":  null,
+                                          "lastTransitionTime":  "2026-10-16T13:11:46Z",
+                                          "message":  "containers with unready status: [inventory-mcp]",
+                                          "observedGeneration":  1,
+                                          "reason":  "ContainersNotReady",
+                                          "status":  "False",
+                                          "type":  "ContainersReady"
+                                      },
+                                      {
+                                          "lastProbeTime":  null,
+                                          "lastTransitionTime":  "2026-10-16T13:11:04Z",
+                                          "observedGeneration":  1,
+                                          "status":  "True",
+                                          "type":  "PodScheduled"
+                                      }
+                                  ],
+                   "containerStatuses":  [
+                                             {
+                                                 "allocatedResources":  {
+                                                                            "cpu":  "50m",
+                                                                            "memory":  "64Mi"
+                                                                        },
+                                                 "containerID":  "containerd://7a728f6d6e29b1da40f9fc82c6ea019d094c8ae7161e7dff555187681dad937c",
+                                                 "image":  "docker.io/urumi/inventory-mcp:m4",
+                                                 "imageID":  "sha256:32f6307e850d6ccd3cb1e857ff949dfafbf63631594ed7196cc9684b20a57817",
+                                                 "lastState":  {
+                                                                   "terminated":  {
+                                                                                      "containerID":  "containerd://dbf2b8401478768eb6b922d4a076cf8300ca0f8a8bc16cc69f0ce8b267da3ad4",
+                                                                                      "exitCode":  0,
+                                                                                      "finishedAt":  "2026-10-16T13:11:45Z",
+                                                                                      "reason":  "Completed",
+                                                                                      "startedAt":  "2026-10-16T13:11:05Z"
+                                                                                  }
+                                                               },
+                                                 "name":  "inventory-mcp",
+                                                 "ready":  false,
+                                                 "resources":  {
+                                                                   "limits":  {
+                                                                                  "cpu":  "250m",
+                                                                                  "memory":  "128Mi"
+                                                                              },
+                                                                   "requests":  {
+                                                                                    "cpu":  "50m",
+                                                                                    "memory":  "64Mi"
+                                                                                }
+                                                               },
+                                                 "restartCount":  1,
+                                                 "started":  false,
+                                                 "state":  {
+                                                               "running":  {
+                                                                               "startedAt":  "2026-10-16T13:11:46Z"
+                                                                           }
+                                                           },
+                                                 "user":  {
+                                                              "linux":  {
+                                                                            "gid":  10001,
+                                                                            "supplementalGroups":  [
+                                                                                                       10001
+                                                                                                   ],
+                                                                            "uid":  10001
+                                                                        }
+                                                          }
+                                             }
+                                         ],
+                   "hostIP":  "172.18.0.2",
+                   "hostIPs":  [
+                                   {
+                                       "ip":  "172.18.0.2"
+                                   }
+                               ],
+                   "observedGeneration":  1,
+                   "phase":  "Running",
+                   "podIP":  "10.42.0.76",
+                   "podIPs":  [
+                                  {
+                                      "ip":  "10.42.0.76"
+                                  }
+                              ],
+                   "qosClass":  "Burstable",
+                   "resources":  {
+                                     "limits":  {
+                                                    "cpu":  "250m",
+                                                    "memory":  "128Mi"
+                                                },
+                                     "requests":  {
+                                                      "cpu":  "28m",
+                                                      "memory":  "64Mi"
+                                                  }
+                                 },
+                   "startTime":  "2026-10-16T13:11:04Z"
+               }
+}

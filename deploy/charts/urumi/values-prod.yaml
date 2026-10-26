@@ -1,0 +1,62 @@
+# Example only: documentation addresses and image placeholders require provisioning.
+release:
+  enabled: true
+  environment: production
+  provenance: ''
+foundation:
+  enabled: false
+m5Harness:
+  enabled: false
+gatewayCheck:
+  enabled: false
+store:
+  enabled: true
+  storage:
+    className: local-path
+  canonicalUrl: https://shop.example.com
+  ingress:
+    host: shop.example.com
+    tlsSecret: urumi-shop-tls
+  image:
+    repository: private-registry.example.com/urumi-store
+    tag: replace-with-immutable-reference
+woocommerceMcp:
+  enabled: true
+  canonicalOrigin: https://shop.example.com
+  transportOrigin: https://shop.example.com
+  hostAliases:
+  - ip: 192.0.2.10
+    hostnames:
+    - shop.example.com
+  networkPolicy:
+    transportMode: ingress-https
+  image:
+    repository: private-registry.example.com/woocommerce-mcp
+    tag: replace-with-immutable-reference
+inventoryMcp:
+  enabled: true
+  image:
+    repository: private-registry.example.com/inventory-mcp
+    tag: replace-with-immutable-reference
+platformDb:
+  enabled: true
+  storage:
+    className: local-path
+platformAccess:
+  enabled: true
+backend:
+  enabled: true
+  image:
+    repository: private-registry.example.com/backend
+    tag: replace-with-immutable-reference
+  origin: https://dashboard.example.com
+dashboard:
+  enabled: true
+  image:
+    repository: private-registry.example.com/dashboard
+    tag: replace-with-immutable-reference
+  ingress:
+    host: dashboard.example.com
+    tlsSecret: urumi-dashboard-tls
+imagePullSecrets:
+- name: urumi-registry

@@ -1,0 +1,25 @@
+{
+  "status": "PASS_CLEANUP_AND_WRITERS_HEALTHY",
+  "checked_at": "2026-10-20T09:39:15.929309+00:00",
+  "context": "k3d-urumi",
+  "remaining_recovery_namespaces": 0,
+  "remaining_source_content_readers": 0,
+  "main_writer_workloads": [
+    {
+      "name": "urumi-m10-backend",
+      "desired": 1,
+      "ready": 1
+    },
+    {
+      "name": "urumi-m10-woocommerce-mcp",
+      "desired": 1,
+      "ready": 1
+    },
+    {
+      "name": "urumi-m10-wordpress",
+      "desired": 1,
+      "ready": 1
+    }
+  ],
+  "scope": "Read-only metadata; no source mutations by restore helper"
+}

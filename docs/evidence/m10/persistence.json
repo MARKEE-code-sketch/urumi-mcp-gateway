@@ -1,0 +1,5994 @@
+{
+  "status": "PASS",
+  "scope": "Only fresh urumi-m10; exact namespace and Pod/controller ownership guards; no Secret values; no restore claim.",
+  "restarts": [
+    {
+      "component": "wordpress",
+      "old_name": "urumi-m10-wordpress-5cbd95478d-95n24",
+      "old_uid": "7e86a0d4-edb1-45e9-85c1-ada220484d82",
+      "new_name": "urumi-m10-wordpress-5cbd95478d-fjxsz",
+      "new_uid": "380374e1-0a90-434a-9bfc-dea8b2241c79",
+      "new_ready": true,
+      "recovery_seconds": 10.82,
+      "delete_uid_precondition": true,
+      "release_recovery": {
+        "ready_components": [
+          "wordpress",
+          "mariadb",
+          "backend",
+          "platform-db",
+          "dashboard",
+          "woocommerce-mcp",
+          "inventory-mcp"
+        ],
+        "seconds": 6.98
+      },
+      "data_unchanged": true
+    },
+    {
+      "component": "mariadb",
+      "old_name": "urumi-m10-mariadb-0",
+      "old_uid": "44f43c6c-3c05-4108-9a4c-448701f04f64",
+      "new_name": "urumi-m10-mariadb-0",
+      "new_uid": "09221dd6-99af-45a0-950b-b152446d9bed",
+      "new_ready": true,
+      "recovery_seconds": 12.48,
+      "delete_uid_precondition": true,
+      "release_recovery": {
+        "ready_components": [
+          "wordpress",
+          "mariadb",
+          "backend",
+          "platform-db",
+          "dashboard",
+          "woocommerce-mcp",
+          "inventory-mcp"
+        ],
+        "seconds": 6.8
+      },
+      "data_unchanged": true
+    },
+    {
+      "component": "backend",
+      "old_name": "urumi-m10-backend-7f8544fc7f-dxxsn",
+      "old_uid": "e2534b55-4854-41ec-891f-6f54d2a92032",
+      "new_name": "urumi-m10-backend-7f8544fc7f-qzvcr",
+      "new_uid": "48aed5dc-18fd-423b-ba96-5bea2c1c3211",
+      "new_ready": true,
+      "recovery_seconds": 10.47,
+      "delete_uid_precondition": true,
+      "release_recovery": {
+        "ready_components": [
+          "wordpress",
+          "mariadb",
+          "backend",
+          "platform-db",
+          "dashboard",
+          "woocommerce-mcp",
+          "inventory-mcp"
+        ],
+        "seconds": 7.3
+      },
+      "data_unchanged": true
+    },
+    {
+      "component": "platform-db",
+      "old_name": "urumi-m10-platform-db-6dbbf758c-7s6d4",
+      "old_uid": "ca42c08e-5eb1-4333-b1bb-4bcafc614e32",
+      "new_name": "urumi-m10-platform-db-6dbbf758c-wb9z5",
+      "new_uid": "a70af0ad-a169-48b9-b399-f0c55b46bb9d",
+      "new_ready": true,
+      "recovery_seconds": 3.77,
+      "delete_uid_precondition": true,
+      "release_recovery": {
+        "ready_components": [
+          "wordpress",
+          "mariadb",
+          "backend",
+          "platform-db",
+          "dashboard",
+          "woocommerce-mcp",
+          "inventory-mcp"
+        ],
+        "seconds": 10.12
+      },
+      "data_unchanged": true
+    }
+  ],
+  "namespace_uid": "89c6dab6-b118-42f3-940e-e8d8f91820bf",
+  "retained_before": [
+    {
+      "kind": "Pod",
+      "name": "urumi-mariadb-0",
+      "uid": "56861a6b-313d-42bc-ab29-df25934eccbc",
+      "unchanged": true
+    },
+    {
+      "kind": "Pod",
+      "name": "urumi-wordpress-5fdfc9c5f7-dldh4",
+      "uid": "2aea7ffc-4310-4f53-a4c9-f22052905252",
+      "unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-foundation-data",
+      "uid": "c6f386c1-ef1e-4996-ab86-ed888999226e",
+      "unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-mariadb-data",
+      "uid": "91b18137-d90e-49f0-b16e-ab2686a82df0",
+      "unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-wordpress-content",
+      "uid": "cae72902-5c12-4c82-9225-965798cb78b4",
+      "unchanged": true
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-mariadb",
+      "uid": "a05a7040-8d8f-49e3-abdf-b5f7735522c3",
+      "unchanged": true
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-wordpress",
+      "uid": "221ad775-aef4-4a39-8b49-282ab820fa5e",
+      "unchanged": true
+    }
+  ],
+  "before": {
+    "observed_utc": "2026-10-20T09:27:52.271779+00:00",
+    "pvcs": [
+      {
+        "name": "urumi-m10-mariadb-data",
+        "uid": "a0fec4df-b7ff-4ef9-b2fe-a9af4eb8959e",
+        "phase": "Bound"
+      },
+      {
+        "name": "urumi-m10-platform-data",
+        "uid": "710a5b52-744c-4525-b446-bbba455eb2cf",
+        "phase": "Bound"
+      },
+      {
+        "name": "urumi-m10-wordpress-content",
+        "uid": "b5ad912d-7d6c-4bf9-aa8e-b4803005162b",
+        "phase": "Bound"
+      }
+    ],
+    "store": {
+      "products": [
+        {
+          "id": 12,
+          "name": "Urumi Demo Product",
+          "price": "499.00",
+          "sku": "DEMO-001"
+        },
+        {
+          "id": 18,
+          "name": "M10 Browser Demo Notebook",
+          "price": "129",
+          "sku": "M10-BROWSER-NOTEBOOK"
+        }
+      ],
+      "orders": [
+        {
+          "id": 16,
+          "status": "completed",
+          "total": "499.00",
+          "items": [
+            {
+              "product_id": 12,
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "id": 19,
+          "status": "processing",
+          "total": "129.00",
+          "items": [
+            {
+              "product_id": 18,
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "attachment": {
+        "id": 13,
+        "sha256": "f1d689bba3617d9af0d58e93b1a909b1f3ff16b2962ed6a27e9a728dc0e8aeb3",
+        "bytes": 216
+      }
+    },
+    "platform": {
+      "users": [
+        {
+          "id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "role": "admin"
+        },
+        {
+          "id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "role": "member"
+        },
+        {
+          "id": "bfdf4132-080a-4e17-8b87-c9bd9bc25edb",
+          "role": "member"
+        }
+      ],
+      "keys": [
+        {
+          "id": "013fc882-f03e-465b-a7c1-93d8eba6ff8a",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "revoked": true
+        },
+        {
+          "id": "15e5c95e-fb7a-4b5b-8e6a-0b6346a866e3",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "revoked": true
+        },
+        {
+          "id": "1aeec973-e48b-41d0-9131-33e9340c117c",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "revoked": true
+        },
+        {
+          "id": "64753dbc-8ac7-4265-9e1f-f5dd0ce89d76",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "revoked": true
+        },
+        {
+          "id": "6ee74d60-107a-4e92-b0be-8c87fc2c0c41",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "revoked": true
+        },
+        {
+          "id": "91a815df-9bed-4f27-992f-b0ae8ace0272",
+          "user_id": "bfdf4132-080a-4e17-8b87-c9bd9bc25edb",
+          "revoked": true
+        },
+        {
+          "id": "b2a14450-339a-4b8e-867a-fa7855117432",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "revoked": true
+        },
+        {
+          "id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "revoked": true
+        },
+        {
+          "id": "d08a339b-4409-413b-8f3a-213ebe719062",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "revoked": true
+        },
+        {
+          "id": "eabd2d81-118b-4ed5-92bf-c2c01e744013",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "revoked": true
+        },
+        {
+          "id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "revoked": false
+        }
+      ],
+      "servers": [
+        {
+          "id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+          "slug": "inventory",
+          "enabled": true
+        },
+        {
+          "id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "slug": "woocommerce",
+          "enabled": true
+        },
+        {
+          "id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+          "slug": "learn",
+          "enabled": true
+        }
+      ],
+      "audits": [
+        {
+          "audit_id": "01bc2152-c5b2-4ac7-811e-0ff8d3ad66e0",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "06205f27-9076-4fc3-8cfc-faef5ea6782a",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eabd2d81-118b-4ed5-92bf-c2c01e744013",
+          "server_id": null,
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "0a54419e-1eb9-484e-b0cf-f03282cf539e",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "12a23752-a363-4284-baea-43a13fee988a",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__get_order",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "16c1043a-68ac-4c7e-8303-afb101022c20",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "15e5c95e-fb7a-4b5b-8e6a-0b6346a866e3",
+          "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "193ec61e-66de-4ea4-af6f-d69ac4bb11da",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": null,
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__create_product",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "32868e40-52b0-488f-aa52-5ed6b6f78832",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "15e5c95e-fb7a-4b5b-8e6a-0b6346a866e3",
+          "server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+          "public_tool_name": "learn__microsoft_code_sample_search",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "36e1ee7d-dd6e-4c1a-b089-5b04ea0a9b49",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "d08a339b-4409-413b-8f3a-213ebe719062",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "41b6ebdb-b1b1-41ac-a98f-23296b354859",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+          "public_tool_name": "learn__microsoft_code_sample_search",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "483270c6-60a8-481a-b115-b42fd4bcc8f5",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eabd2d81-118b-4ed5-92bf-c2c01e744013",
+          "server_id": null,
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "48cb07a3-b1e2-4a3a-998f-e5d3b44eda14",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "error"
+        },
+        {
+          "audit_id": "4f856244-8510-4341-aecb-08081322cb3d",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "64753dbc-8ac7-4265-9e1f-f5dd0ce89d76",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "57cd14cf-98a5-4820-8092-eccf202a916e",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "1aeec973-e48b-41d0-9131-33e9340c117c",
+          "server_id": null,
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "5cd061d8-9dfe-46b4-ae85-e1660f2f2646",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": null,
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_orders",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "60c79614-2107-4214-b642-b905fc359aaa",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "15e5c95e-fb7a-4b5b-8e6a-0b6346a866e3",
+          "server_id": null,
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "64129ae2-4144-4b8d-a817-871cff01b243",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "b2a14450-339a-4b8e-867a-fa7855117432",
+          "server_id": null,
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "6891b8ca-7901-4313-a045-38d5b18c1cc2",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_orders",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "6f59a17e-f58d-4247-9021-2013020a88c8",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "76885781-8c12-465b-84c0-235ee05cfe89",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "7b264629-5d3a-4c76-ac14-8fb313036918",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_orders",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "7d3c5309-e594-427b-9ef5-4bd40ee40d16",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_orders",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "8023809c-9493-4c2f-893f-64fe670a0703",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "b2a14450-339a-4b8e-867a-fa7855117432",
+          "server_id": null,
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "89d1ed57-3239-4377-8d62-4b41edde8096",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_orders",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "8ddfc2ff-46ee-4566-9d16-a6a0828e7903",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "9941efac-06ba-45f8-9afa-cf8629f88bef",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "9985ce76-8eaa-4a0f-a004-56ac05d8be0b",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "b2a14450-339a-4b8e-867a-fa7855117432",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "a738d90e-aa58-4b2c-91c1-4deabf09f317",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "ab5afdb3-556f-43ff-9d30-96feae5f53e5",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "1aeec973-e48b-41d0-9131-33e9340c117c",
+          "server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+          "public_tool_name": "learn__microsoft_code_sample_search",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "ade47632-5f22-4bd4-8889-1cec1b82d204",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "15e5c95e-fb7a-4b5b-8e6a-0b6346a866e3",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "b64c1863-7371-4020-98f7-331b4eb9a3f8",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": null,
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_orders",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "b79e4df7-7297-4f25-996d-e82204b4d149",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "bb9ede46-19fc-4283-83dc-ff502c1f9966",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eabd2d81-118b-4ed5-92bf-c2c01e744013",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "bc81e905-0978-4f64-9876-c335fa42bdf9",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "64753dbc-8ac7-4265-9e1f-f5dd0ce89d76",
+          "server_id": null,
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "bfeb5edd-bbc2-4711-90e4-094b36db3d40",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "1aeec973-e48b-41d0-9131-33e9340c117c",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "c043faff-b3f9-45c9-8b90-adc86350aca4",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "1aeec973-e48b-41d0-9131-33e9340c117c",
+          "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "c0f9311a-27e2-4d41-82f0-63f0dbbe27e0",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__update_order_status",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "d4fd39ca-19d4-40dc-8a05-82e17696b19b",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+          "public_tool_name": "learn__microsoft_code_sample_search",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "e272085d-7049-45c0-97ac-b799c7c9956a",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "e32573e2-78ac-40e5-8925-048fb6889cb5",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "1aeec973-e48b-41d0-9131-33e9340c117c",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_orders",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "e5ad2092-502b-4fdd-8f2f-45cf5d6192c1",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "1aeec973-e48b-41d0-9131-33e9340c117c",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "ea4f99d7-6c52-4161-a8cf-f9066457fc31",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "f307ab51-17f3-4e66-9df6-39319f22663b",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "server_id": null,
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "f3293d2d-8b77-4619-a6de-c857dcd2e57a",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_orders",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "f56199af-6390-45fb-81fc-341a4ec5e09a",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "d08a339b-4409-413b-8f3a-213ebe719062",
+          "server_id": null,
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "f9eb6c42-e51a-403d-acd2-f5d6662285d9",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "15e5c95e-fb7a-4b5b-8e6a-0b6346a866e3",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "fa838262-ae90-405e-9a18-37118d244380",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        }
+      ],
+      "builtin": [
+        {
+          "name": "woocommerce",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6"
+        }
+      ]
+    }
+  },
+  "after": {
+    "observed_utc": "2026-10-20T09:29:31.922566+00:00",
+    "pvcs": [
+      {
+        "name": "urumi-m10-mariadb-data",
+        "uid": "a0fec4df-b7ff-4ef9-b2fe-a9af4eb8959e",
+        "phase": "Bound"
+      },
+      {
+        "name": "urumi-m10-platform-data",
+        "uid": "710a5b52-744c-4525-b446-bbba455eb2cf",
+        "phase": "Bound"
+      },
+      {
+        "name": "urumi-m10-wordpress-content",
+        "uid": "b5ad912d-7d6c-4bf9-aa8e-b4803005162b",
+        "phase": "Bound"
+      }
+    ],
+    "store": {
+      "products": [
+        {
+          "id": 12,
+          "name": "Urumi Demo Product",
+          "price": "499.00",
+          "sku": "DEMO-001"
+        },
+        {
+          "id": 18,
+          "name": "M10 Browser Demo Notebook",
+          "price": "129",
+          "sku": "M10-BROWSER-NOTEBOOK"
+        }
+      ],
+      "orders": [
+        {
+          "id": 16,
+          "status": "completed",
+          "total": "499.00",
+          "items": [
+            {
+              "product_id": 12,
+              "quantity": 1
+            }
+          ]
+        },
+        {
+          "id": 19,
+          "status": "processing",
+          "total": "129.00",
+          "items": [
+            {
+              "product_id": 18,
+              "quantity": 1
+            }
+          ]
+        }
+      ],
+      "attachment": {
+        "id": 13,
+        "sha256": "f1d689bba3617d9af0d58e93b1a909b1f3ff16b2962ed6a27e9a728dc0e8aeb3",
+        "bytes": 216
+      }
+    },
+    "platform": {
+      "users": [
+        {
+          "id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "role": "admin"
+        },
+        {
+          "id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "role": "member"
+        },
+        {
+          "id": "bfdf4132-080a-4e17-8b87-c9bd9bc25edb",
+          "role": "member"
+        }
+      ],
+      "keys": [
+        {
+          "id": "013fc882-f03e-465b-a7c1-93d8eba6ff8a",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "revoked": true
+        },
+        {
+          "id": "15e5c95e-fb7a-4b5b-8e6a-0b6346a866e3",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "revoked": true
+        },
+        {
+          "id": "1aeec973-e48b-41d0-9131-33e9340c117c",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "revoked": true
+        },
+        {
+          "id": "64753dbc-8ac7-4265-9e1f-f5dd0ce89d76",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "revoked": true
+        },
+        {
+          "id": "6ee74d60-107a-4e92-b0be-8c87fc2c0c41",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "revoked": true
+        },
+        {
+          "id": "91a815df-9bed-4f27-992f-b0ae8ace0272",
+          "user_id": "bfdf4132-080a-4e17-8b87-c9bd9bc25edb",
+          "revoked": true
+        },
+        {
+          "id": "b2a14450-339a-4b8e-867a-fa7855117432",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "revoked": true
+        },
+        {
+          "id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "revoked": true
+        },
+        {
+          "id": "d08a339b-4409-413b-8f3a-213ebe719062",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "revoked": true
+        },
+        {
+          "id": "eabd2d81-118b-4ed5-92bf-c2c01e744013",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "revoked": true
+        },
+        {
+          "id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "revoked": false
+        }
+      ],
+      "servers": [
+        {
+          "id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+          "slug": "inventory",
+          "enabled": true
+        },
+        {
+          "id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "slug": "woocommerce",
+          "enabled": true
+        },
+        {
+          "id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+          "slug": "learn",
+          "enabled": true
+        }
+      ],
+      "audits": [
+        {
+          "audit_id": "01bc2152-c5b2-4ac7-811e-0ff8d3ad66e0",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "06205f27-9076-4fc3-8cfc-faef5ea6782a",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eabd2d81-118b-4ed5-92bf-c2c01e744013",
+          "server_id": null,
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "0a54419e-1eb9-484e-b0cf-f03282cf539e",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "12a23752-a363-4284-baea-43a13fee988a",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__get_order",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "16c1043a-68ac-4c7e-8303-afb101022c20",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "15e5c95e-fb7a-4b5b-8e6a-0b6346a866e3",
+          "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "193ec61e-66de-4ea4-af6f-d69ac4bb11da",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": null,
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__create_product",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "32868e40-52b0-488f-aa52-5ed6b6f78832",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "15e5c95e-fb7a-4b5b-8e6a-0b6346a866e3",
+          "server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+          "public_tool_name": "learn__microsoft_code_sample_search",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "36e1ee7d-dd6e-4c1a-b089-5b04ea0a9b49",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "d08a339b-4409-413b-8f3a-213ebe719062",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "41b6ebdb-b1b1-41ac-a98f-23296b354859",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+          "public_tool_name": "learn__microsoft_code_sample_search",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "483270c6-60a8-481a-b115-b42fd4bcc8f5",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eabd2d81-118b-4ed5-92bf-c2c01e744013",
+          "server_id": null,
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "48cb07a3-b1e2-4a3a-998f-e5d3b44eda14",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "error"
+        },
+        {
+          "audit_id": "4f856244-8510-4341-aecb-08081322cb3d",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "64753dbc-8ac7-4265-9e1f-f5dd0ce89d76",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "57cd14cf-98a5-4820-8092-eccf202a916e",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "1aeec973-e48b-41d0-9131-33e9340c117c",
+          "server_id": null,
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "5cd061d8-9dfe-46b4-ae85-e1660f2f2646",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": null,
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_orders",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "60c79614-2107-4214-b642-b905fc359aaa",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "15e5c95e-fb7a-4b5b-8e6a-0b6346a866e3",
+          "server_id": null,
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "64129ae2-4144-4b8d-a817-871cff01b243",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "b2a14450-339a-4b8e-867a-fa7855117432",
+          "server_id": null,
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "6891b8ca-7901-4313-a045-38d5b18c1cc2",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_orders",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "6f59a17e-f58d-4247-9021-2013020a88c8",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "76885781-8c12-465b-84c0-235ee05cfe89",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "7b264629-5d3a-4c76-ac14-8fb313036918",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_orders",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "7d3c5309-e594-427b-9ef5-4bd40ee40d16",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_orders",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "8023809c-9493-4c2f-893f-64fe670a0703",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "b2a14450-339a-4b8e-867a-fa7855117432",
+          "server_id": null,
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "89d1ed57-3239-4377-8d62-4b41edde8096",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_orders",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "8ddfc2ff-46ee-4566-9d16-a6a0828e7903",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "9941efac-06ba-45f8-9afa-cf8629f88bef",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "9985ce76-8eaa-4a0f-a004-56ac05d8be0b",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "b2a14450-339a-4b8e-867a-fa7855117432",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "a738d90e-aa58-4b2c-91c1-4deabf09f317",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "ab5afdb3-556f-43ff-9d30-96feae5f53e5",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "1aeec973-e48b-41d0-9131-33e9340c117c",
+          "server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+          "public_tool_name": "learn__microsoft_code_sample_search",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "ade47632-5f22-4bd4-8889-1cec1b82d204",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "15e5c95e-fb7a-4b5b-8e6a-0b6346a866e3",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "b64c1863-7371-4020-98f7-331b4eb9a3f8",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": null,
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_orders",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "b79e4df7-7297-4f25-996d-e82204b4d149",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "bb9ede46-19fc-4283-83dc-ff502c1f9966",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eabd2d81-118b-4ed5-92bf-c2c01e744013",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "bc81e905-0978-4f64-9876-c335fa42bdf9",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "64753dbc-8ac7-4265-9e1f-f5dd0ce89d76",
+          "server_id": null,
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "bfeb5edd-bbc2-4711-90e4-094b36db3d40",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "1aeec973-e48b-41d0-9131-33e9340c117c",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "c043faff-b3f9-45c9-8b90-adc86350aca4",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "1aeec973-e48b-41d0-9131-33e9340c117c",
+          "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "c0f9311a-27e2-4d41-82f0-63f0dbbe27e0",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__update_order_status",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "d4fd39ca-19d4-40dc-8a05-82e17696b19b",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "server_id": "bc50392d-2140-4ec0-8917-1e8630cc74c5",
+          "public_tool_name": "learn__microsoft_code_sample_search",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "e272085d-7049-45c0-97ac-b799c7c9956a",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "e32573e2-78ac-40e5-8925-048fb6889cb5",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "1aeec973-e48b-41d0-9131-33e9340c117c",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_orders",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "e5ad2092-502b-4fdd-8f2f-45cf5d6192c1",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "1aeec973-e48b-41d0-9131-33e9340c117c",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "ea4f99d7-6c52-4161-a8cf-f9066457fc31",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "server_id": "2309b4b7-059d-4d2a-86b8-e7d6d973564f",
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "f307ab51-17f3-4e66-9df6-39319f22663b",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "c1cd71ba-5cfc-422c-8b15-e5f760d47a44",
+          "server_id": null,
+          "public_tool_name": "inventory__lookup_sku",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "f3293d2d-8b77-4619-a6de-c857dcd2e57a",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_orders",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "f56199af-6390-45fb-81fc-341a4ec5e09a",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "d08a339b-4409-413b-8f3a-213ebe719062",
+          "server_id": null,
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "denied"
+        },
+        {
+          "audit_id": "f9eb6c42-e51a-403d-acd2-f5d6662285d9",
+          "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+          "key_id": "15e5c95e-fb7a-4b5b-8e6a-0b6346a866e3",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        },
+        {
+          "audit_id": "fa838262-ae90-405e-9a18-37118d244380",
+          "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+          "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6",
+          "public_tool_name": "woocommerce__list_products",
+          "outcome": "success"
+        }
+      ],
+      "builtin": [
+        {
+          "name": "woocommerce",
+          "server_id": "75c7ce89-b09d-44aa-8aeb-6413b47ee2d6"
+        }
+      ]
+    }
+  },
+  "retained_after": [
+    {
+      "kind": "Pod",
+      "name": "urumi-mariadb-0",
+      "uid": "56861a6b-313d-42bc-ab29-df25934eccbc",
+      "unchanged": true
+    },
+    {
+      "kind": "Pod",
+      "name": "urumi-wordpress-5fdfc9c5f7-dldh4",
+      "uid": "2aea7ffc-4310-4f53-a4c9-f22052905252",
+      "unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-foundation-data",
+      "uid": "c6f386c1-ef1e-4996-ab86-ed888999226e",
+      "unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-mariadb-data",
+      "uid": "91b18137-d90e-49f0-b16e-ab2686a82df0",
+      "unchanged": true
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "urumi-wordpress-content",
+      "uid": "cae72902-5c12-4c82-9225-965798cb78b4",
+      "unchanged": true
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-mariadb",
+      "uid": "a05a7040-8d8f-49e3-abdf-b5f7735522c3",
+      "unchanged": true
+    },
+    {
+      "kind": "Service",
+      "name": "urumi-wordpress",
+      "uid": "221ad775-aef4-4a39-8b49-282ab820fa5e",
+      "unchanged": true
+    }
+  ],
+  "commands": [
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-wordpress-5cbd95478d",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "statefulset",
+        "urumi-m10-mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-backend-7f8544fc7f",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-platform-db-6dbbf758c",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi",
+        "get",
+        "pods,pvc,services",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pvc",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-wordpress-5cbd95478d",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-wordpress-5cbd95478d-95n24",
+        "--",
+        "wp",
+        "--allow-root",
+        "eval",
+        "$out=['products'=>[],'orders'=>[]];foreach([12,18] as $id){$p=wc_get_product($id);if(!$p){throw new Exception('missing product');}$out['products'][]=['id'=>$p->get_id(),'name'=>$p->get_name(),'price'=>$p->get_price(),'sku'=>$p->get_sku()];}foreach([16,19] as $id){$o=wc_get_order($id);if(!$o){throw new Exception('missing order');}$out['orders'][]=['id'=>$o->get_id(),'status'=>$o->get_status(),'total'=>$o->get_total(),'items'=>array_values(array_map(function($i){return ['product_id'=>$i->get_product_id(),'quantity'=>$i->get_quantity()];},$o->get_items()))];}$f=get_attached_file(13);if(!$f||!is_file($f)){throw new Exception('missing content');}$out['attachment']=['id'=>13,'sha256'=>hash_file('sha256',$f),'bytes'=>filesize($f)];echo json_encode($out);"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-platform-db-6dbbf758c",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-platform-db-6dbbf758c-7s6d4",
+        "--",
+        "psql",
+        "-X",
+        "-A",
+        "-t",
+        "-U",
+        "urumi",
+        "-d",
+        "urumi",
+        "-c",
+        "SELECT json_build_object('users',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,role FROM users) x),'keys',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,user_id,revoked_at IS NOT NULL AS revoked FROM api_keys) x),'servers',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,slug,enabled FROM servers) x),'audits',(SELECT json_agg(x ORDER BY audit_id) FROM (SELECT audit_id,user_id,key_id,server_id,public_tool_name,outcome FROM audit_records) x),'builtin',(SELECT json_agg(x ORDER BY name) FROM (SELECT name,server_id FROM builtin_initializations) x));"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-wordpress-5cbd95478d",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "delete",
+        "--raw",
+        "/api/v1/namespaces/urumi-m10/pods/urumi-m10-wordpress-5cbd95478d-95n24",
+        "-f",
+        "-"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-wordpress-5cbd95478d",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-wordpress-5cbd95478d",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-wordpress-5cbd95478d",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-wordpress-5cbd95478d",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-wordpress-5cbd95478d",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "statefulset",
+        "urumi-m10-mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-backend-7f8544fc7f",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-platform-db-6dbbf758c",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=dashboard",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-dashboard-8bb474b46",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-dashboard",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=woocommerce-mcp",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-woocommerce-mcp-5458999fc5",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-woocommerce-mcp",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=inventory-mcp",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-inventory-mcp-58bcd997b7",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-inventory-mcp",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pvc",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-wordpress-5cbd95478d",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-wordpress-5cbd95478d-fjxsz",
+        "--",
+        "wp",
+        "--allow-root",
+        "eval",
+        "$out=['products'=>[],'orders'=>[]];foreach([12,18] as $id){$p=wc_get_product($id);if(!$p){throw new Exception('missing product');}$out['products'][]=['id'=>$p->get_id(),'name'=>$p->get_name(),'price'=>$p->get_price(),'sku'=>$p->get_sku()];}foreach([16,19] as $id){$o=wc_get_order($id);if(!$o){throw new Exception('missing order');}$out['orders'][]=['id'=>$o->get_id(),'status'=>$o->get_status(),'total'=>$o->get_total(),'items'=>array_values(array_map(function($i){return ['product_id'=>$i->get_product_id(),'quantity'=>$i->get_quantity()];},$o->get_items()))];}$f=get_attached_file(13);if(!$f||!is_file($f)){throw new Exception('missing content');}$out['attachment']=['id'=>13,'sha256'=>hash_file('sha256',$f),'bytes'=>filesize($f)];echo json_encode($out);"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-platform-db-6dbbf758c",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-platform-db-6dbbf758c-7s6d4",
+        "--",
+        "psql",
+        "-X",
+        "-A",
+        "-t",
+        "-U",
+        "urumi",
+        "-d",
+        "urumi",
+        "-c",
+        "SELECT json_build_object('users',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,role FROM users) x),'keys',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,user_id,revoked_at IS NOT NULL AS revoked FROM api_keys) x),'servers',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,slug,enabled FROM servers) x),'audits',(SELECT json_agg(x ORDER BY audit_id) FROM (SELECT audit_id,user_id,key_id,server_id,public_tool_name,outcome FROM audit_records) x),'builtin',(SELECT json_agg(x ORDER BY name) FROM (SELECT name,server_id FROM builtin_initializations) x));"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "statefulset",
+        "urumi-m10-mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "delete",
+        "--raw",
+        "/api/v1/namespaces/urumi-m10/pods/urumi-m10-mariadb-0",
+        "-f",
+        "-"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "statefulset",
+        "urumi-m10-mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "statefulset",
+        "urumi-m10-mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "statefulset",
+        "urumi-m10-mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "statefulset",
+        "urumi-m10-mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-wordpress-5cbd95478d",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "statefulset",
+        "urumi-m10-mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-backend-7f8544fc7f",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-platform-db-6dbbf758c",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=dashboard",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-dashboard-8bb474b46",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-dashboard",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=woocommerce-mcp",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-woocommerce-mcp-5458999fc5",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-woocommerce-mcp",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=inventory-mcp",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-inventory-mcp-58bcd997b7",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-inventory-mcp",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pvc",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-wordpress-5cbd95478d",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-wordpress-5cbd95478d-fjxsz",
+        "--",
+        "wp",
+        "--allow-root",
+        "eval",
+        "$out=['products'=>[],'orders'=>[]];foreach([12,18] as $id){$p=wc_get_product($id);if(!$p){throw new Exception('missing product');}$out['products'][]=['id'=>$p->get_id(),'name'=>$p->get_name(),'price'=>$p->get_price(),'sku'=>$p->get_sku()];}foreach([16,19] as $id){$o=wc_get_order($id);if(!$o){throw new Exception('missing order');}$out['orders'][]=['id'=>$o->get_id(),'status'=>$o->get_status(),'total'=>$o->get_total(),'items'=>array_values(array_map(function($i){return ['product_id'=>$i->get_product_id(),'quantity'=>$i->get_quantity()];},$o->get_items()))];}$f=get_attached_file(13);if(!$f||!is_file($f)){throw new Exception('missing content');}$out['attachment']=['id'=>13,'sha256'=>hash_file('sha256',$f),'bytes'=>filesize($f)];echo json_encode($out);"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-platform-db-6dbbf758c",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-platform-db-6dbbf758c-7s6d4",
+        "--",
+        "psql",
+        "-X",
+        "-A",
+        "-t",
+        "-U",
+        "urumi",
+        "-d",
+        "urumi",
+        "-c",
+        "SELECT json_build_object('users',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,role FROM users) x),'keys',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,user_id,revoked_at IS NOT NULL AS revoked FROM api_keys) x),'servers',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,slug,enabled FROM servers) x),'audits',(SELECT json_agg(x ORDER BY audit_id) FROM (SELECT audit_id,user_id,key_id,server_id,public_tool_name,outcome FROM audit_records) x),'builtin',(SELECT json_agg(x ORDER BY name) FROM (SELECT name,server_id FROM builtin_initializations) x));"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-backend-7f8544fc7f",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "delete",
+        "--raw",
+        "/api/v1/namespaces/urumi-m10/pods/urumi-m10-backend-7f8544fc7f-dxxsn",
+        "-f",
+        "-"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-backend-7f8544fc7f",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-backend-7f8544fc7f",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-backend-7f8544fc7f",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-backend-7f8544fc7f",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-wordpress-5cbd95478d",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "statefulset",
+        "urumi-m10-mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-backend-7f8544fc7f",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-platform-db-6dbbf758c",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=dashboard",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-dashboard-8bb474b46",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-dashboard",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=woocommerce-mcp",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-woocommerce-mcp-5458999fc5",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-woocommerce-mcp",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=inventory-mcp",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-inventory-mcp-58bcd997b7",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-inventory-mcp",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pvc",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-wordpress-5cbd95478d",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-wordpress-5cbd95478d-fjxsz",
+        "--",
+        "wp",
+        "--allow-root",
+        "eval",
+        "$out=['products'=>[],'orders'=>[]];foreach([12,18] as $id){$p=wc_get_product($id);if(!$p){throw new Exception('missing product');}$out['products'][]=['id'=>$p->get_id(),'name'=>$p->get_name(),'price'=>$p->get_price(),'sku'=>$p->get_sku()];}foreach([16,19] as $id){$o=wc_get_order($id);if(!$o){throw new Exception('missing order');}$out['orders'][]=['id'=>$o->get_id(),'status'=>$o->get_status(),'total'=>$o->get_total(),'items'=>array_values(array_map(function($i){return ['product_id'=>$i->get_product_id(),'quantity'=>$i->get_quantity()];},$o->get_items()))];}$f=get_attached_file(13);if(!$f||!is_file($f)){throw new Exception('missing content');}$out['attachment']=['id'=>13,'sha256'=>hash_file('sha256',$f),'bytes'=>filesize($f)];echo json_encode($out);"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-platform-db-6dbbf758c",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-platform-db-6dbbf758c-7s6d4",
+        "--",
+        "psql",
+        "-X",
+        "-A",
+        "-t",
+        "-U",
+        "urumi",
+        "-d",
+        "urumi",
+        "-c",
+        "SELECT json_build_object('users',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,role FROM users) x),'keys',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,user_id,revoked_at IS NOT NULL AS revoked FROM api_keys) x),'servers',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,slug,enabled FROM servers) x),'audits',(SELECT json_agg(x ORDER BY audit_id) FROM (SELECT audit_id,user_id,key_id,server_id,public_tool_name,outcome FROM audit_records) x),'builtin',(SELECT json_agg(x ORDER BY name) FROM (SELECT name,server_id FROM builtin_initializations) x));"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-platform-db-6dbbf758c",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "delete",
+        "--raw",
+        "/api/v1/namespaces/urumi-m10/pods/urumi-m10-platform-db-6dbbf758c-7s6d4",
+        "-f",
+        "-"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-platform-db-6dbbf758c",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-platform-db-6dbbf758c",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-wordpress-5cbd95478d",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "statefulset",
+        "urumi-m10-mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-backend-7f8544fc7f",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-wordpress-5cbd95478d",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "statefulset",
+        "urumi-m10-mariadb",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-backend-7f8544fc7f",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-backend",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-platform-db-6dbbf758c",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=dashboard",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-dashboard-8bb474b46",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-dashboard",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=woocommerce-mcp",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-woocommerce-mcp-5458999fc5",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-woocommerce-mcp",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=inventory-mcp",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-inventory-mcp-58bcd997b7",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-inventory-mcp",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pvc",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-wordpress-5cbd95478d",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-wordpress-5cbd95478d-fjxsz",
+        "--",
+        "wp",
+        "--allow-root",
+        "eval",
+        "$out=['products'=>[],'orders'=>[]];foreach([12,18] as $id){$p=wc_get_product($id);if(!$p){throw new Exception('missing product');}$out['products'][]=['id'=>$p->get_id(),'name'=>$p->get_name(),'price'=>$p->get_price(),'sku'=>$p->get_sku()];}foreach([16,19] as $id){$o=wc_get_order($id);if(!$o){throw new Exception('missing order');}$out['orders'][]=['id'=>$o->get_id(),'status'=>$o->get_status(),'total'=>$o->get_total(),'items'=>array_values(array_map(function($i){return ['product_id'=>$i->get_product_id(),'quantity'=>$i->get_quantity()];},$o->get_items()))];}$f=get_attached_file(13);if(!$f||!is_file($f)){throw new Exception('missing content');}$out['attachment']=['id'=>13,'sha256'=>hash_file('sha256',$f),'bytes'=>filesize($f)];echo json_encode($out);"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-platform-db-6dbbf758c",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-platform-db-6dbbf758c-wb9z5",
+        "--",
+        "psql",
+        "-X",
+        "-A",
+        "-t",
+        "-U",
+        "urumi",
+        "-d",
+        "urumi",
+        "-c",
+        "SELECT json_build_object('users',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,role FROM users) x),'keys',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,user_id,revoked_at IS NOT NULL AS revoked FROM api_keys) x),'servers',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,slug,enabled FROM servers) x),'audits',(SELECT json_agg(x ORDER BY audit_id) FROM (SELECT audit_id,user_id,key_id,server_id,public_tool_name,outcome FROM audit_records) x),'builtin',(SELECT json_agg(x ORDER BY name) FROM (SELECT name,server_id FROM builtin_initializations) x));"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pvc",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-wordpress-5cbd95478d",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-wordpress",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-wordpress-5cbd95478d-fjxsz",
+        "--",
+        "wp",
+        "--allow-root",
+        "eval",
+        "$out=['products'=>[],'orders'=>[]];foreach([12,18] as $id){$p=wc_get_product($id);if(!$p){throw new Exception('missing product');}$out['products'][]=['id'=>$p->get_id(),'name'=>$p->get_name(),'price'=>$p->get_price(),'sku'=>$p->get_sku()];}foreach([16,19] as $id){$o=wc_get_order($id);if(!$o){throw new Exception('missing order');}$out['orders'][]=['id'=>$o->get_id(),'status'=>$o->get_status(),'total'=>$o->get_total(),'items'=>array_values(array_map(function($i){return ['product_id'=>$i->get_product_id(),'quantity'=>$i->get_quantity()];},$o->get_items()))];}$f=get_attached_file(13);if(!$f||!is_file($f)){throw new Exception('missing content');}$out['attachment']=['id'=>13,'sha256'=>hash_file('sha256',$f),'bytes'=>filesize($f)];echo json_encode($out);"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "get",
+        "namespace",
+        "urumi-m10",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "pods",
+        "-l",
+        "app.kubernetes.io/instance=urumi-m10,app.kubernetes.io/component=platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "replicaset",
+        "urumi-m10-platform-db-6dbbf758c",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "get",
+        "deployment",
+        "urumi-m10-platform-db",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi-m10",
+        "exec",
+        "urumi-m10-platform-db-6dbbf758c-wb9z5",
+        "--",
+        "psql",
+        "-X",
+        "-A",
+        "-t",
+        "-U",
+        "urumi",
+        "-d",
+        "urumi",
+        "-c",
+        "SELECT json_build_object('users',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,role FROM users) x),'keys',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,user_id,revoked_at IS NOT NULL AS revoked FROM api_keys) x),'servers',(SELECT json_agg(x ORDER BY id) FROM (SELECT id,slug,enabled FROM servers) x),'audits',(SELECT json_agg(x ORDER BY audit_id) FROM (SELECT audit_id,user_id,key_id,server_id,public_tool_name,outcome FROM audit_records) x),'builtin',(SELECT json_agg(x ORDER BY name) FROM (SELECT name,server_id FROM builtin_initializations) x));"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "kubectl",
+        "--kubeconfig",
+        ".tools/m1/kubeconfig.yaml",
+        "--context",
+        "k3d-urumi",
+        "-n",
+        "urumi",
+        "get",
+        "pods,pvc,services",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0
+    }
+  ]
+}

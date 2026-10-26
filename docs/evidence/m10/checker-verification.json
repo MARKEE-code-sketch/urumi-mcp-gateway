@@ -1,0 +1,41 @@
+{
+  "status": "PASS_CONTROLLED_PACKAGE_AND_GUARD_ONLY",
+  "scope": "Fresh pinned M10 environment; static package, store compatibility, read-only inventory guards and source syntax. No Kubernetes, Docker build/import, provider, private input or trust changes by this verifier.",
+  "checks": [
+    {
+      "command": ".tools/m10/venv/Scripts/python.exe -m pytest tests/release tests/store tests/e2e/test_target_guard.py -q -p no:cacheprovider --basetemp .tools/m10/pytest-release --junitxml docs/evidence/m10/release-tests.xml",
+      "exit_code": 0,
+      "result": "79 passed in 15.99s",
+      "evidence": "release-tests.xml"
+    },
+    {
+      "command": ".tools/m10/venv/Scripts/python.exe -m pytest tests/release/test_checker_safety.py -q -p no:cacheprovider --basetemp .tools/m10/pytest-checker-final",
+      "exit_code": 0,
+      "result": "2 passed in 1.37s",
+      "reason": "Final portable cwd assertion supports both workspace-local and external pytest temporary roots."
+    },
+    {
+      "command": ".tools/m10/venv/Scripts/python.exe -m py_compile scripts/m10/target.py scripts/m10/check-m10.py scripts/m9/check-m9.py",
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    {
+      "command": "PowerShell System.Management.Automation.Language.Parser.ParseFile for scripts/demo.ps1",
+      "exit_code": 0,
+      "result": "Zero syntax errors"
+    },
+    {
+      "command": ".tools/m10/venv/Scripts/python.exe -m pytest tests/e2e/test_target_guard.py -q -p no:cacheprovider --basetemp .tools/m10/pytest-final-target",
+      "exit_code": 0,
+      "result": "11 passed in 0.20s",
+      "reason": "Final controlled-runner regression proves URUMI_M10_TEST_DSN is removed before child tests; unrelated environment preserved."
+    }
+  ],
+  "exploratory_failures": [
+    "Initial fresh M10 environment invocation preceded dependency installation: no pytest installed; no tests ran.",
+    "Old M9 environment exploratory test run hit Windows sandbox temp-directory permission failures; not counted as validation.",
+    "First elevated old-environment run: 1 assertion failure and 71 passes; assertion incorrectly assumed temp staging was outside workspace. Corrected to accept exact relative cwd when inside root; fresh final run passed."
+  ],
+  "historical_evidence": "Original docs/evidence/m9 outputs unchanged; current checker refuses to overwrite that output directory.",
+  "live_C10_acceptance": "NOT RUN; these checks do not establish real integration acceptance."
+}

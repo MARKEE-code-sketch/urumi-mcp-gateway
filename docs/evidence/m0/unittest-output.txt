@@ -1,0 +1,35 @@
+test_all_six_definitions_are_valid_schemas (test_contracts.ContractChecks.test_all_six_definitions_are_valid_schemas) ... ok
+test_all_success_examples_match_both_schemas (test_contracts.ContractChecks.test_all_success_examples_match_both_schemas) ... ok
+test_errors_do_not_claim_success_schema (test_contracts.ContractChecks.test_errors_do_not_claim_success_schema) ... ok
+test_invalid_inputs_are_rejected (test_contracts.ContractChecks.test_invalid_inputs_are_rejected) ... ok
+test_call_before_discovery (test_protocol.ProtocolChecks.test_call_before_discovery) ... Executing <Task pending name='Task-11' coro=<ProtocolChecks.test_call_before_discovery() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\m0\test_protocol.py:123> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.744 seconds
+WARNING:client:Tool lookup_sku not listed by server, cannot validate any structured content
+ok
+test_custom_header_and_no_auth_clients (test_protocol.ProtocolChecks.test_custom_header_and_no_auth_clients) ... WARNING:asyncio:Executing <Task pending name='Task-22' coro=<ProtocolChecks.test_custom_header_and_no_auth_clients() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\m0\test_protocol.py:116> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.653 seconds
+WARNING:asyncio:Executing <Task pending name='Task-22' coro=<ProtocolChecks.test_custom_header_and_no_auth_clients() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\m0\test_protocol.py:116> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.644 seconds
+ok
+test_initialize_and_paginated_discovery (test_protocol.ProtocolChecks.test_initialize_and_paginated_discovery) ... WARNING:asyncio:Executing <Task pending name='Task-43' coro=<ProtocolChecks.test_initialize_and_paginated_discovery() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\m0\test_protocol.py:106> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.657 seconds
+ok
+test_missing_and_wrong_authentication_rejected (test_protocol.ProtocolChecks.test_missing_and_wrong_authentication_rejected) ... WARNING:asyncio:Executing <Task pending name='Task-55' coro=<ProtocolChecks.test_missing_and_wrong_authentication_rejected() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\m0\test_protocol.py:101> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.646 seconds
+ok
+test_safe_execution_errors_and_invalid_inputs (test_protocol.ProtocolChecks.test_safe_execution_errors_and_invalid_inputs) ... WARNING:asyncio:Executing <Task pending name='Task-67' coro=<ProtocolChecks.test_safe_execution_errors_and_invalid_inputs() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\m0\test_protocol.py:151> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.686 seconds
+ok
+test_six_sample_tools_return_valid_output (test_protocol.ProtocolChecks.test_six_sample_tools_return_valid_output) ... WARNING:asyncio:Executing <Task pending name='Task-86' coro=<ProtocolChecks.test_six_sample_tools_return_valid_output() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\m0\test_protocol.py:132> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.717 seconds
+ok
+test_slow_fixture_can_be_cancelled_and_other_endpoint_works (test_protocol.ProtocolChecks.test_slow_fixture_can_be_cancelled_and_other_endpoint_works) ... WARNING:asyncio:Executing <Task pending name='Task-106' coro=<ProtocolChecks.test_slow_fixture_can_be_cancelled_and_other_endpoint_works() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\m0\test_protocol.py:169> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.644 seconds
+WARNING:asyncio:Executing <Task pending name='Task-106' coro=<ProtocolChecks.test_slow_fixture_can_be_cancelled_and_other_endpoint_works() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\m0\test_protocol.py:173> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.731 seconds
+ok
+test_stateful_session_is_created_and_terminated (test_protocol.ProtocolChecks.test_stateful_session_is_created_and_terminated) ... WARNING:asyncio:Executing <Task pending name='Task-127' coro=<ProtocolChecks.test_stateful_session_is_created_and_terminated() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\m0\test_protocol.py:187> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.684 seconds
+WARNING:asyncio:Executing <Task pending name='Task-127' coro=<ProtocolChecks.test_stateful_session_is_created_and_terminated() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\m0\test_protocol.py:193> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.683 seconds
+WARNING:asyncio:Executing <Task finished name='Task-127' coro=<ProtocolChecks.test_stateful_session_is_created_and_terminated() done, defined at C:\Users\mrina\Downloads\URUMI_Assignment\tests\m0\test_protocol.py:185> result=None created at C:\Python313\Lib\asyncio\runners.py:100> took 0.214 seconds
+ok
+test_stateless_reconnect (test_protocol.ProtocolChecks.test_stateless_reconnect) ... WARNING:asyncio:Executing <Task pending name='Task-151' coro=<ProtocolChecks.test_stateless_reconnect() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\m0\test_protocol.py:180> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.709 seconds
+WARNING:asyncio:Executing <Task pending name='Task-151' coro=<ProtocolChecks.test_stateless_reconnect() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\m0\test_protocol.py:180> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.640 seconds
+ok
+test_unknown_tool_and_invalid_cursor_are_protocol_errors (test_protocol.ProtocolChecks.test_unknown_tool_and_invalid_cursor_are_protocol_errors) ... WARNING:asyncio:Executing <Task pending name='Task-172' coro=<ProtocolChecks.test_unknown_tool_and_invalid_cursor_are_protocol_errors() running at C:\Users\mrina\Downloads\URUMI_Assignment\tests\m0\test_protocol.py:161> cb=[_run_until_complete_cb() at C:\Python313\Lib\asyncio\base_events.py:181] created at C:\Python313\Lib\asyncio\runners.py:100> took 0.628 seconds
+ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 17.053s
+
+OK

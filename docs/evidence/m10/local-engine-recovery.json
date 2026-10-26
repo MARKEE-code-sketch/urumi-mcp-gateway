@@ -1,0 +1,23 @@
+{
+  "scope": "Read-only observation after overnight API outage; root did not restart/recreate the node or Docker. Cause not established.",
+  "checks": [
+    {
+      "tool": "docker",
+      "result": {
+        "Status": "running",
+        "Running": true,
+        "Restarting": false,
+        "OOMKilled": false,
+        "ExitCode": 0,
+        "StartedAt": "2026-10-21T02:31:25.368497628Z"
+      }
+    },
+    {
+      "tool": "kubectl",
+      "result": {
+        "exit_code": 1,
+        "ready": false
+      }
+    }
+  ]
+}

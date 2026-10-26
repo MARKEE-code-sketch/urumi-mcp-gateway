@@ -1,0 +1,41 @@
+{
+  "client": "MCP Inspector 2.11.0",
+  "gateway_url": "https://dashboard-m10.urumi.test/mcp",
+  "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+  "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+  "checks": [
+    {
+      "check": "list",
+      "exit_code": 0,
+      "status": "PASS",
+      "tool_names": [
+        "inventory__lookup_sku",
+        "woocommerce__create_product",
+        "woocommerce__get_order",
+        "woocommerce__list_orders",
+        "woocommerce__list_products",
+        "woocommerce__update_order_status",
+        "learn__microsoft_code_sample_search",
+        "learn__microsoft_docs_fetch",
+        "learn__microsoft_docs_search"
+      ]
+    },
+    {
+      "check": "call",
+      "exit_code": 0,
+      "status": "PASS",
+      "is_error": false,
+      "result": {
+        "sku": "DEMO-001",
+        "found": true,
+        "warehouses": [
+          {
+            "name": "Bengaluru",
+            "quantity": 12
+          }
+        ]
+      }
+    }
+  ],
+  "scope": "Actual Inspector CLI; clean process exits required; no visual UI claim. Two pre-connect attempts rejected conflicting config/transport/catalog options; corrected config-only command used."
+}

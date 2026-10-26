@@ -1,0 +1,31 @@
+[
+  {
+    "tool": "woocommerce__list_products",
+    "filtered": false,
+    "is_error": false,
+    "error": null,
+    "ids": [
+      12
+    ]
+  },
+  {
+    "tool": "woocommerce__list_orders",
+    "filtered": false,
+    "is_error": false,
+    "error": null,
+    "ids": [
+      16,
+      19
+    ]
+  },
+  {
+    "tool": "woocommerce__list_orders",
+    "filtered": true,
+    "is_error": false,
+    "error": null,
+    "ids": [
+      16,
+      19
+    ]
+  }
+]

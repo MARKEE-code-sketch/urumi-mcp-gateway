@@ -1,0 +1,17 @@
+﻿UTC: 2026-10-15T14:58:07.4314835Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "uninstall" "urumi-m3-check" "-n" "urumi-m3-check" "--ignore-not-found" "--wait" "--timeout" "120s"
+Exit: 0
+release "urumi-m3-check" uninstalled
+
+
+UTC: 2026-10-15T14:58:26.1384579Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "delete" "namespace" "urumi-m3-check" "--wait=true" "--timeout=120s"
+Exit: 0
+namespace "urumi-m3-check" deleted
+
+
+UTC: 2026-10-15T14:58:26.3480833Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "get" "namespace" "urumi-m3-check" "--ignore-not-found" "-o" "name"
+Exit: 0
+
+

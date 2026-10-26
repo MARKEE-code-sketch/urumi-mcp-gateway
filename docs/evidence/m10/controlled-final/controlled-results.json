@@ -1,0 +1,114 @@
+{
+  "status": "PASS_CONTROLLED_ONLY",
+  "checked_at": "2026-10-20T13:31:35.160782+00:00",
+  "command": [
+    "C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\.tools\\m10\\venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "tests/e2e",
+    "tests/gateway",
+    "tests/chat",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--basetemp",
+    "C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\.tools\\m10\\pytest-controlled",
+    "--junitxml",
+    "C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\docs\\evidence\\m10\\controlled-final\\controlled-tests.xml"
+  ],
+  "exit_code": 0,
+  "scope": "Controlled Python contracts only; no live database/cluster/provider/browser proof.",
+  "excluded": "tests/backend historical database fixtures are not executed.",
+  "live_acceptance": [
+    {
+      "id": "C10-01",
+      "status": "NOT RUN",
+      "reason": "Real target and scenario evidence required."
+    },
+    {
+      "id": "C10-02",
+      "status": "NOT RUN",
+      "reason": "Real target and scenario evidence required."
+    },
+    {
+      "id": "C10-03",
+      "status": "NOT RUN",
+      "reason": "Real target and scenario evidence required."
+    },
+    {
+      "id": "C10-04",
+      "status": "NOT RUN",
+      "reason": "Real target and scenario evidence required."
+    },
+    {
+      "id": "C10-05",
+      "status": "NOT RUN",
+      "reason": "Real target and scenario evidence required."
+    },
+    {
+      "id": "C10-06",
+      "status": "NOT RUN",
+      "reason": "Real target and scenario evidence required."
+    },
+    {
+      "id": "C10-07",
+      "status": "NOT RUN",
+      "reason": "Real target and scenario evidence required."
+    },
+    {
+      "id": "C10-08",
+      "status": "NOT RUN",
+      "reason": "Real target and scenario evidence required."
+    },
+    {
+      "id": "C10-09",
+      "status": "NOT RUN",
+      "reason": "Real target and scenario evidence required."
+    },
+    {
+      "id": "C10-10",
+      "status": "NOT RUN",
+      "reason": "Real target and scenario evidence required."
+    },
+    {
+      "id": "C10-11",
+      "status": "NOT RUN",
+      "reason": "Real target and scenario evidence required."
+    },
+    {
+      "id": "C10-12",
+      "status": "NOT RUN",
+      "reason": "Real target and scenario evidence required."
+    },
+    {
+      "id": "C10-13",
+      "status": "NOT RUN",
+      "reason": "Real target and scenario evidence required."
+    },
+    {
+      "id": "C10-14",
+      "status": "NOT RUN",
+      "reason": "Real target and scenario evidence required."
+    },
+    {
+      "id": "C10-15",
+      "status": "NOT RUN",
+      "reason": "Real target and scenario evidence required."
+    },
+    {
+      "id": "C10-16",
+      "status": "NOT RUN",
+      "reason": "Real target and scenario evidence required."
+    },
+    {
+      "id": "C10-17",
+      "status": "NOT RUN",
+      "reason": "Real target and scenario evidence required."
+    },
+    {
+      "id": "C10-18",
+      "status": "NOT RUN",
+      "reason": "Real target and scenario evidence required."
+    }
+  ]
+}

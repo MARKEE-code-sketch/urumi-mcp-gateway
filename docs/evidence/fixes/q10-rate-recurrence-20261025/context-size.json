@@ -1,0 +1,7 @@
+{
+  "scope": "Local representative replay using the current catalog and previously captured public Learn results; not the user's exact failed input or a provider token measurement.",
+  "tool_count": 11,
+  "catalog_bytes": 12108,
+  "messages_after_search_fetch_search_bytes": 11914,
+  "provider_request_made": false
+}

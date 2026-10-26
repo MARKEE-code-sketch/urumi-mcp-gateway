@@ -1,0 +1,300 @@
+﻿UTC: 2026-10-15T14:50:37.4115749Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "build" "-f" "build/store/Dockerfile" "--build-arg" "WORDPRESS_IMAGE=wordpress@sha256:81a34254acaa6ff3b9a67268c2745e9a041c4094cbe5ccd35b75ed3bbdc033b5" "--build-arg" "CLI_IMAGE=wordpress@sha256:36243da432a0f0a3b56dc3240ecee9b159108d71305e7c064d987a20a465bfde" "-t" "urumi-store:m2" "."
+Exit: 0
+
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.26kB 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/wordpress@sha256:81a34254acaa6ff3b9a67268c2745e9a041c4094cbe5ccd35b75ed3bbdc033b5
+#2 ...
+
+#3 [internal] load metadata for docker.io/library/wordpress@sha256:36243da432a0f0a3b56dc3240ecee9b159108d71305e7c064d987a20a465bfde
+#3 DONE 2.3s
+
+#2 [internal] load metadata for docker.io/library/wordpress@sha256:81a34254acaa6ff3b9a67268c2745e9a041c4094cbe5ccd35b75ed3bbdc033b5
+#2 DONE 2.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 153B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [stage-1 1/8] FROM docker.io/library/wordpress@sha256:81a34254acaa6ff3b9a67268c2745e9a041c4094cbe5ccd35b75ed3bbdc033b5
+#6 resolve docker.io/library/wordpress@sha256:81a34254acaa6ff3b9a67268c2745e9a041c4094cbe5ccd35b75ed3bbdc033b5 0.1s done
+#6 DONE 0.1s
+
+#7 [cli 1/1] FROM docker.io/library/wordpress@sha256:36243da432a0f0a3b56dc3240ecee9b159108d71305e7c064d987a20a465bfde
+#7 resolve docker.io/library/wordpress@sha256:36243da432a0f0a3b56dc3240ecee9b159108d71305e7c064d987a20a465bfde
+#7 resolve docker.io/library/wordpress@sha256:36243da432a0f0a3b56dc3240ecee9b159108d71305e7c064d987a20a465bfde 0.1s done
+#7 ...
+
+#5 [internal] load build context
+#5 transferring context: 10.08kB 0.0s done
+#5 DONE 0.2s
+
+#6 [stage-1 1/8] FROM docker.io/library/wordpress@sha256:81a34254acaa6ff3b9a67268c2745e9a041c4094cbe5ccd35b75ed3bbdc033b5
+#6 ...
+
+#7 [cli 1/1] FROM docker.io/library/wordpress@sha256:36243da432a0f0a3b56dc3240ecee9b159108d71305e7c064d987a20a465bfde
+#7 DONE 1.4s
+
+#6 [stage-1 1/8] FROM docker.io/library/wordpress@sha256:81a34254acaa6ff3b9a67268c2745e9a041c4094cbe5ccd35b75ed3bbdc033b5
+#6 DONE 1.7s
+
+#8 [stage-1 2/8] COPY --from=cli /usr/local/bin/wp /usr/local/bin/wp
+#8 DONE 0.1s
+
+#9 [stage-1 3/8] RUN apt-get update && apt-get install -y --no-install-recommends unzip curl &&     curl --fail --show-error --location --proto '=https' --tlsv1.2       "https://downloads.wordpress.org/plugin/woocommerce.11.2.1.zip" -o /tmp/woocommerce.zip &&     sha256sum /tmp/woocommerce.zip &&     unzip -q /tmp/woocommerce.zip -d /usr/src/wordpress/wp-content/plugins &&     rm /tmp/woocommerce.zip && rm -rf /var/lib/apt/lists/*
+#9 0.958 Get:1 http://deb.debian.org/debian trixie InRelease [140 kB]
+#9 1.163 Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+#9 1.236 Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+#9 1.317 Get:4 http://deb.debian.org/debian trixie/main amd64 Packages [9678 kB]
+#9 2.414 Get:5 http://deb.debian.org/debian trixie-updates/main amd64 Packages [4412 B]
+#9 2.470 Get:6 http://deb.debian.org/debian-security trixie-security/main amd64 Packages [267 kB]
+#9 3.636 Fetched 10.2 MB in 3s (3524 kB/s)
+#9 3.636 Reading package lists...
+#9 4.883 Reading package lists...
+#9 5.959 Building dependency tree...
+#9 6.214 Reading state information...
+#9 6.541 The following additional packages will be installed:
+#9 6.543   libcurl4t64
+#9 6.545 Suggested packages:
+#9 6.545   zip
+#9 6.613 The following NEW packages will be installed:
+#9 6.613   unzip
+#9 6.614 The following packages will be upgraded:
+#9 6.617   curl libcurl4t64
+#9 6.781 2 upgraded, 1 newly installed, 0 to remove and 4 not upgraded.
+#9 6.781 Need to get 835 kB of archives.
+#9 6.781 After this operation, 396 kB of additional disk space will be used.
+#9 6.781 Get:1 http://deb.debian.org/debian-security trixie-security/main amd64 curl amd64 8.14.1-2+deb13u7 [270 kB]
+#9 7.032 Get:2 http://deb.debian.org/debian-security trixie-security/main amd64 libcurl4t64 amd64 8.14.1-2+deb13u7 [392 kB]
+#9 7.211 Get:3 http://deb.debian.org/debian trixie/main amd64 unzip amd64 6.0-29+deb13u1 [173 kB]
+#9 7.549 debconf: unable to initialize frontend: Dialog
+#9 7.549 debconf: (TERM is not set, so the dialog frontend is not usable.)
+#9 7.549 debconf: falling back to frontend: Readline
+#9 7.564 debconf: unable to initialize frontend: Readline
+#9 7.564 debconf: (This frontend requires a controlling tty.)
+#9 7.564 debconf: falling back to frontend: Teletype
+#9 7.574 debconf: unable to initialize frontend: Teletype
+#9 7.574 debconf: (This frontend requires a controlling tty.)
+#9 7.574 debconf: falling back to frontend: Noninteractive
+#9 8.828 Fetched 835 kB in 1s (1382 kB/s)
+#9 8.869 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 18080 files and directories currently installed.)
+#9 8.905 Preparing to unpack .../curl_8.14.1-2+deb13u7_amd64.deb ...
+#9 8.923 Unpacking curl (8.14.1-2+deb13u7) over (8.14.1-2+deb13u5) ...
+#9 9.029 Preparing to unpack .../libcurl4t64_8.14.1-2+deb13u7_amd64.deb ...
+#9 9.052 Unpacking libcurl4t64:amd64 (8.14.1-2+deb13u7) over (8.14.1-2+deb13u5) ...
+#9 9.149 Selecting previously unselected package unzip.
+#9 9.152 Preparing to unpack .../unzip_6.0-29+deb13u1_amd64.deb ...
+#9 9.159 Unpacking unzip (6.0-29+deb13u1) ...
+#9 9.238 Setting up libcurl4t64:amd64 (8.14.1-2+deb13u7) ...
+#9 9.260 Setting up unzip (6.0-29+deb13u1) ...
+#9 9.280 Setting up curl (8.14.1-2+deb13u7) ...
+#9 9.302 Processing triggers for libc-bin (2.41-12+deb13u4) ...
+#9 9.422   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+#9 9.422                                  Dload  Upload   Total   Spent    Left  Speed
+#9 9.422   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0 17.2M    0 11953    0     0   7528      0  0:39:59  0:00:01  0:39:58  7531  0 17.2M    0 65536    0     0  33517      0  0:08:58  0:00:01  0:08:57 33522  2 17.2M    2  495k    0     0   169k      0  0:01:44  0:00:02  0:01:42  169k 13 17.2M   13 2447k    0     0   623k      0  0:00:28  0:00:03  0:00:25  623k 60 17.2M   60 10.4M    0     0  2170k      0  0:00:08  0:00:04  0:00:04 2170k100 17.2M  100 17.2M    0     0  3108k      0  0:00:05  0:00:05 --:--:-- 4312k
+#9 15.13 5317434cb381b5fdc7c1dd6ee258324f08c390976aaf8d1199f2a0e9a3ab8586  /tmp/woocommerce.zip
+#9 DONE 18.1s
+
+#10 [stage-1 4/8] COPY scripts/store/ /opt/urumi-store/
+#10 DONE 0.2s
+
+#11 [stage-1 5/8] RUN curl --fail --show-error --location --proto '=https' --tlsv1.2       "https://downloads.wordpress.org/plugin-checksums/woocommerce/11.2.1.json" -o /tmp/plugin-checksums.json &&     php /opt/urumi-store/verify-package.php && rm /tmp/plugin-checksums.json
+#11 0.342   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+#11 0.342                                  Dload  Upload   Total   Spent    Left  Speed
+#11 0.342   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  3  963k    3 32768    0     0  22362      0  0:00:44  0:00:01  0:00:43 22367  4  963k    4 46440    0     0  26707      0  0:00:36  0:00:01  0:00:35 26705 29  963k   29  287k    0     0   101k      0  0:00:09  0:00:02  0:00:07  101k100  963k  100  963k    0     0   274k      0  0:00:03  0:00:03 --:--:--  274k
+#11 4.682 Publisher plugin checksums verified: 5488 files
+#11 DONE 4.7s
+
+#12 [stage-1 6/8] COPY scripts/store/live.php /usr/src/wordpress/urumi-live.php
+#12 DONE 0.1s
+
+#13 [stage-1 7/8] COPY scripts/store/ready.php /usr/src/wordpress/urumi-ready.php
+#13 DONE 0.1s
+
+#14 [stage-1 8/8] RUN printf 'memory_limit=256M\nupload_max_filesize=8M\npost_max_size=10M\n' > /usr/local/etc/php/conf.d/urumi.ini
+#14 DONE 0.4s
+
+#15 exporting to image
+#15 exporting layers
+#15 exporting layers 4.1s done
+#15 exporting manifest sha256:46cfda761857305a85ab24f90fab237599dc19787464aa5bce12b7fbb1dab936 0.0s done
+#15 exporting config sha256:4d3c24a4eed546b57359d8e5e252847b72101cd1f86dd51cf05043b7c93a1e3f 0.0s done
+#15 exporting attestation manifest sha256:74b9859f04efd828dd110b01890be71b3ecced05f80a4ce34adc6191e176dd82 0.0s done
+#15 exporting manifest list sha256:fe04b431b535a8f97b11b0413685694f577170b0c0ad797154b7d9bec04c59c2
+#15 exporting manifest list sha256:fe04b431b535a8f97b11b0413685694f577170b0c0ad797154b7d9bec04c59c2 0.0s done
+#15 naming to docker.io/library/urumi-store:m2 done
+#15 unpacking to docker.io/library/urumi-store:m2
+#15 unpacking to docker.io/library/urumi-store:m2 3.6s done
+#15 DONE 8.0s
+
+UTC: 2026-10-15T14:50:43.1415885Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "tag" "urumi-store:m2" "urumi-store:m2-fe04b431b535"
+Exit: 0
+
+
+UTC: 2026-10-15T14:54:21.5716539Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "build" "-f" "build/store/Dockerfile" "--build-arg" "WORDPRESS_IMAGE=wordpress@sha256:81a34254acaa6ff3b9a67268c2745e9a041c4094cbe5ccd35b75ed3bbdc033b5" "--build-arg" "CLI_IMAGE=wordpress@sha256:36243da432a0f0a3b56dc3240ecee9b159108d71305e7c064d987a20a465bfde" "-t" "urumi-store:m2" "."
+Exit: 0
+
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.26kB 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/wordpress@sha256:36243da432a0f0a3b56dc3240ecee9b159108d71305e7c064d987a20a465bfde
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/wordpress@sha256:81a34254acaa6ff3b9a67268c2745e9a041c4094cbe5ccd35b75ed3bbdc033b5
+#3 DONE 0.1s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 153B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [stage-1 1/8] FROM docker.io/library/wordpress@sha256:81a34254acaa6ff3b9a67268c2745e9a041c4094cbe5ccd35b75ed3bbdc033b5
+#6 resolve docker.io/library/wordpress@sha256:81a34254acaa6ff3b9a67268c2745e9a041c4094cbe5ccd35b75ed3bbdc033b5 0.1s done
+#6 DONE 0.1s
+
+#7 [cli 1/1] FROM docker.io/library/wordpress@sha256:36243da432a0f0a3b56dc3240ecee9b159108d71305e7c064d987a20a465bfde
+#7 resolve docker.io/library/wordpress@sha256:36243da432a0f0a3b56dc3240ecee9b159108d71305e7c064d987a20a465bfde 0.1s done
+#7 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 6.76kB 0.0s done
+#5 DONE 0.0s
+
+#8 [stage-1 2/8] COPY --from=cli /usr/local/bin/wp /usr/local/bin/wp
+#8 CACHED
+
+#9 [stage-1 3/8] RUN apt-get update && apt-get install -y --no-install-recommends unzip curl &&     curl --fail --show-error --location --proto '=https' --tlsv1.2       "https://downloads.wordpress.org/plugin/woocommerce.11.2.1.zip" -o /tmp/woocommerce.zip &&     sha256sum /tmp/woocommerce.zip &&     unzip -q /tmp/woocommerce.zip -d /usr/src/wordpress/wp-content/plugins &&     rm /tmp/woocommerce.zip && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [stage-1 4/8] COPY scripts/store/ /opt/urumi-store/
+#10 DONE 0.1s
+
+#11 [stage-1 5/8] RUN curl --fail --show-error --location --proto '=https' --tlsv1.2       "https://downloads.wordpress.org/plugin-checksums/woocommerce/11.2.1.json" -o /tmp/plugin-checksums.json &&     php /opt/urumi-store/verify-package.php && rm /tmp/plugin-checksums.json
+#11 0.380   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+#11 0.380                                  Dload  Upload   Total   Spent    Left  Speed
+#11 0.381   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  3  963k    3 31451    0     0  22142      0  0:00:44  0:00:01  0:00:43 22133 29  963k   29  287k    0     0   119k      0  0:00:08  0:00:02  0:00:06  119k100  963k  100  963k    0     0   318k      0  0:00:03  0:00:03 --:--:--  319k
+#11 4.462 Publisher plugin checksums verified: 5488 files
+#11 DONE 4.5s
+
+#12 [stage-1 6/8] COPY scripts/store/live.php /usr/src/wordpress/urumi-live.php
+#12 DONE 0.1s
+
+#13 [stage-1 7/8] COPY scripts/store/ready.php /usr/src/wordpress/urumi-ready.php
+#13 DONE 0.1s
+
+#14 [stage-1 8/8] RUN printf 'memory_limit=256M\nupload_max_filesize=8M\npost_max_size=10M\n' > /usr/local/etc/php/conf.d/urumi.ini
+#14 DONE 0.4s
+
+#15 exporting to image
+#15 exporting layers
+#15 exporting layers 0.5s done
+#15 exporting manifest sha256:4e92f45f430efcdaca6d18b6a5ce281275d89456be48241d5c088491005ed2a6 0.0s done
+#15 exporting config sha256:09a2ae742c23a350d70ac364613a91288d26e25cbf59ee1ab7616cdf2954d562 0.0s done
+#15 exporting attestation manifest sha256:c27ef2cb953391371a540ec4d1d6199d68976612202d321d05c8b4e89e92d14c 0.0s done
+#15 exporting manifest list sha256:4b1bc9edacb0df7146124c6f700b386cb5d6d48ecb7388029d1686e6a7238a3a 0.0s done
+#15 naming to docker.io/library/urumi-store:m2 done
+#15 unpacking to docker.io/library/urumi-store:m2
+#15 unpacking to docker.io/library/urumi-store:m2 0.2s done
+#15 DONE 1.0s
+
+UTC: 2026-10-15T14:54:27.6843919Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "tag" "urumi-store:m2" "urumi-store:m2-4b1bc9edacb0"
+Exit: 0
+
+
+UTC: 2026-10-15T15:09:46.0383720Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "build" "-f" "build/store/Dockerfile" "--build-arg" "WORDPRESS_IMAGE=wordpress@sha256:81a34254acaa6ff3b9a67268c2745e9a041c4094cbe5ccd35b75ed3bbdc033b5" "--build-arg" "CLI_IMAGE=wordpress@sha256:36243da432a0f0a3b56dc3240ecee9b159108d71305e7c064d987a20a465bfde" "-t" "urumi-store:m2" "."
+Exit: 0
+
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.26kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/wordpress@sha256:36243da432a0f0a3b56dc3240ecee9b159108d71305e7c064d987a20a465bfde
+#2 ...
+
+#3 [internal] load metadata for docker.io/library/wordpress@sha256:81a34254acaa6ff3b9a67268c2745e9a041c4094cbe5ccd35b75ed3bbdc033b5
+#3 DONE 2.3s
+
+#2 [internal] load metadata for docker.io/library/wordpress@sha256:36243da432a0f0a3b56dc3240ecee9b159108d71305e7c064d987a20a465bfde
+#2 DONE 2.3s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 153B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [cli 1/1] FROM docker.io/library/wordpress@sha256:36243da432a0f0a3b56dc3240ecee9b159108d71305e7c064d987a20a465bfde
+#6 resolve docker.io/library/wordpress@sha256:36243da432a0f0a3b56dc3240ecee9b159108d71305e7c064d987a20a465bfde 0.1s done
+#6 DONE 0.1s
+
+#7 [stage-1 1/8] FROM docker.io/library/wordpress@sha256:81a34254acaa6ff3b9a67268c2745e9a041c4094cbe5ccd35b75ed3bbdc033b5
+#7 resolve docker.io/library/wordpress@sha256:81a34254acaa6ff3b9a67268c2745e9a041c4094cbe5ccd35b75ed3bbdc033b5 0.1s done
+#7 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 10.29kB 0.0s done
+#5 DONE 0.0s
+
+#8 [stage-1 2/8] COPY --from=cli /usr/local/bin/wp /usr/local/bin/wp
+#8 CACHED
+
+#9 [stage-1 3/8] RUN apt-get update && apt-get install -y --no-install-recommends unzip curl &&     curl --fail --show-error --location --proto '=https' --tlsv1.2       "https://downloads.wordpress.org/plugin/woocommerce.11.2.1.zip" -o /tmp/woocommerce.zip &&     sha256sum /tmp/woocommerce.zip &&     unzip -q /tmp/woocommerce.zip -d /usr/src/wordpress/wp-content/plugins &&     rm /tmp/woocommerce.zip && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [stage-1 4/8] COPY scripts/store/ /opt/urumi-store/
+#10 DONE 0.1s
+
+#11 [stage-1 5/8] RUN curl --fail --show-error --location --proto '=https' --tlsv1.2       "https://downloads.wordpress.org/plugin-checksums/woocommerce/11.2.1.json" -o /tmp/plugin-checksums.json &&     php /opt/urumi-store/verify-package.php && rm /tmp/plugin-checksums.json
+#11 0.418   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+#11 0.419                                  Dload  Upload   Total   Spent    Left  Speed
+#11 0.419   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  2  963k    2 21877    0     0  13869      0  0:01:11  0:00:01  0:01:10 13863 26  963k   26  256k    0     0   101k      0  0:00:09  0:00:02  0:00:07  101k100  963k  100  963k    0     0   298k      0  0:00:03  0:00:03 --:--:--  298k
+#11 4.784 Publisher plugin checksums verified: 5488 files
+#11 DONE 4.8s
+
+#12 [stage-1 6/8] COPY scripts/store/live.php /usr/src/wordpress/urumi-live.php
+#12 DONE 0.1s
+
+#13 [stage-1 7/8] COPY scripts/store/ready.php /usr/src/wordpress/urumi-ready.php
+#13 DONE 0.1s
+
+#14 [stage-1 8/8] RUN printf 'memory_limit=256M\nupload_max_filesize=8M\npost_max_size=10M\n' > /usr/local/etc/php/conf.d/urumi.ini
+#14 DONE 0.4s
+
+#15 exporting to image
+#15 exporting layers
+#15 exporting layers 0.5s done
+#15 exporting manifest sha256:d26c5abbf1a75d1f99da926549691ec8affb3e97cd61bf9c5fbe02d874b09d6a 0.0s done
+#15 exporting config sha256:db1ad610bf5588423b9e6d500e5915b3bbc21c37cbf70dc0da2d67041941d3b5 0.0s done
+#15 exporting attestation manifest sha256:50767f28c7610bd31ea27e8119077e470e5209e6fd7b5cfe287b810cdafb117b
+#15 exporting attestation manifest sha256:50767f28c7610bd31ea27e8119077e470e5209e6fd7b5cfe287b810cdafb117b 0.1s done
+#15 exporting manifest list sha256:23494837a20cc9d2c7093cb8203f066eb9c78054956945ad4e779ab42e204d98 0.0s done
+#15 naming to docker.io/library/urumi-store:m2 done
+#15 unpacking to docker.io/library/urumi-store:m2
+#15 unpacking to docker.io/library/urumi-store:m2 0.3s done
+#15 DONE 1.2s
+
+UTC: 2026-10-15T15:09:52.5395245Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "tag" "urumi-store:m2" "urumi-store:m2-23494837a20c"
+Exit: 0
+
+

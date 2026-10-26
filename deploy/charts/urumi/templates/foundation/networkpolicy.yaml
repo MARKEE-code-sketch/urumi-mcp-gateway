@@ -1,0 +1,27 @@
+{{- if and .Values.foundation.enabled .Values.foundation.networkPolicy.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ include "urumi.foundationName" . }}
+  labels:
+    {{- include "urumi.foundationLabels" . | nindent 4 }}
+spec:
+  podSelector:
+    matchLabels:
+      {{- include "urumi.foundationSelectorLabels" . | nindent 6 }}
+  policyTypes: ["Ingress"]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              m1-access: allowed
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: {{ .Values.foundation.networkPolicy.traefikNamespace | quote }}
+          podSelector:
+            matchLabels:
+              {{- toYaml .Values.foundation.networkPolicy.traefikPodLabels | nindent 14 }}
+      ports:
+        - protocol: TCP
+          port: 8080
+{{- end }}

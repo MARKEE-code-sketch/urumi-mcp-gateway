@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "provider": "groq",
+  "model": "openai/gpt-oss-20b",
+  "stage": "complete",
+  "tool_calls": [
+    {
+      "name": "lookup_sku",
+      "arguments": {
+        "sku": "DEMO-001"
+      }
+    }
+  ],
+  "answer": "**Sample warehouse information for SKU `DEMO-001`:**\n\n- **Warehouse name:** Bengaluru  \n- **Quantity available:** 12 units\n\nThis is the data returned from the sample warehouse lookup.",
+  "reason_code": "TOOL_LOOP_COMPLETED"
+}

@@ -1,0 +1,101 @@
+{
+  "status": "PASS_RUNTIME_REVIEW_PENDING",
+  "checks": [
+    {
+      "check": "three_servers_pagination_names_protocol",
+      "status": "PASS",
+      "evidence": {
+        "tool_count": 6,
+        "protocol": "2025-11-25",
+        "listing_seconds": 0.066
+      }
+    },
+    {
+      "check": "routing_auth_modes_and_user_b_attribution",
+      "status": "PASS",
+      "evidence": {
+        "attempts": 3
+      }
+    },
+    {
+      "check": "echo_secret_sanitization",
+      "status": "PASS",
+      "evidence": {
+        "secret_matches": 0
+      }
+    },
+    {
+      "check": "preserved_upstream_execution_error",
+      "status": "PASS",
+      "evidence": {
+        "isError": true
+      }
+    },
+    {
+      "check": "unknown_protocol_and_invalid_arguments",
+      "status": "PASS",
+      "evidence": {
+        "denials_or_errors_visible": true
+      }
+    },
+    {
+      "check": "session_preview_pagination",
+      "status": "PASS",
+      "evidence": {
+        "items": 1,
+        "has_more": true
+      }
+    },
+    {
+      "check": "audit_start_fail_closed",
+      "status": "PASS",
+      "evidence": {
+        "new_attempts": 0
+      }
+    },
+    {
+      "check": "ten_second_timeout_and_healthy_peer",
+      "status": "PASS",
+      "evidence": {
+        "timeout_seconds": 10.031
+      }
+    },
+    {
+      "check": "controlled_pod_outage_stale_status_recovery",
+      "status": "PASS",
+      "evidence": {
+        "status_seconds": 1.129,
+        "old_pod_uids": [
+          "781d7ac1-e531-4121-ba05-17004cc93ede"
+        ],
+        "new_pod_uids": [
+          "8f5e3644-24c4-4b2f-8756-c1c5e434bc5e"
+        ]
+      }
+    },
+    {
+      "check": "disabled_stale_name_and_fresh_listing",
+      "status": "PASS",
+      "evidence": {
+        "visible_tools": 4
+      }
+    },
+    {
+      "check": "audit_finalization_uncertainty",
+      "status": "PASS",
+      "evidence": {
+        "durable_fixture_state": "running"
+      }
+    },
+    {
+      "check": "existing_client_revocation",
+      "status": "PASS",
+      "evidence": {
+        "http_status": 401
+      }
+    }
+  ],
+  "redaction_matches": 0,
+  "retained_identities_unchanged": true,
+  "owned_namespace_removed": true
+}

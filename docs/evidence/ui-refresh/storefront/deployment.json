@@ -1,0 +1,99 @@
+{
+  "status": "PASS",
+  "prior_helm_revision": 8,
+  "prior_theme": "urumi-shop",
+  "after": {
+    "theme": "urumi-shop",
+    "settings": {
+      "home": "http://shop-m10.urumi.test",
+      "siteurl": "http://shop-m10.urumi.test",
+      "show_on_front": "posts",
+      "woocommerce_currency": "INR",
+      "woocommerce_cod_settings": {
+        "enabled": "yes",
+        "title": "Cash on delivery",
+        "enable_for_virtual": "yes"
+      },
+      "woocommerce_cart_page_id": "6",
+      "woocommerce_checkout_page_id": "7",
+      "woocommerce_myaccount_page_id": "8"
+    },
+    "products": [
+      {
+        "id": 12,
+        "sku": "DEMO-001",
+        "price": "499.00"
+      },
+      {
+        "id": 18,
+        "sku": "M10-BROWSER-NOTEBOOK",
+        "price": "129"
+      },
+      {
+        "id": 20,
+        "sku": "M10-TLS-PROBE",
+        "price": "1.00"
+      }
+    ],
+    "order_ids": [
+      16,
+      19,
+      21
+    ],
+    "urls": {
+      "shop": "http://shop-m10.urumi.test/shop/",
+      "cart": "http://shop-m10.urumi.test/cart/",
+      "checkout": "http://shop-m10.urumi.test/checkout/",
+      "account": "http://shop-m10.urumi.test/my-account/"
+    }
+  },
+  "resources": {
+    "claims": [
+      {
+        "name": "urumi-m10-mariadb-data",
+        "uid": "a0fec4df-b7ff-4ef9-b2fe-a9af4eb8959e",
+        "phase": "Bound"
+      },
+      {
+        "name": "urumi-m10-platform-data",
+        "uid": "710a5b52-744c-4525-b446-bbba455eb2cf",
+        "phase": "Bound"
+      },
+      {
+        "name": "urumi-m10-wordpress-content",
+        "uid": "b5ad912d-7d6c-4bf9-aa8e-b4803005162b",
+        "phase": "Bound"
+      }
+    ],
+    "pods": {
+      "backend": "7fde4154-437d-48af-8d63-b283a78311ff",
+      "dashboard": "f1bcac5d-6d6d-4b72-b57c-bd29a8b5f23b",
+      "inventory-mcp": "629b5d08-4de4-4e71-b406-963e6a761636",
+      "mariadb": "09221dd6-99af-45a0-950b-b152446d9bed",
+      "platform-db": "a70af0ad-a169-48b9-b399-f0c55b46bb9d",
+      "woocommerce-mcp": "3de7c21b-0373-4ff2-b91d-0b7d6961d1c1",
+      "wordpress": "a6a02669-b648-4c17-afde-6d6ddf7a0528"
+    }
+  },
+  "other_six_pods_unchanged": true,
+  "products_orders_settings_and_pvcs_preserved": true,
+  "deployed_sha256": {
+    "arrow-up-right.svg": "44db5257b360ec04863eb6daaa41f220c8b714d23fb81403517d0a30acfda9f4",
+    "Figtree-OFL.txt": "140d37233e7f3ce7313798befa9600893bcceaf41a55fa0fa5ad52f7f657a268",
+    "Figtree.ttf": "26ad3db9b31ff7dde67a91ff515d022d2f495cd506590699cf264f0bfe6fb714",
+    "footer.php": "e2476a7ff555f9ed72161750d38b691eb8637f6bf0c1b54026a6f9b927ab6b51",
+    "front-page.php": "64ece7b2d4e0a33c02ba63e33b8609fdfb522fb8f187c0587abfecc00db0b560",
+    "functions.php": "1818747d5c207ba5a224cff985d28d391e8ac20639a4fb3be37d1976e4889e2b",
+    "header.php": "ebb26de76a01e607b88016fb995ab66774ab461780d72c30c9185a4fd7aac5e3",
+    "index.php": "8285e5c2c06c21fa1ca4a7783e0e00decdb92c6d498d65c626028274c38cde32",
+    "magnifying-glass.svg": "f9fa2561978a9a3291e8ae0ebfcb651104f5069fade8f84871627bca68889cde",
+    "package.svg": "b190e7e8f5c6e68be08e9fca1310d0f2c341aa7f1384aa99457206fab755e1f6",
+    "Phosphor-LICENSE.txt": "b5b1f1da112d18ea2147decfd48ddc1bf2b5aeb6c265381579340e95b15a2bb2",
+    "receipt.svg": "7e3473e35fc2b7b9b66032aef0b19fc22e947d10472b67da0b38fb29d84af7ea",
+    "style.css": "4c65d9805b8e6c0ffb57b1c313e6a171aaf52e50398c6f2ee17a49bf6308cfe9",
+    "urumi-mark.svg": "a7c22174aa3098c3ffe57a13ed66d0fea9385ed818ba8e25002c4c49e5ddffa8",
+    "users-three.svg": "0e326e4ef7d1ae16f9988791f68fde7bae513bdc8c06db437cfd55bf13670bcf",
+    "woocommerce.php": "950a671d67f987fa62bf21e7f534e56b76ffa6de3c952069d289c47735f9a715"
+  },
+  "php_files_linted": 6
+}

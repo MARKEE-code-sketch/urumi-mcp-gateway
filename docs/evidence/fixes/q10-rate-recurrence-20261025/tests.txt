@@ -1,0 +1,6 @@
+PowerShell, repository root
+.\.tools\m10\venv\Scripts\python.exe -m pytest tests/chat tests/e2e/test_runtime.py -q -p no:cacheprovider
+
+147 passed in 17.01s
+
+Pre-fix targeted regression (independent test agent): 2 failed, 1 passed, 80 deselected in 4.23s.

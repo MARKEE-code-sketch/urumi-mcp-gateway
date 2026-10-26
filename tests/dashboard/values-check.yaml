@@ -1,0 +1,26 @@
+foundation:
+  enabled: false
+store:
+  enabled: false
+platformDb:
+  enabled: false
+woocommerceMcp:
+  enabled: false
+inventoryMcp:
+  enabled: false
+backend:
+  enabled: false
+dashboard:
+  enabled: true
+  image:
+    repository: urumi/dashboard
+    tag: m8
+    digest: ''
+    pullPolicy: Never
+  resources:
+    requests: {cpu: 25m, memory: 32Mi}
+    limits: {cpu: 250m, memory: 128Mi}
+dashboardCheck:
+  enabled: true
+  image: {repository: urumi/dashboard-fixture, tag: m8}
+

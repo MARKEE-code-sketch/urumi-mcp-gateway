@@ -1,0 +1,159 @@
+﻿UTC: 2026-10-16T13:06:38.4903862Z
+Command: docker.exe "build" "-t" "urumi/inventory-mcp:m4" "-f" "services/sample_mcps/Dockerfile" "."
+Exit: 0
+
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 666B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419
+#2 DONE 3.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 171B 0.0s done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 62.25kB 0.0s done
+#4 DONE 0.1s
+
+#5 [1/8] FROM docker.io/library/python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419
+#5 resolve docker.io/library/python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419 0.1s done
+#5 DONE 0.1s
+
+#6 [2/8] WORKDIR /app
+#6 CACHED
+
+#7 [3/8] COPY services/sample_mcps/requirements.lock.txt /app/requirements.lock.txt
+#7 DONE 0.1s
+
+#8 [4/8] RUN pip install --no-cache-dir -r requirements.lock.txt && pip check
+#8 4.920 Collecting annotated-types==0.7.0 (from -r requirements.lock.txt (line 1))
+#8 5.379   Downloading annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+#8 5.614 Collecting anyio==4.12.1 (from -r requirements.lock.txt (line 2))
+#8 5.725   Downloading anyio-4.12.1-py3-none-any.whl.metadata (4.3 kB)
+#8 5.880 Collecting attrs==25.4.0 (from -r requirements.lock.txt (line 3))
+#8 5.988   Downloading attrs-25.4.0-py3-none-any.whl.metadata (10 kB)
+#8 6.179 Collecting certifi==2026.1.4 (from -r requirements.lock.txt (line 4))
+#8 6.286   Downloading certifi-2026.1.4-py3-none-any.whl.metadata (2.5 kB)
+#8 6.891 Collecting cffi==2.0.0 (from -r requirements.lock.txt (line 5))
+#8 7.004   Downloading cffi-2.0.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.6 kB)
+#8 7.159 Collecting click==8.3.1 (from -r requirements.lock.txt (line 6))
+#8 7.280   Downloading click-8.3.1-py3-none-any.whl.metadata (2.6 kB)
+#8 7.450 Collecting colorama==0.4.6 (from -r requirements.lock.txt (line 7))
+#8 7.563   Downloading colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+#8 8.259 Collecting cryptography==46.0.4 (from -r requirements.lock.txt (line 8))
+#8 8.375   Downloading cryptography-46.0.4-cp311-abi3-manylinux_2_34_x86_64.whl.metadata (5.7 kB)
+#8 8.522 Collecting h11==0.16.0 (from -r requirements.lock.txt (line 9))
+#8 8.628   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#8 8.794 Collecting httpcore==1.0.9 (from -r requirements.lock.txt (line 10))
+#8 8.905   Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+#8 9.075 Collecting httpx==0.28.1 (from -r requirements.lock.txt (line 11))
+#8 9.189   Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+#8 9.324 Collecting httpx-sse==0.4.3 (from -r requirements.lock.txt (line 12))
+#8 9.456   Downloading httpx_sse-0.4.3-py3-none-any.whl.metadata (9.7 kB)
+#8 9.609 Collecting idna==3.11 (from -r requirements.lock.txt (line 13))
+#8 9.725   Downloading idna-3.11-py3-none-any.whl.metadata (8.4 kB)
+#8 9.886 Collecting jsonschema==4.26.0 (from -r requirements.lock.txt (line 14))
+#8 9.998   Downloading jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+#8 10.15 Collecting jsonschema-specifications==2025.9.1 (from -r requirements.lock.txt (line 15))
+#8 10.27   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+#8 10.42 Collecting mcp==1.26.0 (from -r requirements.lock.txt (line 16))
+#8 10.53   Downloading mcp-1.26.0-py3-none-any.whl.metadata (89 kB)
+#8 10.79 Collecting pycparser==3.0 (from -r requirements.lock.txt (line 17))
+#8 10.90   Downloading pycparser-3.0-py3-none-any.whl.metadata (8.2 kB)
+#8 11.38 Collecting pydantic==2.12.5 (from -r requirements.lock.txt (line 18))
+#8 11.49   Downloading pydantic-2.12.5-py3-none-any.whl.metadata (90 kB)
+#8 13.86 Collecting pydantic-core==2.41.5 (from -r requirements.lock.txt (line 19))
+#8 13.98   Downloading pydantic_core-2.41.5-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.3 kB)
+#8 14.13 Collecting pydantic-settings==2.12.0 (from -r requirements.lock.txt (line 20))
+#8 14.23   Downloading pydantic_settings-2.12.0-py3-none-any.whl.metadata (3.4 kB)
+#8 14.38 Collecting pyjwt==2.10.1 (from -r requirements.lock.txt (line 21))
+#8 14.49   Downloading PyJWT-2.10.1-py3-none-any.whl.metadata (4.0 kB)
+#8 14.69 Collecting python-dotenv==1.2.1 (from -r requirements.lock.txt (line 22))
+#8 14.81   Downloading python_dotenv-1.2.1-py3-none-any.whl.metadata (25 kB)
+#8 14.99 Collecting python-multipart==0.0.22 (from -r requirements.lock.txt (line 23))
+#8 15.13   Downloading python_multipart-0.0.22-py3-none-any.whl.metadata (1.8 kB)
+#8 15.31 Collecting referencing==0.36.2 (from -r requirements.lock.txt (line 24))
+#8 15.43   Downloading referencing-0.36.2-py3-none-any.whl.metadata (2.8 kB)
+#8 16.19 Collecting rpds-py==0.30.0 (from -r requirements.lock.txt (line 25))
+#8 16.30   Downloading rpds_py-0.30.0-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+#8 16.46 Collecting sse-starlette==3.2.0 (from -r requirements.lock.txt (line 26))
+#8 16.57   Downloading sse_starlette-3.2.0-py3-none-any.whl.metadata (12 kB)
+#8 16.75 Collecting starlette==0.52.1 (from -r requirements.lock.txt (line 27))
+#8 16.85   Downloading starlette-0.52.1-py3-none-any.whl.metadata (6.3 kB)
+#8 17.03 Collecting typing-extensions==4.15.0 (from -r requirements.lock.txt (line 28))
+#8 17.14   Downloading typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+#8 17.27 Collecting typing-inspection==0.4.2 (from -r requirements.lock.txt (line 29))
+#8 17.37   Downloading typing_inspection-0.4.2-py3-none-any.whl.metadata (2.6 kB)
+#8 17.56 Collecting uvicorn==0.40.0 (from -r requirements.lock.txt (line 30))
+#8 17.71   Downloading uvicorn-0.40.0-py3-none-any.whl.metadata (6.7 kB)
+#8 18.23 Downloading annotated_types-0.7.0-py3-none-any.whl (13 kB)
+#8 18.32 Downloading anyio-4.12.1-py3-none-any.whl (113 kB)
+#8 18.48 Downloading attrs-25.4.0-py3-none-any.whl (67 kB)
+#8 18.59 Downloading certifi-2026.1.4-py3-none-any.whl (152 kB)
+#8 18.72 Downloading cffi-2.0.0-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (219 kB)
+#8 18.91 Downloading click-8.3.1-py3-none-any.whl (108 kB)
+#8 19.04 Downloading colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+#8 19.15 Downloading cryptography-46.0.4-cp311-abi3-manylinux_2_34_x86_64.whl (4.5 MB)
+#8 19.57    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.5/4.5 MB 10.9 MB/s eta 0:00:00
+#8 19.68 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#8 19.79 Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+#8 19.90 Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+#8 20.02 Downloading httpx_sse-0.4.3-py3-none-any.whl (9.0 kB)
+#8 20.12 Downloading idna-3.11-py3-none-any.whl (71 kB)
+#8 20.24 Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+#8 20.36 Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+#8 20.48 Downloading mcp-1.26.0-py3-none-any.whl (233 kB)
+#8 20.61 Downloading pydantic-2.12.5-py3-none-any.whl (463 kB)
+#8 20.76 Downloading pycparser-3.0-py3-none-any.whl (48 kB)
+#8 20.88 Downloading pydantic_core-2.41.5-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+#8 21.10    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 9.7 MB/s eta 0:00:00
+#8 21.21 Downloading pydantic_settings-2.12.0-py3-none-any.whl (51 kB)
+#8 21.34 Downloading PyJWT-2.10.1-py3-none-any.whl (22 kB)
+#8 21.45 Downloading python_dotenv-1.2.1-py3-none-any.whl (21 kB)
+#8 21.56 Downloading python_multipart-0.0.22-py3-none-any.whl (24 kB)
+#8 21.68 Downloading referencing-0.36.2-py3-none-any.whl (26 kB)
+#8 21.82 Downloading rpds_py-0.30.0-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (394 kB)
+#8 21.97 Downloading sse_starlette-3.2.0-py3-none-any.whl (12 kB)
+#8 22.08 Downloading starlette-0.52.1-py3-none-any.whl (74 kB)
+#8 22.20 Downloading typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+#8 22.32 Downloading typing_inspection-0.4.2-py3-none-any.whl (14 kB)
+#8 22.43 Downloading uvicorn-0.40.0-py3-none-any.whl (68 kB)
+#8 22.73 Installing collected packages: typing-extensions, rpds-py, python-multipart, python-dotenv, pyjwt, pycparser, idna, httpx-sse, h11, colorama, click, certifi, attrs, annotated-types, uvicorn, typing-inspection, referencing, pydantic-core, httpcore, cffi, anyio, starlette, pydantic, jsonschema-specifications, httpx, cryptography, sse-starlette, pydantic-settings, jsonschema, mcp
+#8 27.18 
+#8 27.20 Successfully installed annotated-types-0.7.0 anyio-4.12.1 attrs-25.4.0 certifi-2026.1.4 cffi-2.0.0 click-8.3.1 colorama-0.4.6 cryptography-46.0.4 h11-0.16.0 httpcore-1.0.9 httpx-0.28.1 httpx-sse-0.4.3 idna-3.11 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 mcp-1.26.0 pycparser-3.0 pydantic-2.12.5 pydantic-core-2.41.5 pydantic-settings-2.12.0 pyjwt-2.10.1 python-dotenv-1.2.1 python-multipart-0.0.22 referencing-0.36.2 rpds-py-0.30.0 sse-starlette-3.2.0 starlette-0.52.1 typing-extensions-4.15.0 typing-inspection-0.4.2 uvicorn-0.40.0
+#8 27.20 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#8 27.76 
+#8 27.76 [notice] A new release of pip is available: 25.1.1 -> 26.2.1
+#8 27.76 [notice] To update, run: pip install --upgrade pip
+#8 30.65 No broken requirements found.
+#8 DONE 30.9s
+
+#9 [5/8] COPY contracts/mcp-tools.schema.json /app/contracts/mcp-tools.schema.json
+#9 DONE 0.1s
+
+#10 [6/8] COPY services/sample_mcps /app/services/sample_mcps
+#10 DONE 0.1s
+
+#11 [7/8] COPY tests/sample_mcps /app/tests/sample_mcps
+#11 DONE 0.1s
+
+#12 [8/8] COPY scripts/m4 /app/scripts/m4
+#12 DONE 0.1s
+
+#13 exporting to image
+#13 exporting layers
+#13 exporting layers 3.5s done
+#13 exporting manifest sha256:43e9b55e4a940a359173f67e3a37f82284db9eec74197b4f149e681af74dc45c 0.0s done
+#13 exporting config sha256:32f6307e850d6ccd3cb1e857ff949dfafbf63631594ed7196cc9684b20a57817 0.0s done
+#13 exporting attestation manifest sha256:f93056b8aae09ed02bb16329fc7d0b8e2f468627e748e4b9dcc8fedb46d5b25b
+#13 exporting attestation manifest sha256:f93056b8aae09ed02bb16329fc7d0b8e2f468627e748e4b9dcc8fedb46d5b25b 0.1s done
+#13 exporting manifest list sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb 0.0s done
+#13 naming to docker.io/urumi/inventory-mcp:m4 done
+#13 unpacking to docker.io/urumi/inventory-mcp:m4
+#13 unpacking to docker.io/urumi/inventory-mcp:m4 1.5s done
+#13 DONE 5.4s
+

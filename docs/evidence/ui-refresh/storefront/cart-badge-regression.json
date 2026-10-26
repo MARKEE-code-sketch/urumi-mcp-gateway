@@ -1,0 +1,75 @@
+{
+  "status": "FAIL",
+  "checks": [
+    {
+      "name": "home-desktop",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "brokenImages": [],
+      "font": "Figtree, Arial, sans-serif"
+    },
+    {
+      "name": "keyboard skip link",
+      "passed": true
+    },
+    {
+      "name": "home-mobile",
+      "width": 390,
+      "scrollWidth": 390,
+      "brokenImages": [],
+      "font": "Figtree, Arial, sans-serif"
+    },
+    {
+      "name": "catalog-desktop",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "brokenImages": [],
+      "font": "Figtree, Arial, sans-serif"
+    },
+    {
+      "name": "catalog sorting",
+      "passed": true
+    },
+    {
+      "name": "product search",
+      "passed": true
+    },
+    {
+      "name": "empty search",
+      "passed": true
+    },
+    {
+      "name": "product-desktop",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "brokenImages": [],
+      "font": "Figtree, Arial, sans-serif"
+    },
+    {
+      "name": "product-mobile",
+      "width": 390,
+      "scrollWidth": 390,
+      "brokenImages": [],
+      "font": "Figtree, Arial, sans-serif"
+    },
+    {
+      "name": "cart-desktop",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "brokenImages": [],
+      "font": "Figtree, Arial, sans-serif"
+    },
+    {
+      "name": "cart-mobile",
+      "width": 390,
+      "scrollWidth": 390,
+      "brokenImages": [],
+      "font": "Figtree, Arial, sans-serif"
+    }
+  ],
+  "externalOrigins": [],
+  "pageErrors": [],
+  "testTag": "storefront-1792728074826",
+  "productCount": 2,
+  "error": "page.waitForFunction: Timeout 20000ms exceeded."
+}

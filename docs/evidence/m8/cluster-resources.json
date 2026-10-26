@@ -1,0 +1,1043 @@
+{
+  "apiVersion": "v1",
+  "items": [
+    {
+      "apiVersion": "v1",
+      "kind": "Pod",
+      "metadata": {
+        "creationTimestamp": "2026-10-19T05:50:05Z",
+        "generateName": "urumi-m8-check-dashboard-5968d5bcd6-",
+        "generation": 1,
+        "labels": {
+          "app.kubernetes.io/component": "dashboard",
+          "app.kubernetes.io/instance": "urumi-m8-check",
+          "app.kubernetes.io/name": "urumi",
+          "pod-template-hash": "5968d5bcd6"
+        },
+        "name": "urumi-m8-check-dashboard-5968d5bcd6-5h775",
+        "namespace": "urumi-m8-check",
+        "ownerReferences": [
+          {
+            "apiVersion": "apps/v1",
+            "blockOwnerDeletion": true,
+            "controller": true,
+            "kind": "ReplicaSet",
+            "name": "urumi-m8-check-dashboard-5968d5bcd6",
+            "uid": "e24333ae-1c47-45e0-ada2-ea168741fb61"
+          }
+        ],
+        "resourceVersion": "35585",
+        "uid": "ea2775ef-de4e-48d7-b1d6-8f596e289457"
+      },
+      "spec": {
+        "automountServiceAccountToken": false,
+        "containers": [
+          {
+            "image": "urumi/dashboard:m8",
+            "imagePullPolicy": "Never",
+            "livenessProbe": {
+              "failureThreshold": 3,
+              "httpGet": {
+                "path": "/livez",
+                "port": "http",
+                "scheme": "HTTP"
+              },
+              "initialDelaySeconds": 5,
+              "periodSeconds": 10,
+              "successThreshold": 1,
+              "timeoutSeconds": 2
+            },
+            "name": "dashboard",
+            "ports": [
+              {
+                "containerPort": 8080,
+                "name": "http",
+                "protocol": "TCP"
+              }
+            ],
+            "readinessProbe": {
+              "failureThreshold": 3,
+              "httpGet": {
+                "path": "/readyz",
+                "port": "http",
+                "scheme": "HTTP"
+              },
+              "initialDelaySeconds": 2,
+              "periodSeconds": 5,
+              "successThreshold": 1,
+              "timeoutSeconds": 2
+            },
+            "resources": {
+              "limits": {
+                "cpu": "250m",
+                "memory": "128Mi"
+              },
+              "requests": {
+                "cpu": "25m",
+                "memory": "32Mi"
+              }
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              },
+              "readOnlyRootFilesystem": true
+            },
+            "startupProbe": {
+              "failureThreshold": 30,
+              "httpGet": {
+                "path": "/livez",
+                "port": "http",
+                "scheme": "HTTP"
+              },
+              "periodSeconds": 2,
+              "successThreshold": 1,
+              "timeoutSeconds": 2
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File",
+            "volumeMounts": [
+              {
+                "mountPath": "/tmp",
+                "name": "tmp"
+              },
+              {
+                "mountPath": "/etc/nginx/nginx.conf",
+                "name": "nginx",
+                "readOnly": true,
+                "subPath": "nginx.conf"
+              }
+            ]
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "enableServiceLinks": true,
+        "nodeName": "k3d-urumi-server-0",
+        "preemptionPolicy": "PreemptLowerPriority",
+        "priority": 0,
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {
+          "fsGroup": 101,
+          "runAsGroup": 101,
+          "runAsNonRoot": true,
+          "runAsUser": 101,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        },
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+          {
+            "effect": "NoExecute",
+            "key": "node.kubernetes.io/not-ready",
+            "operator": "Exists",
+            "tolerationSeconds": 300
+          },
+          {
+            "effect": "NoExecute",
+            "key": "node.kubernetes.io/unreachable",
+            "operator": "Exists",
+            "tolerationSeconds": 300
+          }
+        ],
+        "volumes": [
+          {
+            "emptyDir": {
+              "medium": "Memory",
+              "sizeLimit": "16Mi"
+            },
+            "name": "tmp"
+          },
+          {
+            "configMap": {
+              "defaultMode": 420,
+              "name": "urumi-m8-check-dashboard-nginx"
+            },
+            "name": "nginx"
+          }
+        ]
+      },
+      "status": {
+        "allocatedResources": {
+          "cpu": "25m",
+          "memory": "32Mi"
+        },
+        "conditions": [
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-10-19T05:50:07Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "PodReadyToStartContainers"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-10-19T05:50:05Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-10-19T05:50:09Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "Ready"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-10-19T05:50:09Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "ContainersReady"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-10-19T05:50:05Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "PodScheduled"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "allocatedResources": {
+              "cpu": "25m",
+              "memory": "32Mi"
+            },
+            "containerID": "containerd://51713a0c940662f1c44b92f0dcaa7c82d196b88af814eafa6922b8bf82fbdd66",
+            "image": "docker.io/urumi/dashboard:m8",
+            "imageID": "sha256:3594864039effe302c5a0d5b381cd2c90836eef30bffdc872e9e57e3c9905a3d",
+            "lastState": {},
+            "name": "dashboard",
+            "ready": true,
+            "resources": {
+              "limits": {
+                "cpu": "250m",
+                "memory": "128Mi"
+              },
+              "requests": {
+                "cpu": "25m",
+                "memory": "32Mi"
+              }
+            },
+            "restartCount": 0,
+            "started": true,
+            "state": {
+              "running": {
+                "startedAt": "2026-10-19T05:50:07Z"
+              }
+            },
+            "user": {
+              "linux": {
+                "gid": 101,
+                "supplementalGroups": [
+                  101
+                ],
+                "uid": 101
+              }
+            },
+            "volumeMounts": [
+              {
+                "mountPath": "/tmp",
+                "name": "tmp"
+              },
+              {
+                "mountPath": "/etc/nginx/nginx.conf",
+                "name": "nginx",
+                "readOnly": true,
+                "recursiveReadOnly": "Disabled"
+              }
+            ]
+          }
+        ],
+        "hostIP": "172.18.0.2",
+        "hostIPs": [
+          {
+            "ip": "172.18.0.2"
+          }
+        ],
+        "observedGeneration": 1,
+        "phase": "Running",
+        "podIP": "10.42.0.97",
+        "podIPs": [
+          {
+            "ip": "10.42.0.97"
+          }
+        ],
+        "qosClass": "Burstable",
+        "resources": {
+          "limits": {
+            "cpu": "250m",
+            "memory": "128Mi"
+          },
+          "requests": {
+            "memory": "32Mi"
+          }
+        },
+        "startTime": "2026-10-19T05:50:05Z"
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Pod",
+      "metadata": {
+        "creationTimestamp": "2026-10-19T05:50:05Z",
+        "generateName": "urumi-m8-check-dashboard-fixture-7ddb485ffd-",
+        "generation": 1,
+        "labels": {
+          "app.kubernetes.io/component": "dashboard-fixture",
+          "app.kubernetes.io/instance": "urumi-m8-check",
+          "pod-template-hash": "7ddb485ffd"
+        },
+        "name": "urumi-m8-check-dashboard-fixture-7ddb485ffd-wdpld",
+        "namespace": "urumi-m8-check",
+        "ownerReferences": [
+          {
+            "apiVersion": "apps/v1",
+            "blockOwnerDeletion": true,
+            "controller": true,
+            "kind": "ReplicaSet",
+            "name": "urumi-m8-check-dashboard-fixture-7ddb485ffd",
+            "uid": "143b26cc-7f33-4fc6-8b7c-4276ed16aff4"
+          }
+        ],
+        "resourceVersion": "35598",
+        "uid": "a8a8a502-0a84-4199-a223-69189891d5c5"
+      },
+      "spec": {
+        "automountServiceAccountToken": false,
+        "containers": [
+          {
+            "env": [
+              {
+                "name": "M8_STATIC_ORIGIN",
+                "value": "http://urumi-m8-check-dashboard"
+              },
+              {
+                "name": "M8_ORIGIN",
+                "value": "http://127.0.0.1:18080"
+              }
+            ],
+            "image": "urumi/dashboard-fixture:m8",
+            "imagePullPolicy": "Never",
+            "livenessProbe": {
+              "failureThreshold": 3,
+              "httpGet": {
+                "path": "/livez",
+                "port": "http",
+                "scheme": "HTTP"
+              },
+              "initialDelaySeconds": 5,
+              "periodSeconds": 10,
+              "successThreshold": 1,
+              "timeoutSeconds": 2
+            },
+            "name": "fixture",
+            "ports": [
+              {
+                "containerPort": 8000,
+                "name": "http",
+                "protocol": "TCP"
+              }
+            ],
+            "readinessProbe": {
+              "failureThreshold": 3,
+              "httpGet": {
+                "path": "/readyz",
+                "port": "http",
+                "scheme": "HTTP"
+              },
+              "initialDelaySeconds": 2,
+              "periodSeconds": 10,
+              "successThreshold": 1,
+              "timeoutSeconds": 2
+            },
+            "resources": {
+              "limits": {
+                "cpu": "250m",
+                "memory": "128Mi"
+              },
+              "requests": {
+                "cpu": "25m",
+                "memory": "32Mi"
+              }
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              },
+              "readOnlyRootFilesystem": true
+            },
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File",
+            "volumeMounts": [
+              {
+                "mountPath": "/tmp",
+                "name": "tmp"
+              }
+            ]
+          }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "enableServiceLinks": true,
+        "nodeName": "k3d-urumi-server-0",
+        "preemptionPolicy": "PreemptLowerPriority",
+        "priority": 0,
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {
+          "fsGroup": 10001,
+          "runAsGroup": 10001,
+          "runAsNonRoot": true,
+          "runAsUser": 10001,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        },
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+          {
+            "effect": "NoExecute",
+            "key": "node.kubernetes.io/not-ready",
+            "operator": "Exists",
+            "tolerationSeconds": 300
+          },
+          {
+            "effect": "NoExecute",
+            "key": "node.kubernetes.io/unreachable",
+            "operator": "Exists",
+            "tolerationSeconds": 300
+          }
+        ],
+        "volumes": [
+          {
+            "emptyDir": {
+              "medium": "Memory",
+              "sizeLimit": "16Mi"
+            },
+            "name": "tmp"
+          }
+        ]
+      },
+      "status": {
+        "allocatedResources": {
+          "cpu": "25m",
+          "memory": "32Mi"
+        },
+        "conditions": [
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-10-19T05:50:06Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "PodReadyToStartContainers"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-10-19T05:50:05Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-10-19T05:50:18Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "Ready"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-10-19T05:50:18Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "ContainersReady"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-10-19T05:50:05Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "PodScheduled"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "allocatedResources": {
+              "cpu": "25m",
+              "memory": "32Mi"
+            },
+            "containerID": "containerd://94214e2d80b953a31d296991d4004ceab6c8cc7610ba301fec91ff5f7a0bc3b7",
+            "image": "docker.io/urumi/dashboard-fixture:m8",
+            "imageID": "sha256:83dbd6f6517b0f99ce0e82de78b4b2dbb1f8dfcbcdb307e127dd673035a1df1c",
+            "lastState": {},
+            "name": "fixture",
+            "ready": true,
+            "resources": {
+              "limits": {
+                "cpu": "250m",
+                "memory": "128Mi"
+              },
+              "requests": {
+                "cpu": "25m",
+                "memory": "32Mi"
+              }
+            },
+            "restartCount": 0,
+            "started": true,
+            "state": {
+              "running": {
+                "startedAt": "2026-10-19T05:50:07Z"
+              }
+            },
+            "user": {
+              "linux": {
+                "gid": 10001,
+                "supplementalGroups": [
+                  10001
+                ],
+                "uid": 10001
+              }
+            },
+            "volumeMounts": [
+              {
+                "mountPath": "/tmp",
+                "name": "tmp"
+              }
+            ]
+          }
+        ],
+        "hostIP": "172.18.0.2",
+        "hostIPs": [
+          {
+            "ip": "172.18.0.2"
+          }
+        ],
+        "observedGeneration": 1,
+        "phase": "Running",
+        "podIP": "10.42.0.96",
+        "podIPs": [
+          {
+            "ip": "10.42.0.96"
+          }
+        ],
+        "qosClass": "Burstable",
+        "resources": {
+          "limits": {
+            "cpu": "250m",
+            "memory": "128Mi"
+          },
+          "requests": {
+            "memory": "32Mi"
+          }
+        },
+        "startTime": "2026-10-19T05:50:05Z"
+      }
+    },
+    {
+      "apiVersion": "apps/v1",
+      "kind": "Deployment",
+      "metadata": {
+        "annotations": {
+          "deployment.kubernetes.io/revision": "1",
+          "meta.helm.sh/release-name": "urumi-m8-check",
+          "meta.helm.sh/release-namespace": "urumi-m8-check"
+        },
+        "creationTimestamp": "2026-10-19T05:50:04Z",
+        "generation": 1,
+        "labels": {
+          "app.kubernetes.io/managed-by": "Helm"
+        },
+        "name": "urumi-m8-check-dashboard",
+        "namespace": "urumi-m8-check",
+        "resourceVersion": "35589",
+        "uid": "c0dc80f3-138f-468f-bc21-dea8422346ff"
+      },
+      "spec": {
+        "progressDeadlineSeconds": 600,
+        "replicas": 1,
+        "revisionHistoryLimit": 10,
+        "selector": {
+          "matchLabels": {
+            "app.kubernetes.io/component": "dashboard",
+            "app.kubernetes.io/instance": "urumi-m8-check"
+          }
+        },
+        "strategy": {
+          "rollingUpdate": {
+            "maxSurge": "25%",
+            "maxUnavailable": "25%"
+          },
+          "type": "RollingUpdate"
+        },
+        "template": {
+          "metadata": {
+            "labels": {
+              "app.kubernetes.io/component": "dashboard",
+              "app.kubernetes.io/instance": "urumi-m8-check",
+              "app.kubernetes.io/name": "urumi"
+            }
+          },
+          "spec": {
+            "automountServiceAccountToken": false,
+            "containers": [
+              {
+                "image": "urumi/dashboard:m8",
+                "imagePullPolicy": "Never",
+                "livenessProbe": {
+                  "failureThreshold": 3,
+                  "httpGet": {
+                    "path": "/livez",
+                    "port": "http",
+                    "scheme": "HTTP"
+                  },
+                  "initialDelaySeconds": 5,
+                  "periodSeconds": 10,
+                  "successThreshold": 1,
+                  "timeoutSeconds": 2
+                },
+                "name": "dashboard",
+                "ports": [
+                  {
+                    "containerPort": 8080,
+                    "name": "http",
+                    "protocol": "TCP"
+                  }
+                ],
+                "readinessProbe": {
+                  "failureThreshold": 3,
+                  "httpGet": {
+                    "path": "/readyz",
+                    "port": "http",
+                    "scheme": "HTTP"
+                  },
+                  "initialDelaySeconds": 2,
+                  "periodSeconds": 5,
+                  "successThreshold": 1,
+                  "timeoutSeconds": 2
+                },
+                "resources": {
+                  "limits": {
+                    "cpu": "250m",
+                    "memory": "128Mi"
+                  },
+                  "requests": {
+                    "cpu": "25m",
+                    "memory": "32Mi"
+                  }
+                },
+                "securityContext": {
+                  "allowPrivilegeEscalation": false,
+                  "capabilities": {
+                    "drop": [
+                      "ALL"
+                    ]
+                  },
+                  "readOnlyRootFilesystem": true
+                },
+                "startupProbe": {
+                  "failureThreshold": 30,
+                  "httpGet": {
+                    "path": "/livez",
+                    "port": "http",
+                    "scheme": "HTTP"
+                  },
+                  "periodSeconds": 2,
+                  "successThreshold": 1,
+                  "timeoutSeconds": 2
+                },
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                  {
+                    "mountPath": "/tmp",
+                    "name": "tmp"
+                  },
+                  {
+                    "mountPath": "/etc/nginx/nginx.conf",
+                    "name": "nginx",
+                    "readOnly": true,
+                    "subPath": "nginx.conf"
+                  }
+                ]
+              }
+            ],
+            "dnsPolicy": "ClusterFirst",
+            "restartPolicy": "Always",
+            "schedulerName": "default-scheduler",
+            "securityContext": {
+              "fsGroup": 101,
+              "runAsGroup": 101,
+              "runAsNonRoot": true,
+              "runAsUser": 101,
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            },
+            "terminationGracePeriodSeconds": 30,
+            "volumes": [
+              {
+                "emptyDir": {
+                  "medium": "Memory",
+                  "sizeLimit": "16Mi"
+                },
+                "name": "tmp"
+              },
+              {
+                "configMap": {
+                  "defaultMode": 420,
+                  "name": "urumi-m8-check-dashboard-nginx"
+                },
+                "name": "nginx"
+              }
+            ]
+          }
+        }
+      },
+      "status": {
+        "availableReplicas": 1,
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-10-19T05:50:10Z",
+            "lastUpdateTime": "2026-10-19T05:50:10Z",
+            "message": "Deployment has minimum availability.",
+            "reason": "MinimumReplicasAvailable",
+            "status": "True",
+            "type": "Available"
+          },
+          {
+            "lastTransitionTime": "2026-10-19T05:50:04Z",
+            "lastUpdateTime": "2026-10-19T05:50:10Z",
+            "message": "ReplicaSet \"urumi-m8-check-dashboard-5968d5bcd6\" has successfully progressed.",
+            "reason": "NewReplicaSetAvailable",
+            "status": "True",
+            "type": "Progressing"
+          }
+        ],
+        "observedGeneration": 1,
+        "readyReplicas": 1,
+        "replicas": 1,
+        "terminatingReplicas": 0,
+        "updatedReplicas": 1
+      }
+    },
+    {
+      "apiVersion": "apps/v1",
+      "kind": "Deployment",
+      "metadata": {
+        "annotations": {
+          "deployment.kubernetes.io/revision": "1",
+          "meta.helm.sh/release-name": "urumi-m8-check",
+          "meta.helm.sh/release-namespace": "urumi-m8-check"
+        },
+        "creationTimestamp": "2026-10-19T05:50:04Z",
+        "generation": 1,
+        "labels": {
+          "app.kubernetes.io/managed-by": "Helm"
+        },
+        "name": "urumi-m8-check-dashboard-fixture",
+        "namespace": "urumi-m8-check",
+        "resourceVersion": "35599",
+        "uid": "8d5387c5-a8d1-4403-8d85-96f5128287cc"
+      },
+      "spec": {
+        "progressDeadlineSeconds": 600,
+        "replicas": 1,
+        "revisionHistoryLimit": 10,
+        "selector": {
+          "matchLabels": {
+            "app.kubernetes.io/component": "dashboard-fixture",
+            "app.kubernetes.io/instance": "urumi-m8-check"
+          }
+        },
+        "strategy": {
+          "rollingUpdate": {
+            "maxSurge": "25%",
+            "maxUnavailable": "25%"
+          },
+          "type": "RollingUpdate"
+        },
+        "template": {
+          "metadata": {
+            "labels": {
+              "app.kubernetes.io/component": "dashboard-fixture",
+              "app.kubernetes.io/instance": "urumi-m8-check"
+            }
+          },
+          "spec": {
+            "automountServiceAccountToken": false,
+            "containers": [
+              {
+                "env": [
+                  {
+                    "name": "M8_STATIC_ORIGIN",
+                    "value": "http://urumi-m8-check-dashboard"
+                  },
+                  {
+                    "name": "M8_ORIGIN",
+                    "value": "http://127.0.0.1:18080"
+                  }
+                ],
+                "image": "urumi/dashboard-fixture:m8",
+                "imagePullPolicy": "Never",
+                "livenessProbe": {
+                  "failureThreshold": 3,
+                  "httpGet": {
+                    "path": "/livez",
+                    "port": "http",
+                    "scheme": "HTTP"
+                  },
+                  "initialDelaySeconds": 5,
+                  "periodSeconds": 10,
+                  "successThreshold": 1,
+                  "timeoutSeconds": 2
+                },
+                "name": "fixture",
+                "ports": [
+                  {
+                    "containerPort": 8000,
+                    "name": "http",
+                    "protocol": "TCP"
+                  }
+                ],
+                "readinessProbe": {
+                  "failureThreshold": 3,
+                  "httpGet": {
+                    "path": "/readyz",
+                    "port": "http",
+                    "scheme": "HTTP"
+                  },
+                  "initialDelaySeconds": 2,
+                  "periodSeconds": 10,
+                  "successThreshold": 1,
+                  "timeoutSeconds": 2
+                },
+                "resources": {
+                  "limits": {
+                    "cpu": "250m",
+                    "memory": "128Mi"
+                  },
+                  "requests": {
+                    "cpu": "25m",
+                    "memory": "32Mi"
+                  }
+                },
+                "securityContext": {
+                  "allowPrivilegeEscalation": false,
+                  "capabilities": {
+                    "drop": [
+                      "ALL"
+                    ]
+                  },
+                  "readOnlyRootFilesystem": true
+                },
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                  {
+                    "mountPath": "/tmp",
+                    "name": "tmp"
+                  }
+                ]
+              }
+            ],
+            "dnsPolicy": "ClusterFirst",
+            "restartPolicy": "Always",
+            "schedulerName": "default-scheduler",
+            "securityContext": {
+              "fsGroup": 10001,
+              "runAsGroup": 10001,
+              "runAsNonRoot": true,
+              "runAsUser": 10001,
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            },
+            "terminationGracePeriodSeconds": 30,
+            "volumes": [
+              {
+                "emptyDir": {
+                  "medium": "Memory",
+                  "sizeLimit": "16Mi"
+                },
+                "name": "tmp"
+              }
+            ]
+          }
+        }
+      },
+      "status": {
+        "availableReplicas": 1,
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-10-19T05:50:18Z",
+            "lastUpdateTime": "2026-10-19T05:50:18Z",
+            "message": "Deployment has minimum availability.",
+            "reason": "MinimumReplicasAvailable",
+            "status": "True",
+            "type": "Available"
+          },
+          {
+            "lastTransitionTime": "2026-10-19T05:50:04Z",
+            "lastUpdateTime": "2026-10-19T05:50:18Z",
+            "message": "ReplicaSet \"urumi-m8-check-dashboard-fixture-7ddb485ffd\" has successfully progressed.",
+            "reason": "NewReplicaSetAvailable",
+            "status": "True",
+            "type": "Progressing"
+          }
+        ],
+        "observedGeneration": 1,
+        "readyReplicas": 1,
+        "replicas": 1,
+        "terminatingReplicas": 0,
+        "updatedReplicas": 1
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "annotations": {
+          "meta.helm.sh/release-name": "urumi-m8-check",
+          "meta.helm.sh/release-namespace": "urumi-m8-check"
+        },
+        "creationTimestamp": "2026-10-19T05:50:04Z",
+        "labels": {
+          "app.kubernetes.io/managed-by": "Helm"
+        },
+        "name": "urumi-m8-check-dashboard",
+        "namespace": "urumi-m8-check",
+        "resourceVersion": "35535",
+        "uid": "c02277b2-01fa-40cf-9f13-7f9923be019e"
+      },
+      "spec": {
+        "clusterIP": "10.43.26.93",
+        "clusterIPs": [
+          "10.43.26.93"
+        ],
+        "internalTrafficPolicy": "Cluster",
+        "ipFamilies": [
+          "IPv4"
+        ],
+        "ipFamilyPolicy": "SingleStack",
+        "ports": [
+          {
+            "name": "http",
+            "port": 80,
+            "protocol": "TCP",
+            "targetPort": 8080
+          }
+        ],
+        "selector": {
+          "app.kubernetes.io/component": "dashboard",
+          "app.kubernetes.io/instance": "urumi-m8-check"
+        },
+        "sessionAffinity": "None",
+        "type": "ClusterIP"
+      },
+      "status": {
+        "loadBalancer": {}
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "annotations": {
+          "meta.helm.sh/release-name": "urumi-m8-check",
+          "meta.helm.sh/release-namespace": "urumi-m8-check"
+        },
+        "creationTimestamp": "2026-10-19T05:50:04Z",
+        "labels": {
+          "app.kubernetes.io/managed-by": "Helm"
+        },
+        "name": "urumi-m8-check-dashboard-fixture",
+        "namespace": "urumi-m8-check",
+        "resourceVersion": "35536",
+        "uid": "88e8d5f5-9f00-4137-982d-4a00f8d18717"
+      },
+      "spec": {
+        "clusterIP": "10.43.201.114",
+        "clusterIPs": [
+          "10.43.201.114"
+        ],
+        "internalTrafficPolicy": "Cluster",
+        "ipFamilies": [
+          "IPv4"
+        ],
+        "ipFamilyPolicy": "SingleStack",
+        "ports": [
+          {
+            "name": "http",
+            "port": 8000,
+            "protocol": "TCP",
+            "targetPort": 8000
+          }
+        ],
+        "selector": {
+          "app.kubernetes.io/component": "dashboard-fixture",
+          "app.kubernetes.io/instance": "urumi-m8-check"
+        },
+        "sessionAffinity": "None",
+        "type": "ClusterIP"
+      },
+      "status": {
+        "loadBalancer": {}
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "data": {
+        "ca.crt": "-----BEGIN CERTIFICATE-----\nMIIBdjCCAR2gAwIBAgIBADAKBggqhkjOPQQDAjAjMSEwHwYDVQQDDBhrM3Mtc2Vy\ndmVyLWNhQDE3OTE5OTIxNjgwHhcNMjYxMDE0MTQzNjA4WhcNMzYxMDExMTQzNjA4\nWjAjMSEwHwYDVQQDDBhrM3Mtc2VydmVyLWNhQDE3OTE5OTIxNjgwWTATBgcqhkjO\nPQIBBggqhkjOPQMBBwNCAAQq1oGqQofta0jm7//VRCjXCk131JMhfEmDAKjum6u/\ncTwS9eqMhwMLJeZRJYf9b8F6MzYrAaBrEwVsymoGBzujo0IwQDAOBgNVHQ8BAf8E\nBAMCAqQwDwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUB3yBChAkG371NPJ8gHxU\nXl1A3aEwCgYIKoZIzj0EAwIDRwAwRAIgAq//wX5gx9ahVUsk3eSnc8rECEm4JKol\nWxlQxRlBbycCIGrLQVXrtKeVNwo8g/2W0Zs2j7I06S3e+bN8zt0vcyUY\n-----END CERTIFICATE-----\n"
+      },
+      "kind": "ConfigMap",
+      "metadata": {
+        "annotations": {
+          "kubernetes.io/description": "Contains a CA bundle that can be used to verify the kube-apiserver when using internal endpoints such as the internal service IP or kubernetes.default.svc. No other usage is guaranteed across distributions of Kubernetes clusters."
+        },
+        "creationTimestamp": "2026-10-19T05:50:03Z",
+        "name": "kube-root-ca.crt",
+        "namespace": "urumi-m8-check",
+        "resourceVersion": "35528",
+        "uid": "eafd2e6f-fae5-4775-a46e-c51191cef362"
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "data": {
+        "nginx.conf": "pid /tmp/nginx.pid;\nerror_log /dev/stderr warn;\nworker_processes auto;\nevents { worker_connections 256; }\nhttp {\n include /etc/nginx/mime.types;\n default_type application/octet-stream;\n access_log off;\n client_body_temp_path /tmp/client;\n proxy_temp_path /tmp/proxy;\n fastcgi_temp_path /tmp/fastcgi;\n uwsgi_temp_path /tmp/uwsgi;\n scgi_temp_path /tmp/scgi;\n server {\n  listen 8080;\n  root /usr/share/nginx/html;\n  add_header X-Content-Type-Options nosniff always;\n  add_header Referrer-Policy no-referrer always;\n  add_header Content-Security-Policy \"default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'\" always;\n  add_header Cache-Control no-store always;\n  location = /livez { default_type text/plain; return 200 'live\\n'; }\n  location = /readyz { default_type text/plain; return 200 'ready\\n'; }\n  location ~ ^/(api|mcp)(/|$) { return 404; }\n  location /assets/ { try_files $uri =404; add_header Cache-Control \"public,max-age=31536000,immutable\"; add_header X-Content-Type-Options nosniff always; add_header Referrer-Policy no-referrer always; add_header Content-Security-Policy \"default-src 'none'; frame-ancestors 'none'\" always; }\n  location ~ ^/(login|invite|servers|members|keys|audit|chat)?$ { try_files $uri /index.html; }\n  location / { try_files $uri =404; }\n }\n}\n"
+      },
+      "kind": "ConfigMap",
+      "metadata": {
+        "annotations": {
+          "meta.helm.sh/release-name": "urumi-m8-check",
+          "meta.helm.sh/release-namespace": "urumi-m8-check"
+        },
+        "creationTimestamp": "2026-10-19T05:50:04Z",
+        "labels": {
+          "app.kubernetes.io/managed-by": "Helm"
+        },
+        "name": "urumi-m8-check-dashboard-nginx",
+        "namespace": "urumi-m8-check",
+        "resourceVersion": "35532",
+        "uid": "91a4b6c7-9fab-444e-87d6-97cdead6984e"
+      }
+    }
+  ],
+  "kind": "List",
+  "metadata": {
+    "resourceVersion": ""
+  }
+}

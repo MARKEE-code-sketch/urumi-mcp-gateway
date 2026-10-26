@@ -1,0 +1,8 @@
+# Original opt-in module profile; no full release or new workloads enabled.
+foundation:
+  ingress: {host: foundation.urumi.test}
+  storage: {className: local-path}
+store:
+  storage: {className: local-path}
+platformDb:
+  storage: {className: local-path}

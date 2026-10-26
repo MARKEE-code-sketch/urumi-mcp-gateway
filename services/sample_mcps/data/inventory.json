@@ -1,0 +1,4 @@
+[
+  {"sku": "DEMO-001", "warehouses": [{"name": "Bengaluru", "quantity": 12}]},
+  {"sku": "ZERO-001", "warehouses": [{"name": "Bengaluru", "quantity": 0}]}
+]

@@ -1,0 +1,22 @@
+{
+  "action": "chat-orders",
+  "checked_at": "2026-10-20T04:28:01.466Z",
+  "tls_verification": "browser_default",
+  "checks": [
+    "real_dashboard_chat_response"
+  ],
+  "http_status": 200,
+  "reply": {
+    "answer": "**Orders placed today (Asia/Kolkata time zone)**  \n\n| Order ID | Status     | Total (INR) | Items (Name – Qty – Item Total) |\n|----------|------------|-------------|--------------------------------|\n| 16       | completed  | 499.00      | Urumi Demo Product – 1 – 499.00 |\n| 19       | processing | 129.00      | M10 Browser Demo Notebook – 1 – 129.00 |\n\nThese are the only orders created between **2026‑10‑19 18:30 UTC** and **2026‑10‑20 04:28:03.491960 UTC** (the inclusive bounds for today’s orders in the Asia/Kolkata time zone).",
+    "state": "completed",
+    "request_id": "fd7ff0d6-dfb2-4aba-af48-87323a0b060d",
+    "tool_calls": [
+      {
+        "tool_name": "woocommerce__list_orders",
+        "outcome": "success",
+        "audit_id": "b64c1863-7371-4020-98f7-331b4eb9a3f8"
+      }
+    ]
+  },
+  "status": "PASS"
+}

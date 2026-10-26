@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-10-20T09:17:16.174228+00:00",
+  "canonical_origin": "https://shop-m10.urumi.test",
+  "transport_origin": "https://shop-m10.urumi.test",
+  "tls_verification": "Explicit trusted local CA; hostname/SNI verification enabled",
+  "authorization": "Real M3 OAuth1 HMAC-SHA256; no Basic auth or forged forwarding headers",
+  "read_product_id": 12,
+  "created_product_id": 20,
+  "created_status": "draft",
+  "scope": "Host client through real Traefik TLS and installed WordPress; not VPS or production Pod egress proof."
+}

@@ -1,0 +1,21 @@
+﻿UTC: 2026-10-14T15:35:03.9397098Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\k3d.exe "version"
+Exit: 0
+k3d version v5.9.0
+k3s version v1.35.5-k3s1 (default)
+
+
+UTC: 2026-10-14T17:00:42.6402196Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\k3d.exe "version"
+Exit: 0
+k3d version v5.9.0
+k3s version v1.35.5-k3s1 (default)
+
+
+UTC: 2026-10-14T17:03:37.4721280Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\k3d.exe "version"
+Exit: 0
+k3d version v5.9.0
+k3s version v1.35.5-k3s1 (default)
+
+

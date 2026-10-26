@@ -1,0 +1,6 @@
+﻿{
+    "scope":  "ResumeFromRest and plain-text ConfigMap fix",
+    "status":  "PASS",
+    "errors":  0,
+    "file":  "scripts/m2/check-store.ps1"
+}

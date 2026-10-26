@@ -1,0 +1,19 @@
+{{- if .Values.backend.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-backend
+data:
+  PGHOST: {{ printf "%s-platform-db" .Release.Name | quote }}
+  PGPORT: "5432"
+  PGUSER: urumi
+  PGDATABASE: urumi
+  URUMI_ORIGIN: {{ .Values.backend.origin | quote }}
+  URUMI_ALLOWED_HOSTS: {{ concat (list .Values.dashboard.ingress.host (printf "%s-backend" .Release.Name) (printf "%s-backend.%s.svc" .Release.Name .Release.Namespace) (printf "%s-backend.%s.svc.cluster.local" .Release.Name .Release.Namespace)) .Values.backend.allowedHosts | toJson | quote }}
+  URUMI_INTERNAL_URLS: {{ list (printf "http://%s-woocommerce-mcp.%s.svc.cluster.local:8000/mcp" .Release.Name .Release.Namespace) (printf "http://%s-inventory-mcp.%s.svc.cluster.local:8000/mcp" .Release.Name .Release.Namespace) | toJson | quote }}
+  URUMI_WOO_URL: {{ printf "http://%s-woocommerce-mcp.%s.svc.cluster.local:8000/mcp" .Release.Name .Release.Namespace | quote }}
+  URUMI_SECRET_NAMESPACE: {{ .Values.platformAccess.secretNamespace | quote }}
+  URUMI_LISTEN_HOST: "0.0.0.0"
+  URUMI_WORKERS: {{ .Values.backend.workers | quote }}
+  GROQ_MODEL: {{ .Values.backend.model | quote }}
+{{- end }}

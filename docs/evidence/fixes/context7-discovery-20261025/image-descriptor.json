@@ -1,0 +1,11 @@
+{
+  "image": "urumi/backend:m10-discovery-timeout",
+  "descriptor": {
+    "mediaType": "application/vnd.oci.image.index.v1+json",
+    "digest": "sha256:f1730bc6c9010b7c54c0350466b668f8016a3d93cb42d20986bdc083e682cd73",
+    "size": 856
+  },
+  "repo_digests": [
+    "urumi/backend@sha256:f1730bc6c9010b7c54c0350466b668f8016a3d93cb42d20986bdc083e682cd73"
+  ]
+}

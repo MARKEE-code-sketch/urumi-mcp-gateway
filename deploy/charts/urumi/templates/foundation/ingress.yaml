@@ -1,0 +1,21 @@
+{{- if .Values.foundation.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "urumi.foundationName" . }}
+  labels:
+    {{- include "urumi.foundationLabels" . | nindent 4 }}
+spec:
+  ingressClassName: {{ .Values.foundation.ingress.className | quote }}
+  rules:
+    - host: {{ .Values.foundation.ingress.host | quote }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "urumi.foundationName" . }}
+                port:
+                  number: 80
+{{- end }}

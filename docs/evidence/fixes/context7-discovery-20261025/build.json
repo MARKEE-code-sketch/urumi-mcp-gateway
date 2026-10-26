@@ -1,0 +1,77 @@
+{
+  "status": "PASS",
+  "observed_utc": "2026-10-25T15:08:10.996302+00:00",
+  "commands": [
+    {
+      "command": [
+        "docker",
+        "build",
+        "--target",
+        "release",
+        "-t",
+        "urumi/backend:m10-discovery-timeout",
+        "-f",
+        "backend/Dockerfile",
+        "."
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "image",
+        "save",
+        "-o",
+        ".tools/m10/backend-discovery-timeout.tar",
+        "urumi/backend:m10-discovery-timeout"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        ".tools/m10/venv/Scripts/python.exe",
+        "scripts/m4/image_identity.py",
+        ".tools/m10/backend-discovery-timeout.tar",
+        "--image",
+        "urumi/backend:m10-discovery-timeout",
+        "--output",
+        "docs\\evidence\\fixes\\context7-discovery-20261025\\image-identity.json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "image",
+        "inspect",
+        "urumi/backend:m10-discovery-timeout",
+        "--format",
+        "{{json .Descriptor}}"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "image",
+        "inspect",
+        "urumi/backend:m10-discovery-timeout",
+        "--format",
+        "{{json .RepoDigests}}"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        ".tools/m1/k3d.exe",
+        "image",
+        "import",
+        "urumi/backend:m10-discovery-timeout",
+        "-c",
+        "urumi"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "source_inputs_unchanged": 43
+}

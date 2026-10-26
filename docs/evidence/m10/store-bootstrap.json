@@ -1,0 +1,12 @@
+{
+  "namespace": "urumi-m10",
+  "release": "urumi-m10",
+  "setup_job": "urumi-m10-setup-bf065e65",
+  "status": "STORE_BOOTSTRAP_COMPLETE",
+  "completed_job_removed": true,
+  "product_id": 12,
+  "attachment_id": 13,
+  "key_id": 1,
+  "currency": "INR",
+  "timezone": "Asia/Kolkata"
+}

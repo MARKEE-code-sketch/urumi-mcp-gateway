@@ -1,0 +1,7 @@
+{
+  "status": "PASS_RUNTIME_REVIEW_PENDING",
+  "fixture_only": true,
+  "retained_identities_unchanged": true,
+  "owned_namespace_removed": true,
+  "runtime_identity_and_security_verified": true
+}

@@ -1,0 +1,25 @@
+{
+  "module": "M8",
+  "reviewed_at": "2026-10-19",
+  "status": "PASS",
+  "scope": "Controlled API fixture dashboard behavior plus actual isolated Kubernetes static runtime; no real backend/provider integration",
+  "review_method": "Independent read-only source, saved command/result, request metadata and actual screenshot inspection",
+  "user_acceptance": "PENDING",
+  "checks": [
+    {"id": "C8-01", "status": "PASS", "evidence": ["clean-install.txt", "typecheck.txt", "build-output.txt", "browser-output.txt"]},
+    {"id": "C8-02", "status": "PASS", "evidence": ["browser-output.txt", "unit-output.txt", "member-role-browser-output.txt"]},
+    {"id": "C8-03", "status": "PASS", "evidence": ["browser-output.txt", "network-summary.json"]},
+    {"id": "C8-04", "status": "PASS", "evidence": ["browser-output.txt", "member-role-browser-output.txt"]},
+    {"id": "C8-05", "status": "PASS", "evidence": ["browser-output.txt", "disabled-preview-browser-output.txt", "unit-output.txt"]},
+    {"id": "C8-06", "status": "PASS", "evidence": ["browser-output.txt", "network-summary.json"]},
+    {"id": "C8-07", "status": "PASS", "evidence": ["browser-output.txt", "member-role-browser-output.txt", "unit-output.txt"]},
+    {"id": "C8-08", "status": "PASS", "evidence": ["browser-output.txt", "member-role-browser-output.txt"]},
+    {"id": "C8-09", "status": "PASS", "evidence": ["browser-output.txt", "unit-output.txt", "cluster-browser-output.txt"]},
+    {"id": "C8-10", "status": "PASS", "evidence": ["network-summary.json", "browser-output.txt", "unit-output.txt", "runtime-asset-check.json"]},
+    {"id": "C8-11", "status": "PASS", "evidence": ["desktop.png", "mobile.png", "browser-output.txt", "unit-output.txt"]},
+    {"id": "C8-12", "status": "PASS", "evidence": ["cluster-results.json", "cluster-resources.json", "runtime-verification.json", "runtime-asset-check.json", "image-identity-dashboard.json", "image-identity-fixture.json", "final-root-check.json", "../m9/acceptance-review.md"]}
+  ],
+  "observed": {"unit_component_tests_passed": 23, "host_browser_distinct_cases_passed": 16, "cluster_browser_cases_passed": 15, "cluster_browser_duration_seconds": 30.0, "frozen_input_files_matched": 28, "browser_metadata_requests": 141, "browser_metadata_distinct_cases": 16, "external_browser_destinations": 0, "browser_authorization_headers": 0, "uncleared_api_fragments": 0, "runtime_pods_ready": 2, "runtime_pod_restarts": 0, "retained_resource_identities_unchanged": true, "owned_namespace_removed": true},
+  "open_defects_in_scope": [],
+  "separate_gates": ["User module acceptance", "M7 real provider criterion", "M10 real backend/store/provider integration", "M10 external MCP, live HTTPS and complete two-user acceptance", "Live VPS operation not performed"]
+}

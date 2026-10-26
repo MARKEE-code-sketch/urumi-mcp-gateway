@@ -1,0 +1,740 @@
+﻿UTC: 2026-10-16T04:49:59.5148229Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "job" "urumi-m2-rest-5f572d42" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "batch/v1",
+    "kind": "Job",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"batch/v1\",\"kind\":\"Job\",\"metadata\":{\"annotations\":{},\"labels\":{\"urumi-m2-owned\":\"true\"},\"name\":\"urumi-m2-rest-5f572d42\",\"namespace\":\"urumi\"},\"spec\":{\"activeDeadlineSeconds\":60,\"backoffLimit\":0,\"template\":{\"spec\":{\"automountServiceAccountToken\":false,\"containers\":[{\"command\":[\"python\",\"/scripts/rest-check.py\"],\"image\":\"python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419\",\"name\":\"rest\",\"resources\":{\"limits\":{\"cpu\":\"250m\",\"memory\":\"128Mi\"},\"requests\":{\"cpu\":\"25m\",\"memory\":\"64Mi\"}},\"volumeMounts\":[{\"mountPath\":\"/scripts\",\"name\":\"script\",\"readOnly\":true},{\"mountPath\":\"/run/urumi/rest\",\"name\":\"rest\",\"readOnly\":true}]}],\"restartPolicy\":\"Never\",\"volumes\":[{\"configMap\":{\"name\":\"urumi-m2-rest-check\"},\"name\":\"script\"},{\"name\":\"rest\",\"secret\":{\"secretName\":\"urumi-woocommerce-rest\"}}]}}}}\n"
+        },
+        "creationTimestamp": "2026-10-16T04:49:59Z",
+        "generation": 1,
+        "labels": {
+            "urumi-m2-owned": "true"
+        },
+        "name": "urumi-m2-rest-5f572d42",
+        "namespace": "urumi",
+        "resourceVersion": "18247",
+        "uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864"
+    },
+    "spec": {
+        "activeDeadlineSeconds": 60,
+        "backoffLimit": 0,
+        "completionMode": "NonIndexed",
+        "completions": 1,
+        "manualSelector": false,
+        "parallelism": 1,
+        "podReplacementPolicy": "TerminatingOrFailed",
+        "selector": {
+            "matchLabels": {
+                "batch.kubernetes.io/controller-uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864"
+            }
+        },
+        "suspend": false,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "batch.kubernetes.io/controller-uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864",
+                    "batch.kubernetes.io/job-name": "urumi-m2-rest-5f572d42",
+                    "controller-uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864",
+                    "job-name": "urumi-m2-rest-5f572d42"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "/scripts/rest-check.py"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "rest",
+                        "resources": {
+                            "limits": {
+                                "cpu": "250m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/scripts",
+                                "name": "script",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/run/urumi/rest",
+                                "name": "rest",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "terminationGracePeriodSeconds": 30,
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "urumi-m2-rest-check"
+                        },
+                        "name": "script"
+                    },
+                    {
+                        "name": "rest",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "urumi-woocommerce-rest"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "status": {
+        "active": 1,
+        "ready": 0,
+        "startTime": "2026-10-16T04:49:59Z",
+        "terminating": 0,
+        "uncountedTerminatedPods": {}
+    }
+}
+
+
+UTC: 2026-10-16T04:50:01.7338480Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "job" "urumi-m2-rest-5f572d42" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "batch/v1",
+    "kind": "Job",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"batch/v1\",\"kind\":\"Job\",\"metadata\":{\"annotations\":{},\"labels\":{\"urumi-m2-owned\":\"true\"},\"name\":\"urumi-m2-rest-5f572d42\",\"namespace\":\"urumi\"},\"spec\":{\"activeDeadlineSeconds\":60,\"backoffLimit\":0,\"template\":{\"spec\":{\"automountServiceAccountToken\":false,\"containers\":[{\"command\":[\"python\",\"/scripts/rest-check.py\"],\"image\":\"python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419\",\"name\":\"rest\",\"resources\":{\"limits\":{\"cpu\":\"250m\",\"memory\":\"128Mi\"},\"requests\":{\"cpu\":\"25m\",\"memory\":\"64Mi\"}},\"volumeMounts\":[{\"mountPath\":\"/scripts\",\"name\":\"script\",\"readOnly\":true},{\"mountPath\":\"/run/urumi/rest\",\"name\":\"rest\",\"readOnly\":true}]}],\"restartPolicy\":\"Never\",\"volumes\":[{\"configMap\":{\"name\":\"urumi-m2-rest-check\"},\"name\":\"script\"},{\"name\":\"rest\",\"secret\":{\"secretName\":\"urumi-woocommerce-rest\"}}]}}}}\n"
+        },
+        "creationTimestamp": "2026-10-16T04:49:59Z",
+        "generation": 1,
+        "labels": {
+            "urumi-m2-owned": "true"
+        },
+        "name": "urumi-m2-rest-5f572d42",
+        "namespace": "urumi",
+        "resourceVersion": "18257",
+        "uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864"
+    },
+    "spec": {
+        "activeDeadlineSeconds": 60,
+        "backoffLimit": 0,
+        "completionMode": "NonIndexed",
+        "completions": 1,
+        "manualSelector": false,
+        "parallelism": 1,
+        "podReplacementPolicy": "TerminatingOrFailed",
+        "selector": {
+            "matchLabels": {
+                "batch.kubernetes.io/controller-uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864"
+            }
+        },
+        "suspend": false,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "batch.kubernetes.io/controller-uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864",
+                    "batch.kubernetes.io/job-name": "urumi-m2-rest-5f572d42",
+                    "controller-uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864",
+                    "job-name": "urumi-m2-rest-5f572d42"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "/scripts/rest-check.py"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "rest",
+                        "resources": {
+                            "limits": {
+                                "cpu": "250m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/scripts",
+                                "name": "script",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/run/urumi/rest",
+                                "name": "rest",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "terminationGracePeriodSeconds": 30,
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "urumi-m2-rest-check"
+                        },
+                        "name": "script"
+                    },
+                    {
+                        "name": "rest",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "urumi-woocommerce-rest"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "status": {
+        "active": 1,
+        "ready": 1,
+        "startTime": "2026-10-16T04:49:59Z",
+        "terminating": 0,
+        "uncountedTerminatedPods": {}
+    }
+}
+
+
+UTC: 2026-10-16T04:50:03.9718765Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "job" "urumi-m2-rest-5f572d42" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "batch/v1",
+    "kind": "Job",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"batch/v1\",\"kind\":\"Job\",\"metadata\":{\"annotations\":{},\"labels\":{\"urumi-m2-owned\":\"true\"},\"name\":\"urumi-m2-rest-5f572d42\",\"namespace\":\"urumi\"},\"spec\":{\"activeDeadlineSeconds\":60,\"backoffLimit\":0,\"template\":{\"spec\":{\"automountServiceAccountToken\":false,\"containers\":[{\"command\":[\"python\",\"/scripts/rest-check.py\"],\"image\":\"python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419\",\"name\":\"rest\",\"resources\":{\"limits\":{\"cpu\":\"250m\",\"memory\":\"128Mi\"},\"requests\":{\"cpu\":\"25m\",\"memory\":\"64Mi\"}},\"volumeMounts\":[{\"mountPath\":\"/scripts\",\"name\":\"script\",\"readOnly\":true},{\"mountPath\":\"/run/urumi/rest\",\"name\":\"rest\",\"readOnly\":true}]}],\"restartPolicy\":\"Never\",\"volumes\":[{\"configMap\":{\"name\":\"urumi-m2-rest-check\"},\"name\":\"script\"},{\"name\":\"rest\",\"secret\":{\"secretName\":\"urumi-woocommerce-rest\"}}]}}}}\n"
+        },
+        "creationTimestamp": "2026-10-16T04:49:59Z",
+        "generation": 1,
+        "labels": {
+            "urumi-m2-owned": "true"
+        },
+        "name": "urumi-m2-rest-5f572d42",
+        "namespace": "urumi",
+        "resourceVersion": "18257",
+        "uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864"
+    },
+    "spec": {
+        "activeDeadlineSeconds": 60,
+        "backoffLimit": 0,
+        "completionMode": "NonIndexed",
+        "completions": 1,
+        "manualSelector": false,
+        "parallelism": 1,
+        "podReplacementPolicy": "TerminatingOrFailed",
+        "selector": {
+            "matchLabels": {
+                "batch.kubernetes.io/controller-uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864"
+            }
+        },
+        "suspend": false,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "batch.kubernetes.io/controller-uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864",
+                    "batch.kubernetes.io/job-name": "urumi-m2-rest-5f572d42",
+                    "controller-uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864",
+                    "job-name": "urumi-m2-rest-5f572d42"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "/scripts/rest-check.py"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "rest",
+                        "resources": {
+                            "limits": {
+                                "cpu": "250m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/scripts",
+                                "name": "script",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/run/urumi/rest",
+                                "name": "rest",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "terminationGracePeriodSeconds": 30,
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "urumi-m2-rest-check"
+                        },
+                        "name": "script"
+                    },
+                    {
+                        "name": "rest",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "urumi-woocommerce-rest"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "status": {
+        "active": 1,
+        "ready": 1,
+        "startTime": "2026-10-16T04:49:59Z",
+        "terminating": 0,
+        "uncountedTerminatedPods": {}
+    }
+}
+
+
+UTC: 2026-10-16T04:50:06.2057267Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "job" "urumi-m2-rest-5f572d42" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "batch/v1",
+    "kind": "Job",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"batch/v1\",\"kind\":\"Job\",\"metadata\":{\"annotations\":{},\"labels\":{\"urumi-m2-owned\":\"true\"},\"name\":\"urumi-m2-rest-5f572d42\",\"namespace\":\"urumi\"},\"spec\":{\"activeDeadlineSeconds\":60,\"backoffLimit\":0,\"template\":{\"spec\":{\"automountServiceAccountToken\":false,\"containers\":[{\"command\":[\"python\",\"/scripts/rest-check.py\"],\"image\":\"python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419\",\"name\":\"rest\",\"resources\":{\"limits\":{\"cpu\":\"250m\",\"memory\":\"128Mi\"},\"requests\":{\"cpu\":\"25m\",\"memory\":\"64Mi\"}},\"volumeMounts\":[{\"mountPath\":\"/scripts\",\"name\":\"script\",\"readOnly\":true},{\"mountPath\":\"/run/urumi/rest\",\"name\":\"rest\",\"readOnly\":true}]}],\"restartPolicy\":\"Never\",\"volumes\":[{\"configMap\":{\"name\":\"urumi-m2-rest-check\"},\"name\":\"script\"},{\"name\":\"rest\",\"secret\":{\"secretName\":\"urumi-woocommerce-rest\"}}]}}}}\n"
+        },
+        "creationTimestamp": "2026-10-16T04:49:59Z",
+        "generation": 1,
+        "labels": {
+            "urumi-m2-owned": "true"
+        },
+        "name": "urumi-m2-rest-5f572d42",
+        "namespace": "urumi",
+        "resourceVersion": "18260",
+        "uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864"
+    },
+    "spec": {
+        "activeDeadlineSeconds": 60,
+        "backoffLimit": 0,
+        "completionMode": "NonIndexed",
+        "completions": 1,
+        "manualSelector": false,
+        "parallelism": 1,
+        "podReplacementPolicy": "TerminatingOrFailed",
+        "selector": {
+            "matchLabels": {
+                "batch.kubernetes.io/controller-uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864"
+            }
+        },
+        "suspend": false,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "batch.kubernetes.io/controller-uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864",
+                    "batch.kubernetes.io/job-name": "urumi-m2-rest-5f572d42",
+                    "controller-uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864",
+                    "job-name": "urumi-m2-rest-5f572d42"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "/scripts/rest-check.py"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "rest",
+                        "resources": {
+                            "limits": {
+                                "cpu": "250m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/scripts",
+                                "name": "script",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/run/urumi/rest",
+                                "name": "rest",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "terminationGracePeriodSeconds": 30,
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "urumi-m2-rest-check"
+                        },
+                        "name": "script"
+                    },
+                    {
+                        "name": "rest",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "urumi-woocommerce-rest"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "status": {
+        "active": 1,
+        "ready": 0,
+        "startTime": "2026-10-16T04:49:59Z",
+        "terminating": 0,
+        "uncountedTerminatedPods": {}
+    }
+}
+
+
+UTC: 2026-10-16T04:50:08.4297368Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "job" "urumi-m2-rest-5f572d42" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "batch/v1",
+    "kind": "Job",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"batch/v1\",\"kind\":\"Job\",\"metadata\":{\"annotations\":{},\"labels\":{\"urumi-m2-owned\":\"true\"},\"name\":\"urumi-m2-rest-5f572d42\",\"namespace\":\"urumi\"},\"spec\":{\"activeDeadlineSeconds\":60,\"backoffLimit\":0,\"template\":{\"spec\":{\"automountServiceAccountToken\":false,\"containers\":[{\"command\":[\"python\",\"/scripts/rest-check.py\"],\"image\":\"python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419\",\"name\":\"rest\",\"resources\":{\"limits\":{\"cpu\":\"250m\",\"memory\":\"128Mi\"},\"requests\":{\"cpu\":\"25m\",\"memory\":\"64Mi\"}},\"volumeMounts\":[{\"mountPath\":\"/scripts\",\"name\":\"script\",\"readOnly\":true},{\"mountPath\":\"/run/urumi/rest\",\"name\":\"rest\",\"readOnly\":true}]}],\"restartPolicy\":\"Never\",\"volumes\":[{\"configMap\":{\"name\":\"urumi-m2-rest-check\"},\"name\":\"script\"},{\"name\":\"rest\",\"secret\":{\"secretName\":\"urumi-woocommerce-rest\"}}]}}}}\n"
+        },
+        "creationTimestamp": "2026-10-16T04:49:59Z",
+        "generation": 1,
+        "labels": {
+            "urumi-m2-owned": "true"
+        },
+        "name": "urumi-m2-rest-5f572d42",
+        "namespace": "urumi",
+        "resourceVersion": "18264",
+        "uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864"
+    },
+    "spec": {
+        "activeDeadlineSeconds": 60,
+        "backoffLimit": 0,
+        "completionMode": "NonIndexed",
+        "completions": 1,
+        "manualSelector": false,
+        "parallelism": 1,
+        "podReplacementPolicy": "TerminatingOrFailed",
+        "selector": {
+            "matchLabels": {
+                "batch.kubernetes.io/controller-uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864"
+            }
+        },
+        "suspend": false,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "batch.kubernetes.io/controller-uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864",
+                    "batch.kubernetes.io/job-name": "urumi-m2-rest-5f572d42",
+                    "controller-uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864",
+                    "job-name": "urumi-m2-rest-5f572d42"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "/scripts/rest-check.py"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "rest",
+                        "resources": {
+                            "limits": {
+                                "cpu": "250m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/scripts",
+                                "name": "script",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/run/urumi/rest",
+                                "name": "rest",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "terminationGracePeriodSeconds": 30,
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "urumi-m2-rest-check"
+                        },
+                        "name": "script"
+                    },
+                    {
+                        "name": "rest",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "urumi-woocommerce-rest"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "status": {
+        "completionTime": "2026-10-16T04:50:06Z",
+        "conditions": [
+            {
+                "lastProbeTime": "2026-10-16T04:50:06Z",
+                "lastTransitionTime": "2026-10-16T04:50:06Z",
+                "message": "Reached expected number of succeeded pods",
+                "reason": "CompletionsReached",
+                "status": "True",
+                "type": "SuccessCriteriaMet"
+            },
+            {
+                "lastProbeTime": "2026-10-16T04:50:06Z",
+                "lastTransitionTime": "2026-10-16T04:50:06Z",
+                "message": "Reached expected number of succeeded pods",
+                "reason": "CompletionsReached",
+                "status": "True",
+                "type": "Complete"
+            }
+        ],
+        "ready": 0,
+        "startTime": "2026-10-16T04:49:59Z",
+        "succeeded": 1,
+        "terminating": 0,
+        "uncountedTerminatedPods": {}
+    }
+}
+
+
+UTC: 2026-10-16T04:50:08.7432651Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "logs" "job/urumi-m2-rest-5f572d42"
+Exit: 0
+{"signed_read": true, "signed_write": true, "invalid_rejected": true, "product_id": 12, "order_ids": [15]}
+
+
+UTC: 2026-10-16T04:50:08.9455722Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "job" "urumi-m2-rest-5f572d42" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "batch/v1",
+    "kind": "Job",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"batch/v1\",\"kind\":\"Job\",\"metadata\":{\"annotations\":{},\"labels\":{\"urumi-m2-owned\":\"true\"},\"name\":\"urumi-m2-rest-5f572d42\",\"namespace\":\"urumi\"},\"spec\":{\"activeDeadlineSeconds\":60,\"backoffLimit\":0,\"template\":{\"spec\":{\"automountServiceAccountToken\":false,\"containers\":[{\"command\":[\"python\",\"/scripts/rest-check.py\"],\"image\":\"python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419\",\"name\":\"rest\",\"resources\":{\"limits\":{\"cpu\":\"250m\",\"memory\":\"128Mi\"},\"requests\":{\"cpu\":\"25m\",\"memory\":\"64Mi\"}},\"volumeMounts\":[{\"mountPath\":\"/scripts\",\"name\":\"script\",\"readOnly\":true},{\"mountPath\":\"/run/urumi/rest\",\"name\":\"rest\",\"readOnly\":true}]}],\"restartPolicy\":\"Never\",\"volumes\":[{\"configMap\":{\"name\":\"urumi-m2-rest-check\"},\"name\":\"script\"},{\"name\":\"rest\",\"secret\":{\"secretName\":\"urumi-woocommerce-rest\"}}]}}}}\n"
+        },
+        "creationTimestamp": "2026-10-16T04:49:59Z",
+        "generation": 1,
+        "labels": {
+            "urumi-m2-owned": "true"
+        },
+        "name": "urumi-m2-rest-5f572d42",
+        "namespace": "urumi",
+        "resourceVersion": "18264",
+        "uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864"
+    },
+    "spec": {
+        "activeDeadlineSeconds": 60,
+        "backoffLimit": 0,
+        "completionMode": "NonIndexed",
+        "completions": 1,
+        "manualSelector": false,
+        "parallelism": 1,
+        "podReplacementPolicy": "TerminatingOrFailed",
+        "selector": {
+            "matchLabels": {
+                "batch.kubernetes.io/controller-uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864"
+            }
+        },
+        "suspend": false,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "batch.kubernetes.io/controller-uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864",
+                    "batch.kubernetes.io/job-name": "urumi-m2-rest-5f572d42",
+                    "controller-uid": "8532b681-9d27-4cfe-af8c-8bee1a0d3864",
+                    "job-name": "urumi-m2-rest-5f572d42"
+                }
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "command": [
+                            "python",
+                            "/scripts/rest-check.py"
+                        ],
+                        "image": "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "rest",
+                        "resources": {
+                            "limits": {
+                                "cpu": "250m",
+                                "memory": "128Mi"
+                            },
+                            "requests": {
+                                "cpu": "25m",
+                                "memory": "64Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/scripts",
+                                "name": "script",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/run/urumi/rest",
+                                "name": "rest",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "terminationGracePeriodSeconds": 30,
+                "volumes": [
+                    {
+                        "configMap": {
+                            "defaultMode": 420,
+                            "name": "urumi-m2-rest-check"
+                        },
+                        "name": "script"
+                    },
+                    {
+                        "name": "rest",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "urumi-woocommerce-rest"
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "status": {
+        "completionTime": "2026-10-16T04:50:06Z",
+        "conditions": [
+            {
+                "lastProbeTime": "2026-10-16T04:50:06Z",
+                "lastTransitionTime": "2026-10-16T04:50:06Z",
+                "message": "Reached expected number of succeeded pods",
+                "reason": "CompletionsReached",
+                "status": "True",
+                "type": "SuccessCriteriaMet"
+            },
+            {
+                "lastProbeTime": "2026-10-16T04:50:06Z",
+                "lastTransitionTime": "2026-10-16T04:50:06Z",
+                "message": "Reached expected number of succeeded pods",
+                "reason": "CompletionsReached",
+                "status": "True",
+                "type": "Complete"
+            }
+        ],
+        "ready": 0,
+        "startTime": "2026-10-16T04:49:59Z",
+        "succeeded": 1,
+        "terminating": 0,
+        "uncountedTerminatedPods": {}
+    }
+}
+
+
+UTC: 2026-10-16T04:50:09.2917365Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "delete" "job" "urumi-m2-rest-5f572d42" "--cascade=foreground" "--wait=true" "--timeout=30s"
+Exit: 0
+job.batch "urumi-m2-rest-5f572d42" deleted from urumi namespace
+
+
+UTC: 2026-10-16T04:50:09.5495686Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "delete" "configmap" "urumi-m2-rest-check"
+Exit: 0
+configmap "urumi-m2-rest-check" deleted from urumi namespace
+
+

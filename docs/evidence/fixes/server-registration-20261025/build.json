@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "observed_utc": "2026-10-25T14:05:35.894461+00:00",
+  "commands": [
+    {
+      "command": [
+        "docker",
+        "build",
+        "-t",
+        "urumi/dashboard:m8-server-errors",
+        "-f",
+        "frontend/Dockerfile",
+        "frontend"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "image",
+        "save",
+        "-o",
+        ".tools/m10/dashboard-server-errors.tar",
+        "urumi/dashboard:m8-server-errors"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        ".tools/m10/venv/Scripts/python.exe",
+        "scripts/m4/image_identity.py",
+        ".tools/m10/dashboard-server-errors.tar",
+        "--image",
+        "urumi/dashboard:m8-server-errors",
+        "--output",
+        "docs\\evidence\\fixes\\server-registration-20261025\\image-identity.json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "image",
+        "inspect",
+        "urumi/dashboard:m8-server-errors",
+        "--format",
+        "{{json .Descriptor}}"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "image",
+        "inspect",
+        "urumi/dashboard:m8-server-errors",
+        "--format",
+        "{{json .RepoDigests}}"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        ".tools/m1/k3d.exe",
+        "image",
+        "import",
+        "urumi/dashboard:m8-server-errors",
+        "-c",
+        "urumi"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "source_inputs_unchanged": 57
+}

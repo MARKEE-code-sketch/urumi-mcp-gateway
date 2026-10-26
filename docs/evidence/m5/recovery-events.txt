@@ -1,0 +1,30 @@
+﻿LAST SEEN   TYPE      REASON                  OBJECT                                               MESSAGE
+26m         Normal    WaitForFirstConsumer    persistentvolumeclaim/urumi-m5-check-platform-data   waiting for first consumer to be created before binding
+98s         Normal    ScalingReplicaSet       deployment/urumi-m5-check-platform-db                Scaled up replica set urumi-m5-check-platform-db-56c7b86d75 from 0 to 1
+26m         Normal    SuccessfulCreate        replicaset/urumi-m5-check-platform-db-56c7b86d75     Created pod: urumi-m5-check-platform-db-56c7b86d75-ln9gv
+26m         Normal    Provisioning            persistentvolumeclaim/urumi-m5-check-platform-data   External provisioner is provisioning volume for claim "urumi-m5-check/urumi-m5-check-platform-data"
+26m         Normal    ExternalProvisioning    persistentvolumeclaim/urumi-m5-check-platform-data   Waiting for a volume to be created either by the external provisioner 'rancher.io/local-path' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+26m         Normal    Scheduled               pod/urumi-m5-check-platform-db-56c7b86d75-ln9gv      Successfully assigned urumi-m5-check/urumi-m5-check-platform-db-56c7b86d75-ln9gv to k3d-urumi-server-0
+26m         Normal    ProvisioningSucceeded   persistentvolumeclaim/urumi-m5-check-platform-data   Successfully provisioned volume pvc-210de06f-ccba-483d-a8b4-af4c7bf3b474
+26m         Normal    Pulling                 pod/urumi-m5-check-platform-db-56c7b86d75-ln9gv      Pulling image "postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826"
+25m         Normal    Created                 pod/urumi-m5-check-platform-db-56c7b86d75-ln9gv      Container created
+25m         Normal    Pulled                  pod/urumi-m5-check-platform-db-56c7b86d75-ln9gv      Successfully pulled image "postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826" in 26.724s (26.725s including waiting). Image size: 158499548 bytes.
+25m         Normal    Started                 pod/urumi-m5-check-platform-db-56c7b86d75-ln9gv      Container started
+25m         Warning   Unhealthy               pod/urumi-m5-check-platform-db-56c7b86d75-ln9gv      Startup probe failed: /var/run/postgresql:5432 - no response
+25m         Warning   Unhealthy               pod/urumi-m5-check-platform-db-56c7b86d75-ln9gv      Readiness probe failed: /var/run/postgresql:5432 - rejecting connections
+8m57s       Normal    ScalingReplicaSet       deployment/urumi-m5-check-m5-harness                 Scaled up replica set urumi-m5-check-m5-harness-694cdc5569 from 0 to 1
+8m57s       Normal    SuccessfulCreate        replicaset/urumi-m5-check-m5-harness-694cdc5569      Created pod: urumi-m5-check-m5-harness-694cdc5569-s5hmn
+8m56s       Normal    Scheduled               pod/urumi-m5-check-m5-harness-694cdc5569-s5hmn       Successfully assigned urumi-m5-check/urumi-m5-check-m5-harness-694cdc5569-s5hmn to k3d-urumi-server-0
+92s         Normal    Created                 pod/urumi-m5-check-m5-harness-694cdc5569-s5hmn       Container created
+92s         Normal    Pulled                  pod/urumi-m5-check-m5-harness-694cdc5569-s5hmn       Container image "urumi/m5-harness:m5" already present on machine and can be accessed by the pod
+92s         Normal    Started                 pod/urumi-m5-check-m5-harness-694cdc5569-s5hmn       Container started
+90s         Warning   Unhealthy               pod/urumi-m5-check-m5-harness-694cdc5569-s5hmn       Startup probe failed: Get "http://10.42.0.80:8000/health/live": dial tcp 10.42.0.80:8000: connect: connection refused
+117s        Normal    Killing                 pod/urumi-m5-check-platform-db-56c7b86d75-ln9gv      Stopping container postgres
+117s        Normal    ScalingReplicaSet       deployment/urumi-m5-check-platform-db                Scaled down replica set urumi-m5-check-platform-db-56c7b86d75 from 1 to 0
+117s        Normal    SuccessfulDelete        replicaset/urumi-m5-check-platform-db-56c7b86d75     Deleted pod: urumi-m5-check-platform-db-56c7b86d75-ln9gv
+97s         Warning   Unhealthy               pod/urumi-m5-check-m5-harness-694cdc5569-s5hmn       Readiness probe failed: HTTP probe failed with statuscode: 503
+96s         Normal    Scheduled               pod/urumi-m5-check-platform-db-56c7b86d75-m8cx5      Successfully assigned urumi-m5-check/urumi-m5-check-platform-db-56c7b86d75-m8cx5 to k3d-urumi-server-0
+97s         Normal    SuccessfulCreate        replicaset/urumi-m5-check-platform-db-56c7b86d75     Created pod: urumi-m5-check-platform-db-56c7b86d75-m8cx5
+96s         Normal    Started                 pod/urumi-m5-check-platform-db-56c7b86d75-m8cx5      Container started
+96s         Normal    Created                 pod/urumi-m5-check-platform-db-56c7b86d75-m8cx5      Container created
+96s         Normal    Pulled                  pod/urumi-m5-check-platform-db-56c7b86d75-m8cx5      Container image "postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826" already present on machine and can be accessed by the pod

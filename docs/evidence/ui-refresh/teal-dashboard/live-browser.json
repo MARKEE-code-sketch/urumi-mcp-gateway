@@ -1,0 +1,95 @@
+{
+  "checked_at": "2026-10-22T15:22:46.542Z",
+  "tls_bypass": false,
+  "results": [
+    {
+      "role": "admin",
+      "servers": [
+        {
+          "name": "Microsoft Learn",
+          "tools": [
+            "learn__microsoft_code_sample_search",
+            "learn__microsoft_docs_fetch",
+            "learn__microsoft_docs_search"
+          ]
+        },
+        {
+          "name": "Inventory",
+          "tools": [
+            "inventory__lookup_sku"
+          ]
+        },
+        {
+          "name": "WooCommerce",
+          "tools": [
+            "woocommerce__create_product",
+            "woocommerce__get_order",
+            "woocommerce__list_orders",
+            "woocommerce__list_products",
+            "woocommerce__update_order_status"
+          ]
+        }
+      ],
+      "appearance": {
+        "primary": "#147d69",
+        "font": "Figtree, Arial, sans-serif",
+        "iconsLoaded": true,
+        "favicon": "/assets/urumi-mark-C-wxyej_.svg"
+      },
+      "chat": {
+        "tables": 1,
+        "columns": [
+          "ID",
+          "SKU",
+          "INR Price"
+        ],
+        "rows": 4,
+        "answerChars": 136,
+        "tools": [
+          "woocommerce__list_products"
+        ]
+      },
+      "mobile_no_page_overflow": true,
+      "csp_violations": [],
+      "external_browser_requests": []
+    },
+    {
+      "role": "member",
+      "servers": [
+        {
+          "name": "Microsoft Learn",
+          "tools": [
+            "learn__microsoft_code_sample_search",
+            "learn__microsoft_docs_fetch",
+            "learn__microsoft_docs_search"
+          ]
+        },
+        {
+          "name": "Inventory",
+          "tools": [
+            "inventory__lookup_sku"
+          ]
+        },
+        {
+          "name": "WooCommerce",
+          "tools": [
+            "woocommerce__create_product",
+            "woocommerce__get_order",
+            "woocommerce__list_orders",
+            "woocommerce__list_products",
+            "woocommerce__update_order_status"
+          ]
+        }
+      ],
+      "appearance": {
+        "primary": "#147d69",
+        "font": "Figtree, Arial, sans-serif",
+        "iconsLoaded": true,
+        "favicon": "/assets/urumi-mark-C-wxyej_.svg"
+      },
+      "mobile_no_page_overflow": true,
+      "csp_violations": [],
+      "external_browser_requests": []
+    }
+  ]
+}

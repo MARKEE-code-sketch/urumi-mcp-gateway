@@ -1,0 +1,59 @@
+{
+  "exit_code": 0,
+  "client": "Codex CLI 0.162.1",
+  "auth": "Existing ChatGPT login; API-key environment removed",
+  "gateway_url": "https://dashboard-m10.urumi.test/mcp",
+  "key_id": "eef85311-a876-4d73-acf3-4a3011398ad2",
+  "user_id": "a69e1b60-0968-4694-87c4-3d0916d80ed2",
+  "events": [
+    {
+      "id": "item_1",
+      "type": "mcp_tool_call",
+      "server": "urumi",
+      "tool": "woocommerce__list_products",
+      "status": "in_progress",
+      "arguments": {
+        "sku": "DEMO-001"
+      },
+      "error": null
+    },
+    {
+      "id": "item_1",
+      "type": "mcp_tool_call",
+      "server": "urumi",
+      "tool": "woocommerce__list_products",
+      "status": "completed",
+      "arguments": {
+        "sku": "DEMO-001"
+      },
+      "error": null
+    },
+    {
+      "id": "item_2",
+      "type": "mcp_tool_call",
+      "server": "urumi",
+      "tool": "inventory__lookup_sku",
+      "status": "in_progress",
+      "arguments": {
+        "sku": "DEMO-001"
+      },
+      "error": null
+    },
+    {
+      "id": "item_2",
+      "type": "mcp_tool_call",
+      "server": "urumi",
+      "tool": "inventory__lookup_sku",
+      "status": "completed",
+      "arguments": {
+        "sku": "DEMO-001"
+      },
+      "error": null
+    }
+  ],
+  "answers": [
+    "I\u2019ll look up SKU DEMO-001 and check its price and availability in the SAMPLE warehouse using only Urumi tools.",
+    "Found **DEMO-001 \u2014 Urumi Demo Product**.\n\n- **Price:** \u20b9499.00 INR\n- **SAMPLE warehouse availability:** 12 units at Bengaluru.\n\nThe warehouse result is sample inventory, not live shop stock."
+  ],
+  "scope": "Actual external Codex client, only one gateway URL/key, local tools disabled; no upstream credentials supplied."
+}

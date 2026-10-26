@@ -1,0 +1,26 @@
+﻿[
+    {
+        "errors":  [
+
+                   ],
+        "file":  "scripts/store-setup.ps1"
+    },
+    {
+        "errors":  [
+
+                   ],
+        "file":  "C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\scripts\\m2\\check-store.ps1"
+    },
+    {
+        "errors":  [
+
+                   ],
+        "file":  "C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\scripts\\m2\\common.ps1"
+    },
+    {
+        "errors":  [
+
+                   ],
+        "file":  "C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\scripts\\m2\\deploy-store.ps1"
+    }
+]

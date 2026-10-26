@@ -1,0 +1,207 @@
+{
+  "action": "inspect-checkout",
+  "checked_at": "2026-10-20T04:28:47.094Z",
+  "tls_verification": "browser_default",
+  "checks": [],
+  "inputs": [
+    {
+      "tag": "INPUT",
+      "id": "coupon_code",
+      "name": "coupon_code",
+      "type": "text"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "",
+      "name": "apply_coupon",
+      "type": "submit"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "wc_order_attribution_source_type",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "wc_order_attribution_referrer",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "wc_order_attribution_utm_campaign",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "wc_order_attribution_utm_source",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "wc_order_attribution_utm_medium",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "wc_order_attribution_utm_content",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "wc_order_attribution_utm_id",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "wc_order_attribution_utm_term",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "wc_order_attribution_utm_source_platform",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "wc_order_attribution_utm_creative_format",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "wc_order_attribution_utm_marketing_tactic",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "wc_order_attribution_session_entry",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "wc_order_attribution_session_start_time",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "wc_order_attribution_session_pages",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "wc_order_attribution_session_count",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "wc_order_attribution_user_agent",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "billing_first_name",
+      "name": "billing_first_name",
+      "type": "text"
+    },
+    {
+      "tag": "INPUT",
+      "id": "billing_last_name",
+      "name": "billing_last_name",
+      "type": "text"
+    },
+    {
+      "tag": "INPUT",
+      "id": "billing_company",
+      "name": "billing_company",
+      "type": "text"
+    },
+    {
+      "tag": "SELECT",
+      "id": "billing_country",
+      "name": "billing_country",
+      "type": "select-one"
+    },
+    {
+      "tag": "INPUT",
+      "id": "billing_address_1",
+      "name": "billing_address_1",
+      "type": "text"
+    },
+    {
+      "tag": "INPUT",
+      "id": "billing_address_2",
+      "name": "billing_address_2",
+      "type": "text"
+    },
+    {
+      "tag": "INPUT",
+      "id": "billing_city",
+      "name": "billing_city",
+      "type": "text"
+    },
+    {
+      "tag": "SELECT",
+      "id": "billing_state",
+      "name": "billing_state",
+      "type": "select-one"
+    },
+    {
+      "tag": "INPUT",
+      "id": "billing_postcode",
+      "name": "billing_postcode",
+      "type": "text"
+    },
+    {
+      "tag": "INPUT",
+      "id": "billing_phone",
+      "name": "billing_phone",
+      "type": "tel"
+    },
+    {
+      "tag": "INPUT",
+      "id": "billing_email",
+      "name": "billing_email",
+      "type": "email"
+    },
+    {
+      "tag": "INPUT",
+      "id": "payment_method_cod",
+      "name": "payment_method",
+      "type": "radio"
+    },
+    {
+      "tag": "BUTTON",
+      "id": "place_order",
+      "name": "woocommerce_checkout_place_order",
+      "type": "submit"
+    },
+    {
+      "tag": "INPUT",
+      "id": "woocommerce-process-checkout-nonce",
+      "name": "woocommerce-process-checkout-nonce",
+      "type": "hidden"
+    },
+    {
+      "tag": "INPUT",
+      "id": "",
+      "name": "_wp_http_referer",
+      "type": "hidden"
+    }
+  ],
+  "status": "PASS"
+}

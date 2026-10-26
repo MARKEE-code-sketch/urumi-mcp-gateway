@@ -1,0 +1,3 @@
+Command: .tools/m6/venv/Scripts/python.exe -m pytest tests/gateway/test_catalog_edges.py -q --assert=plain -p no:cacheprovider
+Observed: 6 passed in 5.23s
+Added after the 41-case full run; no runtime source changes.

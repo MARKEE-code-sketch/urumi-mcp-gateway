@@ -1,0 +1,8 @@
+﻿Running image identity does not match built image.
+At C:\Users\mrina\Downloads\URUMI_Assignment\scripts\m4\check-m4.ps1:84 char:111
++ ... :',''))") { throw 'Running image identity does not match built image. ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (Running image i...ch built image.:String) [], RuntimeException
+    + FullyQualifiedErrorId : Running image identity does not match built image.
+ 
+

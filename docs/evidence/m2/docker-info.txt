@@ -1,0 +1,18 @@
+﻿UTC: 2026-10-15T14:49:58.0119107Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "info" "--format" "{{json .ServerVersion}}"
+Exit: 0
+"29.6.1"
+
+
+UTC: 2026-10-15T14:54:12.1109275Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "info" "--format" "{{json .ServerVersion}}"
+Exit: 0
+"29.6.1"
+
+
+UTC: 2026-10-15T15:09:33.6059522Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "info" "--format" "{{json .ServerVersion}}"
+Exit: 0
+"29.6.1"
+
+

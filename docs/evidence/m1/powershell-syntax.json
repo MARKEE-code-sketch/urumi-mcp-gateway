@@ -1,0 +1,38 @@
+﻿[
+    {
+        "errors":  [
+
+                   ],
+        "file":  "check-foundation.ps1"
+    },
+    {
+        "errors":  [
+
+                   ],
+        "file":  "common.ps1"
+    },
+    {
+        "errors":  [
+
+                   ],
+        "file":  "install-tools.ps1"
+    },
+    {
+        "errors":  [
+
+                   ],
+        "file":  "preflight.ps1"
+    },
+    {
+        "errors":  [
+
+                   ],
+        "file":  "run-m1.ps1"
+    },
+    {
+        "errors":  [
+
+                   ],
+        "file":  "setup-cluster.ps1"
+    }
+]

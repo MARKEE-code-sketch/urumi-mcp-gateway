@@ -1,0 +1,564 @@
+﻿UTC: 2026-10-14T17:00:42.8999819Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "lint" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-m1.yaml" "--set-string" "foundation.image.digest=sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419"
+Exit: 0
+==> Linting C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+
+
+UTC: 2026-10-14T17:00:43.1122374Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "template" "urumi" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "--namespace" "urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-m1.yaml" "--set-string" "foundation.image.digest=sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419"
+Exit: 0
+---
+# Source: urumi/templates/foundation/networkpolicy.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: urumi-foundation
+  labels:
+    app.kubernetes.io/name: urumi
+    app.kubernetes.io/instance: urumi
+    app.kubernetes.io/component: foundation
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: "urumi-0.1.0"
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: urumi
+      app.kubernetes.io/instance: urumi
+      app.kubernetes.io/component: foundation
+  policyTypes: ["Ingress"]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              m1-access: allowed
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: "kube-system"
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/instance: traefik-kube-system
+              app.kubernetes.io/name: traefik
+      ports:
+        - protocol: TCP
+          port: 8080
+---
+# Source: urumi/templates/foundation/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: urumi-foundation-config
+  labels:
+    app.kubernetes.io/name: urumi
+    app.kubernetes.io/instance: urumi
+    app.kubernetes.io/component: foundation
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: "urumi-0.1.0"
+data:
+  index.html: |
+    <!doctype html>
+    <html lang="en">
+      <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Urumi M1</title></head>
+      <body><h1>Urumi M1 — Kubernetes is serving this page.</h1><p>This temporary page checks routing, saved storage, and connection rules.</p></body>
+    </html>
+  server.py: |
+    from functools import partial
+    from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+    from pathlib import Path
+    import shutil
+
+    data = Path("/data")
+    index = data / "index.html"
+    if not index.exists():
+        shutil.copyfile("/config/index.html", index)
+    handler = partial(SimpleHTTPRequestHandler, directory=str(data))
+    ThreadingHTTPServer(("0.0.0.0", 8080), handler).serve_forever()
+---
+# Source: urumi/templates/foundation/pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: urumi-foundation-data
+  labels:
+    app.kubernetes.io/name: urumi
+    app.kubernetes.io/instance: urumi
+    app.kubernetes.io/component: foundation
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: "urumi-0.1.0"
+  annotations:
+    helm.sh/resource-policy: keep
+spec:
+  accessModes: ["ReadWriteOnce"]
+  storageClassName: "local-path"
+  resources:
+    requests:
+      storage: "1Gi"
+---
+# Source: urumi/templates/foundation/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: urumi-foundation
+  labels:
+    app.kubernetes.io/name: urumi
+    app.kubernetes.io/instance: urumi
+    app.kubernetes.io/component: foundation
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: "urumi-0.1.0"
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: urumi
+    app.kubernetes.io/instance: urumi
+    app.kubernetes.io/component: foundation
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+---
+# Source: urumi/templates/foundation/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: urumi-foundation
+  labels:
+    app.kubernetes.io/name: urumi
+    app.kubernetes.io/instance: urumi
+    app.kubernetes.io/component: foundation
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: "urumi-0.1.0"
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: urumi
+      app.kubernetes.io/instance: urumi
+      app.kubernetes.io/component: foundation
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: urumi
+        app.kubernetes.io/instance: urumi
+        app.kubernetes.io/component: foundation
+      annotations:
+        checksum/config: 25c54e4e3ead8ee61b2f8305efca8f5aeef0ed9e88129f7f1eb6ada912b1985e
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+      containers:
+        - name: page
+          image: "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419"
+          imagePullPolicy: IfNotPresent
+          command: ["python", "-B", "/config/server.py"]
+          ports:
+            - name: http
+              containerPort: 8080
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            periodSeconds: 3
+            timeoutSeconds: 2
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+          resources:
+            limits:
+              cpu: 250m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          volumeMounts:
+            - name: config
+              mountPath: /config
+              readOnly: true
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: config
+          configMap:
+            name: urumi-foundation-config
+            defaultMode: 292
+        - name: data
+          persistentVolumeClaim:
+            claimName: urumi-foundation-data
+---
+# Source: urumi/templates/foundation/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: urumi-foundation
+  labels:
+    app.kubernetes.io/name: urumi
+    app.kubernetes.io/instance: urumi
+    app.kubernetes.io/component: foundation
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: "urumi-0.1.0"
+spec:
+  ingressClassName: "traefik"
+  rules:
+    - host: "foundation.urumi.test"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: urumi-foundation
+                port:
+                  number: 80
+
+
+UTC: 2026-10-14T17:00:43.3250584Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "lint" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-prod.yaml" "--set-string" "foundation.image.digest=sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419"
+Exit: 0
+==> Linting C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+
+
+UTC: 2026-10-14T17:00:43.5506734Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "template" "urumi" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "--namespace" "urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-prod.yaml" "--set-string" "foundation.image.digest=sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419"
+Exit: 0
+
+
+
+UTC: 2026-10-14T17:00:45.6882957Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "upgrade" "--install" "urumi" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "--namespace" "urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-m1.yaml" "--set-string" "foundation.image.digest=sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419" "--set" "foundation.networkPolicy.enabled=false" "--set" "foundation.enabled=true" "--wait" "--timeout" "120s"
+Exit: 0
+Release "urumi" has been upgraded. Happy Helming!
+NAME: urumi
+LAST DEPLOYED: Wed Oct 14 22:30:44 2026
+NAMESPACE: urumi
+STATUS: deployed
+REVISION: 2
+TEST SUITE: None
+
+
+UTC: 2026-10-14T17:01:10.6893988Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "upgrade" "--install" "urumi" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "--namespace" "urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-m1.yaml" "--set-string" "foundation.image.digest=sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419" "--set" "foundation.networkPolicy.enabled=true" "--set" "foundation.enabled=true" "--wait" "--timeout" "120s"
+Exit: 0
+Release "urumi" has been upgraded. Happy Helming!
+NAME: urumi
+LAST DEPLOYED: Wed Oct 14 22:31:09 2026
+NAMESPACE: urumi
+STATUS: deployed
+REVISION: 3
+TEST SUITE: None
+
+
+UTC: 2026-10-14T17:03:37.7913512Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "lint" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-m1.yaml" "--set-string" "foundation.image.digest=sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419"
+Exit: 0
+==> Linting C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+
+
+UTC: 2026-10-14T17:03:38.0167875Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "template" "urumi" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "--namespace" "urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-m1.yaml" "--set-string" "foundation.image.digest=sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419"
+Exit: 0
+---
+# Source: urumi/templates/foundation/networkpolicy.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: urumi-foundation
+  labels:
+    app.kubernetes.io/name: urumi
+    app.kubernetes.io/instance: urumi
+    app.kubernetes.io/component: foundation
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: "urumi-0.1.0"
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/name: urumi
+      app.kubernetes.io/instance: urumi
+      app.kubernetes.io/component: foundation
+  policyTypes: ["Ingress"]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              m1-access: allowed
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: "kube-system"
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/instance: traefik-kube-system
+              app.kubernetes.io/name: traefik
+      ports:
+        - protocol: TCP
+          port: 8080
+---
+# Source: urumi/templates/foundation/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: urumi-foundation-config
+  labels:
+    app.kubernetes.io/name: urumi
+    app.kubernetes.io/instance: urumi
+    app.kubernetes.io/component: foundation
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: "urumi-0.1.0"
+data:
+  index.html: |
+    <!doctype html>
+    <html lang="en">
+      <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Urumi M1</title></head>
+      <body><h1>Urumi M1 — Kubernetes is serving this page.</h1><p>This temporary page checks routing, saved storage, and connection rules.</p></body>
+    </html>
+  server.py: |
+    from functools import partial
+    from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+    from pathlib import Path
+    import shutil
+
+    data = Path("/data")
+    index = data / "index.html"
+    if not index.exists():
+        shutil.copyfile("/config/index.html", index)
+    handler = partial(SimpleHTTPRequestHandler, directory=str(data))
+    ThreadingHTTPServer(("0.0.0.0", 8080), handler).serve_forever()
+---
+# Source: urumi/templates/foundation/pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: urumi-foundation-data
+  labels:
+    app.kubernetes.io/name: urumi
+    app.kubernetes.io/instance: urumi
+    app.kubernetes.io/component: foundation
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: "urumi-0.1.0"
+  annotations:
+    helm.sh/resource-policy: keep
+spec:
+  accessModes: ["ReadWriteOnce"]
+  storageClassName: "local-path"
+  resources:
+    requests:
+      storage: "1Gi"
+---
+# Source: urumi/templates/foundation/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: urumi-foundation
+  labels:
+    app.kubernetes.io/name: urumi
+    app.kubernetes.io/instance: urumi
+    app.kubernetes.io/component: foundation
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: "urumi-0.1.0"
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: urumi
+    app.kubernetes.io/instance: urumi
+    app.kubernetes.io/component: foundation
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+---
+# Source: urumi/templates/foundation/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: urumi-foundation
+  labels:
+    app.kubernetes.io/name: urumi
+    app.kubernetes.io/instance: urumi
+    app.kubernetes.io/component: foundation
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: "urumi-0.1.0"
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: urumi
+      app.kubernetes.io/instance: urumi
+      app.kubernetes.io/component: foundation
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: urumi
+        app.kubernetes.io/instance: urumi
+        app.kubernetes.io/component: foundation
+      annotations:
+        checksum/config: 25c54e4e3ead8ee61b2f8305efca8f5aeef0ed9e88129f7f1eb6ada912b1985e
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+      containers:
+        - name: page
+          image: "python@sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419"
+          imagePullPolicy: IfNotPresent
+          command: ["python", "-B", "/config/server.py"]
+          ports:
+            - name: http
+              containerPort: 8080
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            periodSeconds: 3
+            timeoutSeconds: 2
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 2
+            failureThreshold: 3
+          resources:
+            limits:
+              cpu: 250m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          volumeMounts:
+            - name: config
+              mountPath: /config
+              readOnly: true
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: config
+          configMap:
+            name: urumi-foundation-config
+            defaultMode: 292
+        - name: data
+          persistentVolumeClaim:
+            claimName: urumi-foundation-data
+---
+# Source: urumi/templates/foundation/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: urumi-foundation
+  labels:
+    app.kubernetes.io/name: urumi
+    app.kubernetes.io/instance: urumi
+    app.kubernetes.io/component: foundation
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: "urumi-0.1.0"
+spec:
+  ingressClassName: "traefik"
+  rules:
+    - host: "foundation.urumi.test"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: urumi-foundation
+                port:
+                  number: 80
+
+
+UTC: 2026-10-14T17:03:38.2448764Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "lint" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-prod.yaml" "--set-string" "foundation.image.digest=sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419"
+Exit: 0
+==> Linting C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+
+
+UTC: 2026-10-14T17:03:38.4760699Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "template" "urumi" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "--namespace" "urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-prod.yaml" "--set-string" "foundation.image.digest=sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419"
+Exit: 0
+
+
+
+UTC: 2026-10-14T17:03:39.7323139Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "upgrade" "--install" "urumi" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "--create-namespace" "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "--namespace" "urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-m1.yaml" "--set-string" "foundation.image.digest=sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419" "--set" "foundation.networkPolicy.enabled=false" "--set" "foundation.enabled=true" "--wait" "--timeout" "120s"
+Exit: 0
+Release "urumi" has been upgraded. Happy Helming!
+NAME: urumi
+LAST DEPLOYED: Wed Oct 14 22:33:38 2026
+NAMESPACE: urumi
+STATUS: deployed
+REVISION: 4
+TEST SUITE: None
+
+
+UTC: 2026-10-14T17:04:06.6853254Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "upgrade" "--install" "urumi" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "--create-namespace" "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "--namespace" "urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-m1.yaml" "--set-string" "foundation.image.digest=sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419" "--set" "foundation.networkPolicy.enabled=true" "--set" "foundation.enabled=true" "--wait" "--timeout" "120s"
+Exit: 0
+Release "urumi" has been upgraded. Happy Helming!
+NAME: urumi
+LAST DEPLOYED: Wed Oct 14 22:34:05 2026
+NAMESPACE: urumi
+STATUS: deployed
+REVISION: 5
+TEST SUITE: None
+
+
+UTC: 2026-10-14T17:49:37.2252189Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "upgrade" "--install" "urumi" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "--create-namespace" "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "--namespace" "urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-m1.yaml" "--set-string" "foundation.image.digest=sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419" "--set" "foundation.networkPolicy.enabled=true" "--set" "foundation.enabled=false" "--wait" "--timeout" "120s"
+Exit: 0
+Release "urumi" has been upgraded. Happy Helming!
+NAME: urumi
+LAST DEPLOYED: Wed Oct 14 23:19:37 2026
+NAMESPACE: urumi
+STATUS: deployed
+REVISION: 6
+TEST SUITE: None
+
+
+UTC: 2026-10-14T18:02:56.3702846Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "upgrade" "--install" "urumi" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi" "--create-namespace" "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--kube-context" "k3d-urumi" "--namespace" "urumi" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-local.yaml" "-f" "C:\Users\mrina\Downloads\URUMI_Assignment\deploy\charts\urumi/values-m1.yaml" "--set-string" "foundation.image.digest=sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419" "--set" "foundation.networkPolicy.enabled=true" "--set" "foundation.enabled=false" "--wait" "--timeout" "120s"
+Exit: 0
+Release "urumi" has been upgraded. Happy Helming!
+NAME: urumi
+LAST DEPLOYED: Wed Oct 14 23:32:56 2026
+NAMESPACE: urumi
+STATUS: deployed
+REVISION: 7
+TEST SUITE: None
+
+

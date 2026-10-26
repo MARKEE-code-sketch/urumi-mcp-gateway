@@ -1,0 +1,13 @@
+{
+  "namespace": "urumi-m10",
+  "probe_pod": "m10-network-probe-bd7964b4",
+  "initial_attempt": "Earlier probe expected timeout only and did not export a verdict; this check records connection rejection as well as timeout.",
+  "result": {
+    "dns": true,
+    "reached": false,
+    "error_type": "ConnectError"
+  },
+  "status": "PASS",
+  "owned_probe_removed": true,
+  "gateway_control": "Woo calls succeeded through gateway in live-api-mcp.json"
+}

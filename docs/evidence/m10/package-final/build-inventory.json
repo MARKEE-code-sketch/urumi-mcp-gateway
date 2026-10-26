@@ -1,0 +1,11 @@
+{
+  "standalone_evidence": [
+    "docs/evidence/m2/report.md",
+    "docs/evidence/m3/report.md",
+    "docs/evidence/m4/report.md",
+    "docs/evidence/m6/image-source-check.json"
+  ],
+  "dashboard": "docs/evidence/m8/report.md (separate module gate)",
+  "checks_target": "preserved and source-tested; no old-image rebuild required",
+  "combined_backend": "Missing-entrypoint negative rejected in staging before Docker; current release build/deployment not performed by this checker"
+}

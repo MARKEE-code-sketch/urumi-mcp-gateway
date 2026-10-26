@@ -1,0 +1,198 @@
+{
+  "bytes_removed": 5231994,
+  "scope": "Rejected frontend previews and obsolete helpers; active frontend source, assets, tests, chosen design record and deployment evidence retained",
+  "files": [
+    {
+      "path": "docs/design/compare.html",
+      "bytes": 5234
+    },
+    {
+      "path": "docs/design/comparison-1440.png",
+      "bytes": 194534
+    },
+    {
+      "path": "docs/design/comparison-390.png",
+      "bytes": 133013
+    },
+    {
+      "path": "docs/design/comparison-baseline.json",
+      "bytes": 396
+    },
+    {
+      "path": "docs/design/comparison-browser-check.json",
+      "bytes": 3841
+    },
+    {
+      "path": "docs/design/dashboard-design-options.html",
+      "bytes": 32792
+    },
+    {
+      "path": "docs/design/dashboard-refresh-desktop.png",
+      "bytes": 88422
+    },
+    {
+      "path": "docs/design/dashboard-refresh-mobile.png",
+      "bytes": 68792
+    },
+    {
+      "path": "docs/design/dashboard-refresh-preview.html",
+      "bytes": 24947
+    },
+    {
+      "path": "docs/design/dashboard-refresh-servers.png",
+      "bytes": 80224
+    },
+    {
+      "path": "docs/design/design-options-check.json",
+      "bytes": 1386
+    },
+    {
+      "path": "docs/design/option-atelier-1440.png",
+      "bytes": 109532
+    },
+    {
+      "path": "docs/design/option-atelier-390.png",
+      "bytes": 89288
+    },
+    {
+      "path": "docs/design/option-atelier-tools.png",
+      "bytes": 84374
+    },
+    {
+      "path": "docs/design/option-midnight-1440.png",
+      "bytes": 102235
+    },
+    {
+      "path": "docs/design/option-midnight-390.png",
+      "bytes": 93187
+    },
+    {
+      "path": "docs/design/option-midnight-tools.png",
+      "bytes": 79764
+    },
+    {
+      "path": "docs/design/option-pearl-1440.png",
+      "bytes": 114839
+    },
+    {
+      "path": "docs/design/option-pearl-390.png",
+      "bytes": 92022
+    },
+    {
+      "path": "docs/design/option-pearl-tools.png",
+      "bytes": 87855
+    },
+    {
+      "path": "docs/design/omni/answer-1440.png",
+      "bytes": 106396
+    },
+    {
+      "path": "docs/design/omni/answer-390.png",
+      "bytes": 60602
+    },
+    {
+      "path": "docs/design/omni/index.html",
+      "bytes": 21856
+    },
+    {
+      "path": "docs/design/omni/servers-1440.png",
+      "bytes": 90246
+    },
+    {
+      "path": "docs/design/omni/servers-390.png",
+      "bytes": 58188
+    },
+    {
+      "path": "docs/design/omni/start-1440.png",
+      "bytes": 98578
+    },
+    {
+      "path": "docs/design/omni/start-390.png",
+      "bytes": 59177
+    },
+    {
+      "path": "docs/design/omni/style.css",
+      "bytes": 17973
+    },
+    {
+      "path": "docs/design/omni/tool-inputs-1440.png",
+      "bytes": 127551
+    },
+    {
+      "path": "docs/design/omni/tool-inputs-390.png",
+      "bytes": 92010
+    },
+    {
+      "path": "docs/design/references/omni-agent.jpeg",
+      "bytes": 355928
+    },
+    {
+      "path": "docs/design/references/ronas-chatbot.png",
+      "bytes": 2642094
+    },
+    {
+      "path": "scripts/m8/check-design-options.mjs",
+      "bytes": 2825
+    },
+    {
+      "path": "scripts/m8/check-preview-comparison.mjs",
+      "bytes": 3795
+    },
+    {
+      "path": "scripts/m8/check-professional-preview.mjs",
+      "bytes": 2943
+    },
+    {
+      "path": "scripts/m8/check-live-tools.mjs",
+      "bytes": 2346
+    },
+    {
+      "path": "frontend/test-results/.last-run.json",
+      "bytes": 45
+    },
+    {
+      "path": ".tools/design-preview/server.log",
+      "bytes": 2759
+    },
+    {
+      "path": ".tools/design-preview/server.pid",
+      "bytes": 5
+    }
+  ],
+  "targets": [
+    "docs/design/compare.html",
+    "docs/design/comparison-1440.png",
+    "docs/design/comparison-390.png",
+    "docs/design/comparison-baseline.json",
+    "docs/design/comparison-browser-check.json",
+    "docs/design/dashboard-design-options.html",
+    "docs/design/dashboard-refresh-desktop.png",
+    "docs/design/dashboard-refresh-mobile.png",
+    "docs/design/dashboard-refresh-preview.html",
+    "docs/design/dashboard-refresh-servers.png",
+    "docs/design/design-options-check.json",
+    "docs/design/option-atelier-1440.png",
+    "docs/design/option-atelier-390.png",
+    "docs/design/option-atelier-tools.png",
+    "docs/design/option-midnight-1440.png",
+    "docs/design/option-midnight-390.png",
+    "docs/design/option-midnight-tools.png",
+    "docs/design/option-pearl-1440.png",
+    "docs/design/option-pearl-390.png",
+    "docs/design/option-pearl-tools.png",
+    "docs/design/omni",
+    "docs/design/references",
+    "scripts/m8/check-design-options.mjs",
+    "scripts/m8/check-preview-comparison.mjs",
+    "scripts/m8/check-professional-preview.mjs",
+    "scripts/m8/check-live-tools.mjs",
+    "frontend/test-results",
+    ".tools/design-preview"
+  ],
+  "date": "2026-10-23",
+  "file_count": 39,
+  "frontend_frozen_inputs_unchanged": 57,
+  "documentation_links_checked": true,
+  "typecheck": "PASS",
+  "production_build": "PASS"
+}

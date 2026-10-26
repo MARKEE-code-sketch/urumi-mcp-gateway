@@ -1,0 +1,93 @@
+{{- if .Values.store.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-wordpress
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/component: wordpress
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-wordpress
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/component: wordpress
+  template:
+    metadata:
+      annotations:
+        checksum/store-theme: {{ include (print $.Template.BasePath "/store/theme.yaml") . | sha256sum }}
+      labels:
+        app.kubernetes.io/name: urumi
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/component: wordpress
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets: {{ toJson . }}
+      {{- end }}
+      automountServiceAccountToken: false
+      securityContext:
+        fsGroup: 33
+      containers:
+        - name: wordpress
+          image: {{ if .Values.store.image.digest }}{{ printf "%s@%s" .Values.store.image.repository .Values.store.image.digest | quote }}{{ else }}{{ printf "%s:%s" .Values.store.image.repository .Values.store.image.tag | quote }}{{ end }}
+          imagePullPolicy: {{ .Values.store.image.pullPolicy }}
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: {{ .Release.Name }}-store
+          env:
+            - {name: WORDPRESS_DB_PASSWORD_FILE, value: /run/urumi/database/database-password}
+            {{- range $key := list "AUTH_KEY" "SECURE_AUTH_KEY" "LOGGED_IN_KEY" "NONCE_KEY" "AUTH_SALT" "SECURE_AUTH_SALT" "LOGGED_IN_SALT" "NONCE_SALT" }}
+            - name: WORDPRESS_{{ $key }}_FILE
+              value: /run/urumi/salts/{{ $key }}
+            {{- end }}
+          resources:
+            {{- toYaml .Values.store.resources.wordpress | nindent 12 }}
+          startupProbe:
+            httpGet: {path: /urumi-live.php, port: 80}
+            periodSeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 36
+          livenessProbe:
+            httpGet: {path: /urumi-live.php, port: 80}
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 6
+          readinessProbe:
+            httpGet: {path: /urumi-ready.php, port: 80}
+            periodSeconds: 10
+            timeoutSeconds: 3
+          volumeMounts:
+            - {name: content, mountPath: /var/www/html}
+            - {name: store-theme, mountPath: /var/www/html/wp-content/themes/urumi-shop, readOnly: true}
+            - {name: database, mountPath: /run/urumi/database, readOnly: true}
+            - {name: salts, mountPath: /run/urumi/salts, readOnly: true}
+      volumes:
+        - name: store-theme
+          configMap:
+            name: {{ .Release.Name }}-store-theme
+        - name: content
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-wordpress-content
+        - name: database
+          secret:
+            secretName: {{ .Values.store.secrets.database }}
+            items:
+              - {key: database-password, path: database-password}
+        - name: salts
+          secret:
+            secretName: {{ .Values.store.secrets.salts }}
+{{- end }}

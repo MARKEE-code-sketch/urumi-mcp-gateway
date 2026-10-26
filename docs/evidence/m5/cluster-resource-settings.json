@@ -1,0 +1,9 @@
+{
+  "service_types": [
+    "ClusterIP",
+    "ClusterIP"
+  ],
+  "ingress_count": 0,
+  "probes_and_resources_present": true,
+  "pvc_uid_retained": true
+}

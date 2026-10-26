@@ -1,0 +1,12 @@
+﻿helm lint values-local.yaml store.enabled=true woocommerceMcp.enabled=true: exit0
+==> Linting deploy/charts/urumi
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+helm template values-local.yaml: exit0
+helm lint values-prod.yaml store.enabled=true woocommerceMcp.enabled=true: exit0
+==> Linting deploy/charts/urumi
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+helm template values-prod.yaml: exit0

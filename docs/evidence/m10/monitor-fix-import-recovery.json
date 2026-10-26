@@ -1,0 +1,15 @@
+{
+  "alias": "docker.io/urumi/backend@sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe",
+  "runtime_config_digest": "sha256:160ae7b13c17f4a0e94a02a855b0ffae5181081cb9f97136846c5f50e0982d43",
+  "repo_digests": [
+    "docker.io/urumi/backend@sha256:2c842ad25e4e09f3ffd5a2ae515942e1bf51f2e2df42250e7ee24c7dab20aabe"
+  ],
+  "cri_digest_resolves": true,
+  "namespace_uid": "89c6dab6-b118-42f3-940e-e8d8f91820bf",
+  "pod_before": {
+    "name": "urumi-m10-backend-76c9674bf8-m82hk",
+    "uid": "7fde4154-437d-48af-8d63-b283a78311ff",
+    "ready": true
+  },
+  "recovery_action": "no restart needed"
+}

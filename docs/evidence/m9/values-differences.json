@@ -1,0 +1,97 @@
+{
+  "release.environment": {
+    "local": "local",
+    "production": "production"
+  },
+  "backend.image.tag": {
+    "local": "m10-unavailable",
+    "production": "replace-with-immutable-reference"
+  },
+  "backend.image.repository": {
+    "local": "urumi/backend",
+    "production": "private-registry.example.com/backend"
+  },
+  "backend.origin": {
+    "local": "https://dashboard.urumi.test",
+    "production": "https://dashboard.example.com"
+  },
+  "inventoryMcp.image.tag": {
+    "local": "m4",
+    "production": "replace-with-immutable-reference"
+  },
+  "inventoryMcp.image.repository": {
+    "local": "urumi/inventory-mcp",
+    "production": "private-registry.example.com/inventory-mcp"
+  },
+  "dashboard.ingress.host": {
+    "local": "dashboard.urumi.test",
+    "production": "dashboard.example.com"
+  },
+  "dashboard.image.tag": {
+    "local": "m8",
+    "production": "replace-with-immutable-reference"
+  },
+  "dashboard.image.repository": {
+    "local": "urumi/dashboard",
+    "production": "private-registry.example.com/dashboard"
+  },
+  "imagePullSecrets": {
+    "local": [],
+    "production": [
+      {
+        "name": "urumi-registry"
+      }
+    ]
+  },
+  "store.ingress.host": {
+    "local": "shop.urumi.test",
+    "production": "shop.example.com"
+  },
+  "store.ingress.tlsSecret": {
+    "local": "",
+    "production": "urumi-shop-tls"
+  },
+  "store.image.tag": {
+    "local": "m2",
+    "production": "replace-with-immutable-reference"
+  },
+  "store.image.repository": {
+    "local": "urumi-store",
+    "production": "private-registry.example.com/urumi-store"
+  },
+  "store.canonicalUrl": {
+    "local": "http://shop.urumi.test",
+    "production": "https://shop.example.com"
+  },
+  "woocommerceMcp.image.tag": {
+    "local": "m3",
+    "production": "replace-with-immutable-reference"
+  },
+  "woocommerceMcp.image.repository": {
+    "local": "urumi/woocommerce-mcp",
+    "production": "private-registry.example.com/woocommerce-mcp"
+  },
+  "woocommerceMcp.transportOrigin": {
+    "local": "http://urumi-wordpress.urumi.svc.cluster.local",
+    "production": "https://shop.example.com"
+  },
+  "woocommerceMcp.networkPolicy.transportMode": {
+    "local": "direct-http",
+    "production": "ingress-https"
+  },
+  "woocommerceMcp.hostAliases": {
+    "local": [],
+    "production": [
+      {
+        "ip": "192.0.2.10",
+        "hostnames": [
+          "shop.example.com"
+        ]
+      }
+    ]
+  },
+  "woocommerceMcp.canonicalOrigin": {
+    "local": "http://shop.urumi.test",
+    "production": "https://shop.example.com"
+  }
+}

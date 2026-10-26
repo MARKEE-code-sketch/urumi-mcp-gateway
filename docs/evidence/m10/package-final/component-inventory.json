@@ -1,0 +1,111 @@
+{
+  "components": [
+    {
+      "owner": "M2",
+      "name": "store/mariadb",
+      "build": "build/store/Dockerfile",
+      "ports": [
+        80,
+        3306
+      ],
+      "evidence": "docs/evidence/m2/report.md"
+    },
+    {
+      "owner": "M3",
+      "name": "woocommerce-mcp",
+      "build": "services/woocommerce_mcp/Dockerfile",
+      "ports": [
+        8000
+      ],
+      "evidence": "docs/evidence/m3/report.md"
+    },
+    {
+      "owner": "M4",
+      "name": "inventory-mcp",
+      "build": "services/sample_mcps/Dockerfile",
+      "ports": [
+        8000
+      ],
+      "evidence": "docs/evidence/m4/report.md"
+    },
+    {
+      "owner": "M4",
+      "name": "Microsoft Learn",
+      "build": null,
+      "transport": "external HTTPS Streamable HTTP"
+    },
+    {
+      "owner": "M5",
+      "name": "platform-db/identity/registry/audits",
+      "build": "backend/Dockerfile target checks",
+      "ports": [
+        5432
+      ],
+      "evidence": "docs/evidence/m5/report.md"
+    },
+    {
+      "owner": "M6",
+      "name": "gateway",
+      "build": "backend/Dockerfile target checks",
+      "ports": [
+        8000
+      ],
+      "evidence": "docs/evidence/m6/report.md"
+    },
+    {
+      "owner": "M7",
+      "name": "chat",
+      "build": "backend/Dockerfile target checks",
+      "evidence": "docs/evidence/m7/report.md",
+      "gap": "Real Groq probe pending free-plan confirmation"
+    },
+    {
+      "owner": "M8",
+      "name": "dashboard",
+      "build": "frontend/Dockerfile",
+      "ports": [
+        8080
+      ],
+      "evidence": "docs/evidence/m8/report.md",
+      "gap": "Independent acceptance/user review tracked separately"
+    },
+    {
+      "owner": "M10",
+      "name": "combined backend",
+      "build": "backend/Dockerfile target release",
+      "entrypoints_present": true,
+      "gap": "Build/deployment proof is tracked in M10, not inferred from source presence"
+    }
+  ],
+  "runtime_contract": {
+    "enabled": true,
+    "replicas": 1,
+    "workers": 1,
+    "image": {
+      "repository": "urumi/backend",
+      "tag": "m10-unavailable",
+      "digest": "",
+      "pullPolicy": "IfNotPresent"
+    },
+    "origin": "https://dashboard.urumi.test",
+    "allowedHosts": [],
+    "existingProviderSecret": "urumi-groq",
+    "model": "openai/gpt-oss-20b",
+    "resources": {
+      "requests": {
+        "cpu": "100m",
+        "memory": "256Mi"
+      },
+      "limits": {
+        "cpu": "1000m",
+        "memory": "512Mi"
+      }
+    },
+    "networkPolicy": {
+      "enabled": true,
+      "apiServerCidrs": [],
+      "apiServerPort": 6443
+    }
+  },
+  "mutation_scope": "zero cluster mutations or provider calls"
+}

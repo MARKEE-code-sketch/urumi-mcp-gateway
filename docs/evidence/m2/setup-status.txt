@@ -1,0 +1,2491 @@
+﻿UTC: 2026-10-15T14:51:35.5236716Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "pods" "-l" "app.kubernetes.io/component=wordpress,app.kubernetes.io/instance=urumi" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-15T14:52:37.8546724Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "pods" "-l" "app.kubernetes.io/component=wordpress,app.kubernetes.io/instance=urumi" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "generateName": "urumi-wordpress-7b56444fdc-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "wordpress",
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/name": "urumi",
+                    "pod-template-hash": "7b56444fdc"
+                },
+                "name": "urumi-wordpress-7b56444fdc-zs4qf",
+                "namespace": "urumi",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "urumi-wordpress-7b56444fdc",
+                        "uid": "3484a5c7-e3ed-478b-b063-b583a0c233cc"
+                    }
+                ],
+                "resourceVersion": "8745",
+                "uid": "b223a9a0-a016-4b86-ba7b-631ee493007b"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "env": [
+                            {
+                                "name": "WORDPRESS_DB_PASSWORD_FILE",
+                                "value": "/run/urumi/database/database-password"
+                            },
+                            {
+                                "name": "WORDPRESS_AUTH_KEY_FILE",
+                                "value": "/run/urumi/salts/AUTH_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_SECURE_AUTH_KEY_FILE",
+                                "value": "/run/urumi/salts/SECURE_AUTH_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_LOGGED_IN_KEY_FILE",
+                                "value": "/run/urumi/salts/LOGGED_IN_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_NONCE_KEY_FILE",
+                                "value": "/run/urumi/salts/NONCE_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_AUTH_SALT_FILE",
+                                "value": "/run/urumi/salts/AUTH_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_SECURE_AUTH_SALT_FILE",
+                                "value": "/run/urumi/salts/SECURE_AUTH_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_LOGGED_IN_SALT_FILE",
+                                "value": "/run/urumi/salts/LOGGED_IN_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_NONCE_SALT_FILE",
+                                "value": "/run/urumi/salts/NONCE_SALT"
+                            }
+                        ],
+                        "envFrom": [
+                            {
+                                "configMapRef": {
+                                    "name": "urumi-store"
+                                }
+                            }
+                        ],
+                        "image": "urumi-store:m2-fe04b431b535",
+                        "imagePullPolicy": "IfNotPresent",
+                        "livenessProbe": {
+                            "failureThreshold": 6,
+                            "httpGet": {
+                                "path": "/urumi-live.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "name": "wordpress",
+                        "ports": [
+                            {
+                                "containerPort": 80,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/urumi-ready.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "1",
+                                "memory": "768Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "256Mi"
+                            }
+                        },
+                        "startupProbe": {
+                            "failureThreshold": 36,
+                            "httpGet": {
+                                "path": "/urumi-live.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 5,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "content"
+                            },
+                            {
+                                "mountPath": "/run/urumi/database",
+                                "name": "database",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/run/urumi/salts",
+                                "name": "salts",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 33
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "content",
+                        "persistentVolumeClaim": {
+                            "claimName": "urumi-wordpress-content"
+                        }
+                    },
+                    {
+                        "name": "database",
+                        "secret": {
+                            "defaultMode": 420,
+                            "items": [
+                                {
+                                    "key": "database-password",
+                                    "path": "database-password"
+                                }
+                            ],
+                            "secretName": "urumi-store-db"
+                        }
+                    },
+                    {
+                        "name": "salts",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "urumi-store-salts"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "100m",
+                    "memory": "256Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:51:46Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:51:45Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:51:45Z",
+                        "message": "containers with unready status: [wordpress]",
+                        "observedGeneration": 1,
+                        "reason": "ContainersNotReady",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:51:45Z",
+                        "message": "containers with unready status: [wordpress]",
+                        "observedGeneration": 1,
+                        "reason": "ContainersNotReady",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:51:45Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "100m",
+                            "memory": "256Mi"
+                        },
+                        "containerID": "containerd://a85276e2013779443faaee0abf8c6e27fd1b1b24977e076f2e236a05a0f7cb85",
+                        "image": "docker.io/library/urumi-store:m2-fe04b431b535",
+                        "imageID": "sha256:4d3c24a4eed546b57359d8e5e252847b72101cd1f86dd51cf05043b7c93a1e3f",
+                        "lastState": {},
+                        "name": "wordpress",
+                        "ready": false,
+                        "resources": {
+                            "limits": {
+                                "cpu": "1",
+                                "memory": "768Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "256Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-15T14:51:46Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0,
+                                    33
+                                ],
+                                "uid": 0
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "content"
+                            },
+                            {
+                                "mountPath": "/run/urumi/database",
+                                "name": "database",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/run/urumi/salts",
+                                "name": "salts",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.18.0.2",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.2"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.42.0.28",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.28"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "1",
+                        "memory": "768Mi"
+                    },
+                    "requests": {
+                        "cpu": "79m",
+                        "memory": "256Mi"
+                    }
+                },
+                "startTime": "2026-10-15T14:51:45Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-15T14:52:40.4920937Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "statefulset/urumi-mariadb" "--timeout=180s"
+Exit: 0
+partitioned roll out complete: 1 new pods have been updated...
+
+
+UTC: 2026-10-15T14:53:01.7004288Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "deployment/urumi-wordpress" "--timeout=180s"
+Exit: 0
+deployment "urumi-wordpress" successfully rolled out
+
+
+UTC: 2026-10-15T14:55:03.4229767Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "pods" "-l" "app.kubernetes.io/component=wordpress,app.kubernetes.io/instance=urumi" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-15T14:51:41Z",
+                "generateName": "urumi-wordpress-7b56444fdc-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "wordpress",
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/name": "urumi",
+                    "pod-template-hash": "7b56444fdc"
+                },
+                "name": "urumi-wordpress-7b56444fdc-zs4qf",
+                "namespace": "urumi",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "urumi-wordpress-7b56444fdc",
+                        "uid": "3484a5c7-e3ed-478b-b063-b583a0c233cc"
+                    }
+                ],
+                "resourceVersion": "8811",
+                "uid": "b223a9a0-a016-4b86-ba7b-631ee493007b"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "env": [
+                            {
+                                "name": "WORDPRESS_DB_PASSWORD_FILE",
+                                "value": "/run/urumi/database/database-password"
+                            },
+                            {
+                                "name": "WORDPRESS_AUTH_KEY_FILE",
+                                "value": "/run/urumi/salts/AUTH_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_SECURE_AUTH_KEY_FILE",
+                                "value": "/run/urumi/salts/SECURE_AUTH_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_LOGGED_IN_KEY_FILE",
+                                "value": "/run/urumi/salts/LOGGED_IN_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_NONCE_KEY_FILE",
+                                "value": "/run/urumi/salts/NONCE_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_AUTH_SALT_FILE",
+                                "value": "/run/urumi/salts/AUTH_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_SECURE_AUTH_SALT_FILE",
+                                "value": "/run/urumi/salts/SECURE_AUTH_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_LOGGED_IN_SALT_FILE",
+                                "value": "/run/urumi/salts/LOGGED_IN_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_NONCE_SALT_FILE",
+                                "value": "/run/urumi/salts/NONCE_SALT"
+                            }
+                        ],
+                        "envFrom": [
+                            {
+                                "configMapRef": {
+                                    "name": "urumi-store"
+                                }
+                            }
+                        ],
+                        "image": "urumi-store:m2-fe04b431b535",
+                        "imagePullPolicy": "IfNotPresent",
+                        "livenessProbe": {
+                            "failureThreshold": 6,
+                            "httpGet": {
+                                "path": "/urumi-live.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "name": "wordpress",
+                        "ports": [
+                            {
+                                "containerPort": 80,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/urumi-ready.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "1",
+                                "memory": "768Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "256Mi"
+                            }
+                        },
+                        "startupProbe": {
+                            "failureThreshold": 36,
+                            "httpGet": {
+                                "path": "/urumi-live.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 5,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "content"
+                            },
+                            {
+                                "mountPath": "/run/urumi/database",
+                                "name": "database",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/run/urumi/salts",
+                                "name": "salts",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 33
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "content",
+                        "persistentVolumeClaim": {
+                            "claimName": "urumi-wordpress-content"
+                        }
+                    },
+                    {
+                        "name": "database",
+                        "secret": {
+                            "defaultMode": 420,
+                            "items": [
+                                {
+                                    "key": "database-password",
+                                    "path": "database-password"
+                                }
+                            ],
+                            "secretName": "urumi-store-db"
+                        }
+                    },
+                    {
+                        "name": "salts",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "urumi-store-salts"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "100m",
+                    "memory": "256Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:51:46Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:51:45Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:52:58Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:52:58Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:51:45Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "100m",
+                            "memory": "256Mi"
+                        },
+                        "containerID": "containerd://a85276e2013779443faaee0abf8c6e27fd1b1b24977e076f2e236a05a0f7cb85",
+                        "image": "docker.io/library/urumi-store:m2-fe04b431b535",
+                        "imageID": "sha256:4d3c24a4eed546b57359d8e5e252847b72101cd1f86dd51cf05043b7c93a1e3f",
+                        "lastState": {},
+                        "name": "wordpress",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "1",
+                                "memory": "768Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "256Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-15T14:51:46Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0,
+                                    33
+                                ],
+                                "uid": 0
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "content"
+                            },
+                            {
+                                "mountPath": "/run/urumi/database",
+                                "name": "database",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/run/urumi/salts",
+                                "name": "salts",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.18.0.2",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.2"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.42.0.28",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.28"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "1",
+                        "memory": "768Mi"
+                    },
+                    "requests": {
+                        "cpu": "79m",
+                        "memory": "256Mi"
+                    }
+                },
+                "startTime": "2026-10-15T14:51:45Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-15T14:55:05.9149774Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "statefulset/urumi-mariadb" "--timeout=180s"
+Exit: 0
+partitioned roll out complete: 1 new pods have been updated...
+
+
+UTC: 2026-10-15T14:55:19.6762559Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "deployment/urumi-wordpress" "--timeout=180s"
+Exit: 0
+deployment "urumi-wordpress" successfully rolled out
+
+
+UTC: 2026-10-15T14:55:24.2955369Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "pods" "-l" "app.kubernetes.io/component=wordpress,app.kubernetes.io/instance=urumi" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-15T14:55:22Z",
+                "generateName": "urumi-wordpress-68f88d5479-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "wordpress",
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/name": "urumi",
+                    "pod-template-hash": "68f88d5479"
+                },
+                "name": "urumi-wordpress-68f88d5479-8h46f",
+                "namespace": "urumi",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "urumi-wordpress-68f88d5479",
+                        "uid": "78c24f9d-c953-42aa-878d-f1d7d48ee8ba"
+                    }
+                ],
+                "resourceVersion": "8944",
+                "uid": "88ab340b-9b96-4eb0-b49d-f0db12eeca7c"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "env": [
+                            {
+                                "name": "WORDPRESS_DB_PASSWORD_FILE",
+                                "value": "/run/urumi/database/database-password"
+                            },
+                            {
+                                "name": "WORDPRESS_AUTH_KEY_FILE",
+                                "value": "/run/urumi/salts/AUTH_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_SECURE_AUTH_KEY_FILE",
+                                "value": "/run/urumi/salts/SECURE_AUTH_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_LOGGED_IN_KEY_FILE",
+                                "value": "/run/urumi/salts/LOGGED_IN_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_NONCE_KEY_FILE",
+                                "value": "/run/urumi/salts/NONCE_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_AUTH_SALT_FILE",
+                                "value": "/run/urumi/salts/AUTH_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_SECURE_AUTH_SALT_FILE",
+                                "value": "/run/urumi/salts/SECURE_AUTH_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_LOGGED_IN_SALT_FILE",
+                                "value": "/run/urumi/salts/LOGGED_IN_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_NONCE_SALT_FILE",
+                                "value": "/run/urumi/salts/NONCE_SALT"
+                            }
+                        ],
+                        "envFrom": [
+                            {
+                                "configMapRef": {
+                                    "name": "urumi-store"
+                                }
+                            }
+                        ],
+                        "image": "urumi-store:m2-4b1bc9edacb0",
+                        "imagePullPolicy": "IfNotPresent",
+                        "livenessProbe": {
+                            "failureThreshold": 6,
+                            "httpGet": {
+                                "path": "/urumi-live.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "name": "wordpress",
+                        "ports": [
+                            {
+                                "containerPort": 80,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/urumi-ready.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "1",
+                                "memory": "768Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "256Mi"
+                            }
+                        },
+                        "startupProbe": {
+                            "failureThreshold": 36,
+                            "httpGet": {
+                                "path": "/urumi-live.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 5,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "content"
+                            },
+                            {
+                                "mountPath": "/run/urumi/database",
+                                "name": "database",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/run/urumi/salts",
+                                "name": "salts",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 33
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "content",
+                        "persistentVolumeClaim": {
+                            "claimName": "urumi-wordpress-content"
+                        }
+                    },
+                    {
+                        "name": "database",
+                        "secret": {
+                            "defaultMode": 420,
+                            "items": [
+                                {
+                                    "key": "database-password",
+                                    "path": "database-password"
+                                }
+                            ],
+                            "secretName": "urumi-store-db"
+                        }
+                    },
+                    {
+                        "name": "salts",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "urumi-store-salts"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "100m",
+                    "memory": "256Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:55:24Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:55:22Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:55:22Z",
+                        "message": "containers with unready status: [wordpress]",
+                        "observedGeneration": 1,
+                        "reason": "ContainersNotReady",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:55:22Z",
+                        "message": "containers with unready status: [wordpress]",
+                        "observedGeneration": 1,
+                        "reason": "ContainersNotReady",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:55:22Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "image": "urumi-store:m2-4b1bc9edacb0",
+                        "imageID": "",
+                        "lastState": {},
+                        "name": "wordpress",
+                        "ready": false,
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "waiting": {
+                                "reason": "ContainerCreating"
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "content"
+                            },
+                            {
+                                "mountPath": "/run/urumi/database",
+                                "name": "database",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/run/urumi/salts",
+                                "name": "salts",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.18.0.2",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.2"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Pending",
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "1",
+                        "memory": "768Mi"
+                    },
+                    "requests": {
+                        "cpu": "100m",
+                        "memory": "256Mi"
+                    }
+                },
+                "startTime": "2026-10-15T14:55:22Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-15T14:55:27.1961022Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "statefulset/urumi-mariadb" "--timeout=180s"
+Exit: 0
+partitioned roll out complete: 1 new pods have been updated...
+
+
+UTC: 2026-10-15T14:55:38.6748654Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "deployment/urumi-wordpress" "--timeout=180s"
+Exit: 0
+deployment "urumi-wordpress" successfully rolled out
+
+
+UTC: 2026-10-15T15:05:08.3685774Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "pods" "-l" "app.kubernetes.io/component=wordpress,app.kubernetes.io/instance=urumi" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-15T14:55:22Z",
+                "generateName": "urumi-wordpress-68f88d5479-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "wordpress",
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/name": "urumi",
+                    "pod-template-hash": "68f88d5479"
+                },
+                "name": "urumi-wordpress-68f88d5479-8h46f",
+                "namespace": "urumi",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "urumi-wordpress-68f88d5479",
+                        "uid": "78c24f9d-c953-42aa-878d-f1d7d48ee8ba"
+                    }
+                ],
+                "resourceVersion": "8965",
+                "uid": "88ab340b-9b96-4eb0-b49d-f0db12eeca7c"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "env": [
+                            {
+                                "name": "WORDPRESS_DB_PASSWORD_FILE",
+                                "value": "/run/urumi/database/database-password"
+                            },
+                            {
+                                "name": "WORDPRESS_AUTH_KEY_FILE",
+                                "value": "/run/urumi/salts/AUTH_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_SECURE_AUTH_KEY_FILE",
+                                "value": "/run/urumi/salts/SECURE_AUTH_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_LOGGED_IN_KEY_FILE",
+                                "value": "/run/urumi/salts/LOGGED_IN_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_NONCE_KEY_FILE",
+                                "value": "/run/urumi/salts/NONCE_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_AUTH_SALT_FILE",
+                                "value": "/run/urumi/salts/AUTH_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_SECURE_AUTH_SALT_FILE",
+                                "value": "/run/urumi/salts/SECURE_AUTH_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_LOGGED_IN_SALT_FILE",
+                                "value": "/run/urumi/salts/LOGGED_IN_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_NONCE_SALT_FILE",
+                                "value": "/run/urumi/salts/NONCE_SALT"
+                            }
+                        ],
+                        "envFrom": [
+                            {
+                                "configMapRef": {
+                                    "name": "urumi-store"
+                                }
+                            }
+                        ],
+                        "image": "urumi-store:m2-4b1bc9edacb0",
+                        "imagePullPolicy": "IfNotPresent",
+                        "livenessProbe": {
+                            "failureThreshold": 6,
+                            "httpGet": {
+                                "path": "/urumi-live.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "name": "wordpress",
+                        "ports": [
+                            {
+                                "containerPort": 80,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/urumi-ready.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "1",
+                                "memory": "768Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "256Mi"
+                            }
+                        },
+                        "startupProbe": {
+                            "failureThreshold": 36,
+                            "httpGet": {
+                                "path": "/urumi-live.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 5,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "content"
+                            },
+                            {
+                                "mountPath": "/run/urumi/database",
+                                "name": "database",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/run/urumi/salts",
+                                "name": "salts",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 33
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "content",
+                        "persistentVolumeClaim": {
+                            "claimName": "urumi-wordpress-content"
+                        }
+                    },
+                    {
+                        "name": "database",
+                        "secret": {
+                            "defaultMode": 420,
+                            "items": [
+                                {
+                                    "key": "database-password",
+                                    "path": "database-password"
+                                }
+                            ],
+                            "secretName": "urumi-store-db"
+                        }
+                    },
+                    {
+                        "name": "salts",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "urumi-store-salts"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "100m",
+                    "memory": "256Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:55:24Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:55:22Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:55:31Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:55:31Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T14:55:22Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "100m",
+                            "memory": "256Mi"
+                        },
+                        "containerID": "containerd://cfc7672ca3012a8d43a55a844c6e3ab74c93f84e80843a68f002d0268508597e",
+                        "image": "docker.io/library/urumi-store:m2-4b1bc9edacb0",
+                        "imageID": "sha256:09a2ae742c23a350d70ac364613a91288d26e25cbf59ee1ab7616cdf2954d562",
+                        "lastState": {},
+                        "name": "wordpress",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "1",
+                                "memory": "768Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "256Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-15T14:55:24Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0,
+                                    33
+                                ],
+                                "uid": 0
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "content"
+                            },
+                            {
+                                "mountPath": "/run/urumi/database",
+                                "name": "database",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/run/urumi/salts",
+                                "name": "salts",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.18.0.2",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.2"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.42.0.32",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.32"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "1",
+                        "memory": "768Mi"
+                    },
+                    "requests": {
+                        "cpu": "79m",
+                        "memory": "256Mi"
+                    }
+                },
+                "startTime": "2026-10-15T14:55:22Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-15T15:05:10.5201846Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "statefulset/urumi-mariadb" "--timeout=180s"
+Exit: 0
+partitioned roll out complete: 1 new pods have been updated...
+
+
+UTC: 2026-10-15T15:05:21.3168792Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "deployment/urumi-wordpress" "--timeout=180s"
+Exit: 0
+deployment "urumi-wordpress" successfully rolled out
+
+
+UTC: 2026-10-15T15:10:46.1394521Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "pods" "-l" "app.kubernetes.io/component=wordpress,app.kubernetes.io/instance=urumi" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-15T15:05:24Z",
+                "generateName": "urumi-wordpress-68f88d5479-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "wordpress",
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/name": "urumi",
+                    "pod-template-hash": "68f88d5479"
+                },
+                "name": "urumi-wordpress-68f88d5479-8lxww",
+                "namespace": "urumi",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "urumi-wordpress-68f88d5479",
+                        "uid": "78c24f9d-c953-42aa-878d-f1d7d48ee8ba"
+                    }
+                ],
+                "resourceVersion": "9800",
+                "uid": "75cd115c-d2f6-44a5-accd-0ff75da545e5"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "env": [
+                            {
+                                "name": "WORDPRESS_DB_PASSWORD_FILE",
+                                "value": "/run/urumi/database/database-password"
+                            },
+                            {
+                                "name": "WORDPRESS_AUTH_KEY_FILE",
+                                "value": "/run/urumi/salts/AUTH_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_SECURE_AUTH_KEY_FILE",
+                                "value": "/run/urumi/salts/SECURE_AUTH_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_LOGGED_IN_KEY_FILE",
+                                "value": "/run/urumi/salts/LOGGED_IN_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_NONCE_KEY_FILE",
+                                "value": "/run/urumi/salts/NONCE_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_AUTH_SALT_FILE",
+                                "value": "/run/urumi/salts/AUTH_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_SECURE_AUTH_SALT_FILE",
+                                "value": "/run/urumi/salts/SECURE_AUTH_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_LOGGED_IN_SALT_FILE",
+                                "value": "/run/urumi/salts/LOGGED_IN_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_NONCE_SALT_FILE",
+                                "value": "/run/urumi/salts/NONCE_SALT"
+                            }
+                        ],
+                        "envFrom": [
+                            {
+                                "configMapRef": {
+                                    "name": "urumi-store"
+                                }
+                            }
+                        ],
+                        "image": "urumi-store:m2-4b1bc9edacb0",
+                        "imagePullPolicy": "IfNotPresent",
+                        "livenessProbe": {
+                            "failureThreshold": 6,
+                            "httpGet": {
+                                "path": "/urumi-live.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "name": "wordpress",
+                        "ports": [
+                            {
+                                "containerPort": 80,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/urumi-ready.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "1",
+                                "memory": "768Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "256Mi"
+                            }
+                        },
+                        "startupProbe": {
+                            "failureThreshold": 36,
+                            "httpGet": {
+                                "path": "/urumi-live.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 5,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "content"
+                            },
+                            {
+                                "mountPath": "/run/urumi/database",
+                                "name": "database",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/run/urumi/salts",
+                                "name": "salts",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 33
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "content",
+                        "persistentVolumeClaim": {
+                            "claimName": "urumi-wordpress-content"
+                        }
+                    },
+                    {
+                        "name": "database",
+                        "secret": {
+                            "defaultMode": 420,
+                            "items": [
+                                {
+                                    "key": "database-password",
+                                    "path": "database-password"
+                                }
+                            ],
+                            "secretName": "urumi-store-db"
+                        }
+                    },
+                    {
+                        "name": "salts",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "urumi-store-salts"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "100m",
+                    "memory": "256Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T15:05:24Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T15:05:24Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T15:05:31Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T15:05:31Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T15:05:24Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "100m",
+                            "memory": "256Mi"
+                        },
+                        "containerID": "containerd://4b0ceb427c639f81224c406c6bbe90d4914914bd2eaddf0f0e7ddde12bb91eb8",
+                        "image": "docker.io/library/urumi-store:m2-4b1bc9edacb0",
+                        "imageID": "sha256:09a2ae742c23a350d70ac364613a91288d26e25cbf59ee1ab7616cdf2954d562",
+                        "lastState": {},
+                        "name": "wordpress",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "1",
+                                "memory": "768Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "256Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-15T15:05:24Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0,
+                                    33
+                                ],
+                                "uid": 0
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "content"
+                            },
+                            {
+                                "mountPath": "/run/urumi/database",
+                                "name": "database",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/run/urumi/salts",
+                                "name": "salts",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.18.0.2",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.2"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.42.0.48",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.48"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "1",
+                        "memory": "768Mi"
+                    },
+                    "requests": {
+                        "cpu": "79m",
+                        "memory": "256Mi"
+                    }
+                },
+                "startTime": "2026-10-15T15:05:24Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-15T15:10:48.5207231Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "statefulset/urumi-mariadb" "--timeout=180s"
+Exit: 0
+partitioned roll out complete: 1 new pods have been updated...
+
+
+UTC: 2026-10-15T15:11:06.9355250Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "deployment/urumi-wordpress" "--timeout=180s"
+Exit: 0
+deployment "urumi-wordpress" successfully rolled out
+
+
+UTC: 2026-10-15T15:11:11.1993865Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "pods" "-l" "app.kubernetes.io/component=wordpress,app.kubernetes.io/instance=urumi" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-15T15:11:10Z",
+                "generateName": "urumi-wordpress-5fdfc9c5f7-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "wordpress",
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/name": "urumi",
+                    "pod-template-hash": "5fdfc9c5f7"
+                },
+                "name": "urumi-wordpress-5fdfc9c5f7-pgmpw",
+                "namespace": "urumi",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "urumi-wordpress-5fdfc9c5f7",
+                        "uid": "27273b73-0bdd-434b-9c14-2bb954aa807e"
+                    }
+                ],
+                "resourceVersion": "10030",
+                "uid": "29af3525-7578-41d4-b954-40549176ea02"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "env": [
+                            {
+                                "name": "WORDPRESS_DB_PASSWORD_FILE",
+                                "value": "/run/urumi/database/database-password"
+                            },
+                            {
+                                "name": "WORDPRESS_AUTH_KEY_FILE",
+                                "value": "/run/urumi/salts/AUTH_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_SECURE_AUTH_KEY_FILE",
+                                "value": "/run/urumi/salts/SECURE_AUTH_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_LOGGED_IN_KEY_FILE",
+                                "value": "/run/urumi/salts/LOGGED_IN_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_NONCE_KEY_FILE",
+                                "value": "/run/urumi/salts/NONCE_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_AUTH_SALT_FILE",
+                                "value": "/run/urumi/salts/AUTH_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_SECURE_AUTH_SALT_FILE",
+                                "value": "/run/urumi/salts/SECURE_AUTH_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_LOGGED_IN_SALT_FILE",
+                                "value": "/run/urumi/salts/LOGGED_IN_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_NONCE_SALT_FILE",
+                                "value": "/run/urumi/salts/NONCE_SALT"
+                            }
+                        ],
+                        "envFrom": [
+                            {
+                                "configMapRef": {
+                                    "name": "urumi-store"
+                                }
+                            }
+                        ],
+                        "image": "urumi-store:m2-23494837a20c",
+                        "imagePullPolicy": "IfNotPresent",
+                        "livenessProbe": {
+                            "failureThreshold": 6,
+                            "httpGet": {
+                                "path": "/urumi-live.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "name": "wordpress",
+                        "ports": [
+                            {
+                                "containerPort": 80,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/urumi-ready.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "1",
+                                "memory": "768Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "256Mi"
+                            }
+                        },
+                        "startupProbe": {
+                            "failureThreshold": 36,
+                            "httpGet": {
+                                "path": "/urumi-live.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 5,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "content"
+                            },
+                            {
+                                "mountPath": "/run/urumi/database",
+                                "name": "database",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/run/urumi/salts",
+                                "name": "salts",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 33
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "content",
+                        "persistentVolumeClaim": {
+                            "claimName": "urumi-wordpress-content"
+                        }
+                    },
+                    {
+                        "name": "database",
+                        "secret": {
+                            "defaultMode": 420,
+                            "items": [
+                                {
+                                    "key": "database-password",
+                                    "path": "database-password"
+                                }
+                            ],
+                            "secretName": "urumi-store-db"
+                        }
+                    },
+                    {
+                        "name": "salts",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "urumi-store-salts"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "100m",
+                    "memory": "256Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T15:11:10Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T15:11:10Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T15:11:10Z",
+                        "message": "containers with unready status: [wordpress]",
+                        "observedGeneration": 1,
+                        "reason": "ContainersNotReady",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T15:11:10Z",
+                        "message": "containers with unready status: [wordpress]",
+                        "observedGeneration": 1,
+                        "reason": "ContainersNotReady",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T15:11:10Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "image": "urumi-store:m2-23494837a20c",
+                        "imageID": "",
+                        "lastState": {},
+                        "name": "wordpress",
+                        "ready": false,
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "waiting": {
+                                "reason": "ContainerCreating"
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "content"
+                            },
+                            {
+                                "mountPath": "/run/urumi/database",
+                                "name": "database",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/run/urumi/salts",
+                                "name": "salts",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.18.0.2",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.2"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Pending",
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "1",
+                        "memory": "768Mi"
+                    },
+                    "requests": {
+                        "cpu": "100m",
+                        "memory": "256Mi"
+                    }
+                },
+                "startTime": "2026-10-15T15:11:10Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-15T15:11:13.7843820Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "statefulset/urumi-mariadb" "--timeout=180s"
+Exit: 0
+partitioned roll out complete: 1 new pods have been updated...
+
+
+UTC: 2026-10-15T15:11:25.5969547Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "deployment/urumi-wordpress" "--timeout=180s"
+Exit: 0
+deployment "urumi-wordpress" successfully rolled out
+
+
+UTC: 2026-10-16T04:35:03.5155619Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "get" "pods" "-l" "app.kubernetes.io/component=wordpress,app.kubernetes.io/instance=urumi" "-o" "json"
+Exit: 0
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-10-15T15:11:10Z",
+                "generateName": "urumi-wordpress-5fdfc9c5f7-",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/component": "wordpress",
+                    "app.kubernetes.io/instance": "urumi",
+                    "app.kubernetes.io/name": "urumi",
+                    "pod-template-hash": "5fdfc9c5f7"
+                },
+                "name": "urumi-wordpress-5fdfc9c5f7-pgmpw",
+                "namespace": "urumi",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "urumi-wordpress-5fdfc9c5f7",
+                        "uid": "27273b73-0bdd-434b-9c14-2bb954aa807e"
+                    }
+                ],
+                "resourceVersion": "17638",
+                "uid": "29af3525-7578-41d4-b954-40549176ea02"
+            },
+            "spec": {
+                "automountServiceAccountToken": false,
+                "containers": [
+                    {
+                        "env": [
+                            {
+                                "name": "WORDPRESS_DB_PASSWORD_FILE",
+                                "value": "/run/urumi/database/database-password"
+                            },
+                            {
+                                "name": "WORDPRESS_AUTH_KEY_FILE",
+                                "value": "/run/urumi/salts/AUTH_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_SECURE_AUTH_KEY_FILE",
+                                "value": "/run/urumi/salts/SECURE_AUTH_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_LOGGED_IN_KEY_FILE",
+                                "value": "/run/urumi/salts/LOGGED_IN_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_NONCE_KEY_FILE",
+                                "value": "/run/urumi/salts/NONCE_KEY"
+                            },
+                            {
+                                "name": "WORDPRESS_AUTH_SALT_FILE",
+                                "value": "/run/urumi/salts/AUTH_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_SECURE_AUTH_SALT_FILE",
+                                "value": "/run/urumi/salts/SECURE_AUTH_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_LOGGED_IN_SALT_FILE",
+                                "value": "/run/urumi/salts/LOGGED_IN_SALT"
+                            },
+                            {
+                                "name": "WORDPRESS_NONCE_SALT_FILE",
+                                "value": "/run/urumi/salts/NONCE_SALT"
+                            }
+                        ],
+                        "envFrom": [
+                            {
+                                "configMapRef": {
+                                    "name": "urumi-store"
+                                }
+                            }
+                        ],
+                        "image": "urumi-store:m2-23494837a20c",
+                        "imagePullPolicy": "IfNotPresent",
+                        "livenessProbe": {
+                            "failureThreshold": 6,
+                            "httpGet": {
+                                "path": "/urumi-live.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "name": "wordpress",
+                        "ports": [
+                            {
+                                "containerPort": 80,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "readinessProbe": {
+                            "failureThreshold": 3,
+                            "httpGet": {
+                                "path": "/urumi-ready.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 10,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "resources": {
+                            "limits": {
+                                "cpu": "1",
+                                "memory": "768Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "256Mi"
+                            }
+                        },
+                        "startupProbe": {
+                            "failureThreshold": 36,
+                            "httpGet": {
+                                "path": "/urumi-live.php",
+                                "port": 80,
+                                "scheme": "HTTP"
+                            },
+                            "periodSeconds": 5,
+                            "successThreshold": 1,
+                            "timeoutSeconds": 3
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "content"
+                            },
+                            {
+                                "mountPath": "/run/urumi/database",
+                                "name": "database",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/run/urumi/salts",
+                                "name": "salts",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "k3d-urumi-server-0",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 33
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "content",
+                        "persistentVolumeClaim": {
+                            "claimName": "urumi-wordpress-content"
+                        }
+                    },
+                    {
+                        "name": "database",
+                        "secret": {
+                            "defaultMode": 420,
+                            "items": [
+                                {
+                                    "key": "database-password",
+                                    "path": "database-password"
+                                }
+                            ],
+                            "secretName": "urumi-store-db"
+                        }
+                    },
+                    {
+                        "name": "salts",
+                        "secret": {
+                            "defaultMode": 420,
+                            "secretName": "urumi-store-salts"
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "allocatedResources": {
+                    "cpu": "100m",
+                    "memory": "256Mi"
+                },
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-16T04:33:49Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T15:11:10Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-16T04:34:20Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-16T04:34:20Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-15T15:11:10Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "100m",
+                            "memory": "256Mi"
+                        },
+                        "containerID": "containerd://7a14e69059f76ef9b581d14df2f46a9ebb6439a3bb5011c378b679406d8a15a5",
+                        "image": "docker.io/library/urumi-store:m2-23494837a20c",
+                        "imageID": "sha256:db1ad610bf5588423b9e6d500e5915b3bbc21c37cbf70dc0da2d67041941d3b5",
+                        "lastState": {
+                            "terminated": {
+                                "containerID": "containerd://74daddd8acfc5b599e198cf99d03c999478cad07d068343306b699654d288a1f",
+                                "exitCode": 255,
+                                "finishedAt": "2026-10-16T04:33:01Z",
+                                "reason": "Unknown",
+                                "startedAt": "2026-10-15T15:11:11Z"
+                            }
+                        },
+                        "name": "wordpress",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "1",
+                                "memory": "768Mi"
+                            },
+                            "requests": {
+                                "cpu": "100m",
+                                "memory": "256Mi"
+                            }
+                        },
+                        "restartCount": 1,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-16T04:34:00Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0,
+                                    33
+                                ],
+                                "uid": 0
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/www/html",
+                                "name": "content"
+                            },
+                            {
+                                "mountPath": "/run/urumi/database",
+                                "name": "database",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/run/urumi/salts",
+                                "name": "salts",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.18.0.2",
+                "hostIPs": [
+                    {
+                        "ip": "172.18.0.2"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.42.0.59",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.59"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "resources": {
+                    "limits": {
+                        "cpu": "1",
+                        "memory": "768Mi"
+                    },
+                    "requests": {
+                        "cpu": "79m",
+                        "memory": "256Mi"
+                    }
+                },
+                "startTime": "2026-10-15T15:11:10Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+
+
+UTC: 2026-10-16T04:35:06.4889051Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "statefulset/urumi-mariadb" "--timeout=180s"
+Exit: 0
+partitioned roll out complete: 1 new pods have been updated...
+
+
+UTC: 2026-10-16T04:35:19.4896660Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "rollout" "status" "deployment/urumi-wordpress" "--timeout=180s"
+Exit: 0
+deployment "urumi-wordpress" successfully rolled out
+
+

@@ -1,0 +1,6 @@
+﻿UTC: 2026-10-14T15:35:06.0637651Z
+Command: C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\helm.exe "version" "--short"
+Exit: 0
+v3.21.3+g1ad6e68
+
+

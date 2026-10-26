@@ -1,0 +1,12 @@
+{
+  "status": "HISTORICAL_COMPARISON_ONLY",
+  "files_checked": 35,
+  "different_files": [
+    "backend/api.py",
+    "backend/chat/api.py",
+    "backend/db/database.py"
+  ],
+  "missing_files": [],
+  "prior_evidence": "docs/evidence/m6/image-source-check.json",
+  "scope": "Historical M6 image comparison only; current M10 source freeze and runtime image verification are separate checks."
+}

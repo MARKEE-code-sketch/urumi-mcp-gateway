@@ -1,0 +1,110 @@
+[
+  {
+    "pod": "urumi-m8-check-dashboard-5968d5bcd6-5h775",
+    "uid": "ea2775ef-de4e-48d7-b1d6-8f596e289457",
+    "image": "urumi/dashboard:m8",
+    "image_id": "sha256:3594864039effe302c5a0d5b381cd2c90836eef30bffdc872e9e57e3c9905a3d",
+    "verified_config_digest": "sha256:3594864039effe302c5a0d5b381cd2c90836eef30bffdc872e9e57e3c9905a3d",
+    "ready": true,
+    "restart_count": 0,
+    "resources": {
+      "limits": {
+        "cpu": "250m",
+        "memory": "128Mi"
+      },
+      "requests": {
+        "cpu": "25m",
+        "memory": "32Mi"
+      }
+    },
+    "security_context": {
+      "allowPrivilegeEscalation": false,
+      "capabilities": {
+        "drop": [
+          "ALL"
+        ]
+      },
+      "readOnlyRootFilesystem": true
+    },
+    "probes": {
+      "readinessProbe": {
+        "failureThreshold": 3,
+        "httpGet": {
+          "path": "/readyz",
+          "port": "http",
+          "scheme": "HTTP"
+        },
+        "initialDelaySeconds": 2,
+        "periodSeconds": 5,
+        "successThreshold": 1,
+        "timeoutSeconds": 2
+      },
+      "livenessProbe": {
+        "failureThreshold": 3,
+        "httpGet": {
+          "path": "/livez",
+          "port": "http",
+          "scheme": "HTTP"
+        },
+        "initialDelaySeconds": 5,
+        "periodSeconds": 10,
+        "successThreshold": 1,
+        "timeoutSeconds": 2
+      }
+    }
+  },
+  {
+    "pod": "urumi-m8-check-dashboard-fixture-7ddb485ffd-wdpld",
+    "uid": "a8a8a502-0a84-4199-a223-69189891d5c5",
+    "image": "urumi/dashboard-fixture:m8",
+    "image_id": "sha256:83dbd6f6517b0f99ce0e82de78b4b2dbb1f8dfcbcdb307e127dd673035a1df1c",
+    "verified_config_digest": "sha256:83dbd6f6517b0f99ce0e82de78b4b2dbb1f8dfcbcdb307e127dd673035a1df1c",
+    "ready": true,
+    "restart_count": 0,
+    "resources": {
+      "limits": {
+        "cpu": "250m",
+        "memory": "128Mi"
+      },
+      "requests": {
+        "cpu": "25m",
+        "memory": "32Mi"
+      }
+    },
+    "security_context": {
+      "allowPrivilegeEscalation": false,
+      "capabilities": {
+        "drop": [
+          "ALL"
+        ]
+      },
+      "readOnlyRootFilesystem": true
+    },
+    "probes": {
+      "readinessProbe": {
+        "failureThreshold": 3,
+        "httpGet": {
+          "path": "/readyz",
+          "port": "http",
+          "scheme": "HTTP"
+        },
+        "initialDelaySeconds": 2,
+        "periodSeconds": 10,
+        "successThreshold": 1,
+        "timeoutSeconds": 2
+      },
+      "livenessProbe": {
+        "failureThreshold": 3,
+        "httpGet": {
+          "path": "/livez",
+          "port": "http",
+          "scheme": "HTTP"
+        },
+        "initialDelaySeconds": 5,
+        "periodSeconds": 10,
+        "successThreshold": 1,
+        "timeoutSeconds": 2
+      }
+    }
+  }
+]

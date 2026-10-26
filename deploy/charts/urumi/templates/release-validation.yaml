@@ -1,0 +1,24 @@
+{{- if .Values.backend.enabled }}
+{{- if or (ne (int .Values.backend.replicas) 1) (ne (int .Values.backend.workers) 1) }}
+{{- fail "BACKEND_SINGLE_OWNER_REQUIRED" }}
+{{- end }}
+{{- end }}
+{{- if .Values.release.enabled }}
+{{- range $key := list "store" "woocommerceMcp" "inventoryMcp" "platformDb" "platformAccess" "backend" "dashboard" }}
+{{- if not (index $.Values $key).enabled }}{{ fail (printf "RELEASE_COMPONENT_REQUIRED:%s" $key) }}{{- end }}
+{{- end }}
+{{- if or .Values.foundation.enabled .Values.m5Harness.enabled .Values.gatewayCheck.enabled ((.Values.dashboardCheck | default dict).enabled | default false) }}{{ fail "RELEASE_HARNESS_FORBIDDEN" }}{{- end }}
+{{- if ne .Values.backend.origin (printf "https://%s" .Values.dashboard.ingress.host) }}{{ fail "DASHBOARD_ORIGIN_MISMATCH" }}{{- end }}
+{{- if not .Values.dashboard.ingress.tlsSecret }}{{ fail "DASHBOARD_TLS_REQUIRED" }}{{- end }}
+{{- if or (eq .Values.platformAccess.secretNamespace .Release.Namespace) (has .Values.platformAccess.secretNamespace (list "default" "kube-system" "kube-public" "kube-node-lease")) }}{{ fail "DEDICATED_SECRET_NAMESPACE_REQUIRED" }}{{- end }}
+{{- if not (and .Values.backend.networkPolicy.enabled .Values.store.networkPolicy.enabled .Values.woocommerceMcp.networkPolicy.enabled .Values.inventoryMcp.networkPolicy.enabled) }}{{ fail "RELEASE_NETWORK_POLICIES_REQUIRED" }}{{- end }}
+{{- if ne .Values.store.canonicalUrl .Values.woocommerceMcp.canonicalOrigin }}{{ fail "SHOP_ORIGIN_MISMATCH" }}{{- end }}
+{{- $shopScheme := ternary "https" "http" (eq .Values.release.environment "production") }}
+{{- if ne .Values.store.canonicalUrl (printf "%s://%s" $shopScheme .Values.store.ingress.host) }}{{ fail "SHOP_HOST_SCHEME_MISMATCH" }}{{- end }}
+{{- if eq .Values.release.environment "production" }}
+{{- if or (not (hasPrefix "https://" .Values.store.canonicalUrl)) (ne .Values.woocommerceMcp.transportOrigin .Values.woocommerceMcp.canonicalOrigin) (ne .Values.woocommerceMcp.networkPolicy.transportMode "ingress-https") (not .Values.store.ingress.tlsSecret) (not .Values.woocommerceMcp.hostAliases) }}{{ fail "PRODUCTION_WOO_TLS_REQUIRED" }}{{- end }}
+{{- else }}
+{{- if ne .Values.woocommerceMcp.networkPolicy.transportMode "direct-http" }}{{ fail "LOCAL_WOO_TRANSPORT_REQUIRED" }}{{- end }}
+{{- end }}
+{{- end }}
+

@@ -1,0 +1,106 @@
+{
+  "namespace": "urumi-m10",
+  "release": "urumi-m10",
+  "dynamic_secret_namespace": "urumi-m10-secrets",
+  "shop": "http://shop-m10.urumi.test",
+  "dashboard": "https://dashboard-m10.urumi.test",
+  "secret_metadata": [
+    {
+      "name": "urumi-m10-store-db",
+      "type": "Opaque",
+      "keys": [
+        "database-password",
+        "root-password"
+      ]
+    },
+    {
+      "name": "urumi-m10-store-salts",
+      "type": "Opaque",
+      "keys": [
+        "AUTH_KEY",
+        "SECURE_AUTH_KEY",
+        "LOGGED_IN_KEY",
+        "NONCE_KEY",
+        "AUTH_SALT",
+        "SECURE_AUTH_SALT",
+        "LOGGED_IN_SALT",
+        "NONCE_SALT"
+      ]
+    },
+    {
+      "name": "urumi-m10-store-admin",
+      "type": "Opaque",
+      "keys": [
+        "username",
+        "email",
+        "password"
+      ]
+    },
+    {
+      "name": "urumi-m10-woocommerce-rest",
+      "type": "Opaque",
+      "keys": [
+        "consumer-key",
+        "consumer-secret"
+      ]
+    },
+    {
+      "name": "urumi-m10-platform-db",
+      "type": "Opaque",
+      "keys": [
+        "password"
+      ]
+    },
+    {
+      "name": "urumi-m10-groq",
+      "type": "Opaque",
+      "keys": [
+        "api-key"
+      ]
+    },
+    {
+      "name": "urumi-m10-dashboard-tls",
+      "type": "kubernetes.io/tls",
+      "keys": [
+        "tls.crt",
+        "tls.key"
+      ]
+    }
+  ],
+  "images": {
+    "store": {
+      "repository": "urumi-store",
+      "digest": "sha256:23494837a20cc9d2c7093cb8203f066eb9c78054956945ad4e779ab42e204d98",
+      "tag": "m2-23494837a20c",
+      "pullPolicy": "IfNotPresent"
+    },
+    "woocommerceMcp": {
+      "repository": "urumi/woocommerce-mcp",
+      "tag": "m3",
+      "digest": "sha256:41921e625b0e2256ebea6ad86511bf4879aac2ee84b798926af4fa2aadf1e546",
+      "pullPolicy": "IfNotPresent"
+    },
+    "inventoryMcp": {
+      "repository": "urumi/inventory-mcp",
+      "tag": "m4",
+      "digest": "sha256:f7265bb0b31ee709d3b97d552512c9cd7113b482b0a50483ae141ad63e31d8bb",
+      "pullPolicy": "IfNotPresent"
+    },
+    "dashboard": {
+      "repository": "urumi/dashboard",
+      "tag": "m8",
+      "digest": "sha256:c619a07d7dab970dce601fe0add72e2cbdcbe1839ca65cce3922ebc46f999a76",
+      "pullPolicy": "IfNotPresent"
+    },
+    "backend": {
+      "repository": "urumi/backend",
+      "tag": "m10",
+      "digest": "sha256:b863c9ccfca8c20bce2eb2e260f63650be63f7e8f4ac731f2a57dd49bc884646",
+      "pullPolicy": "IfNotPresent"
+    }
+  },
+  "api_endpoint_cidrs": [
+    "172.18.0.2/32"
+  ],
+  "scope": "New test shop only; separate disks/credentials from retained urumi. Metadata, not runtime acceptance."
+}

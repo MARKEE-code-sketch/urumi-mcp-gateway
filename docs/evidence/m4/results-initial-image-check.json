@@ -1,0 +1,31 @@
+﻿{
+    "module":  "M4",
+    "status":  "FAIL",
+    "checks":  [
+                   {
+                       "id":  "M4-01",
+                       "status":  "PASS",
+                       "summary":  "Fixture, strict input validation, exact results and invalid startup cases"
+                   },
+                   {
+                       "id":  "M4-02",
+                       "status":  "PASS",
+                       "summary":  "Real TCP SDK discovery, exact schemas/annotations, calls and protocol errors"
+                   },
+                   {
+                       "id":  "M4-06",
+                       "status":  "PASS",
+                       "summary":  "Controlled real TCP bearer/header authentication and duplicate names; artificial values absent from outputs"
+                   },
+                   {
+                       "id":  "M4-07",
+                       "status":  "PASS",
+                       "summary":  "Bounded controlled timeout/transport/protocol/size/cursor failures followed by healthy Inventory"
+                   },
+                   {
+                       "id":  "M4-08",
+                       "status":  "PASS",
+                       "summary":  "Owned temporary namespace removed; original store resources and PVC identities unchanged"
+                   }
+               ]
+}

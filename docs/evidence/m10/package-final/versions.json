@@ -1,0 +1,9 @@
+{
+  "checked_at": "2026-10-21T02:38:57.127719+00:00",
+  "python": "3.13.5",
+  "helm": "v3.21.3+g1ad6e68",
+  "PyYAML": "6.0.3",
+  "pytest": "9.0.2",
+  "jsonschema": "4.26.0",
+  "scope": "static checks only"
+}

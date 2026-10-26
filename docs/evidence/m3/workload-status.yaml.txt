@@ -1,0 +1,771 @@
+﻿UTC: 2026-10-15T14:56:26.1044119Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "-n" "urumi-m3-check" "get" "deployments,pods,services,networkpolicies" "-o" "yaml"
+Exit: 0
+apiVersion: v1
+items:
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"m3-fake-shop","namespace":"urumi-m3-check"},"spec":{"replicas":1,"selector":{"matchLabels":{"app.kubernetes.io/component":"m3-fake-shop","app.kubernetes.io/instance":"urumi-m3-check","app.kubernetes.io/name":"urumi"}},"template":{"metadata":{"labels":{"app.kubernetes.io/component":"m3-fake-shop","app.kubernetes.io/instance":"urumi-m3-check","app.kubernetes.io/name":"urumi"}},"spec":{"automountServiceAccountToken":false,"containers":[{"command":["python","tests/woocommerce_mcp/fake_shop.py"],"image":"urumi/woocommerce-mcp:m3","imagePullPolicy":"IfNotPresent","livenessProbe":{"httpGet":{"path":"/livez","port":"rest"},"periodSeconds":10,"timeoutSeconds":2},"name":"fake-shop","ports":[{"containerPort":8080,"name":"rest"}],"readinessProbe":{"httpGet":{"path":"/readyz","port":"rest"},"periodSeconds":2,"timeoutSeconds":2},"resources":{"limits":{"cpu":"250m","memory":"128Mi"},"requests":{"cpu":"50m","memory":"64Mi"}},"securityContext":{"allowPrivilegeEscalation":false,"capabilities":{"drop":["ALL"]},"readOnlyRootFilesystem":true}}],"securityContext":{"runAsGroup":10001,"runAsNonRoot":true,"runAsUser":10001,"seccompProfile":{"type":"RuntimeDefault"}}}}}}
+    creationTimestamp: "2026-10-15T14:56:15Z"
+    generation: 1
+    name: m3-fake-shop
+    namespace: urumi-m3-check
+    resourceVersion: "9078"
+    uid: 0d305548-b0cd-4676-b288-748c17c50f35
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/component: m3-fake-shop
+        app.kubernetes.io/instance: urumi-m3-check
+        app.kubernetes.io/name: urumi
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        labels:
+          app.kubernetes.io/component: m3-fake-shop
+          app.kubernetes.io/instance: urumi-m3-check
+          app.kubernetes.io/name: urumi
+      spec:
+        automountServiceAccountToken: false
+        containers:
+        - command:
+          - python
+          - tests/woocommerce_mcp/fake_shop.py
+          image: urumi/woocommerce-mcp:m3
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /livez
+              port: rest
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 2
+          name: fake-shop
+          ports:
+          - containerPort: 8080
+            name: rest
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /readyz
+              port: rest
+              scheme: HTTP
+            periodSeconds: 2
+            successThreshold: 1
+            timeoutSeconds: 2
+          resources:
+            limits:
+              cpu: 250m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext:
+          runAsGroup: 10001
+          runAsNonRoot: true
+          runAsUser: 10001
+          seccompProfile:
+            type: RuntimeDefault
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2026-10-15T14:56:23Z"
+      lastUpdateTime: "2026-10-15T14:56:23Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2026-10-15T14:56:15Z"
+      lastUpdateTime: "2026-10-15T14:56:23Z"
+      message: ReplicaSet "m3-fake-shop-67fd858769" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    terminatingReplicas: 0
+    updatedReplicas: 1
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      meta.helm.sh/release-name: urumi-m3-check
+      meta.helm.sh/release-namespace: urumi-m3-check
+    creationTimestamp: "2026-10-15T14:56:16Z"
+    generation: 1
+    labels:
+      app.kubernetes.io/managed-by: Helm
+    name: urumi-m3-check-woocommerce-mcp
+    namespace: urumi-m3-check
+    resourceVersion: "9072"
+    uid: 3bed2d35-91fb-459c-9b30-9084e93ae4a8
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/component: woocommerce-mcp
+        app.kubernetes.io/instance: urumi-m3-check
+        app.kubernetes.io/name: urumi
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        labels:
+          app.kubernetes.io/component: woocommerce-mcp
+          app.kubernetes.io/instance: urumi-m3-check
+          app.kubernetes.io/name: urumi
+      spec:
+        automountServiceAccountToken: false
+        containers:
+        - env:
+          - name: WOO_CANONICAL_ORIGIN
+            value: http://fake-shop.urumi.test
+          - name: WOO_TRANSPORT_ORIGIN
+            value: http://m3-fake-shop.urumi-m3-check.svc.cluster.local:8080
+          - name: WOO_CURRENCY
+            value: INR
+          - name: MCP_ALLOWED_HOSTS
+            value: urumi-m3-check-woocommerce-mcp,urumi-m3-check-woocommerce-mcp.urumi-m3-check.svc.cluster.local
+          - name: WOO_CONSUMER_KEY
+            valueFrom:
+              secretKeyRef:
+                key: consumer-key
+                name: m3-fake-woocommerce-rest
+          - name: WOO_CONSUMER_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: consumer-secret
+                name: m3-fake-woocommerce-rest
+          image: urumi/woocommerce-mcp:m3
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /livez
+              port: mcp
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 2
+          name: woocommerce-mcp
+          ports:
+          - containerPort: 8000
+            name: mcp
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /readyz
+              port: mcp
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 2
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+            readOnlyRootFilesystem: true
+          startupProbe:
+            failureThreshold: 30
+            httpGet:
+              path: /livez
+              port: mcp
+              scheme: HTTP
+            periodSeconds: 2
+            successThreshold: 1
+            timeoutSeconds: 2
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext:
+          runAsGroup: 10001
+          runAsNonRoot: true
+          runAsUser: 10001
+          seccompProfile:
+            type: RuntimeDefault
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2026-10-15T14:56:22Z"
+      lastUpdateTime: "2026-10-15T14:56:22Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2026-10-15T14:56:16Z"
+      lastUpdateTime: "2026-10-15T14:56:22Z"
+      message: ReplicaSet "urumi-m3-check-woocommerce-mcp-877ddd5bf" has successfully
+        progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    terminatingReplicas: 0
+    updatedReplicas: 1
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2026-10-15T14:56:15Z"
+    generateName: m3-fake-shop-67fd858769-
+    generation: 1
+    labels:
+      app.kubernetes.io/component: m3-fake-shop
+      app.kubernetes.io/instance: urumi-m3-check
+      app.kubernetes.io/name: urumi
+      pod-template-hash: 67fd858769
+    name: m3-fake-shop-67fd858769-t94fs
+    namespace: urumi-m3-check
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: m3-fake-shop-67fd858769
+      uid: 1b9e0424-a438-4df4-a507-039c43b035c4
+    resourceVersion: "9077"
+    uid: 5e61b03a-e54a-4d5b-9235-08134c16a7d4
+  spec:
+    automountServiceAccountToken: false
+    containers:
+    - command:
+      - python
+      - tests/woocommerce_mcp/fake_shop.py
+      image: urumi/woocommerce-mcp:m3
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /livez
+          port: rest
+          scheme: HTTP
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 2
+      name: fake-shop
+      ports:
+      - containerPort: 8080
+        name: rest
+        protocol: TCP
+      readinessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /readyz
+          port: rest
+          scheme: HTTP
+        periodSeconds: 2
+        successThreshold: 1
+        timeoutSeconds: 2
+      resources:
+        limits:
+          cpu: 250m
+          memory: 128Mi
+        requests:
+          cpu: 50m
+          memory: 64Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        readOnlyRootFilesystem: true
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: k3d-urumi-server-0
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      runAsGroup: 10001
+      runAsNonRoot: true
+      runAsUser: 10001
+      seccompProfile:
+        type: RuntimeDefault
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+  status:
+    allocatedResources:
+      cpu: 50m
+      memory: 64Mi
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-15T14:56:16Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-15T14:56:15Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-15T14:56:23Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-15T14:56:23Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-15T14:56:15Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - allocatedResources:
+        cpu: 50m
+        memory: 64Mi
+      containerID: containerd://659af40a3fd228d25e2b07083afff45a716feca4f640102d642981cb1bae5e73
+      image: docker.io/urumi/woocommerce-mcp:m3
+      imageID: sha256:486c72b5ce744f67ef680fc5135cc0f69dae7f54e5c951a9903cc07384b80ef3
+      lastState: {}
+      name: fake-shop
+      ready: true
+      resources:
+        limits:
+          cpu: 250m
+          memory: 128Mi
+        requests:
+          cpu: 50m
+          memory: 64Mi
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-10-15T14:56:16Z"
+      user:
+        linux:
+          gid: 10001
+          supplementalGroups:
+          - 10001
+          uid: 10001
+    hostIP: 172.18.0.2
+    hostIPs:
+    - ip: 172.18.0.2
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.42.0.34
+    podIPs:
+    - ip: 10.42.0.34
+    qosClass: Burstable
+    resources:
+      limits:
+        cpu: 250m
+        memory: 128Mi
+      requests:
+        cpu: 28m
+        memory: 64Mi
+    startTime: "2026-10-15T14:56:15Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2026-10-15T14:56:16Z"
+    generateName: urumi-m3-check-woocommerce-mcp-877ddd5bf-
+    generation: 1
+    labels:
+      app.kubernetes.io/component: woocommerce-mcp
+      app.kubernetes.io/instance: urumi-m3-check
+      app.kubernetes.io/name: urumi
+      pod-template-hash: 877ddd5bf
+    name: urumi-m3-check-woocommerce-mcp-877ddd5bf-2fn5s
+    namespace: urumi-m3-check
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: urumi-m3-check-woocommerce-mcp-877ddd5bf
+      uid: 0e039f43-19e3-40f3-9a85-254d4a29b90a
+    resourceVersion: "9068"
+    uid: 79dc7cd1-56ba-48ab-86d4-cc6a2dbbc959
+  spec:
+    automountServiceAccountToken: false
+    containers:
+    - env:
+      - name: WOO_CANONICAL_ORIGIN
+        value: http://fake-shop.urumi.test
+      - name: WOO_TRANSPORT_ORIGIN
+        value: http://m3-fake-shop.urumi-m3-check.svc.cluster.local:8080
+      - name: WOO_CURRENCY
+        value: INR
+      - name: MCP_ALLOWED_HOSTS
+        value: urumi-m3-check-woocommerce-mcp,urumi-m3-check-woocommerce-mcp.urumi-m3-check.svc.cluster.local
+      - name: WOO_CONSUMER_KEY
+        valueFrom:
+          secretKeyRef:
+            key: consumer-key
+            name: m3-fake-woocommerce-rest
+      - name: WOO_CONSUMER_SECRET
+        valueFrom:
+          secretKeyRef:
+            key: consumer-secret
+            name: m3-fake-woocommerce-rest
+      image: urumi/woocommerce-mcp:m3
+      imagePullPolicy: IfNotPresent
+      livenessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /livez
+          port: mcp
+          scheme: HTTP
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 2
+      name: woocommerce-mcp
+      ports:
+      - containerPort: 8000
+        name: mcp
+        protocol: TCP
+      readinessProbe:
+        failureThreshold: 3
+        httpGet:
+          path: /readyz
+          port: mcp
+          scheme: HTTP
+        periodSeconds: 10
+        successThreshold: 1
+        timeoutSeconds: 2
+      resources:
+        limits:
+          cpu: 500m
+          memory: 256Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        readOnlyRootFilesystem: true
+      startupProbe:
+        failureThreshold: 30
+        httpGet:
+          path: /livez
+          port: mcp
+          scheme: HTTP
+        periodSeconds: 2
+        successThreshold: 1
+        timeoutSeconds: 2
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: k3d-urumi-server-0
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      runAsGroup: 10001
+      runAsNonRoot: true
+      runAsUser: 10001
+      seccompProfile:
+        type: RuntimeDefault
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+  status:
+    allocatedResources:
+      cpu: 100m
+      memory: 128Mi
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-15T14:56:16Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-15T14:56:16Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-15T14:56:22Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-15T14:56:22Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-15T14:56:16Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - allocatedResources:
+        cpu: 100m
+        memory: 128Mi
+      containerID: containerd://83a434a59cfbacc789dc2fa868ee78b7cf3a89b5dc4af48c23df944a826fb96c
+      image: docker.io/urumi/woocommerce-mcp:m3
+      imageID: sha256:486c72b5ce744f67ef680fc5135cc0f69dae7f54e5c951a9903cc07384b80ef3
+      lastState: {}
+      name: woocommerce-mcp
+      ready: true
+      resources:
+        limits:
+          cpu: 500m
+          memory: 256Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-10-15T14:56:17Z"
+      user:
+        linux:
+          gid: 10001
+          supplementalGroups:
+          - 10001
+          uid: 10001
+    hostIP: 172.18.0.2
+    hostIPs:
+    - ip: 172.18.0.2
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.42.0.35
+    podIPs:
+    - ip: 10.42.0.35
+    qosClass: Burstable
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 79m
+        memory: 128Mi
+    startTime: "2026-10-15T14:56:16Z"
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"m3-fake-shop","namespace":"urumi-m3-check"},"spec":{"ports":[{"name":"rest","port":8080,"targetPort":"rest"}],"selector":{"app.kubernetes.io/component":"m3-fake-shop","app.kubernetes.io/instance":"urumi-m3-check","app.kubernetes.io/name":"urumi"},"type":"ClusterIP"}}
+    creationTimestamp: "2026-10-15T14:56:15Z"
+    name: m3-fake-shop
+    namespace: urumi-m3-check
+    resourceVersion: "9012"
+    uid: d500fbb0-7388-46cc-8f95-142dcb866bba
+  spec:
+    clusterIP: 10.43.70.141
+    clusterIPs:
+    - 10.43.70.141
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: rest
+      port: 8080
+      protocol: TCP
+      targetPort: rest
+    selector:
+      app.kubernetes.io/component: m3-fake-shop
+      app.kubernetes.io/instance: urumi-m3-check
+      app.kubernetes.io/name: urumi
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: urumi-m3-check
+      meta.helm.sh/release-namespace: urumi-m3-check
+    creationTimestamp: "2026-10-15T14:56:16Z"
+    labels:
+      app.kubernetes.io/managed-by: Helm
+    name: urumi-m3-check-woocommerce-mcp
+    namespace: urumi-m3-check
+    resourceVersion: "9031"
+    uid: b153179e-a876-40ee-b347-adf6634f096e
+  spec:
+    clusterIP: 10.43.239.69
+    clusterIPs:
+    - 10.43.239.69
+    internalTrafficPolicy: Cluster
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: mcp
+      port: 8000
+      protocol: TCP
+      targetPort: mcp
+    selector:
+      app.kubernetes.io/component: woocommerce-mcp
+      app.kubernetes.io/instance: urumi-m3-check
+      app.kubernetes.io/name: urumi
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.k8s.io/v1","kind":"NetworkPolicy","metadata":{"annotations":{},"name":"m3-fake-shop","namespace":"urumi-m3-check"},"spec":{"ingress":[{"from":[{"podSelector":{"matchLabels":{"app.kubernetes.io/component":"woocommerce-mcp","app.kubernetes.io/instance":"urumi-m3-check","app.kubernetes.io/name":"urumi"}}}],"ports":[{"port":8080,"protocol":"TCP"}]}],"podSelector":{"matchLabels":{"app.kubernetes.io/component":"m3-fake-shop","app.kubernetes.io/instance":"urumi-m3-check","app.kubernetes.io/name":"urumi"}},"policyTypes":["Ingress"]}}
+    creationTimestamp: "2026-10-15T14:56:15Z"
+    generation: 1
+    name: m3-fake-shop
+    namespace: urumi-m3-check
+    resourceVersion: "9016"
+    uid: 591cce31-9bec-4e79-8eac-10a5f211e136
+  spec:
+    ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app.kubernetes.io/component: woocommerce-mcp
+            app.kubernetes.io/instance: urumi-m3-check
+            app.kubernetes.io/name: urumi
+      ports:
+      - port: 8080
+        protocol: TCP
+    podSelector:
+      matchLabels:
+        app.kubernetes.io/component: m3-fake-shop
+        app.kubernetes.io/instance: urumi-m3-check
+        app.kubernetes.io/name: urumi
+    policyTypes:
+    - Ingress
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      meta.helm.sh/release-name: urumi-m3-check
+      meta.helm.sh/release-namespace: urumi-m3-check
+    creationTimestamp: "2026-10-15T14:56:16Z"
+    generation: 1
+    labels:
+      app.kubernetes.io/managed-by: Helm
+    name: urumi-m3-check-woocommerce-mcp
+    namespace: urumi-m3-check
+    resourceVersion: "9029"
+    uid: 6a0320e9-e046-4da1-9377-823bdd544af3
+  spec:
+    egress:
+    - ports:
+      - port: 53
+        protocol: UDP
+      - port: 53
+        protocol: TCP
+      to:
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: kube-system
+        podSelector:
+          matchLabels:
+            k8s-app: kube-dns
+    - ports:
+      - port: 8080
+        protocol: TCP
+      to:
+      - namespaceSelector:
+          matchLabels:
+            kubernetes.io/metadata.name: urumi-m3-check
+        podSelector:
+          matchLabels:
+            app.kubernetes.io/component: m3-fake-shop
+            app.kubernetes.io/instance: urumi-m3-check
+            app.kubernetes.io/name: urumi
+    ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app.kubernetes.io/component: gateway
+            app.kubernetes.io/instance: urumi-m3-check
+            app.kubernetes.io/name: urumi
+      ports:
+      - port: 8000
+        protocol: TCP
+    podSelector:
+      matchLabels:
+        app.kubernetes.io/component: woocommerce-mcp
+        app.kubernetes.io/instance: urumi-m3-check
+        app.kubernetes.io/name: urumi
+    policyTypes:
+    - Ingress
+    - Egress
+kind: List
+metadata:
+  resourceVersion: ""
+
+

@@ -1,0 +1,118 @@
+{
+  "status": "PASS_STATIC_REVIEW_PENDING",
+  "checks": [
+    {
+      "id": "M9-01",
+      "status": "PASS",
+      "evidence": [
+        "component-inventory.json"
+      ],
+      "detail": "All mandatory components and explicit M7/M8/M10 boundaries inventoried."
+    },
+    {
+      "id": "M9-02",
+      "status": "PASS",
+      "evidence": [
+        "render-local.yaml",
+        "render-prod.yaml",
+        "lint-local.txt",
+        "lint-prod.txt"
+      ],
+      "detail": "Same chart rendered and linted both complete profiles."
+    },
+    {
+      "id": "M9-03",
+      "status": "PASS",
+      "evidence": [
+        "tests.txt",
+        "tests.xml"
+      ],
+      "detail": "Positive and focused negative Helm/schema/preflight/reference cases passed."
+    },
+    {
+      "id": "M9-04",
+      "status": "PASS",
+      "evidence": [
+        "resource-inventory.json"
+      ],
+      "detail": "Parsed seven workloads, probes/resources and Service/Ingress/config references for both profiles."
+    },
+    {
+      "id": "M9-05",
+      "status": "PASS",
+      "evidence": [
+        "resource-inventory.json",
+        "../../operations.md"
+      ],
+      "detail": "Three retained PVCs and reviewed mount paths; recovery guide includes consistent private backups and isolated restore-first. No live restore claimed."
+    },
+    {
+      "id": "M9-06",
+      "status": "PASS",
+      "evidence": [
+        "resource-inventory.json",
+        "tests.txt"
+      ],
+      "detail": "Parsed allowed/denied policy paths and namespaced RBAC; alternate release/namespace and independent gateway selectors tested. No live enforcement claim."
+    },
+    {
+      "id": "M9-07",
+      "status": "PASS",
+      "evidence": [
+        "source-scan.json",
+        "secret-inventory.json"
+      ],
+      "detail": "Names/types/key-names only, Secret-backed consumers and private/generated exclusions; optional known private sentinel scan records its actual count."
+    },
+    {
+      "id": "M9-08",
+      "status": "PASS",
+      "evidence": [
+        "backend-build-rejection.txt",
+        "build-inventory.json",
+        "runtime-source-parity.json",
+        "checker-pip-check.txt",
+        "tests.txt"
+      ],
+      "detail": "Actual final build command rejected before Docker; prior standalone runtime source parity and check-target callers reviewed."
+    },
+    {
+      "id": "M9-09",
+      "status": "PASS",
+      "evidence": [
+        "values-differences.json",
+        "preflight-examples.json",
+        "tests.txt"
+      ],
+      "detail": "Environment differences recorded, examples render but honestly fail deploy. Metadata-only successful fixture is a unit test, not infrastructure proof."
+    },
+    {
+      "id": "M9-10",
+      "status": "PASS",
+      "evidence": [
+        "documentation-check.json"
+      ],
+      "detail": "Required guides, links and operation caveats checked."
+    },
+    {
+      "id": "M9-11",
+      "status": "PASS",
+      "evidence": [
+        "staging-check.json"
+      ],
+      "detail": "Copied source-only package renders both profiles without private environment inputs."
+    },
+    {
+      "id": "M9-12",
+      "status": "REVIEW_PENDING",
+      "evidence": [
+        "acceptance-review.md",
+        "acceptance-results.json"
+      ],
+      "detail": "Independent read-only review follows; this runner cannot approve itself."
+    }
+  ],
+  "cluster_calls": 0,
+  "provider_calls": 0,
+  "combined_deployment": "not performed"
+}

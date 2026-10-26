@@ -1,0 +1,18 @@
+{{- if .Values.foundation.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "urumi.foundationName" . }}-data
+  labels:
+    {{- include "urumi.foundationLabels" . | nindent 4 }}
+  annotations:
+    helm.sh/resource-policy: keep
+spec:
+  accessModes: ["ReadWriteOnce"]
+  {{- if .Values.foundation.storage.className }}
+  storageClassName: {{ .Values.foundation.storage.className | quote }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.foundation.storage.size | quote }}
+{{- end }}

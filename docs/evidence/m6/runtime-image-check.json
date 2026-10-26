@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "pods": [
+    {
+      "name": "urumi-m6-check-bearer-65d5967b7c-jhfqm",
+      "uid": "0d7899df-4142-415c-84ed-cf96379230a4",
+      "image_id": "sha256:48a2f637063bb048b6bc16f25b2ee91b9302756c5a926659af8c548386970573"
+    },
+    {
+      "name": "urumi-m6-check-gateway-8575b556d6-zkrf7",
+      "uid": "c881b15c-15bf-476c-a369-72d491761e8e",
+      "image_id": "sha256:48a2f637063bb048b6bc16f25b2ee91b9302756c5a926659af8c548386970573"
+    },
+    {
+      "name": "urumi-m6-check-header-57f67848b4-c6c7q",
+      "uid": "781d7ac1-e531-4121-ba05-17004cc93ede",
+      "image_id": "sha256:48a2f637063bb048b6bc16f25b2ee91b9302756c5a926659af8c548386970573"
+    },
+    {
+      "name": "urumi-m6-check-none-57ffccc54c-4trjz",
+      "uid": "e0c61318-9cf1-4ba1-8d8f-6a93be680eac",
+      "image_id": "sha256:48a2f637063bb048b6bc16f25b2ee91b9302756c5a926659af8c548386970573"
+    }
+  ]
+}

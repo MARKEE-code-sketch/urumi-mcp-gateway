@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-10-20T13:26:39.269841+00:00",
+  "checks": [],
+  "provider_calls": 0,
+  "scope": "staged source chart/helpers; explicit cached immutable image inputs and private operator inputs",
+  "status": "FAILED_REVIEW_REQUIRED",
+  "failure_phase": "after_0_completed_checks",
+  "failure_type": "RuntimeError",
+  "failure_code": "scoped_command"
+}

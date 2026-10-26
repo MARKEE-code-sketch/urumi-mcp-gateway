@@ -1,0 +1,8 @@
+{
+  "name": "urumi-m10-test-postgres",
+  "id": "b621c384f790fb3ae86696853414184b3ad2fc0427496ec79cff7954eee2105e",
+  "image_config": "sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826",
+  "scope": "Fresh private credentials, loopback port15440, tmpfs data; no persistent shop disk.",
+  "status": "PASS",
+  "owned_container_removed": true
+}

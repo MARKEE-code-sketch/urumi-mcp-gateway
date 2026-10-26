@@ -1,0 +1,15 @@
+{{- if .Values.store.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-store
+data:
+  WORDPRESS_DB_HOST: {{ printf "%s-mariadb:3306" .Release.Name | quote }}
+  WORDPRESS_DB_NAME: woocommerce
+  WORDPRESS_DB_USER: woocommerce
+  STORE_CANONICAL_URL: {{ .Values.store.canonicalUrl | quote }}
+  WORDPRESS_CONFIG_EXTRA: |
+    define('AUTOMATIC_UPDATER_DISABLED', true);
+    define('WP_AUTO_UPDATE_CORE', false);
+    define('DISALLOW_FILE_EDIT', true);
+{{- end }}

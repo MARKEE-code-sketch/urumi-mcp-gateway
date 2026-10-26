@@ -1,0 +1,11 @@
+fastapi==0.135.1
+psycopg[binary]==3.3.6
+argon2-cffi==25.1.0
+httpx==0.28.1
+uvicorn==0.40.0
+pydantic==2.12.5
+starlette==0.52.1
+mcp==1.26.0
+httpcore==1.0.9
+jsonschema==4.26.0
+dnspython==2.9.0

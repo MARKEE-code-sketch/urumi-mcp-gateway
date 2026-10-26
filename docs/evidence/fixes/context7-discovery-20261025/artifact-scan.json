@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "files_checked": 15,
+  "known_private_matches": 0,
+  "raw_key_pattern_matches": 0,
+  "scope": "Known local private values and token patterns only; screenshot separately visually reviewed."
+}

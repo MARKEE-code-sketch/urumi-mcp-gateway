@@ -1,0 +1,114 @@
+﻿UTC: 2026-10-15T14:52:40.8266960Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "apply" "-f" "-"
+Exit: 0
+job.batch/urumi-m2-setup-7742d6bf created
+
+
+UTC: 2026-10-15T14:55:06.2798415Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "apply" "-f" "-"
+Exit: 0
+job.batch/urumi-m2-setup-e3e99e5c created
+
+
+UTC: 2026-10-15T14:55:27.5049703Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "apply" "-f" "-"
+Exit: 0
+job.batch/urumi-m2-setup-4330406a created
+
+
+UTC: 2026-10-15T15:04:32.5646503Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "apply" "-f" "-"
+Exit: 0
+job.batch/urumi-m2-network-839b1802 created
+
+
+UTC: 2026-10-15T15:04:38.4464246Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "apply" "-f" "-"
+Exit: 0
+job.batch/urumi-m2-network-24e64b9c created
+
+
+UTC: 2026-10-15T15:04:45.9170720Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "apply" "-f" "-"
+Exit: 0
+job.batch/urumi-m2-network-1a83ff01 created
+
+
+UTC: 2026-10-15T15:04:51.6733928Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "apply" "-f" "-"
+Exit: 0
+job.batch/urumi-m2-network-781dd206 created
+
+
+UTC: 2026-10-15T15:04:57.3982963Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "apply" "-f" "-"
+Exit: 0
+job.batch/urumi-m2-network-77dcb43c created
+
+
+UTC: 2026-10-15T15:05:10.8007301Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "apply" "-f" "-"
+Exit: 0
+job.batch/urumi-m2-setup-708496e5 created
+
+
+UTC: 2026-10-15T15:10:48.8857405Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "apply" "-f" "-"
+Exit: 0
+job.batch/urumi-m2-setup-1c6bb451 created
+
+
+UTC: 2026-10-15T15:11:14.2330967Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "apply" "-f" "-"
+Exit: 0
+job.batch/urumi-m2-setup-74b95e22 created
+
+
+UTC: 2026-10-16T04:34:24.9061844Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "apply" "-f" "-"
+Exit: 0
+job.batch/urumi-m2-network-ad778830 created
+
+
+UTC: 2026-10-16T04:34:32.9888337Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "apply" "-f" "-"
+Exit: 0
+job.batch/urumi-m2-network-d97c1ccc created
+
+
+UTC: 2026-10-16T04:34:40.7570551Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "apply" "-f" "-"
+Exit: 0
+job.batch/urumi-m2-network-afe372f9 created
+
+
+UTC: 2026-10-16T04:34:46.5286086Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "apply" "-f" "-"
+Exit: 0
+job.batch/urumi-m2-network-481a2f63 created
+
+
+UTC: 2026-10-16T04:34:52.3610227Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "apply" "-f" "-"
+Exit: 0
+job.batch/urumi-m2-network-392ac90f created
+
+
+UTC: 2026-10-16T04:35:06.7654204Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "apply" "-f" "-"
+Exit: 0
+job.batch/urumi-m2-setup-b4e3cf15 created
+
+
+UTC: 2026-10-16T04:49:58.9981115Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "apply" "-f" "-"
+Exit: 0
+configmap/urumi-m2-rest-check created
+
+
+UTC: 2026-10-16T04:49:59.2716973Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "--namespace" "urumi" "apply" "-f" "-"
+Exit: 0
+job.batch/urumi-m2-rest-5f572d42 created
+
+

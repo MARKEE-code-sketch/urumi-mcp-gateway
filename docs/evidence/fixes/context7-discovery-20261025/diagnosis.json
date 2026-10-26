@@ -1,0 +1,20 @@
+{
+  "original_status": "Unreachable",
+  "original_status_reason": "TIMEOUT",
+  "url": "https://mcp.context7.com/mcp",
+  "auth_type": "bearer",
+  "token_value_printed": false,
+  "observed_production_client_diagnostic": {
+    "result": "discovered",
+    "seconds": 3.25,
+    "tools": [
+      "resolve-library-id",
+      "query-docs"
+    ],
+    "token_loaded": true,
+    "double_bearer_prefix": false
+  },
+  "previous_whole_discovery_budget_seconds": 3,
+  "new_whole_discovery_budget_seconds": 10,
+  "official_setup": "https://context7.com/docs/resources/all-clients"
+}

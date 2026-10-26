@@ -1,0 +1,19 @@
+{
+  "checked_at": "2026-10-20",
+  "status": "PASS_AFTER_REMEDIATION",
+  "method": "Local image visual inspection; no application requests during maintenance",
+  "images_reviewed": [
+    "admin-audit.png", "admin-notebook.png", "admin-order.png",
+    "chat-create.png", "chat-orders-before-notebook.png", "chat-orders.png",
+    "checkout-notebook.png", "checkout.png", "created-product.png",
+    "invitation-masked.png", "invitation-redeemed.png", "member-audit.png",
+    "own-key-issued-masked.png", "own-key-revoked.png",
+    "registry-edited.png", "registry-restored.png"
+  ],
+  "sensitive_values_in_final_images": false,
+  "synthetic_data_only": true,
+  "admin_account_bars_masked": true,
+  "remediation": "Initial key issuance screenshot mask was misplaced. The key was already revoked. That screenshot was overwritten by the safe revoked-state image. The final helper dismisses one-time values before captures.",
+  "duplicate_image_note": "own-key-issued-masked.png is a safe duplicate of own-key-revoked.png, not evidence of the issuance screen.",
+  "limits": "Visual inspection does not replace the separate textual artifact sentinel scan or live revoked-key rejection check."
+}

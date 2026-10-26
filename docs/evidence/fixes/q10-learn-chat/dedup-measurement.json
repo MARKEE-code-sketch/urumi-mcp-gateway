@@ -1,0 +1,13 @@
+{
+  "query": "Kubernetes Pods",
+  "gateway_wire_bytes": 44794,
+  "chat_before_bytes": 44744,
+  "chat_after_lossless_dedup_bytes": 21249,
+  "canonical_duplicate": true,
+  "result_count": 10,
+  "source_field_names": [
+    "title",
+    "content",
+    "contentUrl"
+  ]
+}

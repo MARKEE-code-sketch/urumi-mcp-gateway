@@ -1,0 +1,39 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.fixture
+#1 transferring dockerfile: 249B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/urumi/gateway-check:m6
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 250B 0.0s done
+#3 DONE 0.0s
+
+#4 [1/2] FROM docker.io/urumi/gateway-check:m6@sha256:705f68d673bd729f374645d5080042a510caadc669d808a3ec9fbb2d84a7fc10
+#4 resolve docker.io/urumi/gateway-check:m6@sha256:705f68d673bd729f374645d5080042a510caadc669d808a3ec9fbb2d84a7fc10 0.1s done
+#4 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 14.21kB 0.1s done
+#5 DONE 0.1s
+
+#4 [1/2] FROM docker.io/urumi/gateway-check:m6@sha256:705f68d673bd729f374645d5080042a510caadc669d808a3ec9fbb2d84a7fc10
+#4 DONE 0.3s
+
+#6 [2/2] COPY scripts/m8/fixture_server.py /app/scripts/m8/fixture_server.py
+#6 DONE 0.1s
+
+#7 exporting to image
+#7 exporting layers
+#7 exporting layers 0.2s done
+#7 exporting manifest sha256:02f6bf5900cc032ff173ffa16937499deb9e02cdea3b2911acdcebd031e43544 0.0s done
+#7 exporting config sha256:83dbd6f6517b0f99ce0e82de78b4b2dbb1f8dfcbcdb307e127dd673035a1df1c 0.0s done
+#7 exporting attestation manifest sha256:c9c5a67ba6f47e77e38e6a75e3577f50c0f133e48d292566ee9d2240f3b19683
+#7 exporting attestation manifest sha256:c9c5a67ba6f47e77e38e6a75e3577f50c0f133e48d292566ee9d2240f3b19683 0.1s done
+#7 exporting manifest list sha256:b4c0e1dac744edb8b1c10610025fcde07b666f1e0eb5dbf87d4279ace56c2361 0.0s done
+#7 naming to docker.io/urumi/dashboard-fixture:m8
+#7 naming to docker.io/urumi/dashboard-fixture:m8 done
+#7 unpacking to docker.io/urumi/dashboard-fixture:m8 0.1s done
+#7 DONE 0.7s

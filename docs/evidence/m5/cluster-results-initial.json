@@ -1,0 +1,40 @@
+{
+  "module": "M5",
+  "status": "FAIL",
+  "checks": [
+    {
+      "name": "real-operator-bootstrap-secret-invitation-sessions-role-csrf-and-keys",
+      "status": "PASS"
+    },
+    {
+      "name": "real-registry-secret-backed-registration-disable-role-and-url-checks",
+      "status": "PASS",
+      "synthetic_audit_rows": 2
+    },
+    {
+      "name": "actual-serviceaccount-secret-crud-uid-ownership-and-rbac",
+      "status": "PASS",
+      "evidence": {
+        "status": "PASS",
+        "owned_secret_crud": true,
+        "immutable_metadata_put": true,
+        "wrong_uid_conflict": 409,
+        "foreign_ownership_rejected": true,
+        "actual_serviceaccount_denials": {
+          "list": 403,
+          "watch": 403,
+          "foreign-namespace": 403,
+          "workloads": 403
+        }
+      }
+    },
+    {
+      "name": "actual-database-outage-live-ready-fencing-without-restart-storm",
+      "status": "PASS",
+      "observed_seconds": 15
+    }
+  ],
+  "synthetic_audits_only": true,
+  "error_category": "CheckFailed",
+  "safe_message": "Harness did not recover ownership."
+}

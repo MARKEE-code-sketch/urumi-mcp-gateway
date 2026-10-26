@@ -1,0 +1,27 @@
+{
+  "status": "PASS_HOST_FIXTURE",
+  "unit_component_tests": 23,
+  "unit_duration_seconds": 4.58,
+  "browser_distinct_tests": 16,
+  "browser_full_run": {
+    "count": 14,
+    "duration_seconds": 21.3,
+    "output": "browser-output.txt"
+  },
+  "browser_member_role_run": {
+    "count": 1,
+    "duration_seconds": 14.4,
+    "output": "member-role-browser-output.txt"
+  },
+  "typecheck": "PASS",
+  "clean_locked_install": "PASS",
+  "production_build": "PASS",
+  "application_source_frozen": true,
+  "scope": "Controlled API fixtures only; runtime and M10 evidence are separate.",
+  "user_acceptance": "PENDING",
+  "browser_disabled_preview_run": {
+    "count": 1,
+    "duration_seconds": 8.5,
+    "output": "disabled-preview-browser-output.txt"
+  }
+}

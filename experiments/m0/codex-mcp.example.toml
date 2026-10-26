@@ -1,0 +1,6 @@
+# TEMPLATE ONLY: future gateway; not installed or tested.
+# Set URUMI_GATEWAY_KEY privately in the client environment.
+# Never put WooCommerce or other upstream credentials here.
+[mcp_servers.urumi]
+url = "http://dashboard.urumi.test/mcp"
+bearer_token_env_var = "URUMI_GATEWAY_KEY"

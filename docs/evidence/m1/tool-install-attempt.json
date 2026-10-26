@@ -1,0 +1,6 @@
+{
+  "status": "BLOCKED",
+  "exitCode": 1,
+  "stdout": "",
+  "stderr": "Invoke-WebRequest : Unable to connect to the remote server\r\nAt C:\\Users\\mrina\\Downloads\\URUMI_Assignment\\scripts\\m1\\install-tools.ps1:8 char:5\r\n+     Invoke-WebRequest -UseBasicParsing -Uri $Url -OutFile $Path -Time ...\r\n+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n    + CategoryInfo          : InvalidOperation: (System.Net.HttpWebRequest:HttpWebRequest) [Invoke-WebRequest], WebExc \r\n   eption\r\n    + FullyQualifiedErrorId : WebCmdletWebResponseException,Microsoft.PowerShell.Commands.InvokeWebRequestCommand\r\n \r\n"
+}

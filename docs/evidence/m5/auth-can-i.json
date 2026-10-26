@@ -1,0 +1,182 @@
+[
+  {
+    "command": [
+      "kubectl",
+      "--kubeconfig",
+      ".tools/m1/kubeconfig.yaml",
+      "--context",
+      "k3d-urumi",
+      "auth",
+      "can-i",
+      "get",
+      "secrets",
+      "-n",
+      "urumi-m5-upstream-secrets-check",
+      "--as",
+      "system:serviceaccount:urumi-m5-check:urumi-m5-backend"
+    ],
+    "expected": "yes",
+    "observed": "yes",
+    "pass": true
+  },
+  {
+    "command": [
+      "kubectl",
+      "--kubeconfig",
+      ".tools/m1/kubeconfig.yaml",
+      "--context",
+      "k3d-urumi",
+      "auth",
+      "can-i",
+      "create",
+      "secrets",
+      "-n",
+      "urumi-m5-upstream-secrets-check",
+      "--as",
+      "system:serviceaccount:urumi-m5-check:urumi-m5-backend"
+    ],
+    "expected": "yes",
+    "observed": "yes",
+    "pass": true
+  },
+  {
+    "command": [
+      "kubectl",
+      "--kubeconfig",
+      ".tools/m1/kubeconfig.yaml",
+      "--context",
+      "k3d-urumi",
+      "auth",
+      "can-i",
+      "update",
+      "secrets",
+      "-n",
+      "urumi-m5-upstream-secrets-check",
+      "--as",
+      "system:serviceaccount:urumi-m5-check:urumi-m5-backend"
+    ],
+    "expected": "yes",
+    "observed": "yes",
+    "pass": true
+  },
+  {
+    "command": [
+      "kubectl",
+      "--kubeconfig",
+      ".tools/m1/kubeconfig.yaml",
+      "--context",
+      "k3d-urumi",
+      "auth",
+      "can-i",
+      "delete",
+      "secrets",
+      "-n",
+      "urumi-m5-upstream-secrets-check",
+      "--as",
+      "system:serviceaccount:urumi-m5-check:urumi-m5-backend"
+    ],
+    "expected": "yes",
+    "observed": "yes",
+    "pass": true
+  },
+  {
+    "command": [
+      "kubectl",
+      "--kubeconfig",
+      ".tools/m1/kubeconfig.yaml",
+      "--context",
+      "k3d-urumi",
+      "auth",
+      "can-i",
+      "list",
+      "secrets",
+      "-n",
+      "urumi-m5-upstream-secrets-check",
+      "--as",
+      "system:serviceaccount:urumi-m5-check:urumi-m5-backend"
+    ],
+    "expected": "no",
+    "observed": "no",
+    "pass": true
+  },
+  {
+    "command": [
+      "kubectl",
+      "--kubeconfig",
+      ".tools/m1/kubeconfig.yaml",
+      "--context",
+      "k3d-urumi",
+      "auth",
+      "can-i",
+      "watch",
+      "secrets",
+      "-n",
+      "urumi-m5-upstream-secrets-check",
+      "--as",
+      "system:serviceaccount:urumi-m5-check:urumi-m5-backend"
+    ],
+    "expected": "no",
+    "observed": "no",
+    "pass": true
+  },
+  {
+    "command": [
+      "kubectl",
+      "--kubeconfig",
+      ".tools/m1/kubeconfig.yaml",
+      "--context",
+      "k3d-urumi",
+      "auth",
+      "can-i",
+      "get",
+      "secrets",
+      "-n",
+      "urumi-m5-check",
+      "--as",
+      "system:serviceaccount:urumi-m5-check:urumi-m5-backend"
+    ],
+    "expected": "no",
+    "observed": "no",
+    "pass": true
+  },
+  {
+    "command": [
+      "kubectl",
+      "--kubeconfig",
+      ".tools/m1/kubeconfig.yaml",
+      "--context",
+      "k3d-urumi",
+      "auth",
+      "can-i",
+      "get",
+      "secrets",
+      "-n",
+      "urumi",
+      "--as",
+      "system:serviceaccount:urumi-m5-check:urumi-m5-backend"
+    ],
+    "expected": "no",
+    "observed": "no",
+    "pass": true
+  },
+  {
+    "command": [
+      "kubectl",
+      "--kubeconfig",
+      ".tools/m1/kubeconfig.yaml",
+      "--context",
+      "k3d-urumi",
+      "auth",
+      "can-i",
+      "get",
+      "deployments.apps",
+      "-n",
+      "urumi-m5-check",
+      "--as",
+      "system:serviceaccount:urumi-m5-check:urumi-m5-backend"
+    ],
+    "expected": "no",
+    "observed": "no",
+    "pass": true
+  }
+]

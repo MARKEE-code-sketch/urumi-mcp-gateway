@@ -1,0 +1,23 @@
+{
+  "status": "PUBLISHED_VERIFIED",
+  "repository": "MARKEE-code-sketch/urumi-mcp-gateway",
+  "public": true,
+  "commit": "1a4ad7dc2ee1c4e0f5dc60010cdb4459fead003e",
+  "files": {
+    "README.md": "79b05828944d6cd350aae7f2c5a6d062dc237abb59074a5bebadbb7f00ac22ca",
+    "docs/architecture/urumi-platform.svg": "5efc5c95af07f068ac18dfd14cc9960291b21f7149b4dddc695e34add7093b3a",
+    "docs/architecture/urumi-platform.png": "0dac2c3c1d8f8b749a8bb96fba59f0af3e4c707651b2888762452f89bb1e3698"
+  },
+  "known_private_matches": 0,
+  "raw_key_pattern_matches": 0,
+  "source_included": false,
+  "url": "https://github.com/MARKEE-code-sketch/urumi-mcp-gateway",
+  "default_branch": "main",
+  "remote_commit": "1a4ad7dc2ee1c4e0f5dc60010cdb4459fead003e",
+  "exact_remote_file_list": [
+    "README.md",
+    "docs/architecture/urumi-platform.png",
+    "docs/architecture/urumi-platform.svg"
+  ],
+  "remote_content_hashes_match": true
+}

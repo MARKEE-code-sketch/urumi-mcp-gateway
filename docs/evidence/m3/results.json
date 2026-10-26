@@ -1,0 +1,31 @@
+﻿{
+    "module":  "M3",
+    "fixture_only":  true,
+    "status":  "PASS",
+    "checks":  [
+                   {
+                       "name":  "Linux image and shared local/production chart render",
+                       "status":  "PASS"
+                   },
+                   {
+                       "name":  "Real MCP five tools, allowed-denied-allowed NetworkPolicy",
+                       "status":  "PASS"
+                   },
+                   {
+                       "name":  "Internal-only exposure",
+                       "status":  "PASS"
+                   },
+                   {
+                       "name":  "Observed liveness restart and restored Ready service",
+                       "status":  "PASS"
+                   },
+                   {
+                       "name":  "Log sentinel redaction",
+                       "status":  "PASS"
+                   },
+                   {
+                       "name":  "Temporary namespace removed; M2 resource UIDs unchanged",
+                       "status":  "PASS"
+                   }
+               ]
+}

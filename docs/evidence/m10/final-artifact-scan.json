@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "source_files_checked": 268,
+  "evidence_files_checked": 499,
+  "known_private_sentinels_checked": 39,
+  "matches": 0,
+  "matched_files": [],
+  "source_freeze_files_unchanged": 41,
+  "changed_runtime_source": [],
+  "scope": "Source allowlist and all evidence; known UTF8/UTF16 values only. Screenshots separately visually reviewed; unknown-secret absence is not guaranteed."
+}

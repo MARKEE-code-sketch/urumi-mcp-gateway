@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "command": [
+    "python.exe",
+    "-m",
+    "pytest",
+    "tests/chat",
+    "-q",
+    "--assert=plain",
+    "-p",
+    "no:cacheprovider"
+  ],
+  "returncode": 0,
+  "boundary": "Deterministic tests and loopback TCP/ASGI; no hosted-provider calls."
+}

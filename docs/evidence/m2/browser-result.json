@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "order_id": 15,
+  "currency": "INR",
+  "total": "499.00",
+  "payment_method": "cod",
+  "browser": "155.0.8059.40",
+  "mode": "isolated headless Chrome",
+  "customer_fields": "fictional and masked in screenshots",
+  "steps": [
+    "storefront",
+    "displayed 64x64 image",
+    "add to cart",
+    "COD checkout",
+    "confirmation",
+    "same order in WooCommerce admin"
+  ]
+}

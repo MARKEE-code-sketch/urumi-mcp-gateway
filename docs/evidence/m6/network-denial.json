@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "blocked": true,
+  "exception_type": "ConnectError",
+  "seconds": 0.408,
+  "allowed_before": {
+    "status": "ALLOWED",
+    "http_status": 200
+  },
+  "allowed_after": {
+    "status": "ALLOWED",
+    "http_status": 200
+  },
+  "source": "none fixture",
+  "destination": "bearer fixture Service IP",
+  "boundary": "actual fixture egress-deny policy"
+}

@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "request_id": "186564d9-90df-41fa-a990-eeb82c479c33",
+  "audits": [
+    {
+      "audit_id": "9d4fc312-6d30-4baa-989c-75b24b72762f",
+      "request_id": "186564d9-90df-41fa-a990-eeb82c479c33",
+      "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+      "auth_source": "session",
+      "public_tool_name": "learn__microsoft_docs_fetch",
+      "upstream_tool_name": "microsoft_docs_fetch",
+      "outcome": "success",
+      "duration_ms": 2560
+    },
+    {
+      "audit_id": "35f916b2-fe18-4622-81c0-444d7ece4607",
+      "request_id": "186564d9-90df-41fa-a990-eeb82c479c33",
+      "user_id": "2e6d5632-825f-402d-b716-1194b5b0be65",
+      "auth_source": "session",
+      "public_tool_name": "learn__microsoft_docs_search",
+      "upstream_tool_name": "microsoft_docs_search",
+      "outcome": "success",
+      "duration_ms": 2593
+    }
+  ],
+  "excerpt_disclosed": true,
+  "provider_wait_used_in_final_live_run": false
+}

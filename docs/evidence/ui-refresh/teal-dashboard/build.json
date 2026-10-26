@@ -1,0 +1,75 @@
+{
+  "status": "PASS",
+  "observed_utc": "2026-10-22T15:19:35.802831+00:00",
+  "commands": [
+    {
+      "command": [
+        "docker",
+        "build",
+        "-t",
+        "urumi/dashboard:m8-teal",
+        "-f",
+        "frontend/Dockerfile",
+        "frontend"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "image",
+        "save",
+        "-o",
+        ".tools/m10/dashboard-teal.tar",
+        "urumi/dashboard:m8-teal"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        ".tools/m10/venv/Scripts/python.exe",
+        "scripts/m4/image_identity.py",
+        ".tools/m10/dashboard-teal.tar",
+        "--image",
+        "urumi/dashboard:m8-teal",
+        "--output",
+        "docs\\evidence\\ui-refresh\\teal-dashboard\\image-identity.json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "image",
+        "inspect",
+        "urumi/dashboard:m8-teal",
+        "--format",
+        "{{json .Descriptor}}"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "docker",
+        "image",
+        "inspect",
+        "urumi/dashboard:m8-teal",
+        "--format",
+        "{{json .RepoDigests}}"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        ".tools/m1/k3d.exe",
+        "image",
+        "import",
+        "urumi/dashboard:m8-teal",
+        "-c",
+        "urumi"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "source_inputs_unchanged": 57
+}

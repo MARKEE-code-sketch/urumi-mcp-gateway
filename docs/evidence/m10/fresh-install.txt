@@ -1,0 +1,7 @@
+Release "urumi-m10" does not exist. Installing it now.
+NAME: urumi-m10
+LAST DEPLOYED: Tue Oct 20 09:48:40 2026
+NAMESPACE: urumi-m10
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None

@@ -1,0 +1,16 @@
+# Complete render example; run deploy preflight before installing (M10 pending).
+release: {enabled: true, environment: local, provenance: ""}
+foundation: {enabled: false}
+m5Harness: {enabled: false}
+gatewayCheck: {enabled: false}
+store:
+  enabled: true
+  storage: {className: local-path}
+woocommerceMcp: {enabled: true}
+inventoryMcp: {enabled: true}
+platformDb:
+  enabled: true
+  storage: {className: local-path}
+platformAccess: {enabled: true}
+backend: {enabled: true}
+dashboard: {enabled: true}

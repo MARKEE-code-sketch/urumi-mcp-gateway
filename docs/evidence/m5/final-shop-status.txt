@@ -1,0 +1,8 @@
+﻿NAME                                   READY   STATUS    RESTARTS   AGE
+pod/urumi-mariadb-0                    1/1     Running   0          21h
+pod/urumi-wordpress-5fdfc9c5f7-dldh4   1/1     Running   0          21h
+
+NAME                                            STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+persistentvolumeclaim/urumi-foundation-data     Bound    pvc-c6f386c1-ef1e-4996-ab86-ed888999226e   1Gi        RWO            local-path     <unset>                 2d8h
+persistentvolumeclaim/urumi-mariadb-data        Bound    pvc-91b18137-d90e-49f0-b16e-ab2686a82df0   2Gi        RWO            local-path     <unset>                 34h
+persistentvolumeclaim/urumi-wordpress-content   Bound    pvc-cae72902-5c12-4c82-9225-965798cb78b4   2Gi        RWO            local-path     <unset>                 34h

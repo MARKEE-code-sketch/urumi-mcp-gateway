@@ -1,0 +1,143 @@
+{
+  "module": "M7",
+  "review_date": "2026-10-18",
+  "status": "BLOCKED",
+  "user_acceptance": "PENDING",
+  "review_method": "Independent read-only source and saved-evidence review; no provider call or runtime mutation by reviewer.",
+  "counts": {
+    "passed": 11,
+    "failed": 0,
+    "blocked": 1
+  },
+  "verification": {
+    "chat_host_tests_passed": 72,
+    "chat_linux_tests_passed": 72,
+    "linux_combined_passed": 119,
+    "real_provider_probe_run": false
+  },
+  "checks": [
+    {
+      "id": "C7-01",
+      "status": "PASS",
+      "evidence": [
+        "unit-output.txt",
+        "unit-results.json",
+        "../m6/linux-module-tests.txt"
+      ],
+      "note": "API authentication and bounded inputs"
+    },
+    {
+      "id": "C7-02",
+      "status": "PASS",
+      "evidence": [
+        "unit-output.txt",
+        "unit-results.json",
+        "../m6/linux-module-tests.txt"
+      ],
+      "note": "Distinct proof-backed identities, fresh validation and typed UUID context"
+    },
+    {
+      "id": "C7-03",
+      "status": "PASS",
+      "evidence": [
+        "unit-output.txt",
+        "unit-results.json",
+        "../m6/linux-module-tests.txt"
+      ],
+      "note": "Exact fixture product creation and actual-attempt activity"
+    },
+    {
+      "id": "C7-04",
+      "status": "PASS",
+      "evidence": [
+        "unit-output.txt",
+        "unit-results.json",
+        "../m6/linux-module-tests.txt"
+      ],
+      "note": "Code-enforced shop-day bounds and honest pagination"
+    },
+    {
+      "id": "C7-05",
+      "status": "PASS",
+      "evidence": [
+        "unit-output.txt",
+        "unit-results.json",
+        "../m6/linux-module-tests.txt"
+      ],
+      "note": "Observed-SKU cross-server fixture sequence"
+    },
+    {
+      "id": "C7-06",
+      "status": "PASS",
+      "evidence": [
+        "unit-output.txt",
+        "unit-results.json",
+        "../m6/linux-module-tests.txt"
+      ],
+      "note": "Catalog/schema/content compatibility and explicit limits"
+    },
+    {
+      "id": "C7-07",
+      "status": "PASS",
+      "evidence": [
+        "unit-output.txt",
+        "unit-results.json",
+        "../m6/linux-module-tests.txt"
+      ],
+      "note": "Honest audit failures, uncertainty and write replay prevention"
+    },
+    {
+      "id": "C7-08",
+      "status": "PASS",
+      "evidence": [
+        "unit-output.txt",
+        "unit-results.json",
+        "../m6/linux-module-tests.txt"
+      ],
+      "note": "Round/dispatch/concurrency/byte/deadline and cancellation bounds"
+    },
+    {
+      "id": "C7-09",
+      "status": "PASS",
+      "evidence": [
+        "unit-output.txt",
+        "unit-results.json",
+        "../m6/linux-module-tests.txt"
+      ],
+      "note": "Controlled provider errors, zero retries and safe replies"
+    },
+    {
+      "id": "C7-10",
+      "status": "PASS",
+      "evidence": [
+        "unit-output.txt",
+        "unit-results.json",
+        "../m6/linux-module-tests.txt"
+      ],
+      "note": "Credential and untrusted-data boundaries"
+    },
+    {
+      "id": "C7-11",
+      "status": "BLOCKED",
+      "evidence": [],
+      "note": "Required real Groq tool loop against fake gateway",
+      "reason_code": "REAL_PROVIDER_EVIDENCE_PENDING",
+      "required_next_check": "Confirm current free-account access, run the explicit prepared Groq probe against the fake gateway and review its sanitized evidence."
+    },
+    {
+      "id": "C7-12",
+      "status": "PASS",
+      "evidence": [
+        "unit-output.txt",
+        "unit-results.json",
+        "../m6/linux-module-tests.txt"
+      ],
+      "note": "Independent module checks and shared deployment boundary"
+    }
+  ],
+  "limits": [
+    "No current real Groq probe result exists; historical M0 evidence and deterministic fixtures do not satisfy C7-11.",
+    "No real shop writes, integrated PostgreSQL attribution, browser experience, external-client demonstration or VPS acceptance is claimed.",
+    "No remaining source defect is identified; mandatory provider interoperability evidence is missing."
+  ]
+}

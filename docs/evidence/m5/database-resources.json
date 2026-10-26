@@ -1,0 +1,288 @@
+﻿{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "apps/v1",
+            "kind": "Deployment",
+            "metadata": {
+                "annotations": {
+                    "deployment.kubernetes.io/revision": "1",
+                    "meta.helm.sh/release-name": "urumi-m5-check",
+                    "meta.helm.sh/release-namespace": "urumi-m5-check"
+                },
+                "creationTimestamp": "2026-10-16T13:02:07Z",
+                "generation": 1,
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-m5-check-platform-db",
+                "namespace": "urumi-m5-check",
+                "resourceVersion": "21522",
+                "uid": "1e8d1ddb-fde7-4a69-8ec2-9e9798c73d60"
+            },
+            "spec": {
+                "progressDeadlineSeconds": 600,
+                "replicas": 1,
+                "revisionHistoryLimit": 10,
+                "selector": {
+                    "matchLabels": {
+                        "app.kubernetes.io/component": "platform-db",
+                        "app.kubernetes.io/instance": "urumi-m5-check"
+                    }
+                },
+                "strategy": {
+                    "type": "Recreate"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "app.kubernetes.io/component": "platform-db",
+                            "app.kubernetes.io/instance": "urumi-m5-check"
+                        }
+                    },
+                    "spec": {
+                        "automountServiceAccountToken": false,
+                        "containers": [
+                            {
+                                "env": [
+                                    {
+                                        "name": "POSTGRES_USER",
+                                        "value": "urumi"
+                                    },
+                                    {
+                                        "name": "POSTGRES_DB",
+                                        "value": "urumi"
+                                    },
+                                    {
+                                        "name": "POSTGRES_PASSWORD",
+                                        "valueFrom": {
+                                            "secretKeyRef": {
+                                                "key": "password",
+                                                "name": "urumi-m5-db"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "PGDATA",
+                                        "value": "/var/lib/postgresql/data/pgdata"
+                                    }
+                                ],
+                                "image": "postgres@sha256:3645570cccdfa447589da9f57dd740faa29b30938e861289a5574b6ca6b03826",
+                                "imagePullPolicy": "IfNotPresent",
+                                "livenessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "pg_isready",
+                                            "-U",
+                                            "urumi",
+                                            "-d",
+                                            "urumi"
+                                        ]
+                                    },
+                                    "failureThreshold": 3,
+                                    "periodSeconds": 10,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 1
+                                },
+                                "name": "postgres",
+                                "ports": [
+                                    {
+                                        "containerPort": 5432,
+                                        "name": "postgres",
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "pg_isready",
+                                            "-U",
+                                            "urumi",
+                                            "-d",
+                                            "urumi"
+                                        ]
+                                    },
+                                    "failureThreshold": 3,
+                                    "periodSeconds": 3,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 1
+                                },
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "500m",
+                                        "memory": "512Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "100m",
+                                        "memory": "128Mi"
+                                    }
+                                },
+                                "startupProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "pg_isready",
+                                            "-U",
+                                            "urumi",
+                                            "-d",
+                                            "urumi"
+                                        ]
+                                    },
+                                    "failureThreshold": 60,
+                                    "periodSeconds": 2,
+                                    "successThreshold": 1,
+                                    "timeoutSeconds": 1
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/var/lib/postgresql/data",
+                                        "name": "data"
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Always",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {},
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "name": "data",
+                                "persistentVolumeClaim": {
+                                    "claimName": "urumi-m5-check-platform-data"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "availableReplicas": 1,
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-10-16T13:02:48Z",
+                        "lastUpdateTime": "2026-10-16T13:02:48Z",
+                        "message": "Deployment has minimum availability.",
+                        "reason": "MinimumReplicasAvailable",
+                        "status": "True",
+                        "type": "Available"
+                    },
+                    {
+                        "lastTransitionTime": "2026-10-16T13:02:07Z",
+                        "lastUpdateTime": "2026-10-16T13:02:48Z",
+                        "message": "ReplicaSet \"urumi-m5-check-platform-db-56c7b86d75\" has successfully progressed.",
+                        "reason": "NewReplicaSetAvailable",
+                        "status": "True",
+                        "type": "Progressing"
+                    }
+                ],
+                "observedGeneration": 1,
+                "readyReplicas": 1,
+                "replicas": 1,
+                "terminatingReplicas": 0,
+                "updatedReplicas": 1
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Service",
+            "metadata": {
+                "annotations": {
+                    "meta.helm.sh/release-name": "urumi-m5-check",
+                    "meta.helm.sh/release-namespace": "urumi-m5-check"
+                },
+                "creationTimestamp": "2026-10-16T13:02:07Z",
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-m5-check-platform-db",
+                "namespace": "urumi-m5-check",
+                "resourceVersion": "21452",
+                "uid": "68c09725-c5d4-4b0a-9b44-81c3adeaab3c"
+            },
+            "spec": {
+                "clusterIP": "10.43.64.152",
+                "clusterIPs": [
+                    "10.43.64.152"
+                ],
+                "internalTrafficPolicy": "Cluster",
+                "ipFamilies": [
+                    "IPv4"
+                ],
+                "ipFamilyPolicy": "SingleStack",
+                "ports": [
+                    {
+                        "name": "postgres",
+                        "port": 5432,
+                        "protocol": "TCP",
+                        "targetPort": "postgres"
+                    }
+                ],
+                "selector": {
+                    "app.kubernetes.io/component": "platform-db",
+                    "app.kubernetes.io/instance": "urumi-m5-check"
+                },
+                "sessionAffinity": "None",
+                "type": "ClusterIP"
+            },
+            "status": {
+                "loadBalancer": {}
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "PersistentVolumeClaim",
+            "metadata": {
+                "annotations": {
+                    "helm.sh/resource-policy": "keep",
+                    "meta.helm.sh/release-name": "urumi-m5-check",
+                    "meta.helm.sh/release-namespace": "urumi-m5-check",
+                    "pv.kubernetes.io/bind-completed": "yes",
+                    "pv.kubernetes.io/bound-by-controller": "yes",
+                    "volume.beta.kubernetes.io/storage-provisioner": "rancher.io/local-path",
+                    "volume.kubernetes.io/selected-node": "k3d-urumi-server-0",
+                    "volume.kubernetes.io/storage-provisioner": "rancher.io/local-path"
+                },
+                "creationTimestamp": "2026-10-16T13:02:07Z",
+                "finalizers": [
+                    "kubernetes.io/pvc-protection"
+                ],
+                "labels": {
+                    "app.kubernetes.io/managed-by": "Helm"
+                },
+                "name": "urumi-m5-check-platform-data",
+                "namespace": "urumi-m5-check",
+                "resourceVersion": "21486",
+                "uid": "210de06f-ccba-483d-a8b4-af4c7bf3b474"
+            },
+            "spec": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "resources": {
+                    "requests": {
+                        "storage": "2Gi"
+                    }
+                },
+                "storageClassName": "local-path",
+                "volumeMode": "Filesystem",
+                "volumeName": "pvc-210de06f-ccba-483d-a8b4-af4c7bf3b474"
+            },
+            "status": {
+                "accessModes": [
+                    "ReadWriteOnce"
+                ],
+                "capacity": {
+                    "storage": "2Gi"
+                },
+                "phase": "Bound"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

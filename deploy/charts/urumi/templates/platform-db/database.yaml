@@ -1,0 +1,81 @@
+{{- if .Values.platformDb.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-platform-data
+  annotations: {helm.sh/resource-policy: keep}
+spec:
+  accessModes: [ReadWriteOnce]
+  {{- if .Values.platformDb.storage.className }}
+  storageClassName: {{ .Values.platformDb.storage.className | quote }}
+  {{- end }}
+  resources:
+    requests: {storage: {{ .Values.platformDb.storage.size | quote }}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-platform-db
+spec:
+  replicas: 1
+  strategy: {type: Recreate}
+  selector:
+    matchLabels: {app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: platform-db}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: platform-db}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets: {{ toJson . }}
+      {{- end }}
+      automountServiceAccountToken: false
+      containers:
+        - name: postgres
+          image: {{ .Values.platformDb.image | quote }}
+          env:
+            - {name: POSTGRES_USER, value: urumi}
+            - {name: POSTGRES_DB, value: urumi}
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef: {name: {{ .Values.platformDb.existingSecret }}, key: password}
+            - {name: PGDATA, value: /var/lib/postgresql/data/pgdata}
+          ports: [{name: postgres, containerPort: 5432}]
+          startupProbe:
+            exec: {command: [pg_isready, -U, urumi, -d, urumi]}
+            periodSeconds: 2
+            failureThreshold: 60
+          readinessProbe:
+            exec: {command: [pg_isready, -U, urumi, -d, urumi]}
+            periodSeconds: 3
+          livenessProbe:
+            exec: {command: [pg_isready, -U, urumi, -d, urumi]}
+            periodSeconds: 10
+          resources: {{ .Values.platformDb.resources | toJson }}
+          volumeMounts: [{name: data, mountPath: /var/lib/postgresql/data}]
+      volumes:
+        - name: data
+          persistentVolumeClaim: {claimName: {{ .Release.Name }}-platform-data}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-platform-db
+spec:
+  type: ClusterIP
+  selector: {app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: platform-db}
+  ports: [{name: postgres, port: 5432, targetPort: postgres}]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ .Release.Name }}-platform-db
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: platform-db}
+  policyTypes: [Ingress]
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels: {app.kubernetes.io/instance: {{ .Release.Name }}, app.kubernetes.io/component: backend}
+      ports: [{protocol: TCP, port: 5432}]
+{{- end }}

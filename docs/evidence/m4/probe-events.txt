@@ -1,0 +1,14 @@
+﻿UTC: 2026-10-16T13:11:49.6538734Z
+Command: C:\Program Files\Docker\Docker\resources\bin\kubectl.exe "--kubeconfig" "C:\Users\mrina\Downloads\URUMI_Assignment\.tools\m1\kubeconfig.yaml" "--context" "k3d-urumi" "-n" "urumi-m4-check" "get" "events" "--field-selector" "involvedObject.uid=800bcc63-0ef3-4f26-901c-7ee2ab0f96d7" "--sort-by=.metadata.creationTimestamp"
+Exit: 0
+LAST SEEN   TYPE      REASON      OBJECT                                              MESSAGE
+44s         Normal    Scheduled   pod/urumi-m4-check-inventory-mcp-7668bb9d98-dn9df   Successfully assigned urumi-m4-check/urumi-m4-check-inventory-mcp-7668bb9d98-dn9df to k3d-urumi-server-0
+4s          Normal    Pulled      pod/urumi-m4-check-inventory-mcp-7668bb9d98-dn9df   Container image "urumi/inventory-mcp:m4" already present on machine and can be accessed by the pod
+4s          Normal    Created     pod/urumi-m4-check-inventory-mcp-7668bb9d98-dn9df   Container created
+3s          Normal    Started     pod/urumi-m4-check-inventory-mcp-7668bb9d98-dn9df   Container started
+33s         Warning   Unhealthy   pod/urumi-m4-check-inventory-mcp-7668bb9d98-dn9df   Startup probe failed: Get "http://10.42.0.76:8000/livez": dial tcp 10.42.0.76:8000: connect: connection refused
+5s          Warning   Unhealthy   pod/urumi-m4-check-inventory-mcp-7668bb9d98-dn9df   Liveness probe failed: HTTP probe failed with statuscode: 404
+5s          Normal    Killing     pod/urumi-m4-check-inventory-mcp-7668bb9d98-dn9df   Container inventory-mcp failed liveness probe, will be restarted
+3s          Warning   Unhealthy   pod/urumi-m4-check-inventory-mcp-7668bb9d98-dn9df   Readiness probe failed: Get "http://10.42.0.76:8000/readyz": dial tcp 10.42.0.76:8000: connect: connection refused
+
+

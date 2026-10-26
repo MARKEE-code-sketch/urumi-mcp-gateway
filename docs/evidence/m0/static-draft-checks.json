@@ -1,0 +1,16 @@
+{
+  "jsonFilesParsed": 2,
+  "uniqueLocalTools": [
+    "list_products",
+    "create_product",
+    "list_orders",
+    "get_order",
+    "update_order_status",
+    "lookup_sku"
+  ],
+  "fixtureEnvelopesChecked": 11,
+  "documentationJsonExamplesParsed": 4,
+  "existingLocalLinksChecked": 9,
+  "fullJsonSchemaValidation": "not run; jsonschema and Ajv unavailable; no dependency installed",
+  "protocolModelClusterExperiments": "not run"
+}

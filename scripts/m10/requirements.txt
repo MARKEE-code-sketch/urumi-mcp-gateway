@@ -1,0 +1,2 @@
+-r ../../backend/requirements.lock.txt
+PyYAML==6.0.3

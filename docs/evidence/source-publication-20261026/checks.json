@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-26",
+  "status": "SOURCE_PACKAGE_CHECKS_PASSED",
+  "target": "MARKEE-code-sketch/urumi-mcp-gateway",
+  "visibility_authorized_by_maintainer": "public",
+  "validation_scope": "Exact staged source checkout; no live cluster or provider requests.",
+  "test_command": "python -m pytest tests/release tests/m0 -q -p no:cacheprovider",
+  "tests_passed": 77,
+  "subtests_passed": 50,
+  "duration_seconds": 41.19,
+  "known_private_value_matches": 0,
+  "actual_credential_pattern_matches": 0,
+  "independent_text_review": "No actual credential blocker; fixture-only matches reviewed.",
+  "browser_evidence_raster_files_excluded": 81,
+  "included": ["application source", "Helm chart and values", "runtime assets and licenses", "tests and M0 fixtures", "guides and specifications", "sanitized text evidence", ".agents configuration"],
+  "excluded": ["environment and operator credentials", "kubeconfigs", "private keys and certificates", "dependency and cache trees", "browser evidence screenshots", "local OAuth connection helper", "original product brief", "generated backups"],
+  "manual_acceptance": "User-reported pass recorded separately; this packaging check did not rerun the manual checklist.",
+  "limitations": "Known-value/pattern scans are not a guarantee that all unknown secrets are detectable. Raster evidence was excluded rather than certified by text scans."
+}

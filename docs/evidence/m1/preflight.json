@@ -1,0 +1,14 @@
+﻿{
+    "timestamp":  "2026-10-14T17:03:34.1797959Z",
+    "status":  "PASS",
+    "docker":  {
+                   "serverVersion":  "29.6.1",
+                   "cpus":  12,
+                   "memoryBytes":  8007598080,
+                   "os":  "linux"
+               },
+    "kubectl":  "v1.36.1",
+    "memory":  "Docker allocation recorded; full stack capacity needs later measurements.",
+    "port":  80,
+    "error":  null
+}

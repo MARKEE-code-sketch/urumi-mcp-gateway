@@ -1,0 +1,19 @@
+{
+  "status": "OBSERVED_FAILURE_BEFORE_FIX",
+  "scope": "Disposable content-only restore probe; no source mutations",
+  "process_uid": 33,
+  "process_gid": 33,
+  "emptydir_mount_uid": 0,
+  "emptydir_mount_gid": 33,
+  "emptydir_mount_mode": "2777",
+  "mount_writable": true,
+  "tar_exit_code": 2,
+  "known_error_signals": ["OPERATION_NOT_PERMITTED", "CANNOT_CHMOD"],
+  "raw_stderr_exported": false,
+  "fix": "Create /content/site as UID33, extract and verify the archived content there",
+  "regression": "test_restore_extracts_into_uid_owned_child_and_verifies_that_same_tree",
+  "focused_tests": {"passed": 23, "failed": 0, "seconds": 0.36},
+  "test_command": ".tools/m10/venv/Scripts/python.exe -m pytest tests/e2e/test_recovery.py -q -p no:cacheprovider",
+  "final_runtime_result": "recovery-restore.json",
+  "final_cleanup_result": "recovery-cleanup-check.json"
+}

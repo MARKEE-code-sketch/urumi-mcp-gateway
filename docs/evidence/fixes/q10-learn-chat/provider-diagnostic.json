@@ -1,0 +1,14 @@
+{
+  "tool_count": 9,
+  "message_bytes": 22826,
+  "http_status": 200,
+  "rate_headers": {
+    "x-ratelimit-limit-requests": "1000",
+    "x-ratelimit-limit-tokens": "8000",
+    "x-ratelimit-remaining-requests": "999",
+    "x-ratelimit-remaining-tokens": "1307",
+    "x-ratelimit-reset-requests": "1m26.4s",
+    "x-ratelimit-reset-tokens": "50.197s"
+  },
+  "result": "completed_provider_request"
+}

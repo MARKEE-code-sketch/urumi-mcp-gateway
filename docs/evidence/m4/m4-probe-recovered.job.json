@@ -1,0 +1,67 @@
+﻿{
+    "spec":  {
+                 "backoffLimit":  0,
+                 "activeDeadlineSeconds":  90,
+                 "template":  {
+                                  "metadata":  {
+                                                   "labels":  {
+                                                                  "app.kubernetes.io/name":  "urumi",
+                                                                  "app.kubernetes.io/component":  "gateway",
+                                                                  "app.kubernetes.io/instance":  "urumi-m4-check"
+                                                              }
+                                               },
+                                  "spec":  {
+                                               "automountServiceAccountToken":  false,
+                                               "restartPolicy":  "Never",
+                                               "securityContext":  {
+                                                                       "runAsUser":  10001,
+                                                                       "seccompProfile":  {
+                                                                                              "type":  "RuntimeDefault"
+                                                                                          },
+                                                                       "runAsNonRoot":  true,
+                                                                       "runAsGroup":  10001
+                                                                   },
+                                               "containers":  [
+                                                                  {
+                                                                      "securityContext":  {
+                                                                                              "allowPrivilegeEscalation":  false,
+                                                                                              "readOnlyRootFilesystem":  true,
+                                                                                              "capabilities":  {
+                                                                                                                   "drop":  [
+                                                                                                                                "ALL"
+                                                                                                                            ]
+                                                                                                               }
+                                                                                          },
+                                                                      "name":  "client",
+                                                                      "resources":  {
+                                                                                        "limits":  {
+                                                                                                       "cpu":  "250m",
+                                                                                                       "memory":  "128Mi"
+                                                                                                   },
+                                                                                        "requests":  {
+                                                                                                         "cpu":  "50m",
+                                                                                                         "memory":  "64Mi"
+                                                                                                     }
+                                                                                    },
+                                                                      "imagePullPolicy":  "IfNotPresent",
+                                                                      "image":  "urumi/inventory-mcp:m4",
+                                                                      "command":  [
+                                                                                      "python",
+                                                                                      "tests/sample_mcps/cluster_client.py",
+                                                                                      "--url",
+                                                                                      "http://urumi-m4-check-inventory-mcp.urumi-m4-check.svc.cluster.local:8000/mcp",
+                                                                                      "--mode",
+                                                                                      "allowed"
+                                                                                  ]
+                                                                  }
+                                                              ]
+                                           }
+                              }
+             },
+    "metadata":  {
+                     "namespace":  "urumi-m4-check",
+                     "name":  "m4-probe-recovered"
+                 },
+    "apiVersion":  "batch/v1",
+    "kind":  "Job"
+}

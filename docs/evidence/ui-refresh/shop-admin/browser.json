@@ -1,0 +1,176 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "login-desktop",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "font": "Figtree, Arial, sans-serif",
+      "primary": "#147d69",
+      "cssLoaded": true
+    },
+    {
+      "name": "login-mobile",
+      "width": 390,
+      "scrollWidth": 390,
+      "font": "Figtree, Arial, sans-serif",
+      "primary": "#147d69",
+      "cssLoaded": true
+    },
+    {
+      "name": "native invalid-login validation",
+      "passed": true
+    },
+    {
+      "name": "unrelated external news panel omitted",
+      "passed": true
+    },
+    {
+      "name": "overview real product/order totals",
+      "counts": [
+        3,
+        3
+      ],
+      "passed": true
+    },
+    {
+      "name": "dashboard-desktop",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "font": "Figtree, Arial, sans-serif",
+      "primary": "#147d69",
+      "cssLoaded": true
+    },
+    {
+      "name": "products-desktop",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "font": "Figtree, Arial, sans-serif",
+      "primary": "#147d69",
+      "cssLoaded": true
+    },
+    {
+      "name": "product search",
+      "passed": true
+    },
+    {
+      "name": "product-editor-desktop",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "font": "Figtree, Arial, sans-serif",
+      "primary": "#147d69",
+      "cssLoaded": true
+    },
+    {
+      "name": "native product price, inventory tab and SKU controls",
+      "passed": true,
+      "saved": false
+    },
+    {
+      "name": "orders-desktop",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "font": "Figtree, Arial, sans-serif",
+      "primary": "#147d69",
+      "cssLoaded": true
+    },
+    {
+      "name": "order search",
+      "passed": true
+    },
+    {
+      "name": "order-detail-desktop",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "font": "Figtree, Arial, sans-serif",
+      "primary": "#147d69",
+      "cssLoaded": true
+    },
+    {
+      "name": "existing order and native status controls",
+      "passed": true,
+      "orderId": 21,
+      "saved": false
+    },
+    {
+      "name": "settings-desktop",
+      "width": 1440,
+      "scrollWidth": 1440,
+      "font": "Figtree, Arial, sans-serif",
+      "primary": "#147d69",
+      "cssLoaded": true
+    },
+    {
+      "name": "cash-on-delivery settings controls",
+      "passed": true,
+      "saved": false
+    },
+    {
+      "name": "dashboard-mobile",
+      "width": 390,
+      "scrollWidth": 390,
+      "font": "Figtree, Arial, sans-serif",
+      "primary": "#147d69",
+      "cssLoaded": true
+    },
+    {
+      "name": "products-mobile",
+      "width": 390,
+      "scrollWidth": 390,
+      "font": "Figtree, Arial, sans-serif",
+      "primary": "#147d69",
+      "cssLoaded": true
+    },
+    {
+      "name": "product-editor-mobile",
+      "width": 390,
+      "scrollWidth": 390,
+      "font": "Figtree, Arial, sans-serif",
+      "primary": "#147d69",
+      "cssLoaded": true
+    },
+    {
+      "name": "orders-mobile",
+      "width": 390,
+      "scrollWidth": 390,
+      "font": "Figtree, Arial, sans-serif",
+      "primary": "#147d69",
+      "cssLoaded": true
+    },
+    {
+      "name": "order-detail-mobile",
+      "width": 390,
+      "scrollWidth": 390,
+      "font": "Figtree, Arial, sans-serif",
+      "primary": "#147d69",
+      "cssLoaded": true
+    },
+    {
+      "name": "settings-mobile",
+      "width": 390,
+      "scrollWidth": 390,
+      "font": "Figtree, Arial, sans-serif",
+      "primary": "#147d69",
+      "cssLoaded": true
+    },
+    {
+      "name": "native mobile menu opens and navigates",
+      "passed": true
+    },
+    {
+      "name": "native admin logout",
+      "passed": true
+    },
+    {
+      "name": "admin stylesheet isolated from storefront",
+      "passed": true
+    }
+  ],
+  "externalOrigins": [
+    "https://stats.wp.com",
+    "https://pixel.wp.com",
+    "https://secure.gravatar.com",
+    "https://woocommerce.com"
+  ],
+  "pageErrors": []
+}

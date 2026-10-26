@@ -1,0 +1,23 @@
+﻿UTC: 2026-10-14T16:59:56.0168115Z
+Command: C:\Program Files\Docker\Docker\resources\bin\docker.exe "pull" "python:3.13.5-slim-bookworm"
+Exit: 0
+3.13.5-slim-bookworm: Pulling from library/python
+59e22667830b: Pulling fs layer
+19f81082f6f0: Pulling fs layer
+799df5177ae2: Pulling fs layer
+66cd357cf7a1: Pulling fs layer
+96242108fbe2: Download complete
+66cd357cf7a1: Download complete
+605b4b1ac83e: Download complete
+19f81082f6f0: Download complete
+59e22667830b: Download complete
+799df5177ae2: Download complete
+59e22667830b: Pull complete
+19f81082f6f0: Pull complete
+799df5177ae2: Pull complete
+66cd357cf7a1: Pull complete
+Digest: sha256:4c2cf9917bd1cbacc5e9b07320025bdb7cdf2df7b0ceaccb55e9dd7e30987419
+Status: Downloaded newer image for python:3.13.5-slim-bookworm
+docker.io/library/python:3.13.5-slim-bookworm
+
+
